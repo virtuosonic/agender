@@ -1,0 +1,40 @@
+28 junio 2009
+   released version 1.0.6
+
+     Change log:
+        -Applied: cambio del archivo de configuracion para que sea oculto en un*x
+
+18 abril 2009
+   released version 1.0.5
+
+     Change log:
+        -Fixed: Error de manejo de memoria, que provocaba que el programa recibiera la señal SIGSEGV
+        -Added: el submenu opacity se deshabilita si no se soporta tranparencia
+        -New: ahora los dias se marcan inmediatamante al agregar o eliminar notas
+
+21 February 2009
+   released version 1.0.4
+
+     Change log:
+        -Fixed: ahora las fechas que solo tienen un digito tambien se colorean si contienen notas
+
+21 February 2009
+   released version 1.0.3
+
+     Change log:
+        -New: parcial: los dias que tinen notas aparecen marcados de rojo (se puede cabiar el color) en el calendario
+
+30 January 2009
+   released version 1.0.2
+
+     Change log:
+        -Fixed: Fallo al escribir al registro
+
+27 January 2009
+   released version 1.0.1
+
+     Change log:
+        -Fixed: Escribe en el registro solo cuando es necesario
+        -New: Iconos de la barra de tareas, programa y del cuadro acerca de...
+        -Fixed: Carga las notas del dia correspondiente
+

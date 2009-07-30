@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Release Fedora" />
+	<File name="AgenderApp.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="464" topLine="13" />
+	</File>
+	<File name="AgenderApp.h" open="0" top="0" tabpos="0">
+		<Cursor position="158" topLine="2" />
+	</File>
+	<File name="AgenderMain.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="5095" topLine="101" />
+	</File>
+	<File name="AgenderMain.h" open="0" top="0" tabpos="2">
+		<Cursor position="1993" topLine="65" />
+	</File>
+	<File name="AgenderTray.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="1841" topLine="53" />
+	</File>
+	<File name="AgenderTray.h" open="0" top="0" tabpos="4">
+		<Cursor position="522" topLine="0" />
+	</File>
+	<File name="resource.rc" open="0" top="0" tabpos="4">
+		<Cursor position="18" topLine="0" />
+	</File>
+	<File name="version.h" open="0" top="0" tabpos="2">
+		<Cursor position="168" topLine="0" />
+	</File>
+</CodeBlocks_layout_file>
