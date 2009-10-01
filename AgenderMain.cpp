@@ -180,7 +180,7 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& event)
     wxAboutDialogInfo info;
     info.AddDeveloper(_("Gabriel Espinoza a.k.a. virtuoso"));
     info.SetDescription(_("A cross-plataform schedule tool"));
-    info.SetWebSite(_T("http://sourceforge.net/projects/agender"));
+    info.SetWebSite(_T("http://agender.sourceforge.net"));
     info.SetLicence(_("Agender is free software; you can redistribute it and/or modify\n"
         "it under the terms of the GNU General Public License as published by\n"
         "the Free Software Foundation."
