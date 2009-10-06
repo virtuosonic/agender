@@ -23,9 +23,9 @@ bool AgenderApp::OnInit()
     wxInitAllImageHandlers();
     if ( wxsOK )
     {
-    	AgenderFrame* Frame = new AgenderFrame(0);
-    	Frame->Show(false);
-    	SetTopWindow(Frame);
+    AgenderFrame* Frame = new AgenderFrame(0);
+    Frame->Show(false);
+    SetTopWindow(Frame);
     }
     //*)
     return wxsOK;
