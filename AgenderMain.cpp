@@ -48,6 +48,7 @@ const long AgenderFrame::ID_BUTTON3 = wxNewId();
 BEGIN_EVENT_TABLE(AgenderFrame,wxFrame)
     EVT_FIND(wxID_ANY,AgenderFrame::OnFind)
     EVT_MENU(wxID_FIND,AgenderFrame::OnSearch)
+    EVT_MENU(7004,AgenderFrame::OnChangeNotesColour)
     //(*EventTable(AgenderFrame)
     //*)
 END_EVENT_TABLE()
@@ -111,6 +112,7 @@ AgenderFrame::AgenderFrame(wxWindow* parent,wxWindowID id)
     {
         schdl = new wxFileConfig;
     }
+    wxConfig::Set(schdl);
     schdl->Write(_T("AgenderMessage"),_("Agender uses this file to save your schedule, don't delete it!"));
     prevDate = CalendarCtrl1->GetDate().Format(_T("%Y-%m-%j"));
     SetTransparent(schdl->Read(_T("/opacity"),255));
@@ -153,8 +155,6 @@ AgenderFrame::AgenderFrame(wxWindow* parent,wxWindowID id)
 
 AgenderFrame::~AgenderFrame()
 {
-    schdl->Write(_T("/bgcolour"),GetBackgroundColour().GetAsString(wxC2S_HTML_SYNTAX));
-    schdl->Write(_T("/opacity"),trayicon->GetAlpha());
     if (ListBox1->GetSelection() !=wxNOT_FOUND)
     {
         schdl->Write(CalendarCtrl1->GetDate().Format(_T("%Y-%m-%d/")) +
@@ -163,9 +163,11 @@ AgenderFrame::~AgenderFrame()
     }
     wxFileOutputStream ofile(schFile);
     schdl->Save(ofile);
+    //without this Agender will receive SIGSEGV
+    wxConfig::Set(NULL);
     //delete
-    delete schdl;
     delete trayicon;
+    delete schdl;
     //(*Destroy(AgenderFrame)
     //*)
 }
@@ -305,9 +307,9 @@ void AgenderFrame::OnBtnElimClick(wxCommandEvent& event)
     }
 }
 
-void AgenderFrame::SetNotesColour(wxColour colour)
+void AgenderFrame::OnChangeNotesColour(wxCommandEvent& event)
 {
-    schdl->Write(_T("/notescolour"),colour.GetAsString(wxC2S_HTML_SYNTAX));
+    schdl->Write(_T("/notescolour"),event.GetString());
     MarkDays();
     Refresh();
 }

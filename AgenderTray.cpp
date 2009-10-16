@@ -1,23 +1,21 @@
-#include "AgenderMain.h"
 #include "AgenderTray.h"
 #include <wx/colordlg.h>
 #include <wx/menu.h>
+#include <wx/config.h>
 
 BEGIN_EVENT_TABLE(AgenderTray,wxTaskBarIcon)
     EVT_TASKBAR_LEFT_UP(AgenderTray::OnLeft)
     EVT_MENU(ID_SHOW,AgenderTray::OnMenuShow)
     EVT_MENU(ID_HIDE,AgenderTray::OnMenuHide)
     EVT_MENU_RANGE(ID_OPC100,ID_OPC25,AgenderTray::OnMenuOpc)
-    EVT_MENU(ID_BGCOLOUR,AgenderTray::OnMenuBgColour)
     EVT_MENU(ID_NOTES_COLOUR,AgenderTray::OnMenuNotesColour)
     EVT_MENU(wxID_EXIT,AgenderTray::OnMenuExit)
     EVT_MENU(wxID_FIND,AgenderTray::OnMenuFind)
 END_EVENT_TABLE()
 
-AgenderTray::AgenderTray(AgenderFrame* frame,long colalpha)
+AgenderTray::AgenderTray(wxFrame* frame,long colalpha)
 {
     this->frame = frame;
-    bgColour = frame->GetBackgroundColour();
     alpha = colalpha;
     switch (alpha)
     {
@@ -109,17 +107,7 @@ void AgenderTray::OnMenuOpc(wxCommandEvent& event)
     		break;
     }
     frame->SetTransparent(alpha);
-}
-
-void AgenderTray::OnMenuBgColour(wxCommandEvent& event)
-{
-    wxColourDialog dlg(frame);
-    dlg.GetColourData().SetChooseFull(true);
-    if (dlg.ShowModal() == wxID_OK)
-    {
-    	frame->SetBackgroundColour(dlg.GetColourData().GetColour());
-    	frame->Refresh();
-    }
+    wxConfig::Get()->Write(_T("/opacity"),alpha);
 }
 
 void AgenderTray::OnMenuNotesColour(wxCommandEvent& event)
@@ -128,7 +116,9 @@ void AgenderTray::OnMenuNotesColour(wxCommandEvent& event)
     dlg.GetColourData().SetChooseFull(true);
     if (dlg.ShowModal() == wxID_OK)
     {
-    	frame->SetNotesColour(dlg.GetColourData().GetColour());
+    	//frame->SetNotesColour(dlg.GetColourData().GetColour());
+    	event.SetString(dlg.GetColourData().GetColour().GetAsString(wxC2S_HTML_SYNTAX));
+    	::wxPostEvent(frame->GetEventHandler(),event);
     }
 }
 

@@ -18,13 +18,10 @@
 #include <wx/button.h>
 #include <wx/frame.h>
 //*)
-
-
 #include <wx/fileconf.h>
 #include <wx/arrstr.h>
 #include <wx/fdrepdlg.h>
-
-class AgenderTray;
+#include <wx/taskbar.h>
 
 class AgenderFrame: public wxFrame
 {
@@ -32,7 +29,6 @@ class AgenderFrame: public wxFrame
 
         AgenderFrame(wxWindow* parent,wxWindowID id = -1);
         virtual ~AgenderFrame();
-        void SetNotesColour(wxColour colour);
 
     private:
 
@@ -47,6 +43,7 @@ class AgenderFrame: public wxFrame
         //*)
         void OnFind(wxFindDialogEvent& event);
         void OnSearch(wxCommandEvent& event);
+        void OnChangeNotesColour(wxCommandEvent& event);
 
         //(*Identifiers(AgenderFrame)
         static const long ID_CALENDARCTRL1;
@@ -72,7 +69,7 @@ class AgenderFrame: public wxFrame
         void savePastNote();
 
         wxFileConfig* schdl;
-        AgenderTray* trayicon;
+        wxTaskBarIcon* trayicon;
         wxString schFile;
         wxArrayString msgs;
         int prevSel;

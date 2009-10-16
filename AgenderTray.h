@@ -2,18 +2,17 @@
 #define AGENDERTRAY_H
 
 #include <wx/taskbar.h>
-
-class AgenderFrame;
+#include <wx/colour.h>
+#include <wx/frame.h>
 
 class AgenderTray : public wxTaskBarIcon
 {
     public:
-        AgenderTray(AgenderFrame* frame,long colalpha);
+        AgenderTray(wxFrame* frame,long colalpha);
 
         wxMenu* CreatePopupMenu();
-        int GetAlpha(){ return alpha;}
     protected:
-        AgenderFrame* frame;
+        wxFrame* frame;
     private:
         enum
         {
@@ -24,23 +23,20 @@ class AgenderTray : public wxTaskBarIcon
             ID_OPC50,
             ID_OPC25,
             ID_BGCOLOUR,
-            ID_NOTES_COLOUR
+            ID_NOTES_COLOUR=7004
         };
 
         int alpha;
         int opc;
-        wxColour bgColour;
         wxColour notesColour;
 
         void OnLeft(wxTaskBarIconEvent& event);
         void OnMenuShow(wxCommandEvent& event);
         void OnMenuHide(wxCommandEvent& event);
         void OnMenuOpc(wxCommandEvent& event);
-        void OnMenuBgColour(wxCommandEvent& event);
         void OnMenuNotesColour(wxCommandEvent& event);
         void OnMenuExit(wxCommandEvent& event);
         void OnMenuFind(wxCommandEvent& event);
-
 
         DECLARE_EVENT_TABLE()
 };
