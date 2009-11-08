@@ -16,7 +16,7 @@
 //*)
 
 #include <wx/aboutdlg.h>
-#include <wx/accel.h>
+//#include <wx/accel.h>
 #include <wx/textdlg.h>
 #include <wx/stdpaths.h>
 #include <wx/wfstream.h>
@@ -117,6 +117,7 @@ AgenderFrame::AgenderFrame(wxWindow* parent,wxWindowID id)
     prevDate = CalendarCtrl1->GetDate().Format(_T("%Y-%m-%j"));
     SetTransparent(schdl->Read(_T("/opacity"),255));
     prevSel = wxNOT_FOUND;
+
     trayicon = new AgenderTray(this,schdl->Read(_T("/opacity"),255));
     trayicon->SetIcon(Agender16x16_xpm,_T("Virtuosonic Agender"));
 
@@ -144,12 +145,13 @@ AgenderFrame::AgenderFrame(wxWindow* parent,wxWindowID id)
     	schdl->SetPath(_T("/"));
     }
     MarkDays();
-
+#if 0
     //parece que esto no funciona en gtk+
     wxAcceleratorEntry entries[1];
     entries[0].Set(wxACCEL_CTRL,(int)"F",wxID_FIND);
     wxAcceleratorTable accel(1, entries);
     this->SetAcceleratorTable(accel);
+    #endif
     fndDlg = NULL;
 }
 

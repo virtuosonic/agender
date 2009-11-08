@@ -24,7 +24,7 @@ bool AgenderApp::OnInit()
     if ( wxsOK )
     {
     AgenderFrame* Frame = new AgenderFrame(0);
-    Frame->Show(false);
+    Frame->Show();
     SetTopWindow(Frame);
     }
     //*)

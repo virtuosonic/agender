@@ -2,7 +2,7 @@
 
 ; HM NIS Edit Wizard helper defines
 !define PRODUCT_NAME "Agender"
-!define PRODUCT_VERSION "1.0"
+!define PRODUCT_VERSION "1.0.6"
 !define PRODUCT_WEB_SITE "http://agender.sourceforge.net"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\Agender.exe"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
@@ -21,7 +21,7 @@ SetCompressor lzma
 ; Welcome page
 !insertmacro MUI_PAGE_WELCOME
 ; License page
-!insertmacro MUI_PAGE_LICENSE "../lic CC_es.txt"
+!insertmacro MUI_PAGE_LICENSE "license.txt"
 ; Directory page
 !insertmacro MUI_PAGE_DIRECTORY
 ; Instfiles page
@@ -35,6 +35,7 @@ SetCompressor lzma
 
 ; Language files
 !insertmacro MUI_LANGUAGE "Spanish"
+!insertmacro MUI_LANGUAGE "English"
 
 ; Reserve files
 !insertmacro MUI_RESERVEFILE_INSTALLOPTIONS
@@ -42,7 +43,7 @@ SetCompressor lzma
 ; MUI end ------
 
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
-OutFile "Instalar.exe"
+OutFile "Agender-${PRODUCT_VERSION}.exe"
 InstallDir "$PROGRAMFILES\Agender"
 InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" ""
 ShowInstDetails show
@@ -51,12 +52,11 @@ ShowUnInstDetails show
 Section "Principal" SEC01
   SetOutPath "$INSTDIR"
   SetOverwrite ifnewer
-  File "bin\Release\Agender.exe"
+  File "Agender.exe"
   CreateDirectory "$SMPROGRAMS\Agender"
   CreateShortCut "$SMPROGRAMS\Agender\Agender.lnk" "$INSTDIR\Agender.exe"
   CreateShortCut "$DESKTOP\Agender.lnk" "$INSTDIR\Agender.exe"
-  File "..\..\..\..\..\wxWidgets-2.8.7\lib\gcc_dll\wxmsw28u_gcc_Virtuosonic.dll"
-  File "..\..\..\..\..\Program Files\CodeBlocks\MinGW\bin\mingwm10.dll"
+  File "${MINGWDIR}\bin\mingwm10.dll"
 SectionEnd
 
 Section -AdditionalIcons
@@ -91,7 +91,6 @@ Section Uninstall
   Delete "$INSTDIR\${PRODUCT_NAME}.url"
   Delete "$INSTDIR\uninst.exe"
   Delete "$INSTDIR\mingwm10.dll"
-  Delete "$INSTDIR\wxmsw28u_gcc_Virtuosonic.dll"
   Delete "$INSTDIR\Agender.exe"
 
   Delete "$SMPROGRAMS\Agender\Uninstall.lnk"
