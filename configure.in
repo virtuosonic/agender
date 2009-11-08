@@ -1,0 +1,12 @@
+AC_PREREQ(2.53)
+AC_INIT(Agender,1.0.6)
+AC_CANONICAL_SYSTEM
+AC_PROG_CXX
+AC_PATH_PROG(WX_CONFIG, wx-config, no, $PATH:/usr/local/bin)
+if [["$WX_CONFIG" = "no" ]];then
+	AC_MSG_ERROR("Could not find wx-config: is wxWidgets installed? is wx-config in your path?")
+fi
+DEBUG=0
+m4_include(autoconf/bakefile.m4)
+AC_BAKEFILE([m4_include(autoconf_inc.m4)])
+AC_OUTPUT([Makefile])
