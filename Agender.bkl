@@ -1,13 +1,22 @@
 <?xml version="1.0"?>
+<!-- this file is part of the Agender package
+http://agender.sourceforge.net
+-->
 <makefile>
 	<include file="presets/wx.bkl"/>
 
 	<exe id="Agender" template="wx-lib">
+		<app-type>gui</app-type>
+		<!-- source files-->
 		<sources>AgenderApp.cpp</sources>
 		<sources>AgenderMain.cpp</sources>
 		<sources>AgenderTray.cpp</sources>
+		<!-- wxWidgets dependencies -->
 		<wx-lib>adv</wx-lib>
 		<wx-lib>core</wx-lib>
 		<wx-lib>base</wx-lib>
+		<!--resource file -->
+		<win32-res>resource.rc</win32-res>
+		<install-to>$(BINDIR)</install-to>
   	</exe>
 </makefile>
