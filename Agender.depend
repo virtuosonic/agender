@@ -1,11 +1,12 @@
 # depslib dependency file v1.0
-1255280350 source:/home/virtuoso/C++/Agender/AgenderTray.cpp
+1258083901 source:/home/virtuoso/C++/Agender/AgenderTray.cpp
 	"AgenderTray.h"
 	<wx/colordlg.h>
 	<wx/menu.h>
 	<wx/config.h>
+	<wx/msgdlg.h>
 
-1255280276 /home/virtuoso/C++/Agender/AgenderTray.h
+1258081090 /home/virtuoso/C++/Agender/AgenderTray.h
 	<wx/taskbar.h>
 	<wx/colour.h>
 	<wx/frame.h>
@@ -687,7 +688,7 @@
 	"wx/filefn.h"
 	"wx/strconv.h"
 
-1257611646 source:/home/virtuoso/C++/Agender/AgenderApp.cpp
+1258077554 source:/home/virtuoso/C++/Agender/AgenderApp.cpp
 	"AgenderApp.h"
 	"AgenderMain.h"
 	<wx/image.h>
@@ -1219,7 +1220,7 @@
 1236340877 /home/virtuoso/wxMSW-2.8.10/include/wx/univ/theme.h
 	"wx/string.h"
 
-1257614435 /home/virtuoso/C++/Agender/AgenderMain.h
+1258083998 /home/virtuoso/C++/Agender/AgenderMain.h
 	<wx/sizer.h>
 	<wx/textctrl.h>
 	<wx/calctrl.h>
@@ -1744,7 +1745,7 @@
 1236340842 /home/virtuoso/wxMSW-2.8.10/include/wx/imagiff.h
 	"wx/image.h"
 
-1257614435 source:/home/virtuoso/C++/Agender/AgenderMain.cpp
+1258077155 source:/home/virtuoso/C++/Agender/AgenderMain.cpp
 	"AgenderMain.h"
 	<wx/msgdlg.h>
 	<wx/intl.h>
@@ -1842,9 +1843,9 @@
 
 1236340875 /home/virtuoso/wxMSW-2.8.10/include/wx/msw/registry.h
 
-1252998452 /home/virtuoso/C++/Agender/version.h
+1258079176 /home/virtuoso/C++/Agender/version.h
 
-1252998452 /home/virtuoso/C++/Agender/Agender16x16.xpm
+1258080135 /home/virtuoso/C++/Agender/Agender16x16.xpm
 
 1252998452 /home/virtuoso/C++/Agender/Agender.xpm
 
@@ -2296,4 +2297,376 @@
 1236340876 /home/virtuoso/wxMSW-2.8.10/include/wx/msw/wince/resources.h
 
 1243924735 /home/virtuoso/wxMSW-2.8.10/lib/gcc_dll/mswu/wx/msw/rcdefs.h
+
+1250260680 /usr/include/wx-2.8/wx/app.h
+	"wx/event.h"
+	"wx/build.h"
+	"wx/init.h"
+	"wx/intl.h"
+	"wx/palmos/app.h"
+	"wx/msw/app.h"
+	"wx/motif/app.h"
+	"wx/mgl/app.h"
+	"wx/dfb/app.h"
+	"wx/gtk/app.h"
+	"wx/gtk1/app.h"
+	"wx/x11/app.h"
+	"wx/mac/app.h"
+	"wx/cocoa/app.h"
+	"wx/os2/app.h"
+	"wx/univ/theme.h"
+
+1250260680 /usr/include/wx-2.8/wx/build.h
+	"wx/version.h"
+
+1250260680 /usr/include/wx-2.8/wx/init.h
+	"wx/defs.h"
+	"wx/wxchar.h"
+
+1250260681 /usr/include/wx-2.8/wx/gtk/app.h
+
+1250260681 /usr/include/wx-2.8/wx/sizer.h
+	"wx/defs.h"
+	"wx/window.h"
+
+1250260681 /usr/include/wx-2.8/wx/textctrl.h
+	"wx/defs.h"
+	"wx/control.h"
+	"wx/dynarray.h"
+	"wx/gdicmn.h"
+	"wx/ioswrap.h"
+	"wx/x11/textctrl.h"
+	"wx/univ/textctrl.h"
+	"wx/msw/wince/textctrlce.h"
+	"wx/msw/textctrl.h"
+	"wx/motif/textctrl.h"
+	"wx/gtk/textctrl.h"
+	"wx/gtk1/textctrl.h"
+	"wx/mac/textctrl.h"
+	"wx/cocoa/textctrl.h"
+	"wx/os2/textctrl.h"
+
+1250260681 /usr/include/wx-2.8/wx/control.h
+	"wx/defs.h"
+	"wx/window.h"
+	"wx/univ/control.h"
+	"wx/palmos/control.h"
+	"wx/msw/control.h"
+	"wx/motif/control.h"
+	"wx/gtk/control.h"
+	"wx/gtk1/control.h"
+	"wx/mac/control.h"
+	"wx/cocoa/control.h"
+	"wx/os2/control.h"
+
+1250260681 /usr/include/wx-2.8/wx/gtk/control.h
+
+1250260680 /usr/include/wx-2.8/wx/ioswrap.h
+	<iostream.h>
+	<iostream>
+	"wx/msw/winundef.h"
+
+1250260681 /usr/include/wx-2.8/wx/gtk/textctrl.h
+
+1250260681 /usr/include/wx-2.8/wx/calctrl.h
+	"wx/defs.h"
+	"wx/dateevt.h"
+	"wx/colour.h"
+	"wx/font.h"
+	"wx/generic/calctrl.h"
+
+1250260681 /usr/include/wx-2.8/wx/dateevt.h
+	"wx/event.h"
+	"wx/datetime.h"
+	"wx/window.h"
+
+1250260681 /usr/include/wx-2.8/wx/generic/calctrl.h
+	"wx/control.h"
+	"wx/dcclient.h"
+
+1250260681 /usr/include/wx-2.8/wx/dcclient.h
+	"wx/defs.h"
+	"wx/palmos/dcclient.h"
+	"wx/msw/dcclient.h"
+	"wx/motif/dcclient.h"
+	"wx/gtk/dcclient.h"
+	"wx/gtk1/dcclient.h"
+	"wx/x11/dcclient.h"
+	"wx/mgl/dcclient.h"
+	"wx/dfb/dcclient.h"
+	"wx/mac/dcclient.h"
+	"wx/cocoa/dcclient.h"
+	"wx/os2/dcclient.h"
+
+1250260681 /usr/include/wx-2.8/wx/gtk/dcclient.h
+	"wx/dc.h"
+	"wx/region.h"
+
+1250260681 /usr/include/wx-2.8/wx/dc.h
+	"wx/object.h"
+	"wx/intl.h"
+	"wx/cursor.h"
+	"wx/font.h"
+	"wx/colour.h"
+	"wx/bitmap.h"
+	"wx/brush.h"
+	"wx/pen.h"
+	"wx/palette.h"
+	"wx/list.h"
+	"wx/dynarray.h"
+	"wx/math.h"
+	"wx/palmos/dc.h"
+	"wx/msw/dc.h"
+	"wx/motif/dc.h"
+	"wx/gtk/dc.h"
+	"wx/gtk1/dc.h"
+	"wx/x11/dc.h"
+	"wx/mgl/dc.h"
+	"wx/dfb/dc.h"
+	"wx/mac/dc.h"
+	"wx/cocoa/dc.h"
+	"wx/os2/dc.h"
+	"wx/dcgraph.h"
+
+1250260681 /usr/include/wx-2.8/wx/brush.h
+	"wx/defs.h"
+	"wx/object.h"
+	"wx/gdiobj.h"
+	"wx/palmos/brush.h"
+	"wx/msw/brush.h"
+	"wx/x11/brush.h"
+	"wx/gtk/brush.h"
+	"wx/gtk1/brush.h"
+	"wx/mgl/brush.h"
+	"wx/dfb/brush.h"
+	"wx/mac/brush.h"
+	"wx/cocoa/brush.h"
+	"wx/os2/brush.h"
+
+1250260681 /usr/include/wx-2.8/wx/gtk/brush.h
+
+1250260681 /usr/include/wx-2.8/wx/pen.h
+	"wx/defs.h"
+	"wx/palmos/pen.h"
+	"wx/msw/pen.h"
+	"wx/x11/pen.h"
+	"wx/gtk/pen.h"
+	"wx/gtk1/pen.h"
+	"wx/mgl/pen.h"
+	"wx/dfb/pen.h"
+	"wx/mac/pen.h"
+	"wx/cocoa/pen.h"
+	"wx/os2/pen.h"
+
+1250260681 /usr/include/wx-2.8/wx/gtk/pen.h
+	"wx/gdiobj.h"
+	"wx/gdicmn.h"
+
+1250260681 /usr/include/wx-2.8/wx/gtk/dc.h
+
+1250260681 /usr/include/wx-2.8/wx/dcgraph.h
+	"wx/geometry.h"
+	"wx/dynarray.h"
+	"wx/graphics.h"
+
+1250260681 /usr/include/wx-2.8/wx/geometry.h
+	"wx/defs.h"
+	"wx/utils.h"
+	"wx/gdicmn.h"
+	"wx/math.h"
+
+1250260681 /usr/include/wx-2.8/wx/graphics.h
+	"wx/defs.h"
+	"wx/geometry.h"
+	"wx/dynarray.h"
+
+1250260681 /usr/include/wx-2.8/wx/listbox.h
+	"wx/defs.h"
+	"wx/ctrlsub.h"
+	"wx/univ/listbox.h"
+	"wx/msw/listbox.h"
+	"wx/motif/listbox.h"
+	"wx/gtk/listbox.h"
+	"wx/gtk1/listbox.h"
+	"wx/mac/listbox.h"
+	"wx/os2/listbox.h"
+	"wx/cocoa/listbox.h"
+
+1250260681 /usr/include/wx-2.8/wx/ctrlsub.h
+	"wx/defs.h"
+	"wx/control.h"
+
+1250260681 /usr/include/wx-2.8/wx/gtk/listbox.h
+
+1250260681 /usr/include/wx-2.8/wx/button.h
+	"wx/defs.h"
+	"wx/control.h"
+	"wx/univ/button.h"
+	"wx/msw/button.h"
+	"wx/motif/button.h"
+	"wx/gtk/button.h"
+	"wx/gtk1/button.h"
+	"wx/mac/button.h"
+	"wx/cocoa/button.h"
+	"wx/os2/button.h"
+	"wx/palmos/button.h"
+
+1250260681 /usr/include/wx-2.8/wx/gtk/button.h
+
+1250260681 /usr/include/wx-2.8/wx/fdrepdlg.h
+	"wx/defs.h"
+	"wx/dialog.h"
+	"wx/msw/fdrepdlg.h"
+	"wx/generic/fdrepdlg.h"
+
+1250260681 /usr/include/wx-2.8/wx/generic/fdrepdlg.h
+
+1250260681 /usr/include/wx-2.8/wx/image.h
+	"wx/defs.h"
+	"wx/object.h"
+	"wx/string.h"
+	"wx/gdicmn.h"
+	"wx/hashmap.h"
+	"wx/stream.h"
+	"wx/variant.h"
+	"wx/imagbmp.h"
+	"wx/imagpng.h"
+	"wx/imaggif.h"
+	"wx/imagpcx.h"
+	"wx/imagjpeg.h"
+	"wx/imagtga.h"
+	"wx/imagtiff.h"
+	"wx/imagpnm.h"
+	"wx/imagxpm.h"
+	"wx/imagiff.h"
+
+1250260681 /usr/include/wx-2.8/wx/imagbmp.h
+	"wx/image.h"
+
+1250260681 /usr/include/wx-2.8/wx/imagpng.h
+	"wx/defs.h"
+	"wx/image.h"
+
+1250260681 /usr/include/wx-2.8/wx/imaggif.h
+	"wx/image.h"
+
+1250260681 /usr/include/wx-2.8/wx/imagpcx.h
+	"wx/image.h"
+
+1250260681 /usr/include/wx-2.8/wx/imagjpeg.h
+	"wx/defs.h"
+	"wx/image.h"
+
+1250260681 /usr/include/wx-2.8/wx/imagtga.h
+	"wx/image.h"
+
+1250260681 /usr/include/wx-2.8/wx/imagtiff.h
+	"wx/defs.h"
+	"wx/image.h"
+
+1250260681 /usr/include/wx-2.8/wx/imagpnm.h
+	"wx/image.h"
+
+1250260681 /usr/include/wx-2.8/wx/imagxpm.h
+	"wx/image.h"
+
+1250260681 /usr/include/wx-2.8/wx/imagiff.h
+	"wx/image.h"
+
+1250260681 /usr/include/wx-2.8/wx/msgdlg.h
+	"wx/defs.h"
+	"wx/generic/msgdlgg.h"
+	"wx/generic/msgdlgg.h"
+	"wx/palmos/msgdlg.h"
+	"wx/msw/msgdlg.h"
+	"wx/motif/msgdlg.h"
+	"wx/gtk/msgdlg.h"
+	"wx/generic/msgdlgg.h"
+	"wx/generic/msgdlgg.h"
+	"wx/mac/msgdlg.h"
+	"wx/cocoa/msgdlg.h"
+	"wx/os2/msgdlg.h"
+
+1250260681 /usr/include/wx-2.8/wx/generic/msgdlgg.h
+	"wx/defs.h"
+	"wx/dialog.h"
+
+1250260681 /usr/include/wx-2.8/wx/gtk/msgdlg.h
+	"wx/defs.h"
+	"wx/dialog.h"
+
+1250260681 /usr/include/wx-2.8/wx/aboutdlg.h
+	"wx/defs.h"
+	"wx/app.h"
+	"wx/icon.h"
+
+1250260681 /usr/include/wx-2.8/wx/icon.h
+	"wx/iconloc.h"
+	"wx/generic/icon.h"
+	"wx/msw/icon.h"
+	"wx/motif/icon.h"
+	"wx/generic/icon.h"
+	"wx/generic/icon.h"
+	"wx/generic/icon.h"
+	"wx/generic/icon.h"
+	"wx/generic/icon.h"
+	"wx/mac/icon.h"
+	"wx/cocoa/icon.h"
+	"wx/os2/icon.h"
+	"wx/variant.h"
+
+1250260680 /usr/include/wx-2.8/wx/iconloc.h
+	"wx/string.h"
+
+1250260681 /usr/include/wx-2.8/wx/generic/icon.h
+	"wx/bitmap.h"
+
+1250260681 /usr/include/wx-2.8/wx/textdlg.h
+	"wx/generic/textdlgg.h"
+	"wx/numdlg.h"
+
+1250260681 /usr/include/wx-2.8/wx/generic/textdlgg.h
+	"wx/defs.h"
+	"wx/dialog.h"
+	"wx/valtext.h"
+
+1250260681 /usr/include/wx-2.8/wx/valtext.h
+	"wx/defs.h"
+	"wx/textctrl.h"
+	"wx/validate.h"
+
+1250260681 /usr/include/wx-2.8/wx/numdlg.h
+	"wx/defs.h"
+	"wx/generic/numdlgg.h"
+
+1250260681 /usr/include/wx-2.8/wx/generic/numdlgg.h
+	"wx/defs.h"
+	"wx/dialog.h"
+
+1250260680 /usr/include/wx-2.8/wx/stdpaths.h
+	"wx/defs.h"
+	"wx/string.h"
+	"wx/filefn.h"
+	"wx/msw/stdpaths.h"
+	"wx/mac/corefoundation/stdpaths.h"
+	"wx/os2/stdpaths.h"
+	"wx/unix/stdpaths.h"
+	"wx/palmos/stdpaths.h"
+
+1250260680 /usr/include/wx-2.8/wx/unix/stdpaths.h
+
+1250260680 /usr/include/wx-2.8/wx/wfstream.h
+	"wx/defs.h"
+	"wx/object.h"
+	"wx/string.h"
+	"wx/stream.h"
+	"wx/file.h"
+	"wx/ffile.h"
+
+1250260680 /usr/include/wx-2.8/wx/ffile.h
+	"wx/defs.h"
+	"wx/string.h"
+	"wx/filefn.h"
+	"wx/convauto.h"
+	<stdio.h>
 

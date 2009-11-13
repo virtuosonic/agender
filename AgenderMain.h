@@ -45,6 +45,7 @@ class AgenderFrame: public wxFrame
         void OnFind(wxFindDialogEvent& event);
         void OnSearch(wxCommandEvent& event);
         void OnChangeNotesColour(wxCommandEvent& event);
+        void OnYearSel(wxCommandEvent& event);
 
         //(*Identifiers(AgenderFrame)
         static const long ID_CALENDARCTRL1;
@@ -68,6 +69,7 @@ class AgenderFrame: public wxFrame
 
         void MarkDays();
         void savePastNote();
+        void ChangeSelector();
 
         wxFileConfig* schdl;
         wxTaskBarIcon* trayicon;

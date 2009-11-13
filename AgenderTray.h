@@ -23,6 +23,7 @@ class AgenderTray : public wxTaskBarIcon
             ID_OPC50,
             ID_OPC25,
             ID_BGCOLOUR,
+            ID_YEARSEL=7003,
             ID_NOTES_COLOUR=7004
         };
 
@@ -34,6 +35,7 @@ class AgenderTray : public wxTaskBarIcon
         void OnMenuShow(wxCommandEvent& event);
         void OnMenuHide(wxCommandEvent& event);
         void OnMenuOpc(wxCommandEvent& event);
+        void OnYearSel(wxCommandEvent& event);
         void OnMenuNotesColour(wxCommandEvent& event);
         void OnMenuExit(wxCommandEvent& event);
         void OnMenuFind(wxCommandEvent& event);

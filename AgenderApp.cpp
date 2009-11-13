@@ -18,15 +18,15 @@ IMPLEMENT_APP(AgenderApp);
 
 bool AgenderApp::OnInit()
 {
-    //(*AppInitialize
-    bool wxsOK = true;
-    wxInitAllImageHandlers();
-    if ( wxsOK )
-    {
-    AgenderFrame* Frame = new AgenderFrame(0);
-    Frame->Show();
-    SetTopWindow(Frame);
-    }
-    //*)
-    return wxsOK;
+	//(*AppInitialize
+	bool wxsOK = true;
+	wxInitAllImageHandlers();
+	if ( wxsOK )
+	{
+		AgenderFrame* Frame = new AgenderFrame(0);
+		Frame->Show(false);
+		SetTopWindow(Frame);
+	}
+	//*)
+	return wxsOK;
 }
