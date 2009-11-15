@@ -30,9 +30,6 @@
 #endif
 
 #include "AgenderTray.h"
-
-
-#include "version.h"
 #include "Agender16x16.xpm"
 #include "Agender.xpm"
 
@@ -200,13 +197,7 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& event)
 	                  "with this program; if not, write to the Free Software Foundation, Inc.,\n"
 	                  "51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.\n"
 	                 ));
-	info.SetVersion(wxString(AutoVersion::FULLVERSION_STRING,wxConvUTF8) +
-	                _T("\n") +
-	                wxString(AutoVersion::DATE,wxConvUTF8) +
-	                _T("-") +
-	                wxString(AutoVersion::MONTH,wxConvUTF8) +
-	                _T("-") +
-	                wxString(AutoVersion::YEAR,wxConvUTF8));
+	info.SetVersion(_T("1.0.7"));
 	info.SetIcon(agender_xpm);
 
 	wxAboutBox(info);
