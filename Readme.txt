@@ -26,11 +26,9 @@ Dependencies:
 	it works with another, not sure. The website is 
 	www.wxwidgets.org.
 
-Compiling:
-	You can use the Code::Blocks project included in the package or 
-	use the Makefile, type make.
-Installing:
-	type su -c 'make install'
+Compiling &Installing:
+	
+	
 Bugs:
 	I don't call them that way, i call them "advanced user 
 	features".

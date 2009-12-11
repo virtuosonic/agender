@@ -8,16 +8,33 @@
  **************************************************************/
 
 #include "AgenderApp.h"
+#ifdef __UNIX__
+	#include <signal.h>
+#endif
+#include <wx/log.h>
+#include <iostream>
 
 //(*AppHeaders
 #include "AgenderMain.h"
 #include <wx/image.h>
 //*)
 
+void OnSigTerm(int sig)
+{
+	::wxExit();
+}
+
 IMPLEMENT_APP(AgenderApp);
 
 bool AgenderApp::OnInit()
 {
+	wxLogNull logNo;
+	m_checker = new wxSingleInstanceChecker(_T(".") + GetAppName() + _T("-") + ::wxGetUserId());
+	if (m_checker->IsAnotherRunning())
+		return false;
+	#ifdef __UNIX__
+	signal(SIGTERM,OnSigTerm);
+	#endif
 	//(*AppInitialize
 	bool wxsOK = true;
 	wxInitAllImageHandlers();
@@ -29,4 +46,10 @@ bool AgenderApp::OnInit()
 	}
 	//*)
 	return wxsOK;
+}
+
+int AgenderApp::OnExit()
+{
+	delete m_checker;
+	return wxApp::OnExit();
 }

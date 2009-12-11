@@ -11,11 +11,15 @@
 #define AGENDERAPP_H
 
 #include <wx/app.h>
+#include <wx/snglinst.h>
 
 class AgenderApp : public wxApp
 {
     public:
         virtual bool OnInit();
+        virtual int OnExit();
+	private:
+		wxSingleInstanceChecker* m_checker;
 };
 
 #endif // AGENDERAPP_H
