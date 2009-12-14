@@ -176,6 +176,8 @@ AgenderFrame::~AgenderFrame()
 void AgenderFrame::OnClose(wxCloseEvent& event)
 {
 	Hide();
+	wxFileOutputStream ofile(schFile);
+	schdl->Save(ofile);
 }
 
 void AgenderFrame::OnButton3Click(wxCommandEvent& event)
@@ -197,7 +199,7 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& event)
 	                  "with this program; if not, write to the Free Software Foundation, Inc.,\n"
 	                  "51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.\n"
 	                 ));
-	info.SetVersion(_T("1.0.7"));
+	info.SetVersion(_T("1.0.8"));
 	info.SetIcon(agender_xpm);
 
 	wxAboutBox(info);

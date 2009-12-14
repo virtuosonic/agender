@@ -12,14 +12,16 @@
 
 #include <wx/app.h>
 #include <wx/snglinst.h>
+#include "AgenderIPC.h"
 
 class AgenderApp : public wxApp
 {
-    public:
-        virtual bool OnInit();
-        virtual int OnExit();
+	public:
+		virtual bool OnInit();
+		virtual int OnExit();
 	private:
 		wxSingleInstanceChecker* m_checker;
+		AgenderServer* m_server;
 };
 
 #endif // AGENDERAPP_H

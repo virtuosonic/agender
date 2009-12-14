@@ -11,6 +11,7 @@ http://agender.sourceforge.net
 		<sources>AgenderApp.cpp</sources>
 		<sources>AgenderMain.cpp</sources>
 		<sources>AgenderTray.cpp</sources>
+		<sources>AgenderIPC.cpp</sources>
 		<!-- wxWidgets dependencies -->
 		<wx-lib>adv</wx-lib>
 		<wx-lib>core</wx-lib>
@@ -19,4 +20,8 @@ http://agender.sourceforge.net
 		<win32-res>resource.rc</win32-res>
 		<install-to>$(BINDIR)</install-to>
   	</exe>
+  	<data-files>
+  		<install-to>$(DATADIR)/applications</install-to>
+		<files>Agender.desktop</files>
+	</data-files>
 </makefile>

@@ -41,6 +41,7 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add option="`wx-config --cflags`" />
+					<Add option="-D__WX_DEBUG__" />
 				</Compiler>
 				<Linker>
 					<Add option="`wx-config --libs`" />
@@ -86,8 +87,17 @@
 					<Add directory="$(#wx)/lib" />
 				</Linker>
 			</Target>
+			<Target title="makefiles">
+				<Option output="Agender" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+			</Target>
 		</Build>
-		<Unit filename="Agender.bkl" />
+		<Unit filename="Agender.bkl">
+			<Option target="Release" />
+			<Option target="UNIX" />
+			<Option target="CrossMinGW" />
+		</Unit>
 		<Unit filename="Agender.desktop">
 			<Option target="UNIX" />
 		</Unit>
@@ -98,24 +108,70 @@
 		<Unit filename="Agender.spec">
 			<Option target="UNIX" />
 		</Unit>
-		<Unit filename="AgenderApp.cpp" />
-		<Unit filename="AgenderApp.h" />
-		<Unit filename="AgenderMain.cpp" />
-		<Unit filename="AgenderMain.h" />
-		<Unit filename="AgenderTray.cpp" />
-		<Unit filename="AgenderTray.h" />
+		<Unit filename="AgenderApp.cpp">
+			<Option target="Release" />
+			<Option target="UNIX" />
+			<Option target="CrossMinGW" />
+		</Unit>
+		<Unit filename="AgenderApp.h">
+			<Option target="Release" />
+			<Option target="UNIX" />
+			<Option target="CrossMinGW" />
+		</Unit>
+		<Unit filename="AgenderIPC.cpp">
+			<Option target="Release" />
+			<Option target="UNIX" />
+			<Option target="CrossMinGW" />
+		</Unit>
+		<Unit filename="AgenderIPC.h">
+			<Option target="Release" />
+			<Option target="UNIX" />
+			<Option target="CrossMinGW" />
+		</Unit>
+		<Unit filename="AgenderMain.cpp">
+			<Option target="Release" />
+			<Option target="UNIX" />
+			<Option target="CrossMinGW" />
+		</Unit>
+		<Unit filename="AgenderMain.h">
+			<Option target="Release" />
+			<Option target="UNIX" />
+			<Option target="CrossMinGW" />
+		</Unit>
+		<Unit filename="AgenderTray.cpp">
+			<Option target="Release" />
+			<Option target="UNIX" />
+			<Option target="CrossMinGW" />
+		</Unit>
+		<Unit filename="AgenderTray.h">
+			<Option target="Release" />
+			<Option target="UNIX" />
+			<Option target="CrossMinGW" />
+		</Unit>
 		<Unit filename="Readme.txt">
 			<Option target="Release" />
 			<Option target="CrossMinGW" />
 		</Unit>
-		<Unit filename="license.txt" />
+		<Unit filename="license.txt">
+			<Option target="Release" />
+			<Option target="UNIX" />
+			<Option target="CrossMinGW" />
+		</Unit>
 		<Unit filename="resource.rc">
 			<Option compilerVar="WINDRES" />
 			<Option target="Release" />
 			<Option target="CrossMinGW" />
 		</Unit>
-		<Unit filename="version.h" />
-		<Unit filename="wxsmith/Agenderframe.wxs" />
+		<Unit filename="version.h">
+			<Option target="Release" />
+			<Option target="UNIX" />
+			<Option target="CrossMinGW" />
+		</Unit>
+		<Unit filename="wxsmith/Agenderframe.wxs">
+			<Option target="Release" />
+			<Option target="UNIX" />
+			<Option target="CrossMinGW" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<envvars />
