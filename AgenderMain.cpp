@@ -86,6 +86,7 @@ AgenderFrame::AgenderFrame(wxWindow* parent,wxWindowID id)
 
 	Connect(ID_CALENDARCTRL1,wxEVT_CALENDAR_SEL_CHANGED,(wxObjectEventFunction)&AgenderFrame::OnCalendarCtrl1Changed);
 	Connect(ID_CALENDARCTRL1,wxEVT_CALENDAR_MONTH_CHANGED,(wxObjectEventFunction)&AgenderFrame::OnCalendarCtrl1MonthChanged);
+	Connect(ID_CALENDARCTRL1,wxEVT_CALENDAR_YEAR_CHANGED,(wxObjectEventFunction)&AgenderFrame::OnCalendarCtrl1MonthChanged);
 	Connect(ID_LISTBOX1,wxEVT_COMMAND_LISTBOX_SELECTED,(wxObjectEventFunction)&AgenderFrame::OnListBox1Select);
 	Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AgenderFrame::OnBtnNuevoClick);
 	Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AgenderFrame::OnBtnElimClick);
@@ -93,7 +94,7 @@ AgenderFrame::AgenderFrame(wxWindow* parent,wxWindowID id)
 	Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&AgenderFrame::OnClose);
 	//*)
 
-#ifdef _WXMSW__
+#ifdef __WXMSW__
 	wxRegKey key;
 	key.SetName(_T("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"));
 	if (!key.HasValue(_T("Agender")))
@@ -101,12 +102,13 @@ AgenderFrame::AgenderFrame(wxWindow* parent,wxWindowID id)
 		key.Create();
 		key.SetValue(_T("Agender"),wxStandardPaths::Get().GetExecutablePath());
 	}
-#endif
+#endif//__WXMSW__
 	schFile = wxStandardPaths::Get().GetUserConfigDir() + _T("/.Agender-current user.txt");
 	if (wxFile::Exists(schFile))
 	{
 		wxFileInputStream infile(schFile);
 		schdl = new wxFileConfig(infile);
+		::wxCopyFile(schFile,schFile+_T(".bak"));
 	}
 	else
 	{
@@ -190,7 +192,7 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& event)
 	                  "it under the terms of the GNU General Public License as published by\n"
 	                  "the Free Software Foundation.\n"
 	                  "\n"
-	                  "This program is distributed in the hope that it will be useful,\n"
+	                  "This program is distributed inthe hope that it will be useful,\n"
 	                  "but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
 	                  "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
 	                  "GNU General Public License for more details.\n"

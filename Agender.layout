@@ -13,23 +13,23 @@
 	<File name="Agender.spec" open="0" top="0" tabpos="1">
 		<Cursor position="567" topLine="20" />
 	</File>
-	<File name="AgenderApp.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="1503" topLine="41" />
+	<File name="AgenderApp.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="1236" topLine="36" />
 	</File>
 	<File name="AgenderApp.h" open="0" top="0" tabpos="2">
 		<Cursor position="475" topLine="10" />
 	</File>
-	<File name="AgenderIPC.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="632" topLine="29" />
+	<File name="AgenderIPC.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="632" topLine="25" />
 	</File>
 	<File name="AgenderIPC.h" open="0" top="0" tabpos="3">
 		<Cursor position="372" topLine="3" />
 	</File>
-	<File name="AgenderMain.cpp" open="1" top="1" tabpos="3">
-		<Cursor position="7012" topLine="171" />
+	<File name="AgenderMain.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="5524" topLine="117" />
 	</File>
 	<File name="AgenderMain.h" open="0" top="0" tabpos="1">
-		<Cursor position="2162" topLine="64" />
+		<Cursor position="2162" topLine="0" />
 	</File>
 	<File name="AgenderTray.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="3267" topLine="136" />

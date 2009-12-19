@@ -1,5 +1,5 @@
 /* XPM */
-static char * agender_xpm[] = {
+static const char * agender_xpm[] = {
 "42 42 479 2",
 "  	c None",
 ". 	c #000000",

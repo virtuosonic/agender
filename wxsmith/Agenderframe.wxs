@@ -15,6 +15,7 @@
 					<style>wxCAL_SEQUENTIAL_MONTH_SELECTION|wxSUNKEN_BORDER|wxTAB_TRAVERSAL</style>
 					<handler function="OnCalendarCtrl1Changed" entry="EVT_CALENDAR_SEL_CHANGED" />
 					<handler function="OnCalendarCtrl1MonthChanged" entry="EVT_CALENDAR_MONTH" />
+					<handler function="OnCalendarCtrl1MonthChanged" entry="EVT_CALENDAR_YEAR" />
 				</object>
 				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 				<border>5</border>

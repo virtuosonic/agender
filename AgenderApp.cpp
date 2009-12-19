@@ -19,11 +19,6 @@
 #include <wx/image.h>
 //*)
 
-void OnSigTerm(int sig)
-{
-	::wxExit();
-}
-
 IMPLEMENT_APP(AgenderApp);
 
 bool AgenderApp::OnInit()
@@ -50,9 +45,6 @@ bool AgenderApp::OnInit()
 			wxLogError(_T("connection failed"));
 		return false;
 	}
-#ifdef __UNIX__
-	signal(SIGTERM,OnSigTerm);
-#endif
 	//(*AppInitialize
 	bool wxsOK = true;
 	wxInitAllImageHandlers();

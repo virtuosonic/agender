@@ -20,7 +20,7 @@ http://agender.sourceforge.net
 		<win32-res>resource.rc</win32-res>
 		<install-to>$(BINDIR)</install-to>
   	</exe>
-  	<data-files>
+  	<data-files id="shortcut">
   		<install-to>$(DATADIR)/applications</install-to>
 		<files>Agender.desktop</files>
 	</data-files>
