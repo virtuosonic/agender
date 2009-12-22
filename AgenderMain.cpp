@@ -23,6 +23,7 @@
 #include <wx/utils.h>
 #include <wx/datetime.h>
 #include <wx/log.h>
+#include <wx/filename.h>
 
 //escribir algunas cosas en el registro
 #ifdef __WXMSW__
@@ -103,8 +104,12 @@ AgenderFrame::AgenderFrame(wxWindow* parent,wxWindowID id)
 		key.SetValue(_T("Agender"),wxStandardPaths::Get().GetExecutablePath());
 	}
 #endif//__WXMSW__
-	schFile = wxStandardPaths::Get().GetUserConfigDir() + _T("/.Agender-current user.txt");
-	if (wxFile::Exists(schFile))
+
+	wxFilename schFname;
+	schFname.AsignDir(wxStandardPaths::Get().GetUserConfigDir());
+	schFname.SetName(_T(".Agender-current user.txt"));
+	schFile = schFname.GetFullPath();
+	if (wxFileExists(schFile))
 	{
 		wxFileInputStream infile(schFile);
 		schdl = new wxFileConfig(infile);
@@ -160,13 +165,13 @@ AgenderFrame::~AgenderFrame()
 {
 	if (ListBox1->GetSelection() !=wxNOT_FOUND)
 	{
-		schdl->Write(CalendarCtrl1->GetDate().Format(_T("%Y-%m-%d/")) +
-		             _T("/") + ListBox1->GetStringSelection(),
+		schdl->Write(CalendarCtrl1->GetDate().Format(_T("/%Y-%m-%d/")) +
+		             ListBox1->GetStringSelection(),
 		             TextCtrl1->GetValue());
 	}
 	wxFileOutputStream ofile(schFile);
 	schdl->Save(ofile);
-	//without this Agender will receive SIGSEGV
+	//without this Agender will receive SIGSEGV #11
 	wxConfig::Set(NULL);
 	//delete
 	delete trayicon;
@@ -216,28 +221,35 @@ void AgenderFrame::OnCalendarCtrl1Changed(wxCalendarEvent& event)
 	ListBox1->Clear();
 	TextCtrl1->Disable();
 	msgs.Clear();
-	if (schdl->HasGroup(CalendarCtrl1->GetDate().Format(_T("%Y-%m-%d"))))
+	wxString datePath(CalendarCtrl1->GetDate().Format(_T("/%Y-%m-%d/")));
+	if (schdl->HasGroup(datePath))
 	{
-		schdl->SetPath(_T("/") + CalendarCtrl1->GetDate().Format(_T("%Y-%m-%d/")));
+		schdl->SetPath(datePath);
 		wxString nota;
 		long j;
-		schdl->GetFirstEntry(nota,j);
-		ListBox1->Append(nota);
-		msgs.Add(schdl->Read(nota,wxEmptyString));
-		for (unsigned int i = 1;i < schdl->GetNumberOfEntries();i++)
+		if (schdl->GetFirstEntry(nota,j))
 		{
-			schdl->GetNextEntry(nota,j);
 			ListBox1->Append(nota);
 			msgs.Add(schdl->Read(nota,wxEmptyString));
+			for (unsigned int i = 1;i < schdl->GetNumberOfEntries();i++)
+			{
+				schdl->GetNextEntry(nota,j);
+				ListBox1->Append(nota);
+				msgs.Add(schdl->Read(nota,wxEmptyString));
+			}
+			if (schdl->GetNumberOfEntries())
+			{
+				ListBox1->SetSelection(0);
+				prevSel = ListBox1->GetSelection();
+				TextCtrl1->ChangeValue(msgs[prevSel]);
+				TextCtrl1->Enable();
+			}
+			else
+				TextCtrl1->Clear();
+			schdl->SetPath(_T("/"));
 		}
-		if (schdl->GetNumberOfEntries())
-		{
-			ListBox1->SetSelection(0);
-			prevSel = ListBox1->GetSelection();
-			TextCtrl1->ChangeValue(msgs[prevSel]);
-			TextCtrl1->Enable();
-		}
-		schdl->SetPath(_T("/"));
+		else
+			schdl->DeleteGroup(datePath);
 	}
 	else
 	{
@@ -274,8 +286,8 @@ void AgenderFrame::savePastNote()
 
 void AgenderFrame::OnBtnNuevoClick(wxCommandEvent& event)
 {
-	wxTextEntryDialog dlg(this,_("Titulo del Pendiente"),_("Nuevo Pendiente"));
-	if (dlg.ShowModal() == wxID_OK)
+	wxTextEntryDialog dlg(this,_("To-Do Title"),_("New To-Do"));
+	if (dlg.ShowModal() == wxID_OK && dlg.GetValue() != wxEmptyString)
 	{
 		ListBox1->Append(dlg.GetValue());
 		ListBox1->SetSelection(ListBox1->GetCount()-1);
