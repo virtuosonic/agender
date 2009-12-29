@@ -6,7 +6,11 @@
 
 
 BEGIN_EVENT_TABLE(AgenderTray,wxTaskBarIcon)
+	#if wxCHECK_VERSION(2,9,0) || defined __WXGTK20__//another bug?
+	EVT_TASKBAR_LEFT_DOWN(AgenderTray::OnLeft)
+	#else
 	EVT_TASKBAR_LEFT_UP(AgenderTray::OnLeft)
+	#endif
 	EVT_MENU(ID_SHOW,AgenderTray::OnMenuShow)
 	EVT_MENU(ID_HIDE,AgenderTray::OnMenuHide)
 	EVT_MENU_RANGE(ID_OPC100,ID_OPC25,AgenderTray::OnMenuOpc)
@@ -42,6 +46,7 @@ AgenderTray::AgenderTray(wxFrame* frame,long colalpha)
 
 void AgenderTray::OnLeft(wxTaskBarIconEvent& event)
 {
+	// TODO (virtuoso#1#): compatibilidad wx-2.9: no se muestra ventana
 	if (frame->IsShown())
 	{
 		frame->Hide();

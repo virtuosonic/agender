@@ -16,7 +16,7 @@
 //*)
 
 #include <wx/aboutdlg.h>
-//#include <wx/accel.h>
+#include <wx/accel.h>
 #include <wx/textdlg.h>
 #include <wx/stdpaths.h>
 #include <wx/wfstream.h>
@@ -54,6 +54,7 @@ END_EVENT_TABLE()
 
 AgenderFrame::AgenderFrame(wxWindow* parent,wxWindowID id)
 {
+	// TODO (virtuoso#1#): compatibilidad wx-2.9: opcion de usar wxGenericCalenderCtrl en vez de wxCalenderCtrl
 	//(*Initialize(AgenderFrame)
 	wxBoxSizer* BoxSizer1;
 	wxFlexGridSizer* FlexGridSizer1;
@@ -105,8 +106,8 @@ AgenderFrame::AgenderFrame(wxWindow* parent,wxWindowID id)
 	}
 #endif//__WXMSW__
 
-	wxFilename schFname;
-	schFname.AsignDir(wxStandardPaths::Get().GetUserConfigDir());
+	wxFileName schFname;
+	schFname.AssignDir(wxStandardPaths::Get().GetUserConfigDir());
 	schFname.SetName(_T(".Agender-current user.txt"));
 	schFile = schFname.GetFullPath();
 	if (wxFileExists(schFile))
@@ -286,9 +287,11 @@ void AgenderFrame::savePastNote()
 
 void AgenderFrame::OnBtnNuevoClick(wxCommandEvent& event)
 {
+	// TODO (virtuoso#1#): compatibilidad wx-2.9: no aparece el wxTextDialog, sera en bug en wx
 	wxTextEntryDialog dlg(this,_("To-Do Title"),_("New To-Do"));
-	if (dlg.ShowModal() == wxID_OK && dlg.GetValue() != wxEmptyString)
+	if (dlg.ShowModal() == wxID_OK  && dlg.GetValue() != wxEmptyString)
 	{
+		wxSleep(5);
 		ListBox1->Append(dlg.GetValue());
 		ListBox1->SetSelection(ListBox1->GetCount()-1);
 		savePastNote();
