@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="UNIX" />
-	<File name="Agender.bkl" open="0" top="0" tabpos="5">
-		<Cursor position="21" topLine="0" />
+	<File name="Agender.bkl" open="1" top="0" tabpos="5">
+		<Cursor position="1326" topLine="27" />
 	</File>
 	<File name="Agender.desktop" open="0" top="0" tabpos="2">
 		<Cursor position="50" topLine="0" />
@@ -10,14 +10,11 @@
 	<File name="Agender.nsi" open="0" top="0" tabpos="1">
 		<Cursor position="1732" topLine="50" />
 	</File>
-	<File name="Agender.spec" open="0" top="0" tabpos="1">
-		<Cursor position="567" topLine="20" />
+	<File name="AgenderApp.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="1532" topLine="51" />
 	</File>
-	<File name="AgenderApp.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="1389" topLine="48" />
-	</File>
-	<File name="AgenderApp.h" open="0" top="0" tabpos="2">
-		<Cursor position="475" topLine="10" />
+	<File name="AgenderApp.h" open="1" top="0" tabpos="2">
+		<Cursor position="450" topLine="10" />
 	</File>
 	<File name="AgenderIPC.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="543" topLine="25" />
@@ -25,17 +22,23 @@
 	<File name="AgenderIPC.h" open="0" top="0" tabpos="3">
 		<Cursor position="372" topLine="3" />
 	</File>
-	<File name="AgenderMain.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="13252" topLine="381" />
+	<File name="AgenderMain.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="7619" topLine="188" />
 	</File>
-	<File name="AgenderMain.h" open="0" top="0" tabpos="1">
-		<Cursor position="452" topLine="9" />
+	<File name="AgenderMain.h" open="1" top="0" tabpos="4">
+		<Cursor position="745" topLine="22" />
 	</File>
 	<File name="AgenderTray.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="236" topLine="0" />
 	</File>
 	<File name="AgenderTray.h" open="0" top="0" tabpos="4">
 		<Cursor position="66" topLine="0" />
+	</File>
+	<File name="Readme.txt" open="0" top="0" tabpos="3">
+		<Cursor position="1612" topLine="33" />
+	</File>
+	<File name="autopackage/default.apspec.in" open="1" top="0" tabpos="7">
+		<Cursor position="951" topLine="16" />
 	</File>
 	<File name="license.txt" open="0" top="0" tabpos="3">
 		<Cursor position="554" topLine="0" />

@@ -1,0 +1,45 @@
+[Meta]
+RootName: @agender.sourceforge.net/agender:$SOFTWAREVERSION
+DisplayName: Agender scheduler
+ShortName: agender
+Maintainer: Gabriel Espinoza <virtuosonic@users.sourceforge.net>
+Packager: Gabriel Espinoza <virtuosonic@users.sourceforge.net>
+Summary: Agender is a cross-plataform schedule tool
+URL: http://agender.sourceforge.net/
+License: GNU General Public License, Version 2
+SoftwareVersion: @VERSION@
+Repository: http://sourceforge.net/projects/agender/files
+PackageVersion: 1
+AutopackageTarget: 1.4
+
+# Only uncomment InterfaceVersion if your package exposes interfaces
+# to other software, for instance if it includes DSOs or python/perl
+# modules. See the developer guide for more info, or ask on
+# autopackage-dev if you aren't sure about interface versioning.
+#
+# InterfaceVersion: 0.0
+
+[BuildPrepare]
+prepareBuild
+
+[BuildUnprepare]
+unprepareBuild
+
+[Globals]
+# export MY_VAR=1
+
+[Imports]
+echo '*' | import
+
+[Prepare]
+require @wxwidgets.org/wxgtk 28
+removeOwningPackage $PREFIX/bin/my-program
+
+[Install]
+installExe bin/*
+installDesktop share/applications/*
+copyFiles share/pixmaps
+copyFiles share/local/es/LC_MESSAGES/*
+
+[Uninstall]
+uninstallFromLog

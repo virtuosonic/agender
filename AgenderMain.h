@@ -28,7 +28,7 @@ class AgenderFrame: public wxFrame
 {
     public:
 
-        AgenderFrame(wxWindow* parent,wxWindowID id = -1);
+        AgenderFrame(wxLocale& locale);
         virtual ~AgenderFrame();
 
     private:
@@ -77,6 +77,7 @@ class AgenderFrame: public wxFrame
         wxArrayString msgs;
         int prevSel;
         wxString prevDate;
+        wxLocale& m_locale;
 
         DECLARE_EVENT_TABLE()
 };

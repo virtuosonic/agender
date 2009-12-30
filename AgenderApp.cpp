@@ -45,14 +45,19 @@ bool AgenderApp::OnInit()
 			wxLogError(_T("connection failed"));
 		return false;
 	}
+	if (m_locale.Init(wxLANGUAGE_DEFAULT,wxLOCALE_CONV_ENCODING))
+	{
+		wxLocale::AddCatalogLookupPathPrefix(wxT("."));
+		m_locale.AddCatalog(wxT("Agender"));
+	}
 	//(*AppInitialize
 	bool wxsOK = true;
 	wxInitAllImageHandlers();
 	if ( wxsOK )
 	{
-	AgenderFrame* Frame = new AgenderFrame(0);
-	Frame->Show(false);
-	SetTopWindow(Frame);
+		AgenderFrame* Frame = new AgenderFrame(m_locale);
+		Frame->Show(false);
+		SetTopWindow(Frame);
 	}
 	//*)
 	m_server = new AgenderServer((wxFrame*)GetTopWindow());

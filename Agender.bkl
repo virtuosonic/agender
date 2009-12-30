@@ -1,18 +1,21 @@
 <?xml version="1.0"?>
 <!-- this file is part of the Agender package
 http://agender.sourceforge.net
+license GPL
 -->
 <makefile>
 	<include file="presets/wx.bkl"/>
-
+	<using module="datafiles"/>
+	<!-- build executable-->
 	<exe id="Agender" template="wx-lib">
 		<app-type>gui</app-type>
 		<!-- source files-->
+		<sources>AgenderIPC.cpp</sources>
 		<sources>AgenderApp.cpp</sources>
 		<sources>AgenderMain.cpp</sources>
 		<sources>AgenderTray.cpp</sources>
-		<sources>AgenderIPC.cpp</sources>
 		<!-- wxWidgets dependencies -->
+		<wx-lib>net</wx-lib>
 		<wx-lib>adv</wx-lib>
 		<wx-lib>core</wx-lib>
 		<wx-lib>base</wx-lib>
@@ -20,4 +23,22 @@ http://agender.sourceforge.net
 		<win32-res>resource.rc</win32-res>
 		<install-to>$(BINDIR)</install-to>
   	</exe>
+  	<!-- freedesktop shortcut, for gnome, kde and some other desktops-->
+  	<data-files id="shortcut">
+  		<srcdir>$(SRCDIR)</srcdir>
+  		<install-to>$(DATADIR)/applications</install-to>
+  		<files>Agender.desktop</files>
+  	</data-files>
+  	<!-- icon for the above shortcut-->
+  	<data-files id="icon">
+  		<srcdir>$(SRCDIR)</srcdir>
+  		<install-to>$(DATADIR)/pixmaps</install-to>
+  		<files>Agender.png</files>
+  	</data-files>
+  	<!--translations-->
+  	<data-files id="spanish">
+  		<srcdir>$(SRCDIR)</srcdir>
+  		<install-to>$(DATADIR)/locale/es/LC_MESSAGES</install-to>
+  		<files>es/Agender.mo</files>
+  	</data-files>
 </makefile>

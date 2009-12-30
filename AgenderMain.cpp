@@ -52,14 +52,14 @@ BEGIN_EVENT_TABLE(AgenderFrame,wxFrame)
 	//*)
 END_EVENT_TABLE()
 
-AgenderFrame::AgenderFrame(wxWindow* parent,wxWindowID id)
+AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 {
 	// TODO (virtuoso#1#): compatibilidad wx-2.9: opcion de usar wxGenericCalenderCtrl en vez de wxCalenderCtrl
 	//(*Initialize(AgenderFrame)
 	wxBoxSizer* BoxSizer1;
 	wxFlexGridSizer* FlexGridSizer1;
 
-	Create(parent, wxID_ANY, _("Agender"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX|wxFRAME_TOOL_WINDOW|wxWANTS_CHARS, _T("wxID_ANY"));
+	Create(NULL, wxID_ANY, _T("Agender"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX|wxFRAME_TOOL_WINDOW|wxWANTS_CHARS, _T("wxID_ANY"));
 	FlexGridSizer1 = new wxFlexGridSizer(0, 2, 0, 0);
 	FlexGridSizer1->AddGrowableCol(0);
 	FlexGridSizer1->AddGrowableCol(1);
@@ -191,7 +191,7 @@ void AgenderFrame::OnClose(wxCloseEvent& event)
 void AgenderFrame::OnButton3Click(wxCommandEvent& event)
 {
 	wxAboutDialogInfo info;
-	info.AddDeveloper(_("Gabriel Espinoza a.k.a. virtuoso"));
+	info.AddDeveloper(_T("Gabriel Espinoza a.k.a. virtuoso"));
 	info.SetDescription(_("A cross-plataform schedule tool"));
 	info.SetWebSite(_T("http://agender.sourceforge.net"));
 	info.SetLicence(_("Agender is free software; you can redistribute it and/or modify\n"
@@ -291,7 +291,6 @@ void AgenderFrame::OnBtnNuevoClick(wxCommandEvent& event)
 	wxTextEntryDialog dlg(this,_("To-Do Title"),_("New To-Do"));
 	if (dlg.ShowModal() == wxID_OK  && dlg.GetValue() != wxEmptyString)
 	{
-		wxSleep(5);
 		ListBox1->Append(dlg.GetValue());
 		ListBox1->SetSelection(ListBox1->GetCount()-1);
 		savePastNote();
@@ -343,12 +342,12 @@ void AgenderFrame::MarkDays()
 		CalendarCtrl1->ResetAttr(i);
 		if (i < 10)
 		{
-			dateStr = CalendarCtrl1->GetDate().Format(_("%Y-%m-")) +
+			dateStr = CalendarCtrl1->GetDate().Format(_T("%Y-%m-")) +
 			          wxString::Format(_T("0%i"),i);
 		}
 		else
 		{
-			dateStr = CalendarCtrl1->GetDate().Format(_("%Y-%m-")) +
+			dateStr = CalendarCtrl1->GetDate().Format(_T("%Y-%m-")) +
 			          wxString::Format(_T("%i"),i);
 		}
 		if (!dateStr.IsEmpty() && schdl->HasGroup(dateStr))

@@ -12,6 +12,7 @@
 
 #include <wx/app.h>
 #include <wx/snglinst.h>
+#include <wx/intl.h>
 #include "AgenderIPC.h"
 
 class AgenderApp : public wxApp
@@ -22,6 +23,7 @@ class AgenderApp : public wxApp
 	private:
 		wxSingleInstanceChecker* m_checker;
 		AgenderServer* m_server;
+		wxLocale m_locale;
 };
 
 #endif // AGENDERAPP_H
