@@ -11,6 +11,7 @@
 #include <wx/msgdlg.h>
 
 //(*InternalHeaders(AgenderFrame)
+#include <wx/settings.h>
 #include <wx/intl.h>
 #include <wx/string.h>
 //*)
@@ -28,11 +29,12 @@
 //escribir algunas cosas en el registro
 #ifdef __WXMSW__
 #include <wx/msw/registry.h>
-#endif
+#endif//__WXMSW__
 
 #include "AgenderTray.h"
 #include "Agender16x16.xpm"
 #include "Agender.xpm"
+#include "version.h"
 
 //(*IdInit(AgenderFrame)
 const long AgenderFrame::ID_CALENDARCTRL1 = wxNewId();
@@ -59,7 +61,8 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 	wxBoxSizer* BoxSizer1;
 	wxFlexGridSizer* FlexGridSizer1;
 
-	Create(NULL, wxID_ANY, _T("Agender"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX|wxFRAME_TOOL_WINDOW|wxWANTS_CHARS, _T("wxID_ANY"));
+	Create(0, wxID_ANY, _("Agender"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX|wxFRAME_TOOL_WINDOW|wxWANTS_CHARS, _T("wxID_ANY"));
+	SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUBAR));
 	FlexGridSizer1 = new wxFlexGridSizer(0, 2, 0, 0);
 	FlexGridSizer1->AddGrowableCol(0);
 	FlexGridSizer1->AddGrowableCol(1);
@@ -207,7 +210,7 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& event)
 	                  "with this program; if not, write to the Free Software Foundation, Inc.,\n"
 	                  "51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.\n"
 	                 ));
-	info.SetVersion(_T("1.0.8"));
+	info.SetVersion(_T(AgenderVersion));
 	info.SetIcon(agender_xpm);
 
 	wxAboutBox(info);

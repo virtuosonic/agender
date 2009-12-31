@@ -1,14 +1,14 @@
 [Meta]
-RootName: @agender.sourceforge.net/agender:$SOFTWAREVERSION
+RootName: @agender.sourceforge.net/agender:@VERSION@
 DisplayName: Agender scheduler
 ShortName: agender
 Maintainer: Gabriel Espinoza <virtuosonic@users.sourceforge.net>
 Packager: Gabriel Espinoza <virtuosonic@users.sourceforge.net>
 Summary: Agender is a cross-plataform schedule tool
 URL: http://agender.sourceforge.net/
-License: GNU General Public License, Version 2
+License: GNU General Public License
 SoftwareVersion: @VERSION@
-Repository: http://sourceforge.net/projects/agender/files
+Repository: http://agender.sourceforge.net/agender.xml
 PackageVersion: 1
 AutopackageTarget: 1.4
 
@@ -37,9 +37,9 @@ removeOwningPackage $PREFIX/bin/my-program
 
 [Install]
 installExe bin/*
-installDesktop share/applications/*
-copyFiles share/pixmaps
-copyFiles share/local/es/LC_MESSAGES/*
+installMenuItem "Calendar/Utility" share/applications/*
+installIcon share/pixmaps/*
+installLocale share/locale/
 
 [Uninstall]
 uninstallFromLog

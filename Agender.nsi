@@ -59,6 +59,8 @@ Section "Principal" SEC01
   CreateShortCut "$SMPROGRAMS\Agender\Agender.lnk" "$INSTDIR\Agender.exe"
   CreateShortCut "$DESKTOP\Agender.lnk" "$INSTDIR\Agender.exe"
   File "${MINGWDIR}\bin\mingwm10.dll"
+  SetOutPath "$INSTDIR\es"
+  File "es/Agender.mo"
 SectionEnd
 
 Section -AdditionalIcons

@@ -12,6 +12,7 @@
 #include <signal.h>
 #endif
 #include <wx/log.h>
+#include <wx/stdpaths.h>
 #include <iostream>
 
 //(*AppHeaders
@@ -26,6 +27,7 @@ bool AgenderApp::OnInit()
 	wxLog* logger = new wxLogStream(&std::cout);
 	delete wxLog::SetActiveTarget(logger);
 	wxLog::SetVerbose(true);
+	wxLogMessage(wxStandardPaths::Get().GetExecutablePath());
 	m_checker = new wxSingleInstanceChecker(_T(".") + GetAppName() + _T("-") + ::wxGetUserId());
 	if (m_checker->IsAnotherRunning())
 	{
@@ -47,7 +49,7 @@ bool AgenderApp::OnInit()
 	}
 	if (m_locale.Init(wxLANGUAGE_DEFAULT,wxLOCALE_CONV_ENCODING))
 	{
-		wxLocale::AddCatalogLookupPathPrefix(wxT("."));
+		//wxLocale::AddCatalogLookupPathPrefix(wxT("."));
 		m_locale.AddCatalog(wxT("Agender"));
 	}
 	//(*AppInitialize

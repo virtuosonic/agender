@@ -76,7 +76,9 @@
 			<Option compilerVar="WINDRES" />
 			<Option target="Release" />
 		</Unit>
-		<Unit filename="version.h" />
+		<Unit filename="version.h.in">
+			<Option target="UNIX" />
+		</Unit>
 		<Unit filename="wxsmith/Agenderframe.wxs" />
 		<Extensions>
 			<code_completion />
@@ -88,11 +90,6 @@
 					<wxFrame wxs="wxsmith/Agenderframe.wxs" src="AgenderMain.cpp" hdr="AgenderMain.h" name="AgenderFrame" language="CPP" />
 				</resources>
 			</wxsmith>
-			<AutoVersioning>
-				<Scheme minor_max="10" build_max="0" rev_max="0" rev_rand_max="10" build_times_to_increment_minor="100" />
-				<Settings autoincrement="1" date_declarations="1" do_auto_increment="0" ask_to_increment="0" language="C++" svn="1" svn_directory="/home/virtuoso/C++/Agender" header_path="version.h" />
-				<Changes_Log show_changes_editor="1" app_title="released version %M.%m.%b" changeslog_path="ChangesLog.txt" />
-			</AutoVersioning>
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
