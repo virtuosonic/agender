@@ -60,7 +60,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 	//(*Initialize(AgenderFrame)
 	wxBoxSizer* BoxSizer1;
 	wxFlexGridSizer* FlexGridSizer1;
-
+	
 	Create(0, wxID_ANY, _("Agender"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX|wxFRAME_TOOL_WINDOW|wxWANTS_CHARS, _T("wxID_ANY"));
 	SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUBAR));
 	FlexGridSizer1 = new wxFlexGridSizer(0, 2, 0, 0);
@@ -88,7 +88,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 	FlexGridSizer1->Fit(this);
 	FlexGridSizer1->SetSizeHints(this);
 	Center();
-
+	
 	Connect(ID_CALENDARCTRL1,wxEVT_CALENDAR_SEL_CHANGED,(wxObjectEventFunction)&AgenderFrame::OnCalendarCtrl1Changed);
 	Connect(ID_CALENDARCTRL1,wxEVT_CALENDAR_MONTH_CHANGED,(wxObjectEventFunction)&AgenderFrame::OnCalendarCtrl1MonthChanged);
 	Connect(ID_CALENDARCTRL1,wxEVT_CALENDAR_YEAR_CHANGED,(wxObjectEventFunction)&AgenderFrame::OnCalendarCtrl1MonthChanged);
@@ -140,7 +140,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 		schdl->GetFirstEntry(nota,j);
 		ListBox1->Append(nota);
 		msgs.Add(schdl->Read(nota,wxEmptyString));
-		for (unsigned int i = 1;i < schdl->GetNumberOfEntries();i++)
+		for (unsigned int i = 1; i < schdl->GetNumberOfEntries(); i++)
 		{
 			schdl->GetNextEntry(nota,j);
 			ListBox1->Append(nota);
@@ -170,8 +170,8 @@ AgenderFrame::~AgenderFrame()
 	if (ListBox1->GetSelection() !=wxNOT_FOUND)
 	{
 		schdl->Write(CalendarCtrl1->GetDate().Format(_T("/%Y-%m-%d/")) +
-		             ListBox1->GetStringSelection(),
-		             TextCtrl1->GetValue());
+				 ListBox1->GetStringSelection(),
+				 TextCtrl1->GetValue());
 	}
 	wxFileOutputStream ofile(schFile);
 	schdl->Save(ofile);
@@ -194,23 +194,24 @@ void AgenderFrame::OnClose(wxCloseEvent& event)
 void AgenderFrame::OnButton3Click(wxCommandEvent& event)
 {
 	wxAboutDialogInfo info;
-	info.AddDeveloper(_T("Gabriel Espinoza a.k.a. virtuoso"));
+	info.AddDeveloper(_T("Gabriel Espinoza <virtuosonic@users.sourceforge.net"));
 	info.SetDescription(_("A cross-plataform schedule tool"));
 	info.SetWebSite(_T("http://agender.sourceforge.net"));
 	info.SetLicence(_("Agender is free software; you can redistribute it and/or modify\n"
-	                  "it under the terms of the GNU General Public License as published by\n"
-	                  "the Free Software Foundation.\n"
-	                  "\n"
-	                  "This program is distributed inthe hope that it will be useful,\n"
-	                  "but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
-	                  "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
-	                  "GNU General Public License for more details.\n"
-	                  "\n"
-	                  "You should have received a copy of the GNU General Public License along\n"
-	                  "with this program; if not, write to the Free Software Foundation, Inc.,\n"
-	                  "51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.\n"
-	                 ));
+				"it under the terms of the GNU General Public License as published by\n"
+				"the Free Software Foundation, either version 3 of the License, or\n"
+				"(at your option) any later version.\n"
+				"\n"
+				"Agender is distributed inthe hope that it will be useful,\n"
+				"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+				"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+				"GNU General Public License for more details.\n"
+				"\n"
+				"You should have received a copy of the GNU General Public License\n"
+				"along with Agender. If not, see <http://www.gnu.org/licenses/>."
+				));
 	info.SetVersion(_T(AgenderVersion));
+	info.SetCopyright(_T("Copyright (C) 2009,2010 Gabriel Espinoza"));
 	info.SetIcon(agender_xpm);
 
 	wxAboutBox(info);
@@ -235,7 +236,7 @@ void AgenderFrame::OnCalendarCtrl1Changed(wxCalendarEvent& event)
 		{
 			ListBox1->Append(nota);
 			msgs.Add(schdl->Read(nota,wxEmptyString));
-			for (unsigned int i = 1;i < schdl->GetNumberOfEntries();i++)
+			for (unsigned int i = 1; i < schdl->GetNumberOfEntries(); i++)
 			{
 				schdl->GetNextEntry(nota,j);
 				ListBox1->Append(nota);
@@ -284,8 +285,8 @@ void AgenderFrame::savePastNote()
 	if (prevSel != wxNOT_FOUND)
 		msgs[prevSel] = TextCtrl1->GetValue();
 	schdl->Write(CalendarCtrl1->GetDate().Format(_T("%Y-%m-%d")) +
-	             _T("/") + ListBox1->GetString(prevSel),
-	             TextCtrl1->GetValue());
+			 _T("/") + ListBox1->GetString(prevSel),
+			 TextCtrl1->GetValue());
 }
 
 void AgenderFrame::OnBtnNuevoClick(wxCommandEvent& event)
@@ -313,7 +314,7 @@ void AgenderFrame::OnBtnElimClick(wxCommandEvent& event)
 	{
 		msgs.RemoveAt(ListBox1->GetSelection());
 		schdl->DeleteEntry(CalendarCtrl1->GetDate().Format(_T("/%Y-%m-%d/"))
-		                   +ListBox1->GetStringSelection());
+					 +ListBox1->GetStringSelection());
 		ListBox1->Delete(ListBox1->GetSelection());
 		prevSel = wxNOT_FOUND;
 		TextCtrl1->Clear();
@@ -340,18 +341,18 @@ void AgenderFrame::MarkDays()
 {
 	wxString dateStr;
 	size_t count = 1 + wxDateTime::GetNumberOfDays(CalendarCtrl1->GetDate().GetMonth());
-	for (size_t i = 1;i < count; i++)
+	for (size_t i = 1; i < count; i++)
 	{
 		CalendarCtrl1->ResetAttr(i);
 		if (i < 10)
 		{
 			dateStr = CalendarCtrl1->GetDate().Format(_T("%Y-%m-")) +
-			          wxString::Format(_T("0%i"),i);
+				    wxString::Format(_T("0%i"),i);
 		}
 		else
 		{
 			dateStr = CalendarCtrl1->GetDate().Format(_T("%Y-%m-")) +
-			          wxString::Format(_T("%i"),i);
+				    wxString::Format(_T("%i"),i);
 		}
 		if (!dateStr.IsEmpty() && schdl->HasGroup(dateStr))
 		{

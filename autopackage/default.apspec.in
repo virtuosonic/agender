@@ -8,7 +8,7 @@ Summary: Agender is a cross-plataform schedule tool
 URL: http://agender.sourceforge.net/
 License: GNU General Public License
 SoftwareVersion: @VERSION@
-Repository: http://agender.sourceforge.net/agender.xml
+Repository: http://agender.sourceforge.net/autopackage/agender.xml
 PackageVersion: 1
 AutopackageTarget: 1.4
 

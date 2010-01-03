@@ -1,13 +1,17 @@
 			Agender, a crossplataform schedule tool
-web:
+			**********************************
+Web:
+====
 	http://agender.souceforge.net
 	http://sourceforge.net/projects/agender
 Intro:
+======
 	Thanksfor trying this software, agender is a small tool for
 	writing your schedule it is  a crossplataform software it should
 	compile and run on un*x, Windows, Mac OS and someother.
 
 Licence:
+========
 	Agender is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
 	the Free Software Foundation.
@@ -22,14 +26,17 @@ Licence:
 	51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 Dependencies:
+=============
 	To compile you will need wxWidgets 2.8, I'm using 2.8.10 maybe
 	it works with another, not sure. The website is
 	www.wxwidgets.org.
 
 	Under fedora you can install it with the command:
+		
 		yum install wxGTK-devel
 
-Compiling &Installing:
+Compiling & Installing:
+=======================
 	Read the file INSTALL, if you don't wan't to read so much, here are some short instructions:
 		type on a terminal:
 			$cd $(Agender)
@@ -41,10 +48,12 @@ Compiling &Installing:
 	If you aren't using a un*x operating system, there is an archive containing the makefiles and project files
 	for several compilers you can find it at http://sourceforge.net/projects/agender/files
 Bugs:
+=====
 	I don't call them that way, i call them "advanced user
 	features". If you find one report it at the project bug tracker,
 	patches are welcome, thank you.
 Author:
+=======
 	Gabriel Espinoza <virtuosonic@users.sourceforge.net>
 
 Thanks for reading :) EOF

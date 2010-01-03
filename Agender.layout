@@ -7,38 +7,38 @@
 	<File name="Agender.desktop" open="0" top="0" tabpos="2">
 		<Cursor position="142" topLine="0" />
 	</File>
-	<File name="Agender.nsi" open="1" top="1" tabpos="1">
-		<Cursor position="1877" topLine="0" />
+	<File name="Agender.nsi" open="0" top="0" tabpos="1">
+		<Cursor position="848" topLine="16" />
 	</File>
-	<File name="AgenderApp.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="1345" topLine="36" />
+	<File name="AgenderApp.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="1381" topLine="55" />
 	</File>
 	<File name="AgenderApp.h" open="0" top="0" tabpos="2">
 		<Cursor position="450" topLine="10" />
 	</File>
-	<File name="AgenderIPC.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="543" topLine="25" />
+	<File name="AgenderIPC.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="67" topLine="0" />
 	</File>
 	<File name="AgenderIPC.h" open="0" top="0" tabpos="3">
-		<Cursor position="372" topLine="3" />
+		<Cursor position="78" topLine="3" />
 	</File>
 	<File name="AgenderMain.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="802" topLine="25" />
+		<Cursor position="3088" topLine="78" />
 	</File>
 	<File name="AgenderMain.h" open="0" top="0" tabpos="4">
 		<Cursor position="772" topLine="22" />
 	</File>
 	<File name="AgenderTray.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="236" topLine="0" />
+		<Cursor position="2706" topLine="110" />
 	</File>
 	<File name="AgenderTray.h" open="0" top="0" tabpos="4">
 		<Cursor position="66" topLine="0" />
 	</File>
 	<File name="Readme.txt" open="0" top="0" tabpos="3">
-		<Cursor position="1612" topLine="33" />
+		<Cursor position="2034" topLine="41" />
 	</File>
 	<File name="autopackage/default.apspec.in" open="0" top="0" tabpos="1">
-		<Cursor position="1091" topLine="0" />
+		<Cursor position="497" topLine="0" />
 	</File>
 	<File name="configure.in" open="0" top="0" tabpos="3">
 		<Cursor position="358" topLine="1" />
