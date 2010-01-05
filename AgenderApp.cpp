@@ -49,7 +49,7 @@ bool AgenderApp::OnInit()
 	}
 	if (m_locale.Init(wxLANGUAGE_DEFAULT,wxLOCALE_CONV_ENCODING))
 	{
-		//wxLocale::AddCatalogLookupPathPrefix(wxT("."));
+		wxLocale::AddCatalogLookupPathPrefix(wxT("."));
 		m_locale.AddCatalog(wxT("Agender"));
 	}
 	//(*AppInitialize

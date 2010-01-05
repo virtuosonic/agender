@@ -41,4 +41,9 @@ license GPL
   		<install-to>$(DATADIR)/locale/es/LC_MESSAGES</install-to>
   		<files>es/Agender.mo</files>
   	</data-files>
+  	<data-files id="german">
+  		<srcdir>$(SRCDIR)</srcdir>
+  		<install-to>$(DATADIR)/locale/de/LC_MESSAGES</install-to>
+  		<files>de/Agender.mo</files>
+  	</data-files>
 </makefile>

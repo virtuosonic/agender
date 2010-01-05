@@ -2,44 +2,44 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Agender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-05 01:43-0800\n"
+"POT-Creation-Date: 2010-01-05 01:20-0800\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Gabriel Espinoza <virtuosonic@users.sourceforge.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Spanish\n"
+"X-Poedit-Language: German\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: /home/virtuoso/C++/Agender\n"
 
 #: /home/virtuoso/C++/Agender/AgenderMain.cpp:68
 msgid "Agender"
-msgstr "Agender"
+msgstr ""
 
 #: /home/virtuoso/C++/Agender/AgenderMain.cpp:83
 msgid "Add note"
-msgstr "Agregar nota"
+msgstr "Notiz hinzulfügen"
 
 #: /home/virtuoso/C++/Agender/AgenderMain.cpp:86
 msgid "Delete selection"
-msgstr "Eliminar selección"
+msgstr "Auswahl löschen"
 
 #: /home/virtuoso/C++/Agender/AgenderMain.cpp:88
 msgid "About..."
-msgstr "Acerca de..."
+msgstr "Über..."
 
 #: /home/virtuoso/C++/Agender/AgenderMain.cpp:131
 msgid "Agender uses this file to save your schedule, don't delete it!"
-msgstr "Agender usa este archivo para guardar tu agenda, no lo borres"
+msgstr ""
 
 #: /home/virtuoso/C++/Agender/AgenderMain.cpp:171
 msgid "Agender|Search Notes"
-msgstr "Ageder|Buscar notas"
+msgstr "Agender|Notiz suchen"
 
 #: /home/virtuoso/C++/Agender/AgenderMain.cpp:205
 msgid "A cross-plataform schedule tool"
-msgstr "La agenda multiplataforma"
+msgstr ""
 
 #: /home/virtuoso/C++/Agender/AgenderMain.cpp:207
 msgid ""
@@ -56,34 +56,18 @@ msgid ""
 "You should have received a copy of the GNU General Public License\n"
 "along with Agender. If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
-"Agender es software libre; puede redistribuirlo y/o\n"
-"modificarlo bajo los términos de la Licencia Pública\n"
-"General de GNU tal como la publica la Free Software\n"
-"Foundation, tanto en la versión 3 de la Licencia\n"
-"como (a su elección) cualquier versión posterior.\n"
-"\n"
-"Agender se distribuye con la esperanza de que será\n"
-"útil,pero SIN NINGUNA GARANTÍA; sin incluso la\n"
-"garantía implicada de MERCANTIBILIDAD o\n"
-"ADECUACIÓN PARA UN PROPÓSITO PARTICULAR.\n"
-"Vea la Licencia Pública General de GNU para más\n"
-"detalles\n"
-"\n"
-"Debería haber recibido una copia de la Licencia\n"
-"pública General de GNU junto con Agender; si no,\n"
-"vea <http://www.gnu.org/licenses/>"
 
 #: /home/virtuoso/C++/Agender/AgenderMain.cpp:306
 msgid "To-Do Title"
-msgstr "Titulo de nota"
+msgstr "Notiz Titel"
 
 #: /home/virtuoso/C++/Agender/AgenderMain.cpp:306
 msgid "New To-Do"
-msgstr "Nota nueva"
+msgstr "Neue Notiz"
 
 #: /home/virtuoso/C++/Agender/AgenderMain.cpp:459
 msgid "AutoStart is only available under Windows and Unix desktop that follow the freedesktop.org standards"
-msgstr "El inicio automatico solo esta disponible en Windows y escritorios compatibles con los estandares de freedesktop.org"
+msgstr ""
 
 #: /home/virtuoso/C++/Agender/AgenderTray.cpp:66
 msgid "100%"
@@ -103,30 +87,30 @@ msgstr "25%"
 
 #: /home/virtuoso/C++/Agender/AgenderTray.cpp:74
 msgid "Show"
-msgstr "Mostrar"
+msgstr "Zeigen"
 
 #: /home/virtuoso/C++/Agender/AgenderTray.cpp:75
 msgid "Hide"
-msgstr "Ocultar"
+msgstr "Verbergen"
 
 #: /home/virtuoso/C++/Agender/AgenderTray.cpp:77
 #: /home/virtuoso/C++/Agender/AgenderTray.cpp:86
 msgid "Opacity"
-msgstr "Opacidad"
+msgstr ""
 
 #: /home/virtuoso/C++/Agender/AgenderTray.cpp:79
 msgid "Year selector"
-msgstr "Selector de año"
+msgstr "Jahr Auswahl"
 
 #: /home/virtuoso/C++/Agender/AgenderTray.cpp:80
 msgid "Notes Colour"
-msgstr "Color de nota"
+msgstr "Notiz Farbe"
 
 #: /home/virtuoso/C++/Agender/AgenderTray.cpp:81
 msgid "Autostart"
-msgstr "Inicio automático"
+msgstr "Autobeginn"
 
 #: /home/virtuoso/C++/Agender/AgenderTray.cpp:85
 msgid "Exit"
-msgstr "Salir"
+msgstr "Losfahren"
 

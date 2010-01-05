@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1262663603 source:/home/virtuoso/C++/Agender/AgenderTray.cpp
+1262666197 source:/home/virtuoso/C++/Agender/AgenderTray.cpp
 	"AgenderTray.h"
 	<wx/colordlg.h>
 	<wx/menu.h>
@@ -688,7 +688,7 @@
 	"wx/filefn.h"
 	"wx/strconv.h"
 
-1262660556 source:/home/virtuoso/C++/Agender/AgenderApp.cpp
+1262685095 source:/home/virtuoso/C++/Agender/AgenderApp.cpp
 	"AgenderApp.h"
 	<signal.h>
 	<wx/log.h>
@@ -1752,7 +1752,7 @@
 1236340842 /home/virtuoso/wxMSW-2.8.10/include/wx/imagiff.h
 	"wx/image.h"
 
-1262665832 source:/home/virtuoso/C++/Agender/AgenderMain.cpp
+1262685247 source:/home/virtuoso/C++/Agender/AgenderMain.cpp
 	"AgenderMain.h"
 	<wx/msgdlg.h>
 	<wx/settings.h>
