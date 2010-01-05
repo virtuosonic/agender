@@ -31,7 +31,7 @@ bool AgenderApp::OnInit()
 	m_checker = new wxSingleInstanceChecker(_T(".") + GetAppName() + _T("-") + ::wxGetUserId());
 	if (m_checker->IsAnotherRunning())
 	{
-		AgenderClient client;
+		wxClient client;
 		AgenderConnection* cnn = NULL;
 		cnn = (AgenderConnection*)client.MakeConnection(_T("localhost"),IPC_Service,IPC_Topic);
 		if (cnn)
@@ -74,5 +74,6 @@ int AgenderApp::OnExit()
 {
 	delete m_checker;
 	delete m_server;
+	wxLogMessage(_T("Exiting:goodbye"));
 	return wxApp::OnExit();
 }

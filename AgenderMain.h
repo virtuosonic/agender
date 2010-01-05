@@ -46,6 +46,7 @@ class AgenderFrame: public wxFrame
         void OnSearch(wxCommandEvent& event);
         void OnChangeNotesColour(wxCommandEvent& event);
         void OnYearSel(wxCommandEvent& event);
+        void OnAutoStart(wxCommandEvent& event);
 
         //(*Identifiers(AgenderFrame)
         static const long ID_CALENDARCTRL1;
@@ -65,7 +66,7 @@ class AgenderFrame: public wxFrame
         wxListBox* ListBox1;
         //*)
         wxFindReplaceDialog* fndDlg;
-        wxFindReplaceData fndData;
+        wxFindReplaceData* fndData;
 
         void MarkDays();
         void savePastNote();
@@ -76,6 +77,7 @@ class AgenderFrame: public wxFrame
         wxString schFile;
         wxArrayString msgs;
         int prevSel;
+        bool SearchMode;
         wxString prevDate;
         wxLocale& m_locale;
 

@@ -25,11 +25,4 @@ class AgenderConnection : public wxConnection
  		wxFrame* m_frame;
  };
 
- class AgenderClient : public wxClient
- {
- 	public:
- 		wxConnectionBase* OnMakeConnection();
-	private:
-	 	wxConnection* m_cnn;
- };
 #endif // AGENDERIPC_H_INCLUDED

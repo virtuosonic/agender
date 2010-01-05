@@ -1,12 +1,12 @@
 # depslib dependency file v1.0
-1261832074 source:/home/virtuoso/C++/Agender/AgenderTray.cpp
+1262663603 source:/home/virtuoso/C++/Agender/AgenderTray.cpp
 	"AgenderTray.h"
 	<wx/colordlg.h>
 	<wx/menu.h>
 	<wx/config.h>
 	<wx/msgdlg.h>
 
-1258081090 /home/virtuoso/C++/Agender/AgenderTray.h
+1262661242 /home/virtuoso/C++/Agender/AgenderTray.h
 	<wx/taskbar.h>
 	<wx/colour.h>
 	<wx/frame.h>
@@ -688,7 +688,7 @@
 	"wx/filefn.h"
 	"wx/strconv.h"
 
-1262171066 source:/home/virtuoso/C++/Agender/AgenderApp.cpp
+1262660556 source:/home/virtuoso/C++/Agender/AgenderApp.cpp
 	"AgenderApp.h"
 	<signal.h>
 	<wx/log.h>
@@ -1227,7 +1227,7 @@
 1236340877 /home/virtuoso/wxMSW-2.8.10/include/wx/univ/theme.h
 	"wx/string.h"
 
-1262141551 /home/virtuoso/C++/Agender/AgenderMain.h
+1262661346 /home/virtuoso/C++/Agender/AgenderMain.h
 	<wx/sizer.h>
 	<wx/textctrl.h>
 	<wx/calctrl.h>
@@ -1752,7 +1752,7 @@
 1236340842 /home/virtuoso/wxMSW-2.8.10/include/wx/imagiff.h
 	"wx/image.h"
 
-1262163006 source:/home/virtuoso/C++/Agender/AgenderMain.cpp
+1262665832 source:/home/virtuoso/C++/Agender/AgenderMain.cpp
 	"AgenderMain.h"
 	<wx/msgdlg.h>
 	<wx/settings.h>
@@ -1761,6 +1761,7 @@
 	<wx/aboutdlg.h>
 	<wx/accel.h>
 	<wx/textdlg.h>
+	<wx/choicdlg.h>
 	<wx/stdpaths.h>
 	<wx/wfstream.h>
 	<wx/utils.h>
@@ -1852,7 +1853,7 @@
 
 1236340875 /home/virtuoso/wxMSW-2.8.10/include/wx/msw/registry.h
 
-1258079176 /home/virtuoso/C++/Agender/version.h
+1262406723 /home/virtuoso/C++/Agender/version.h
 
 1262076024 /home/virtuoso/C++/Agender/Agender16x16.xpm
 
@@ -2681,12 +2682,12 @@
 
 1257859919 /usr/include/wx-2.8/wx/snglinst.h
 
-1261815602 source:/home/virtuoso/C++/Agender/AgenderIPC.cpp
+1262642753 source:/home/virtuoso/C++/Agender/AgenderIPC.cpp
 	"AgenderIPC.h"
 	<wx/log.h>
 	<wx/msgdlg.h>
 
-1260655160 /home/virtuoso/C++/Agender/AgenderIPC.h
+1262642475 /home/virtuoso/C++/Agender/AgenderIPC.h
 	<wx/ipc.h>
 	<wx/frame.h>
 
@@ -4713,4 +4714,11 @@
 1257859920 /usr/include/wx-2.8/wx/settings.h
 	"wx/colour.h"
 	"wx/font.h"
+
+1257859920 /usr/include/wx-2.8/wx/choicdlg.h
+	"wx/generic/choicdgg.h"
+
+1257859920 /usr/include/wx-2.8/wx/generic/choicdgg.h
+	"wx/dynarray.h"
+	"wx/dialog.h"
 

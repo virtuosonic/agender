@@ -18,6 +18,7 @@ BEGIN_EVENT_TABLE(AgenderTray,wxTaskBarIcon)
 	EVT_MENU(ID_NOTES_COLOUR,AgenderTray::OnMenuNotesColour)
 	EVT_MENU(wxID_EXIT,AgenderTray::OnMenuExit)
 	EVT_MENU(wxID_FIND,AgenderTray::OnMenuFind)
+	EVT_MENU(ID_AUTOSTART,AgenderTray::OnMenuAutoStart)
 END_EVENT_TABLE()
 
 AgenderTray::AgenderTray(wxFrame* frame,long colalpha)
@@ -46,7 +47,6 @@ AgenderTray::AgenderTray(wxFrame* frame,long colalpha)
 
 void AgenderTray::OnLeft(wxTaskBarIconEvent& event)
 {
-	// TODO (virtuoso#1#): compatibilidad wx-2.9: no se muestra ventana
 	if (frame->IsShown())
 	{
 		frame->Hide();
@@ -78,14 +78,17 @@ wxMenu * AgenderTray::CreatePopupMenu()
 	//menu->Append(ID_BGCOLOUR,_("Set Background Colour"));
 	menu->AppendCheckItem(ID_YEARSEL,_("Year selector"));
 	menu->Append(ID_NOTES_COLOUR,_("Notes Colour"));
+	menu->AppendCheckItem(ID_AUTOSTART,_("Autostart"));
 	//menu->AppendSeparator();
 	//menu->Append(wxID_FIND,_("Find"));
 	menu->AppendSeparator();
 	menu->Append(wxID_EXIT,_("Exit"));
 	menu->Enable(menu->FindItem(_("Opacity")),frame->CanSetTransparent());
-	bool yearSel= false;
-	wxConfig::Get()->Read(_T("yearselector"),&yearSel);
-	menu->Check(ID_YEARSEL,yearSel);
+	bool test_bool= false;
+	wxConfig::Get()->Read(_T("yearselector"),&test_bool);
+	menu->Check(ID_YEARSEL,test_bool);
+	wxConfig::Get()->Read(_T("autostart"),&test_bool);
+	menu->Check(ID_AUTOSTART,test_bool);
 
 	return menu;
 }
@@ -149,6 +152,13 @@ void AgenderTray::OnMenuFind(wxCommandEvent& event)
 void AgenderTray::OnYearSel(wxCommandEvent& event)
 {
 	wxConfig::Get()->Write(_T("yearselector"),event.IsChecked());
+	wxPostEvent(frame->GetEventHandler(),event);
+}
+
+void AgenderTray::OnMenuAutoStart(wxCommandEvent& event)
+{
+	wxConfig::Get()->Write(_T("autostart"),event.IsChecked());
+
 	wxPostEvent(frame->GetEventHandler(),event);
 }
 

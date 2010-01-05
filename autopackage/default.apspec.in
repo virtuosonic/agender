@@ -33,7 +33,7 @@ echo '*' | import
 
 [Prepare]
 require @wxwidgets.org/wxgtk 28
-removeOwningPackage $PREFIX/bin/my-program
+removeOwningPackage $PREFIX/bin/Agender
 
 [Install]
 installExe bin/*

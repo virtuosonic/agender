@@ -19,6 +19,7 @@
 #include <wx/aboutdlg.h>
 #include <wx/accel.h>
 #include <wx/textdlg.h>
+#include <wx/choicdlg.h>
 #include <wx/stdpaths.h>
 #include <wx/wfstream.h>
 #include <wx/utils.h>
@@ -34,7 +35,6 @@
 #include "AgenderTray.h"
 #include "Agender16x16.xpm"
 #include "Agender.xpm"
-#include "version.h"
 
 //(*IdInit(AgenderFrame)
 const long AgenderFrame::ID_CALENDARCTRL1 = wxNewId();
@@ -47,12 +47,16 @@ const long AgenderFrame::ID_BUTTON3 = wxNewId();
 
 BEGIN_EVENT_TABLE(AgenderFrame,wxFrame)
 	EVT_FIND(wxID_ANY,AgenderFrame::OnFind)
+	EVT_FIND_NEXT(wxID_ANY,AgenderFrame::OnFind)
 	EVT_MENU(wxID_FIND,AgenderFrame::OnSearch)
 	EVT_MENU(7004,AgenderFrame::OnChangeNotesColour)
 	EVT_MENU(7003,AgenderFrame::OnYearSel)
+	EVT_MENU(7005,AgenderFrame::OnAutoStart)
 	//(*EventTable(AgenderFrame)
 	//*)
 END_EVENT_TABLE()
+
+// TODO (virtuoso#4#): separar gui del parser
 
 AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 {
@@ -60,7 +64,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 	//(*Initialize(AgenderFrame)
 	wxBoxSizer* BoxSizer1;
 	wxFlexGridSizer* FlexGridSizer1;
-	
+
 	Create(0, wxID_ANY, _("Agender"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX|wxFRAME_TOOL_WINDOW|wxWANTS_CHARS, _T("wxID_ANY"));
 	SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUBAR));
 	FlexGridSizer1 = new wxFlexGridSizer(0, 2, 0, 0);
@@ -88,7 +92,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 	FlexGridSizer1->Fit(this);
 	FlexGridSizer1->SetSizeHints(this);
 	Center();
-	
+
 	Connect(ID_CALENDARCTRL1,wxEVT_CALENDAR_SEL_CHANGED,(wxObjectEventFunction)&AgenderFrame::OnCalendarCtrl1Changed);
 	Connect(ID_CALENDARCTRL1,wxEVT_CALENDAR_MONTH_CHANGED,(wxObjectEventFunction)&AgenderFrame::OnCalendarCtrl1MonthChanged);
 	Connect(ID_CALENDARCTRL1,wxEVT_CALENDAR_YEAR_CHANGED,(wxObjectEventFunction)&AgenderFrame::OnCalendarCtrl1MonthChanged);
@@ -159,10 +163,13 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 	MarkDays();
 	//parece que esto no funciona en gtk+
 	wxAcceleratorEntry entries[1];
-	entries[0].Set(wxACCEL_CTRL,(int)"F",wxID_FIND);
+	entries[0].Set(wxACCEL_CTRL,(int)'f',wxID_FIND);
 	wxAcceleratorTable accel(1, entries);
 	this->SetAcceleratorTable(accel);
-	fndDlg = NULL;
+	//
+	fndData = new wxFindReplaceData;
+	fndDlg = new wxFindReplaceDialog(this,fndData,_("Agender|Search Notes"),wxFR_NOUPDOWN|wxFR_NOMATCHCASE|wxFR_NOWHOLEWORD);
+	SearchMode = false;
 }
 
 AgenderFrame::~AgenderFrame()
@@ -209,9 +216,9 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& event)
 				"\n"
 				"You should have received a copy of the GNU General Public License\n"
 				"along with Agender. If not, see <http://www.gnu.org/licenses/>."
-				));
-	info.SetVersion(_T(AgenderVersion));
-	info.SetCopyright(_T("Copyright (C) 2009,2010 Gabriel Espinoza"));
+			     ));
+	info.SetVersion(_T("1.1.0"));
+	info.SetCopyright(_T("Copyright (C) 2009-2010 Gabriel Espinoza"));
 	info.SetIcon(agender_xpm);
 
 	wxAboutBox(info);
@@ -268,7 +275,11 @@ void AgenderFrame::OnCalendarCtrl1Changed(wxCalendarEvent& event)
 
 void AgenderFrame::OnListBox1Select(wxCommandEvent& event)
 {
-	if (ListBox1->GetSelection() != wxNOT_FOUND)
+	if (SearchMode)
+	{
+		// TODO (virtuoso#1#): mostrar resultado de la busqueda
+	}
+	else if (ListBox1->GetSelection() != wxNOT_FOUND)
 	{
 		savePastNote();
 		TextCtrl1->Enable();
@@ -365,14 +376,43 @@ void AgenderFrame::MarkDays()
 
 void AgenderFrame::OnFind(wxFindDialogEvent& event)
 {
-	wxLogMessage(_T(" Not Found!"));
+	//wxMessageBox(_T(" Not Found!"));
+	event.GetFindString();
+	wxArrayString found,groups;
+	wxString g_str;
+	long g_indx;
+	//
+	if (schdl->GetFirstGroup(g_str,g_indx))
+	{
+		while (schdl->GetNextGroup(g_str,g_indx))
+		{
+			wxString str;
+			long indx;
+			schdl->SetPath(g_str);
+			if (schdl->GetFirstEntry(str,indx))
+			{
+				if (str.Lower().Find(event.GetFindString().Lower()) != wxNOT_FOUND)
+					found.Add(wxString::Format(_T("%s/%s"),g_str.c_str(),str.c_str()));
+				while (schdl->GetNextEntry(str,indx))
+				{
+					if (str.Lower().Find(event.GetFindString().Lower()) != wxNOT_FOUND)
+						found.Add(wxString::Format(_T("%s/%s"),g_str.c_str(),str.c_str()));
+				}
+			}
+			schdl->SetPath(_T("/"));
+		}
+	}
+	//show result
+	fndDlg->Hide();
+	ListBox1->Clear();
+	ListBox1->Append(found);
+	SearchMode = true;
 }
 
 void AgenderFrame::OnSearch(wxCommandEvent& event)
 {
-	if (!fndDlg)
+	if (!fndDlg->IsShown())
 	{
-		fndDlg=new wxFindReplaceDialog(this,&fndData,_("Agender| Buscar"),wxFR_NOUPDOWN|wxFR_NOMATCHCASE|wxFR_NOWHOLEWORD);
 		fndDlg->Show();
 	}
 }
@@ -399,3 +439,56 @@ void AgenderFrame::ChangeSelector()
 	GetSizer()->Fit(this);
 	MarkDays();
 }
+
+void AgenderFrame::OnAutoStart(wxCommandEvent& event)
+{
+	#if defined __UNIX__ && !defined __APPLE__
+	//we use freedestop.org standard
+	wxFileName	desktopFname;
+	desktopFname.AssignDir(wxGetHomeDir());
+	desktopFname.AppendDir(_T(".config"));
+	desktopFname.AppendDir(_T("autostart"));
+	desktopFname.SetName(_T("Agender"));
+	desktopFname.SetExt(_T("desktop"));
+	wxString desktopFile(desktopFname.GetFullPath());
+	#elif defined __WXMSW__
+	//we use the windows registry
+	wxRegKey key;
+	key.SetName(_T("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"));
+	#else
+	wxMessageBox(_("AutoStart is only available under Windows and Unix desktop that follow the freedesktop.org standards"));
+	return;
+	#endif
+	//add or remove
+	bool autostart;
+	schdl->Read(_T("autostart"),&autostart,false);
+	if (autostart)//add
+	{
+		#if defined __UNIX__
+		if (!wxFileExists(desktopFile))
+		{
+			wxLogMessage(desktopFile);
+			wxTextFile desktop;
+			desktop.Create(desktopFile);
+			desktop.AddLine(_T("[Desktop Entry]"));
+			desktop.AddLine(_T("Type=Application"));
+			desktop.AddLine(_T("Name=Agender"));
+			desktop.AddLine(_T("Exec=Agender"));
+			desktop.AddLine(_T("Icon=Agender"));
+			desktop.AddLine(_T("Comment="));
+			desktop.Write(wxTextFileType_Unix);
+			desktop.Close();
+		}
+		#elif defined __WXMSW__
+		if (!key.HasValue(_T("Agender")))
+			key.SetValue(_T("Agender"),wxStandardPaths::Get().GetExecutablePath());
+		#endif
+	}
+	else//remove
+		#if defined __UNIX__
+		::wxRemoveFile(desktopFile);
+		#elif defined __WXMSW__
+		key.DeleteValue(_T("Agender"));
+		#endif
+}
+

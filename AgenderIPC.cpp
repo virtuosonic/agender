@@ -38,8 +38,3 @@ wxConnectionBase * AgenderServer::OnAcceptConnection(const wxString& topic)
 	return new AgenderConnection(m_frame);
 }
 
-wxConnectionBase* AgenderClient::OnMakeConnection()
-{
-	//m_cnn = new wxConnection;
-	return new wxConnection;
-}
