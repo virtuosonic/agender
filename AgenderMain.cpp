@@ -36,6 +36,7 @@
 #include "Agender16x16.xpm"
 #include "Agender.xpm"
 
+
 //(*IdInit(AgenderFrame)
 const long AgenderFrame::ID_CALENDARCTRL1 = wxNewId();
 const long AgenderFrame::ID_LISTBOX1 = wxNewId();
@@ -65,7 +66,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 	wxBoxSizer* BoxSizer1;
 	wxFlexGridSizer* FlexGridSizer1;
 
-	Create(0, wxID_ANY, _("Agender"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX|wxFRAME_TOOL_WINDOW|wxWANTS_CHARS, _T("wxID_ANY"));
+	Create(0, wxID_ANY, _("Agender"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxFRAME_TOOL_WINDOW|wxWANTS_CHARS, _T("wxID_ANY"));
 	SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUBAR));
 	FlexGridSizer1 = new wxFlexGridSizer(0, 2, 0, 0);
 	FlexGridSizer1->AddGrowableCol(0);
@@ -170,6 +171,9 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 	fndData = new wxFindReplaceData;
 	fndDlg = new wxFindReplaceDialog(this,fndData,_("Agender|Search Notes"),wxFR_NOUPDOWN|wxFR_NOMATCHCASE|wxFR_NOWHOLEWORD);
 	SearchMode = false;
+	wxCommandEvent event;
+	event.SetId(7005);
+	wxPostEvent(GetEventHandler(),event);
 }
 
 AgenderFrame::~AgenderFrame()
@@ -457,7 +461,11 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 	wxRegKey key;
 	key.SetName(_T("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"));
 	#else
-	wxMessageBox(_("AutoStart is only available under Windows and Unix desktop that follow the freedesktop.org standards"));
+	wxMessageBox(_("AutoStart is only available under Windows "
+			" and Unix desktop that follow the freedesktop.org standards, "
+			"if you add support for any other system, please send patches "
+			"to the patch tracker in the Agender project page at "
+			"http:/sourceforge.net/projects/agender/"));
 	return;
 	#endif
 	//add or remove
@@ -481,15 +489,19 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 			desktop.Close();
 		}
 		#elif defined __WXMSW__
-		if (!key.HasValue(_T("Agender")))
+		wxString AgenderValue;
+		key.QueryValue(_T("Agender"),AgenderValue);
+		if (!key.HasValue(_T("Agender")) && AgenderValue != wxStandardPaths::Get().GetExecutablePath())
 			key.SetValue(_T("Agender"),wxStandardPaths::Get().GetExecutablePath());
 		#endif
 	}
 	else//remove
 		#if defined __UNIX__
-		::wxRemoveFile(desktopFile);
+		if (wxFileExists(desktopFile))
+			wxRemoveFile(desktopFile);
 		#elif defined __WXMSW__
-		key.DeleteValue(_T("Agender"));
+		if (key.HasValue(_T("Agender")))
+			key.DeleteValue(_T("Agender"));
 		#endif
 }
 

@@ -31,7 +31,7 @@ msgstr "Über..."
 
 #: /home/virtuoso/C++/Agender/AgenderMain.cpp:131
 msgid "Agender uses this file to save your schedule, don't delete it!"
-msgstr ""
+msgstr "Agender verwendet diese Datei an Ihre Termine speichern, löschen Sie es nicht!"
 
 #: /home/virtuoso/C++/Agender/AgenderMain.cpp:171
 msgid "Agender|Search Notes"
@@ -39,7 +39,7 @@ msgstr "Agender|Notiz suchen"
 
 #: /home/virtuoso/C++/Agender/AgenderMain.cpp:205
 msgid "A cross-plataform schedule tool"
-msgstr ""
+msgstr "Ein Kreuz-plataform Zeitplan Tool"
 
 #: /home/virtuoso/C++/Agender/AgenderMain.cpp:207
 msgid ""
@@ -56,6 +56,18 @@ msgid ""
 "You should have received a copy of the GNU General Public License\n"
 "along with Agender. If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
+"Agender ist freie Software; Sie können sie weitergeben und / oder zu ändern\n"
+"unter den Bedingungen der GNU General Public License veröffentlicht als von \n"
+"der Free Software Foundation, entweder gemäß Version 3 der Lizenz oder \n"
+"(at your option) any later version. \n"
+"\n"
+"Agender verteilt wird inder Hoffnung, dass es nützlich sein wird,\n"
+"aber OHNE JEDE GARANTIE;sogar ohne die implizite Garantie der\n"
+"GEBRAUCHSTAUGLICHKEIT oder EIGNUNG FÜR EINEN BESTIMMTEN\n"
+"ZWECK. Sehen Sie sich die GNU General Public License for more details.\n"
+"\n"
+"Sie sollten eine Kopie der GNU General Public License erhalten haben\n"
+"zusammen mit Agender. Falls nicht, siehe <http://www.gnu.org/licenses/>."
 
 #: /home/virtuoso/C++/Agender/AgenderMain.cpp:306
 msgid "To-Do Title"
@@ -67,7 +79,7 @@ msgstr "Neue Notiz"
 
 #: /home/virtuoso/C++/Agender/AgenderMain.cpp:459
 msgid "AutoStart is only available under Windows and Unix desktop that follow the freedesktop.org standards"
-msgstr ""
+msgstr "AutoStart ist nur unter Windows-und Unix-Desktop, der die Standards von freedesktop.org folgen"
 
 #: /home/virtuoso/C++/Agender/AgenderTray.cpp:66
 msgid "100%"
@@ -96,7 +108,7 @@ msgstr "Verbergen"
 #: /home/virtuoso/C++/Agender/AgenderTray.cpp:77
 #: /home/virtuoso/C++/Agender/AgenderTray.cpp:86
 msgid "Opacity"
-msgstr ""
+msgstr "Deckkraft"
 
 #: /home/virtuoso/C++/Agender/AgenderTray.cpp:79
 msgid "Year selector"

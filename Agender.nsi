@@ -62,6 +62,8 @@ Section "Principal" SEC01
   File "${MINGWDIR}\bin\mingwm10.dll"
   SetOutPath "$INSTDIR\es"
   File "es/Agender.mo"
+  SetOutPath "$INSTDIR\de"
+  File "de/Agender.mo"
 SectionEnd
 
 Section -AdditionalIcons
