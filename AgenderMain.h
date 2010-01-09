@@ -24,6 +24,8 @@
 #include <wx/fdrepdlg.h>
 #include <wx/taskbar.h>
 
+#include "AgenderCal.h"
+
 class AgenderFrame: public wxFrame
 {
     public:
@@ -41,6 +43,7 @@ class AgenderFrame: public wxFrame
         void OnBtnElimClick(wxCommandEvent& event);
         void OnClose(wxCloseEvent& event);
         void OnCalendarCtrl1MonthChanged(wxCalendarEvent& event);
+        void OnTextCtrl1Text(wxCommandEvent& event);
         //*)
         void OnFind(wxFindDialogEvent& event);
         void OnSearch(wxCommandEvent& event);
@@ -80,6 +83,7 @@ class AgenderFrame: public wxFrame
         bool SearchMode;
         wxString prevDate;
         wxLocale& m_locale;
+        AgenderCal* a_cal;
 
         DECLARE_EVENT_TABLE()
 };

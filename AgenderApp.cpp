@@ -8,9 +8,7 @@
  **************************************************************/
 
 #include "AgenderApp.h"
-#ifdef __UNIX__
-#include <signal.h>
-#endif
+
 #include <wx/log.h>
 #include <wx/stdpaths.h>
 #include <iostream>
@@ -24,6 +22,7 @@ IMPLEMENT_APP(AgenderApp);
 
 bool AgenderApp::OnInit()
 {
+	SetAppName(_T("Agender"));
 	wxLog* logger = new wxLogStream(&std::cout);
 	delete wxLog::SetActiveTarget(logger);
 	wxLog::SetVerbose(true);
@@ -48,10 +47,7 @@ bool AgenderApp::OnInit()
 		return false;
 	}
 	if (m_locale.Init(wxLANGUAGE_DEFAULT,wxLOCALE_CONV_ENCODING))
-	{
-		wxLocale::AddCatalogLookupPathPrefix(wxT("."));
 		m_locale.AddCatalog(wxT("Agender"));
-	}
 	//(*AppInitialize
 	bool wxsOK = true;
 	wxInitAllImageHandlers();

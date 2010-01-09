@@ -98,6 +98,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 	Connect(ID_CALENDARCTRL1,wxEVT_CALENDAR_MONTH_CHANGED,(wxObjectEventFunction)&AgenderFrame::OnCalendarCtrl1MonthChanged);
 	Connect(ID_CALENDARCTRL1,wxEVT_CALENDAR_YEAR_CHANGED,(wxObjectEventFunction)&AgenderFrame::OnCalendarCtrl1MonthChanged);
 	Connect(ID_LISTBOX1,wxEVT_COMMAND_LISTBOX_SELECTED,(wxObjectEventFunction)&AgenderFrame::OnListBox1Select);
+	Connect(ID_TEXTCTRL1,wxEVT_COMMAND_TEXT_UPDATED,(wxObjectEventFunction)&AgenderFrame::OnTextCtrl1Text);
 	Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AgenderFrame::OnBtnNuevoClick);
 	Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AgenderFrame::OnBtnElimClick);
 	Connect(ID_BUTTON3,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AgenderFrame::OnButton3Click);
@@ -105,6 +106,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 	//*)
 
 #ifdef __WXMSW__
+	// TODO (virtuoso#1#): quitar esto
 	wxRegKey key;
 	key.SetName(_T("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"));
 	if (!key.HasValue(_T("Agender")))
@@ -125,18 +127,20 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 		::wxCopyFile(schFile,schFile+_T(".bak"));
 	}
 	else
-	{
 		schdl = new wxFileConfig;
-	}
 	wxConfig::Set(schdl);
 	schdl->Write(_T("AgenderMessage"),_("Agender uses this file to save your schedule, don't delete it!"));
-	prevDate = CalendarCtrl1->GetDate().Format(_T("%Y-%m-%j"));
-	SetTransparent(schdl->Read(_T("/opacity"),255));
+	prevDate = CalendarCtrl1->GetDate().Format(_T("%Y-%m-%d"));
+
 	prevSel = wxNOT_FOUND;
+	a_cal = new AgenderCal(CalendarCtrl1->GetDate());
+	wxArrayString notes = a_cal->GetNotes();
+	for (unsigned int i = 0;i < notes.GetCount();i++)
+	{
+		ListBox1->Append(notes[i]);
+	}
 
-	trayicon = new AgenderTray(this,schdl->Read(_T("/opacity"),255));
-	trayicon->SetIcon(Agender16x16_xpm,_T("Virtuosonic Agender"));
-
+	/*
 	if (schdl->HasGroup(CalendarCtrl1->GetDate().Format(_T("%Y-%m-%d"))))
 	{
 		schdl->SetPath(_T("/") + CalendarCtrl1->GetDate().Format(_T("%Y-%m-%d/")));
@@ -160,17 +164,23 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 		}
 		schdl->SetPath(_T("/"));
 	}
+	*/
 	ChangeSelector();
 	MarkDays();
-	//parece que esto no funciona en gtk+
+	//find dialog shortcut
 	wxAcceleratorEntry entries[1];
 	entries[0].Set(wxACCEL_CTRL,(int)'f',wxID_FIND);
 	wxAcceleratorTable accel(1, entries);
 	this->SetAcceleratorTable(accel);
-	//
+	//find dialog
 	fndData = new wxFindReplaceData;
 	fndDlg = new wxFindReplaceDialog(this,fndData,_("Agender|Search Notes"),wxFR_NOUPDOWN|wxFR_NOMATCHCASE|wxFR_NOWHOLEWORD);
 	SearchMode = false;
+	//taskbaricon
+	trayicon = new AgenderTray(this,schdl->Read(_T("/opacity"),255));
+	trayicon->SetIcon(Agender16x16_xpm,_T("Virtuosonic Agender"));
+	SetTransparent(schdl->Read(_T("/opacity"),255));
+	//
 	wxCommandEvent event;
 	event.SetId(7005);
 	wxPostEvent(GetEventHandler(),event);
@@ -178,12 +188,12 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 
 AgenderFrame::~AgenderFrame()
 {
-	if (ListBox1->GetSelection() !=wxNOT_FOUND)
-	{
-		schdl->Write(CalendarCtrl1->GetDate().Format(_T("/%Y-%m-%d/")) +
-				 ListBox1->GetStringSelection(),
-				 TextCtrl1->GetValue());
-	}
+	//if (ListBox1->GetSelection() !=wxNOT_FOUND)
+	//{
+//		schdl->Write(CalendarCtrl1->GetDate().Format(_T("/%Y-%m-%d/")) +
+	//			 ListBox1->GetStringSelection(),
+		//		 TextCtrl1->GetValue());
+	//}
 	wxFileOutputStream ofile(schFile);
 	schdl->Save(ofile);
 	//without this Agender will receive SIGSEGV #11
@@ -231,13 +241,20 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& event)
 
 void AgenderFrame::OnCalendarCtrl1Changed(wxCalendarEvent& event)
 {
-	if (ListBox1->GetSelection() != wxNOT_FOUND)
-	{
-		schdl->Write(prevDate + _T("/") + ListBox1->GetStringSelection(),TextCtrl1->GetValue());
-	}
+	//if (ListBox1->GetSelection() != wxNOT_FOUND)
+	//{
+		//schdl->Write(prevDate + _T("/") + ListBox1->GetStringSelection(),TextCtrl1->GetValue());
+	//}
 	ListBox1->Clear();
+	TextCtrl1->ChangeValue(wxEmptyString);
 	TextCtrl1->Disable();
-	msgs.Clear();
+	//msgs.Clear();
+	a_cal->SetDate(CalendarCtrl1->GetDate());
+	wxArrayString notes = a_cal->GetNotes();
+	for (unsigned int i = 0;i < notes.GetCount();i++)
+		ListBox1->Append(notes[i]);
+	ListBox1->SetSelection(0);
+	/*
 	wxString datePath(CalendarCtrl1->GetDate().Format(_T("/%Y-%m-%d/")));
 	if (schdl->HasGroup(datePath))
 	{
@@ -272,25 +289,25 @@ void AgenderFrame::OnCalendarCtrl1Changed(wxCalendarEvent& event)
 	{
 		prevSel = wxNOT_FOUND;
 		TextCtrl1->Clear();
-	}
+	}*/
 	wxFileOutputStream ofile(schFile);
 	schdl->Save(ofile);
-	prevDate = CalendarCtrl1->GetDate().Format(_T("%Y-%m-%d"));
+	//prevDate = CalendarCtrl1->GetDate().Format(_T("%Y-%m-%d"));
 }
 
 void AgenderFrame::OnListBox1Select(wxCommandEvent& event)
 {
-	if (SearchMode)
-	{
+	//if (SearchMode)
+	//{
 		// TODO (virtuoso#1#): mostrar resultado de la busqueda
-	}
-	else if (ListBox1->GetSelection() != wxNOT_FOUND)
+	//}
+	if (ListBox1->GetSelection() != wxNOT_FOUND)
 	{
-		savePastNote();
+		//savePastNote();//?
 		TextCtrl1->Enable();
-		TextCtrl1->ChangeValue(msgs[ListBox1->GetSelection()]);
-		prevSel = ListBox1->GetSelection();
-
+		TextCtrl1->ChangeValue(a_cal->GetNoteText(ListBox1->GetStringSelection()));
+		//prevSel = ListBox1->GetSelection();//?
+		//
 		wxFileOutputStream ofile(schFile);
 		schdl->Save(ofile);
 	}
@@ -313,10 +330,12 @@ void AgenderFrame::OnBtnNuevoClick(wxCommandEvent& event)
 	{
 		ListBox1->Append(dlg.GetValue());
 		ListBox1->SetSelection(ListBox1->GetCount()-1);
-		savePastNote();
+		//savePastNote();
 		TextCtrl1->Enable();
-		TextCtrl1->Clear();
-		prevSel = ListBox1->GetSelection();
+		TextCtrl1->ChangeValue(wxEmptyString);
+		//prevSel = ListBox1->GetSelection();
+		a_cal->SetNoteText(dlg.GetValue(),wxEmptyString);
+		//
 		wxFileOutputStream ofile(schFile);
 		schdl->Save(ofile);
 		msgs.Add(wxEmptyString);
@@ -328,12 +347,11 @@ void AgenderFrame::OnBtnElimClick(wxCommandEvent& event)
 {
 	if (ListBox1->GetSelection() != wxNOT_FOUND)
 	{
-		msgs.RemoveAt(ListBox1->GetSelection());
-		schdl->DeleteEntry(CalendarCtrl1->GetDate().Format(_T("/%Y-%m-%d/"))
-					 +ListBox1->GetStringSelection());
+		a_cal->RmNote(ListBox1->GetStringSelection());
+		//msgs.RemoveAt(ListBox1->GetSelection());//?
 		ListBox1->Delete(ListBox1->GetSelection());
-		prevSel = wxNOT_FOUND;
-		TextCtrl1->Clear();
+		//prevSel = wxNOT_FOUND;
+		TextCtrl1->ChangeValue(wxEmptyString);
 		TextCtrl1->Disable();
 		if ( !ListBox1->GetCount())
 			MarkDays();
@@ -350,32 +368,22 @@ void AgenderFrame::OnChangeNotesColour(wxCommandEvent& event)
 
 void AgenderFrame::OnCalendarCtrl1MonthChanged(wxCalendarEvent& event)
 {
+	a_cal->SetDate(CalendarCtrl1->GetDate());
 	MarkDays();
 }
 
 void AgenderFrame::MarkDays()
 {
-	wxString dateStr;
-	size_t count = 1 + wxDateTime::GetNumberOfDays(CalendarCtrl1->GetDate().GetMonth());
-	for (size_t i = 1; i < count; i++)
+	for (unsigned int i = 0;
+		i < wxDateTime::GetNumberOfDays(CalendarCtrl1->GetDate().GetMonth());
+		i++)
+			CalendarCtrl1->ResetAttr(i);
+	wxArrayInt days =  a_cal->GetDaysWithNotes();
+	for (unsigned int i = 0;i < days.GetCount();i++)
 	{
-		CalendarCtrl1->ResetAttr(i);
-		if (i < 10)
-		{
-			dateStr = CalendarCtrl1->GetDate().Format(_T("%Y-%m-")) +
-				    wxString::Format(_T("0%i"),i);
-		}
-		else
-		{
-			dateStr = CalendarCtrl1->GetDate().Format(_T("%Y-%m-")) +
-				    wxString::Format(_T("%i"),i);
-		}
-		if (!dateStr.IsEmpty() && schdl->HasGroup(dateStr))
-		{
-			wxCalendarDateAttr* note_attr = new wxCalendarDateAttr;
-			note_attr->SetTextColour(wxColour(schdl->Read(_T("/notescolour"),_T("#ff0000"))));
-			CalendarCtrl1->SetAttr(i,note_attr);
-		}
+		wxCalendarDateAttr* note_attr = new wxCalendarDateAttr;
+		note_attr->SetTextColour(wxColour(schdl->Read(_T("/notescolour"),_T("#ff0000"))));
+		CalendarCtrl1->SetAttr(days[i],note_attr);
 	}
 }
 
@@ -442,6 +450,7 @@ void AgenderFrame::ChangeSelector()
 	CalendarCtrl1 = calendar;
 	GetSizer()->Layout();
 	GetSizer()->Fit(this);
+	// TODO (virtuoso#1#): guardar fecha
 	MarkDays();
 }
 
@@ -505,3 +514,8 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 		#endif
 }
 
+
+void AgenderFrame::OnTextCtrl1Text(wxCommandEvent& event)
+{
+	a_cal->SetNoteText(ListBox1->GetStringSelection(),TextCtrl1->GetValue());
+}
