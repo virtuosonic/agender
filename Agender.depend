@@ -1,10 +1,9 @@
 # depslib dependency file v1.0
-1262666197 source:/home/virtuoso/C++/Agender/AgenderTray.cpp
+1263094113 source:/home/virtuoso/C++/Agender/AgenderTray.cpp
 	"AgenderTray.h"
 	<wx/colordlg.h>
 	<wx/menu.h>
 	<wx/config.h>
-	<wx/msgdlg.h>
 
 1262661242 /home/virtuoso/C++/Agender/AgenderTray.h
 	<wx/taskbar.h>
@@ -688,7 +687,7 @@
 	"wx/filefn.h"
 	"wx/strconv.h"
 
-1263037076 source:/home/virtuoso/C++/Agender/AgenderApp.cpp
+1263094701 source:/home/virtuoso/C++/Agender/AgenderApp.cpp
 	"AgenderApp.h"
 	<wx/log.h>
 	<wx/stdpaths.h>
@@ -1226,7 +1225,7 @@
 1236340877 /home/virtuoso/wxMSW-2.8.10/include/wx/univ/theme.h
 	"wx/string.h"
 
-1263041637 /home/virtuoso/C++/Agender/AgenderMain.h
+1263094374 /home/virtuoso/C++/Agender/AgenderMain.h
 	<wx/sizer.h>
 	<wx/textctrl.h>
 	<wx/calctrl.h>
@@ -1238,7 +1237,6 @@
 	<wx/arrstr.h>
 	<wx/fdrepdlg.h>
 	<wx/taskbar.h>
-	"AgenderCal.h"
 
 1236340843 /home/virtuoso/wxMSW-2.8.10/include/wx/sizer.h
 	"wx/defs.h"
@@ -1752,7 +1750,7 @@
 1236340842 /home/virtuoso/wxMSW-2.8.10/include/wx/imagiff.h
 	"wx/image.h"
 
-1263043542 source:/home/virtuoso/C++/Agender/AgenderMain.cpp
+1263093667 source:/home/virtuoso/C++/Agender/AgenderMain.cpp
 	"AgenderMain.h"
 	<wx/msgdlg.h>
 	<wx/settings.h>
@@ -4722,7 +4720,7 @@
 	"wx/dynarray.h"
 	"wx/dialog.h"
 
-1263044633 source:/home/virtuoso/C++/Agender/AgenderCal.cpp
+1263092677 source:/home/virtuoso/C++/Agender/AgenderCal.cpp
 	"AgenderCal.h"
 	<wx/config.h>
 	<wx/textfile.h>

@@ -24,68 +24,64 @@
 #include <wx/fdrepdlg.h>
 #include <wx/taskbar.h>
 
-#include "AgenderCal.h"
+class AgenderCal;
 
 class AgenderFrame: public wxFrame
 {
-    public:
+	public:
 
-        AgenderFrame(wxLocale& locale);
-        virtual ~AgenderFrame();
+		AgenderFrame(wxLocale& locale);
+		virtual ~AgenderFrame();
 
-    private:
+	private:
 
-        //(*Handlers(AgenderFrame)
-        void OnButton3Click(wxCommandEvent& event);
-        void OnCalendarCtrl1Changed(wxCalendarEvent& event);
-        void OnListBox1Select(wxCommandEvent& event);
-        void OnBtnNuevoClick(wxCommandEvent& event);
-        void OnBtnElimClick(wxCommandEvent& event);
-        void OnClose(wxCloseEvent& event);
-        void OnCalendarCtrl1MonthChanged(wxCalendarEvent& event);
-        void OnTextCtrl1Text(wxCommandEvent& event);
-        //*)
-        void OnFind(wxFindDialogEvent& event);
-        void OnSearch(wxCommandEvent& event);
-        void OnChangeNotesColour(wxCommandEvent& event);
-        void OnYearSel(wxCommandEvent& event);
-        void OnAutoStart(wxCommandEvent& event);
+		//(*Handlers(AgenderFrame)
+		void OnButton3Click(wxCommandEvent& event);
+		void OnCalendarCtrl1Changed(wxCalendarEvent& event);
+		void OnListBox1Select(wxCommandEvent& event);
+		void OnBtnNuevoClick(wxCommandEvent& event);
+		void OnBtnElimClick(wxCommandEvent& event);
+		void OnClose(wxCloseEvent& event);
+		void OnCalendarCtrl1MonthChanged(wxCalendarEvent& event);
+		void OnTextCtrl1Text(wxCommandEvent& event);
+		//*)
+		void OnFind(wxFindDialogEvent& event);
+		void OnSearch(wxCommandEvent& event);
+		void OnChangeNotesColour(wxCommandEvent& event);
+		void OnYearSel(wxCommandEvent& event);
+		void OnAutoStart(wxCommandEvent& event);
 
-        //(*Identifiers(AgenderFrame)
-        static const long ID_CALENDARCTRL1;
-        static const long ID_LISTBOX1;
-        static const long ID_TEXTCTRL1;
-        static const long ID_BUTTON1;
-        static const long ID_BUTTON2;
-        static const long ID_BUTTON3;
-        //*)
+		//(*Identifiers(AgenderFrame)
+		static const long ID_CALENDARCTRL1;
+		static const long ID_LISTBOX1;
+		static const long ID_TEXTCTRL1;
+		static const long ID_BUTTON1;
+		static const long ID_BUTTON2;
+		static const long ID_BUTTON3;
+		//*)
 
-        //(*Declarations(AgenderFrame)
-        wxButton* BtnNuevo;
-        wxCalendarCtrl* CalendarCtrl1;
-        wxButton* BtnElim;
-        wxButton* Button3;
-        wxTextCtrl* TextCtrl1;
-        wxListBox* ListBox1;
-        //*)
-        wxFindReplaceDialog* fndDlg;
-        wxFindReplaceData* fndData;
+		//(*Declarations(AgenderFrame)
+		wxButton* BtnNuevo;
+		wxCalendarCtrl* CalendarCtrl1;
+		wxButton* BtnElim;
+		wxButton* Button3;
+		wxTextCtrl* TextCtrl1;
+		wxListBox* ListBox1;
+		//*)
+		wxFindReplaceDialog* fndDlg;
+		wxFindReplaceData* fndData;
 
-        void MarkDays();
-        void savePastNote();
-        void ChangeSelector();
+		void MarkDays();
+		void ChangeSelector();
 
-        wxFileConfig* schdl;
-        wxTaskBarIcon* trayicon;
-        wxString schFile;
-        wxArrayString msgs;
-        int prevSel;
-        bool SearchMode;
-        wxString prevDate;
-        wxLocale& m_locale;
-        AgenderCal* a_cal;
+		wxFileConfig* schdl;
+		wxString schFile;
+		wxTaskBarIcon* trayicon;
+		bool SearchMode;
+		wxLocale& m_locale;
+		AgenderCal* a_cal;
 
-        DECLARE_EVENT_TABLE()
+		DECLARE_EVENT_TABLE()
 };
 
 #endif // AGENDERMAIN_H

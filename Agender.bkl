@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- this file is part of the Agender package
 http://agender.sourceforge.net
-license GPL
+license GPL v3
 -->
 <makefile>
 	<include file="presets/wx.bkl"/>
@@ -14,6 +14,7 @@ license GPL
 		<sources>AgenderApp.cpp</sources>
 		<sources>AgenderMain.cpp</sources>
 		<sources>AgenderTray.cpp</sources>
+		<sources>AgenderCal.cpp</sources>
 		<!-- wxWidgets dependencies -->
 		<wx-lib>net</wx-lib>
 		<wx-lib>adv</wx-lib>

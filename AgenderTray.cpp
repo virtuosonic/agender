@@ -2,15 +2,9 @@
 #include <wx/colordlg.h>
 #include <wx/menu.h>
 #include <wx/config.h>
-#include <wx/msgdlg.h>
-
 
 BEGIN_EVENT_TABLE(AgenderTray,wxTaskBarIcon)
-	#if wxCHECK_VERSION(2,9,0) || defined __WXGTK20__//another bug?
-	EVT_TASKBAR_LEFT_DOWN(AgenderTray::OnLeft)
-	#else
 	EVT_TASKBAR_LEFT_UP(AgenderTray::OnLeft)
-	#endif
 	EVT_MENU(ID_SHOW,AgenderTray::OnMenuShow)
 	EVT_MENU(ID_HIDE,AgenderTray::OnMenuHide)
 	EVT_MENU_RANGE(ID_OPC100,ID_OPC25,AgenderTray::OnMenuOpc)
@@ -74,20 +68,21 @@ wxMenu * AgenderTray::CreatePopupMenu()
 	menu->Append(ID_SHOW,_("Show"));
 	menu->Append(ID_HIDE,_("Hide"));
 	menu->AppendSeparator();
-	menu->AppendSubMenu(opcMenu,_("Opacity"));
-	//menu->Append(ID_BGCOLOUR,_("Set Background Colour"));
+	if (frame->CanSetTransparent())
+		menu->AppendSubMenu(opcMenu,_("Opacity"));
 	menu->AppendCheckItem(ID_YEARSEL,_("Year selector"));
 	menu->Append(ID_NOTES_COLOUR,_("Notes Colour"));
 	menu->AppendCheckItem(ID_AUTOSTART,_("Autostart"));
 	//menu->AppendSeparator();
 	//menu->Append(wxID_FIND,_("Find"));
+	// TODO (virtuoso#1#): uncomment the above code
 	menu->AppendSeparator();
 	menu->Append(wxID_EXIT,_("Exit"));
-	menu->Enable(menu->FindItem(_("Opacity")),frame->CanSetTransparent());
+	//
 	bool test_bool= false;
-	wxConfig::Get()->Read(_T("yearselector"),&test_bool);
+	wxConfig::Get()->Read(_T("/yearselector"),&test_bool);
 	menu->Check(ID_YEARSEL,test_bool);
-	wxConfig::Get()->Read(_T("autostart"),&test_bool);
+	wxConfig::Get()->Read(_T("/autostart"),&test_bool);
 	menu->Check(ID_AUTOSTART,test_bool);
 
 	return menu;
@@ -138,7 +133,6 @@ void AgenderTray::OnMenuNotesColour(wxCommandEvent& event)
 	dlg.GetColourData().SetChooseFull(true);
 	if (dlg.ShowModal() == wxID_OK)
 	{
-		//frame->SetNotesColour(dlg.GetColourData().GetColour());
 		event.SetString(dlg.GetColourData().GetColour().GetAsString(wxC2S_HTML_SYNTAX));
 		::wxPostEvent(frame->GetEventHandler(),event);
 	}
@@ -151,14 +145,13 @@ void AgenderTray::OnMenuFind(wxCommandEvent& event)
 
 void AgenderTray::OnYearSel(wxCommandEvent& event)
 {
-	wxConfig::Get()->Write(_T("yearselector"),event.IsChecked());
+	wxConfig::Get()->Write(_T("/yearselector"),event.IsChecked());
 	wxPostEvent(frame->GetEventHandler(),event);
 }
 
 void AgenderTray::OnMenuAutoStart(wxCommandEvent& event)
 {
-	wxConfig::Get()->Write(_T("autostart"),event.IsChecked());
-
+	wxConfig::Get()->Write(_T("/autostart"),event.IsChecked());
 	wxPostEvent(frame->GetEventHandler(),event);
 }
 

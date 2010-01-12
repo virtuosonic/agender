@@ -23,6 +23,7 @@ IMPLEMENT_APP(AgenderApp);
 bool AgenderApp::OnInit()
 {
 	SetAppName(_T("Agender"));
+	SetVendorName(_T("Virtuosonic"));
 	wxLog* logger = new wxLogStream(&std::cout);
 	delete wxLog::SetActiveTarget(logger);
 	wxLog::SetVerbose(true);

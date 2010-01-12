@@ -37,15 +37,16 @@ wxArrayString AgenderCal::GetNotes()
 	{
 		notes.Add(noteName);
 		while (wxConfig::Get()->GetNextEntry(noteName,indx))
-			notes.Add(noteName);;
+			notes.Add(noteName);
 	}
 	wxConfig::Get()->SetPath(_T("/"));
+	if (notes.GetCount() == 0)
+		wxConfig::Get()->DeleteGroup(dateStr);
 	return notes;
 }
 
 wxString AgenderCal::GetNoteText(wxString note)
 {
-	// TODO (virtuoso#1#): buscar grupos vacios
 	wxString fullnote(m_date.Format(_T("/%Y-%m-%d/")) + note);
 	return wxConfig::Get()->Read(fullnote,wxEmptyString);
 }
@@ -59,14 +60,14 @@ void AgenderCal::SetNoteText(wxString note,wxString text)
 wxArrayString AgenderCal::Find(wxString FindString)
 {
 	wxArrayString found;
-	//implementation
+	// TODO (virtuoso#1#): implement!!!
 	return found;
 }
 
 wxArrayInt AgenderCal::GetDaysWithNotes()
 {
 	wxArrayInt days;
-	//implementation
+	// TODO (virtuoso#1#): agregar algoritmo analizando grupos
 	int count = 1 + wxDateTime::GetNumberOfDays(m_date.GetMonth(),m_date.GetYear());
 	wxString dateStr;
 	for (int i = 1;i < count;i++)

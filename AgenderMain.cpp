@@ -23,7 +23,6 @@
 #include <wx/stdpaths.h>
 #include <wx/wfstream.h>
 #include <wx/utils.h>
-#include <wx/datetime.h>
 #include <wx/log.h>
 #include <wx/filename.h>
 
@@ -32,10 +31,10 @@
 #include <wx/msw/registry.h>
 #endif//__WXMSW__
 
+#include "AgenderCal.h"
 #include "AgenderTray.h"
 #include "Agender16x16.xpm"
 #include "Agender.xpm"
-
 
 //(*IdInit(AgenderFrame)
 const long AgenderFrame::ID_CALENDARCTRL1 = wxNewId();
@@ -56,8 +55,6 @@ BEGIN_EVENT_TABLE(AgenderFrame,wxFrame)
 	//(*EventTable(AgenderFrame)
 	//*)
 END_EVENT_TABLE()
-
-// TODO (virtuoso#4#): separar gui del parser
 
 AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 {
@@ -105,17 +102,6 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 	Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&AgenderFrame::OnClose);
 	//*)
 
-#ifdef __WXMSW__
-	// TODO (virtuoso#1#): quitar esto
-	wxRegKey key;
-	key.SetName(_T("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"));
-	if (!key.HasValue(_T("Agender")))
-	{
-		key.Create();
-		key.SetValue(_T("Agender"),wxStandardPaths::Get().GetExecutablePath());
-	}
-#endif//__WXMSW__
-
 	wxFileName schFname;
 	schFname.AssignDir(wxStandardPaths::Get().GetUserConfigDir());
 	schFname.SetName(_T(".Agender-current user.txt"));
@@ -125,46 +111,18 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 		wxFileInputStream infile(schFile);
 		schdl = new wxFileConfig(infile);
 		::wxCopyFile(schFile,schFile+_T(".bak"));
+		wxLogMessage(_T("config loaded from :%s"),schFile.c_str());
 	}
 	else
 		schdl = new wxFileConfig;
 	wxConfig::Set(schdl);
-	schdl->Write(_T("AgenderMessage"),_("Agender uses this file to save your schedule, don't delete it!"));
-	prevDate = CalendarCtrl1->GetDate().Format(_T("%Y-%m-%d"));
-
-	prevSel = wxNOT_FOUND;
+	schdl->Write(_T("/AgenderMessage"),_("Agender uses this file to save your schedule, don't delete it!"));
 	a_cal = new AgenderCal(CalendarCtrl1->GetDate());
 	wxArrayString notes = a_cal->GetNotes();
-	for (unsigned int i = 0;i < notes.GetCount();i++)
+	for (unsigned int i = 0; i < notes.GetCount(); i++)
 	{
 		ListBox1->Append(notes[i]);
 	}
-
-	/*
-	if (schdl->HasGroup(CalendarCtrl1->GetDate().Format(_T("%Y-%m-%d"))))
-	{
-		schdl->SetPath(_T("/") + CalendarCtrl1->GetDate().Format(_T("%Y-%m-%d/")));
-		wxString nota;
-		long j;
-		schdl->GetFirstEntry(nota,j);
-		ListBox1->Append(nota);
-		msgs.Add(schdl->Read(nota,wxEmptyString));
-		for (unsigned int i = 1; i < schdl->GetNumberOfEntries(); i++)
-		{
-			schdl->GetNextEntry(nota,j);
-			ListBox1->Append(nota);
-			msgs.Add(schdl->Read(nota,wxEmptyString));
-		}
-		if (schdl->GetNumberOfEntries())
-		{
-			ListBox1->SetSelection(0);
-			prevSel = ListBox1->GetSelection();
-			TextCtrl1->ChangeValue(msgs[prevSel]);
-			TextCtrl1->Enable();
-		}
-		schdl->SetPath(_T("/"));
-	}
-	*/
 	ChangeSelector();
 	MarkDays();
 	//find dialog shortcut
@@ -188,12 +146,6 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 
 AgenderFrame::~AgenderFrame()
 {
-	//if (ListBox1->GetSelection() !=wxNOT_FOUND)
-	//{
-//		schdl->Write(CalendarCtrl1->GetDate().Format(_T("/%Y-%m-%d/")) +
-	//			 ListBox1->GetStringSelection(),
-		//		 TextCtrl1->GetValue());
-	//}
 	wxFileOutputStream ofile(schFile);
 	schdl->Save(ofile);
 	//without this Agender will receive SIGSEGV #11
@@ -216,6 +168,7 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& event)
 {
 	wxAboutDialogInfo info;
 	info.AddDeveloper(_T("Gabriel Espinoza <virtuosonic@users.sourceforge.net"));
+	info.AddTranslator(_T("Gabriel Espinoza <español>"));
 	info.AddTranslator(_T("Ester Espinoza <deutsch>"));
 	info.SetDescription(_("A cross-plataform schedule tool"));
 	info.SetWebSite(_T("http://agender.sourceforge.net"));
@@ -241,85 +194,32 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& event)
 
 void AgenderFrame::OnCalendarCtrl1Changed(wxCalendarEvent& event)
 {
-	//if (ListBox1->GetSelection() != wxNOT_FOUND)
-	//{
-		//schdl->Write(prevDate + _T("/") + ListBox1->GetStringSelection(),TextCtrl1->GetValue());
-	//}
 	ListBox1->Clear();
 	TextCtrl1->ChangeValue(wxEmptyString);
 	TextCtrl1->Disable();
-	//msgs.Clear();
 	a_cal->SetDate(CalendarCtrl1->GetDate());
 	wxArrayString notes = a_cal->GetNotes();
-	for (unsigned int i = 0;i < notes.GetCount();i++)
+	for (unsigned int i = 0; i < notes.GetCount(); i++)
 		ListBox1->Append(notes[i]);
-	ListBox1->SetSelection(0);
-	/*
-	wxString datePath(CalendarCtrl1->GetDate().Format(_T("/%Y-%m-%d/")));
-	if (schdl->HasGroup(datePath))
-	{
-		schdl->SetPath(datePath);
-		wxString nota;
-		long j;
-		if (schdl->GetFirstEntry(nota,j))
-		{
-			ListBox1->Append(nota);
-			msgs.Add(schdl->Read(nota,wxEmptyString));
-			for (unsigned int i = 1; i < schdl->GetNumberOfEntries(); i++)
-			{
-				schdl->GetNextEntry(nota,j);
-				ListBox1->Append(nota);
-				msgs.Add(schdl->Read(nota,wxEmptyString));
-			}
-			if (schdl->GetNumberOfEntries())
-			{
-				ListBox1->SetSelection(0);
-				prevSel = ListBox1->GetSelection();
-				TextCtrl1->ChangeValue(msgs[prevSel]);
-				TextCtrl1->Enable();
-			}
-			else
-				TextCtrl1->Clear();
-			schdl->SetPath(_T("/"));
-		}
-		else
-			schdl->DeleteGroup(datePath);
-	}
-	else
-	{
-		prevSel = wxNOT_FOUND;
-		TextCtrl1->Clear();
-	}*/
+	//ListBox1->SetSelection(0);
+	// TODO (virtuoso#1#): cargar nota aqui, SetSelection no genera un EVT_LISTBOX
 	wxFileOutputStream ofile(schFile);
 	schdl->Save(ofile);
-	//prevDate = CalendarCtrl1->GetDate().Format(_T("%Y-%m-%d"));
 }
 
 void AgenderFrame::OnListBox1Select(wxCommandEvent& event)
 {
 	//if (SearchMode)
 	//{
-		// TODO (virtuoso#1#): mostrar resultado de la busqueda
+	// TODO (virtuoso#1#): mostrar resultado de la busqueda
 	//}
 	if (ListBox1->GetSelection() != wxNOT_FOUND)
 	{
-		//savePastNote();//?
 		TextCtrl1->Enable();
 		TextCtrl1->ChangeValue(a_cal->GetNoteText(ListBox1->GetStringSelection()));
-		//prevSel = ListBox1->GetSelection();//?
-		//
 		wxFileOutputStream ofile(schFile);
 		schdl->Save(ofile);
 	}
-}
-
-void AgenderFrame::savePastNote()
-{
-	if (prevSel != wxNOT_FOUND)
-		msgs[prevSel] = TextCtrl1->GetValue();
-	schdl->Write(CalendarCtrl1->GetDate().Format(_T("%Y-%m-%d")) +
-			 _T("/") + ListBox1->GetString(prevSel),
-			 TextCtrl1->GetValue());
 }
 
 void AgenderFrame::OnBtnNuevoClick(wxCommandEvent& event)
@@ -330,15 +230,11 @@ void AgenderFrame::OnBtnNuevoClick(wxCommandEvent& event)
 	{
 		ListBox1->Append(dlg.GetValue());
 		ListBox1->SetSelection(ListBox1->GetCount()-1);
-		//savePastNote();
 		TextCtrl1->Enable();
 		TextCtrl1->ChangeValue(wxEmptyString);
-		//prevSel = ListBox1->GetSelection();
 		a_cal->SetNoteText(dlg.GetValue(),wxEmptyString);
-		//
 		wxFileOutputStream ofile(schFile);
 		schdl->Save(ofile);
-		msgs.Add(wxEmptyString);
 		MarkDays();
 	}
 }
@@ -375,11 +271,11 @@ void AgenderFrame::OnCalendarCtrl1MonthChanged(wxCalendarEvent& event)
 void AgenderFrame::MarkDays()
 {
 	for (unsigned int i = 0;
-		i < wxDateTime::GetNumberOfDays(CalendarCtrl1->GetDate().GetMonth());
-		i++)
-			CalendarCtrl1->ResetAttr(i);
+			i < wxDateTime::GetNumberOfDays(CalendarCtrl1->GetDate().GetMonth());
+			i++)
+		CalendarCtrl1->ResetAttr(i);
 	wxArrayInt days =  a_cal->GetDaysWithNotes();
-	for (unsigned int i = 0;i < days.GetCount();i++)
+	for (unsigned int i = 0; i < days.GetCount(); i++)
 	{
 		wxCalendarDateAttr* note_attr = new wxCalendarDateAttr;
 		note_attr->SetTextColour(wxColour(schdl->Read(_T("/notescolour"),_T("#ff0000"))));
@@ -438,8 +334,9 @@ void AgenderFrame::OnYearSel(wxCommandEvent& event)
 void AgenderFrame::ChangeSelector()
 {
 	bool yearSel = false;
-	wxConfig::Get()->Read(_T("yearselector"),&yearSel);
+	wxConfig::Get()->Read(_T("/yearselector"),&yearSel);
 	int style;
+	wxDateTime date(CalendarCtrl1->GetDate());
 	if (yearSel)
 		style = wxSUNKEN_BORDER|wxTAB_TRAVERSAL;
 	else
@@ -450,13 +347,13 @@ void AgenderFrame::ChangeSelector()
 	CalendarCtrl1 = calendar;
 	GetSizer()->Layout();
 	GetSizer()->Fit(this);
-	// TODO (virtuoso#1#): guardar fecha
+	CalendarCtrl1->SetDate(date);
 	MarkDays();
 }
 
 void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 {
-	#if defined __UNIX__ && !defined __APPLE__
+#if defined __UNIX__ && !defined __APPLE__
 	//we use freedestop.org standard
 	wxFileName	desktopFname;
 	desktopFname.AssignDir(wxGetHomeDir());
@@ -465,24 +362,25 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 	desktopFname.SetName(_T("Agender"));
 	desktopFname.SetExt(_T("desktop"));
 	wxString desktopFile(desktopFname.GetFullPath());
-	#elif defined __WXMSW__
+#elif defined __WXMSW__
 	//we use the windows registry
 	wxRegKey key;
 	key.SetName(_T("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"));
-	#else
+#else
+	//we ask for help :)
 	wxMessageBox(_("AutoStart is only available under Windows "
-			" and Unix desktop that follow the freedesktop.org standards, "
-			"if you add support for any other system, please send patches "
-			"to the patch tracker in the Agender project page at "
-			"http:/sourceforge.net/projects/agender/"));
+			   " and Unix desktop that follow the freedesktop.org standards, "
+			   "if you add support for any other system, please send patches "
+			   "to the patch tracker in the Agender project page at "
+			   "http://sourceforge.net/projects/agender/"));
 	return;
-	#endif
+#endif
 	//add or remove
 	bool autostart;
-	schdl->Read(_T("autostart"),&autostart,false);
+	schdl->Read(_T("/autostart"),&autostart,false);
 	if (autostart)//add
 	{
-		#if defined __UNIX__
+#if defined __UNIX__
 		if (!wxFileExists(desktopFile))
 		{
 			wxLogMessage(desktopFile);
@@ -497,21 +395,21 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 			desktop.Write(wxTextFileType_Unix);
 			desktop.Close();
 		}
-		#elif defined __WXMSW__
+#elif defined __WXMSW__
 		wxString AgenderValue;
 		key.QueryValue(_T("Agender"),AgenderValue);
 		if (!key.HasValue(_T("Agender")) && AgenderValue != wxStandardPaths::Get().GetExecutablePath())
 			key.SetValue(_T("Agender"),wxStandardPaths::Get().GetExecutablePath());
-		#endif
+#endif
 	}
 	else//remove
-		#if defined __UNIX__
+#if defined __UNIX__
 		if (wxFileExists(desktopFile))
 			wxRemoveFile(desktopFile);
-		#elif defined __WXMSW__
+#elif defined __WXMSW__
 		if (key.HasValue(_T("Agender")))
 			key.DeleteValue(_T("Agender"));
-		#endif
+#endif
 }
 
 

@@ -13,6 +13,5 @@ AC_SUBST(VERSION,1.1.0)
 
 AC_CONFIG_FILES([Makefile
 	autopackage/default.apspec
-	version.h
 ])
 AC_OUTPUT
