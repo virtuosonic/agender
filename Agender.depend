@@ -1750,7 +1750,7 @@
 1236340842 /home/virtuoso/wxMSW-2.8.10/include/wx/imagiff.h
 	"wx/image.h"
 
-1263093667 source:/home/virtuoso/C++/Agender/AgenderMain.cpp
+1263364838 source:/home/virtuoso/C++/Agender/AgenderMain.cpp
 	"AgenderMain.h"
 	<wx/msgdlg.h>
 	<wx/settings.h>
@@ -1763,10 +1763,10 @@
 	<wx/stdpaths.h>
 	<wx/wfstream.h>
 	<wx/utils.h>
-	<wx/datetime.h>
 	<wx/log.h>
 	<wx/filename.h>
 	<wx/msw/registry.h>
+	"AgenderCal.h"
 	"AgenderTray.h"
 	"Agender16x16.xpm"
 	"Agender.xpm"

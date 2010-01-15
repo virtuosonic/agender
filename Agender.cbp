@@ -58,6 +58,8 @@
 		<Unit filename="AgenderApp.h" />
 		<Unit filename="AgenderCal.cpp" />
 		<Unit filename="AgenderCal.h" />
+		<Unit filename="AgenderDnd.cpp" />
+		<Unit filename="AgenderDnd.h" />
 		<Unit filename="AgenderIPC.cpp" />
 		<Unit filename="AgenderIPC.h" />
 		<Unit filename="AgenderMain.cpp" />

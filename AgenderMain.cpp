@@ -111,7 +111,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 		wxFileInputStream infile(schFile);
 		schdl = new wxFileConfig(infile);
 		::wxCopyFile(schFile,schFile+_T(".bak"));
-		wxLogMessage(_T("config loaded from :%s"),schFile.c_str());
+		wxLogMessage(_T("config loaded from: %s"),schFile.c_str());
 	}
 	else
 		schdl = new wxFileConfig;
@@ -120,9 +120,15 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 	a_cal = new AgenderCal(CalendarCtrl1->GetDate());
 	wxArrayString notes = a_cal->GetNotes();
 	for (unsigned int i = 0; i < notes.GetCount(); i++)
-	{
 		ListBox1->Append(notes[i]);
+	if (notes.GetCount() > 0)
+	{
+		ListBox1->SetSelection(0);
+		TextCtrl1->Enable();
+		TextCtrl1->ChangeValue(a_cal->GetNoteText(ListBox1->GetStringSelection()));
 	}
+	else
+		TextCtrl1->Disable();
 	ChangeSelector();
 	MarkDays();
 	//find dialog shortcut
@@ -196,13 +202,18 @@ void AgenderFrame::OnCalendarCtrl1Changed(wxCalendarEvent& event)
 {
 	ListBox1->Clear();
 	TextCtrl1->ChangeValue(wxEmptyString);
-	TextCtrl1->Disable();
 	a_cal->SetDate(CalendarCtrl1->GetDate());
 	wxArrayString notes = a_cal->GetNotes();
 	for (unsigned int i = 0; i < notes.GetCount(); i++)
 		ListBox1->Append(notes[i]);
-	//ListBox1->SetSelection(0);
-	// TODO (virtuoso#1#): cargar nota aqui, SetSelection no genera un EVT_LISTBOX
+	if (notes.GetCount() > 0)
+	{
+		ListBox1->SetSelection(0);
+		TextCtrl1->Enable();
+		TextCtrl1->ChangeValue(a_cal->GetNoteText(ListBox1->GetStringSelection()));
+	}
+	else
+		TextCtrl1->Disable();
 	wxFileOutputStream ofile(schFile);
 	schdl->Save(ofile);
 }
@@ -210,9 +221,7 @@ void AgenderFrame::OnCalendarCtrl1Changed(wxCalendarEvent& event)
 void AgenderFrame::OnListBox1Select(wxCommandEvent& event)
 {
 	//if (SearchMode)
-	//{
-	// TODO (virtuoso#1#): mostrar resultado de la busqueda
-	//}
+		// TODO (virtuoso#1#): mostrar resultado de la busqueda
 	if (ListBox1->GetSelection() != wxNOT_FOUND)
 	{
 		TextCtrl1->Enable();
@@ -244,12 +253,10 @@ void AgenderFrame::OnBtnElimClick(wxCommandEvent& event)
 	if (ListBox1->GetSelection() != wxNOT_FOUND)
 	{
 		a_cal->RmNote(ListBox1->GetStringSelection());
-		//msgs.RemoveAt(ListBox1->GetSelection());//?
 		ListBox1->Delete(ListBox1->GetSelection());
-		//prevSel = wxNOT_FOUND;
 		TextCtrl1->ChangeValue(wxEmptyString);
 		TextCtrl1->Disable();
-		if ( !ListBox1->GetCount())
+		if ( ListBox1->GetCount() < 1)
 			MarkDays();
 	}
 }
@@ -285,7 +292,6 @@ void AgenderFrame::MarkDays()
 
 void AgenderFrame::OnFind(wxFindDialogEvent& event)
 {
-	//wxMessageBox(_T(" Not Found!"));
 	event.GetFindString();
 	wxArrayString found,groups;
 	wxString g_str;
@@ -383,7 +389,7 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 #if defined __UNIX__
 		if (!wxFileExists(desktopFile))
 		{
-			wxLogMessage(desktopFile);
+			wxLogMessage(_T("wrinting autostart file: %s"),desktopFile.c_str());
 			wxTextFile desktop;
 			desktop.Create(desktopFile);
 			desktop.AddLine(_T("[Desktop Entry]"));

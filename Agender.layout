@@ -16,8 +16,8 @@
 	<File name="AgenderApp.h" open="0" top="0" tabpos="4">
 		<Cursor position="420" topLine="10" />
 	</File>
-	<File name="AgenderCal.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="134" topLine="1" />
+	<File name="AgenderCal.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="1974" topLine="79" />
 	</File>
 	<File name="AgenderCal.h" open="0" top="0" tabpos="0">
 		<Cursor position="215" topLine="8" />
@@ -28,11 +28,11 @@
 	<File name="AgenderIPC.h" open="0" top="0" tabpos="3">
 		<Cursor position="78" topLine="11" />
 	</File>
-	<File name="AgenderMain.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="8495" topLine="193" />
+	<File name="AgenderMain.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="5529" topLine="108" />
 	</File>
 	<File name="AgenderMain.h" open="0" top="0" tabpos="4">
-		<Cursor position="644" topLine="20" />
+		<Cursor position="2077" topLine="68" />
 	</File>
 	<File name="AgenderTray.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="1103" topLine="45" />
