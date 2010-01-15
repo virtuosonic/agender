@@ -1,3 +1,6 @@
+// *** ADDED BY HEADER FIXUP ***
+#include <wx/string.h>
+// *** END ***
 #ifndef AGENDERIPC_H_INCLUDED
 #define AGENDERIPC_H_INCLUDED
 

@@ -1,3 +1,7 @@
+// *** ADDED BY HEADER FIXUP ***
+#include <wx/event.h>
+#include <wx/menu.h>
+// *** END ***
 #ifndef AGENDERTRAY_H
 #define AGENDERTRAY_H
 

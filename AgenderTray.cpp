@@ -1,3 +1,6 @@
+// *** ADDED BY HEADER FIXUP ***
+#include <wx/app.h>
+// *** END ***
 #include "AgenderTray.h"
 #include <wx/colordlg.h>
 #include <wx/menu.h>

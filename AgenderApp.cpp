@@ -1,3 +1,8 @@
+// *** ADDED BY HEADER FIXUP ***
+#include <wx/frame.h>
+#include <wx/ipc.h>
+#include <wx/utils.h>
+// *** END ***
 /***************************************************************
  * Name:      AgenderApp.cpp
  * Purpose:   Code for Application Class

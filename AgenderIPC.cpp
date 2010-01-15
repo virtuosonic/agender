@@ -5,7 +5,7 @@
  AgenderConnection::AgenderConnection(wxFrame* frame)
 {
 	#if defined __WXMSW__ && wxUSE_DDE_FOR_IPC == 0
-		#warning not using dde under msw
+		#warning "not using dde under msw"
 	#endif
 	m_frame = frame;
 }
