@@ -6,8 +6,9 @@
 #if wxUSE_DRAG_AND_DROP
 
 #include <wx/dnd.h>
+#include <wx/datetime.h>
 
-struct {
+struct noteData{
 	wxDateTime time;
 	wxString note;
 	wxString text;

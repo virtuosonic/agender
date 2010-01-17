@@ -375,10 +375,10 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 #else
 	//we ask for help :)
 	wxMessageBox(_("AutoStart is only available under Windows "
-			   " and Unix desktop that follow the freedesktop.org standards, "
-			   "if you add support for any other system, please send patches "
-			   "to the patch tracker in the Agender project page at "
-			   "http://sourceforge.net/projects/agender/"));
+				" and Unix desktop that follow the freedesktop.org standards, "
+			   	"if you add support for any other system, please send patches "
+			   	"to the patch tracker in the Agender project page at "
+			   	"http://sourceforge.net/projects/agender/"));
 	return;
 #endif
 	//add or remove

@@ -23,6 +23,11 @@ license GPL v3
 		<!--resource file -->
 		<win32-res>resource.rc</win32-res>
 		<install-to>$(BINDIR)</install-to>
+		<!-- Only Windows has diferent exe name-->
+		<set var="EXE_NAME" cond="PLATFORM_WIN32==1">Agender.exe</set>
+		<set var="EXE_NAME" cond="PLATFORM_WIN32==0">Agender</set>
+		<!-- compress with UPX!!!-->
+		<postlink-command>upx --ultra-brute $(EXE_NAME)</postlink-command>
   	</exe>
   	<!-- freedesktop shortcut, for gnome, kde and some other desktops-->
   	<data-files id="shortcut">
@@ -47,4 +52,59 @@ license GPL v3
   		<install-to>$(DATADIR)/locale/de/LC_MESSAGES</install-to>
   		<files>de/Agender.mo</files>
   	</data-files>
+  	<!-- lets build a package -->
+  	<action id="dist">
+  		<depends>srcdist</depends>
+  		<depends>esdist</depends>
+  		<depends>dedist</depends>
+  		<depends>wxsmithdist</depends>
+  		<depends>apspecdist</depends>
+  		<depends>autoconfdist</depends>
+  		<!-- -->
+  		<command>cd $(SRCDIR)/Agender;bakefile -I/usr/share/bakefile/ -I/usr/local/share/bakefile/ -f autoconf Agender.bkl</command>
+  		<command>cd $(SRCDIR)/Agender;bakefilize --copy</command>
+  		<command>cd $(SRCDIR)/Agender;aclocal</command>
+  		<command>cd $(SRCDIR)/Agender;autoconf</command>
+  		<!--tarball -->
+		<command>tar -jcf Agender.tar.bz2 Agender/</command>
+  		<!-- cleanup -->
+  		<command>rm -rf $(SRCDIR)/Agender</command>
+  	</action>
+  	<!-- make a package -->
+	<!-- copy src files-->
+  	<copy-files id="srcdist">
+  		<srcdir>$(SRCDIR)</srcdir>
+  		<files>*.h *.cpp *.rc *.xpm *.png *.ico *.bkl *.nsi *.cbp configure.in license.txt Readme.txt</files>
+  		<dstdir>$(SRCDIR)/Agender/</dstdir>
+  	</copy-files>
+  	<!--es-->
+  	<copy-files id="esdist">
+  		<srcdir>$(SRCDIR)</srcdir>
+  		<files>es/*</files>
+  		<dstdir>$(SRCDIR)/Agender/es/</dstdir>
+  	</copy-files>
+  	<!-- de -->
+  	<copy-files id="dedist">
+  		<srcdir>$(SRCDIR)</srcdir>
+  		<files>de/*</files>
+  		<dstdir>$(SRCDIR)/Agender/de/</dstdir>
+  	</copy-files>
+  	<!-- wxsmith -->
+  	<copy-files id="wxsmithdist">
+  		<srcdir>$(SRCDIR)</srcdir>
+  		<files>wxsmith/*</files>
+  		<dstdir>$(SRCDIR)/Agender/wxsmith/</dstdir>
+  	</copy-files>
+  	<!-- autopackage -->
+  	<copy-files id="apspecdist">
+  		<srcdir>$(SRCDIR)</srcdir>
+  		<files>autopackage/*.in</files>
+  		<dstdir>$(SRCDIR)/Agender/autopackage/</dstdir>
+  	</copy-files>
+  	<!-- autoconf -->
+  	<copy-files id="autoconfdist">
+  		<srcdir>$(SRCDIR)</srcdir>
+  		<files>autoconf/*</files>
+  		<dstdir>$(SRCDIR)/Agender/autoconf/</dstdir>
+  	</copy-files>
 </makefile>

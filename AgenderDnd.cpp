@@ -7,11 +7,10 @@ wxDragResult NoteTarget::OnData(wxCoord x,wxCoord y,wxDragResult def)
 	if (!GetData())
 		return wxDragError;
 	NoteTarget* pNote = NULL;
-	note = (NoteTarget*)m_dataObject;
+	pNote = (NoteTarget*)m_dataObject;
 	if (pNote == NULL)
 		return wxDragNone;
 	//
-
 	return def;
 }
 

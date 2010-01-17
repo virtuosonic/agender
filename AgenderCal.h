@@ -19,6 +19,7 @@ class AgenderCal
 		wxArrayString Find(wxString FindString);
 		wxArrayInt GetDaysWithNotes();
 		void RmNote(wxString note);
+		bool RenameNote(wxString OldName,wxString NewName);
 	private:
 		wxDateTime m_date;
 };

@@ -92,9 +92,14 @@ void AgenderCal::RmNote(wxString note)
 {
 	wxString dateStr(m_date.Format(_T("/%Y-%m-%d/")));
 	wxConfig::Get()->DeleteEntry(dateStr + note,true);
-	//if (wxConfig::Get()->GetNumberOfEntries == 0)
-		//wxConfig::Get()->DeleteGroup()
 }
 
-
-
+bool AgenderCal::RenameNote(wxString OldName,wxString NewName)
+{
+	wxString noteVal;
+	if (!wxConfig::Get()->Read(OldName,&noteVal))
+		return false;
+	wxConfig::Get()->DeleteEntry(OldName,true);
+	wxConfig::Get()->Write(NewName,noteVal);
+	return true;
+}
