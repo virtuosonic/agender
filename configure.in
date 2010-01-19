@@ -10,6 +10,7 @@ m4_include(autoconf/bakefile-lang.m4)
 m4_include(autoconf/bakefile.m4)
 AC_BAKEFILE([m4_include(autoconf_inc.m4)])
 AC_SUBST(VERSION,1.1.0)
+AC_CHECK_PROG(HAS_UPX,upx,yes,no)
 
 AC_CONFIG_FILES([Makefile
 	autopackage/default.apspec

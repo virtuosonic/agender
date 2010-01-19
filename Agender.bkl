@@ -6,6 +6,12 @@ license GPL v3
 <makefile>
 	<include file="presets/wx.bkl"/>
 	<using module="datafiles"/>
+	<!-- upx -->
+	<option name="HAS_UPX">
+		<values>yes,no</values>
+		<default-value>no</default-value>
+	</option>
+	<set var="USE_UPX" cond="HAS_UPX==yes">1</set>
 	<!-- build executable-->
 	<exe id="Agender" template="wx-lib">
 		<app-type>gui</app-type>
@@ -24,10 +30,10 @@ license GPL v3
 		<win32-res>resource.rc</win32-res>
 		<install-to>$(BINDIR)</install-to>
 		<!-- Only Windows has diferent exe name-->
-		<set var="EXE_NAME" cond="PLATFORM_WIN32==1">Agender.exe</set>
-		<set var="EXE_NAME" cond="PLATFORM_WIN32==0">Agender</set>
+		<set var="EXE_NAME" cond="PLATFORM_WIN32=='1'">Agender.exe</set>
+		<set var="EXE_NAME" cond="PLATFORM_WIN32=='0'">Agender</set>
 		<!-- compress with UPX!!!-->
-		<postlink-command>upx --ultra-brute $(EXE_NAME)</postlink-command>
+		<postlink-command cond="USE_UPX=='1'">upx --ultra-brute $(EXE_NAME)</postlink-command>
   	</exe>
   	<!-- freedesktop shortcut, for gnome, kde and some other desktops-->
   	<data-files id="shortcut">
@@ -54,6 +60,7 @@ license GPL v3
   	</data-files>
   	<!-- lets build a package -->
   	<action id="dist">
+  		<depends>clean</depends>
   		<depends>srcdist</depends>
   		<depends>esdist</depends>
   		<depends>dedist</depends>
