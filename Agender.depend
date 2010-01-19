@@ -690,22 +690,20 @@
 	"wx/filefn.h"
 	"wx/strconv.h"
 
-1263528507 source:/home/virtuoso/C++/Agender/AgenderApp.cpp
-	<wx/frame.h>
-	<wx/ipc.h>
-	<wx/utils.h>
+1263941917 source:/home/virtuoso/C++/Agender/AgenderApp.cpp
 	"AgenderApp.h"
+	"AgenderIPC.h"
 	<wx/log.h>
 	<wx/stdpaths.h>
 	<iostream>
 	"AgenderMain.h"
 	<wx/image.h>
 
-1262074049 /home/virtuoso/C++/Agender/AgenderApp.h
+1263941916 /home/virtuoso/C++/Agender/AgenderApp.h
 	<wx/app.h>
 	<wx/snglinst.h>
 	<wx/intl.h>
-	"AgenderIPC.h"
+	<wx/ipc.h>
 
 1236340842 /home/virtuoso/wxMSW-2.8.10/include/wx/app.h
 	"wx/event.h"
@@ -1231,10 +1229,7 @@
 1236340877 /home/virtuoso/wxMSW-2.8.10/include/wx/univ/theme.h
 	"wx/string.h"
 
-1263528506 /home/virtuoso/C++/Agender/AgenderMain.h
-	<wx/event.h>
-	<wx/intl.h>
-	<wx/string.h>
+1263940179 /home/virtuoso/C++/Agender/AgenderMain.h
 	<wx/sizer.h>
 	<wx/textctrl.h>
 	<wx/calctrl.h>
@@ -1759,7 +1754,7 @@
 1236340842 /home/virtuoso/wxMSW-2.8.10/include/wx/imagiff.h
 	"wx/image.h"
 
-1263528570 source:/home/virtuoso/C++/Agender/AgenderMain.cpp
+1263938956 source:/home/virtuoso/C++/Agender/AgenderMain.cpp
 	"AgenderMain.h"
 	<wx/msgdlg.h>
 	<wx/settings.h>
@@ -1775,6 +1770,7 @@
 	<wx/log.h>
 	<wx/filename.h>
 	<wx/msw/registry.h>
+	<ApplicationServices/ApplicationServices.h>
 	"AgenderCal.h"
 	"AgenderTray.h"
 	"Agender16x16.xpm"
@@ -2689,13 +2685,12 @@
 
 1257859919 /usr/include/wx-2.8/wx/snglinst.h
 
-1263541094 source:/home/virtuoso/C++/Agender/AgenderIPC.cpp
+1263940494 source:/home/virtuoso/C++/Agender/AgenderIPC.cpp
 	"AgenderIPC.h"
 	<wx/log.h>
 	<wx/msgdlg.h>
 
-1263528506 /home/virtuoso/C++/Agender/AgenderIPC.h
-	<wx/string.h>
+1263940940 /home/virtuoso/C++/Agender/AgenderIPC.h
 	<wx/ipc.h>
 	<wx/frame.h>
 
@@ -4730,24 +4725,25 @@
 	"wx/dynarray.h"
 	"wx/dialog.h"
 
-1263604439 source:/home/virtuoso/C++/Agender/AgenderCal.cpp
+1263940491 source:/home/virtuoso/C++/Agender/AgenderCal.cpp
 	"AgenderCal.h"
 	<wx/config.h>
 	<wx/textfile.h>
 	<wx/log.h>
 
-1263604064 /home/virtuoso/C++/Agender/AgenderCal.h
+1263940783 /home/virtuoso/C++/Agender/AgenderCal.h
 	<wx/datetime.h>
 	<wx/string.h>
 	<wx/arrstr.h>
 	<wx/dynarray.h>
 
-1263538903 source:/home/virtuoso/C++/Agender/AgenderDnd.cpp
+1263940495 source:/home/virtuoso/C++/Agender/AgenderDnd.cpp
 	"AgenderDnd.h"
 
-1263538850 /home/virtuoso/C++/Agender/AgenderDnd.h
+1263940962 /home/virtuoso/C++/Agender/AgenderDnd.h
 	<wx/defs.h>
 	<wx/dnd.h>
+	<wx/datetime.h>
 
 1257859921 /usr/include/wx-2.8/wx/dnd.h
 	"wx/defs.h"

@@ -1,3 +1,10 @@
+/***************************************************************
+ * Name:      AgenderDnd.cpp
+ * Purpose:   Code for Drag & Drop support
+ * Author:    Gabriel Espinoza
+ * Copyright: Gabriel Espinoza
+ * License: GPL 3
+ **************************************************************/
 #include "AgenderDnd.h"
 
 #if wxUSE_DRAG_AND_DROP

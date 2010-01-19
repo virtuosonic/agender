@@ -4,7 +4,7 @@
  * Author:    Gabriel Espinoza
  * Created:   2008-11-21
  * Copyright: Gabriel Espinoza
- * License:
+ * License: GPL 3
  **************************************************************/
 
 #include "AgenderMain.h"
@@ -20,6 +20,7 @@
 #include <wx/accel.h>
 #include <wx/textdlg.h>
 #include <wx/choicdlg.h>
+#include <wx/menu.h>
 #include <wx/stdpaths.h>
 #include <wx/wfstream.h>
 #include <wx/utils.h>
@@ -30,6 +31,10 @@
 #ifdef __WXMSW__
 #include <wx/msw/registry.h>
 #endif//__WXMSW__
+
+#ifdef __WXMAC__
+#include <ApplicationServices/ApplicationServices.h>
+#endif// __WXMAC__
 
 #include "AgenderCal.h"
 #include "AgenderTray.h"
@@ -52,6 +57,7 @@ BEGIN_EVENT_TABLE(AgenderFrame,wxFrame)
 	EVT_MENU(7004,AgenderFrame::OnChangeNotesColour)
 	EVT_MENU(7003,AgenderFrame::OnYearSel)
 	EVT_MENU(7005,AgenderFrame::OnAutoStart)
+	EVT_MENU(ID_RENAME,AgenderFrame::OnMenuRename)
 	//(*EventTable(AgenderFrame)
 	//*)
 END_EVENT_TABLE()
@@ -63,7 +69,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 	wxBoxSizer* BoxSizer1;
 	wxFlexGridSizer* FlexGridSizer1;
 
-	Create(0, wxID_ANY, _("Agender"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxFRAME_TOOL_WINDOW|wxWANTS_CHARS, _T("wxID_ANY"));
+	Create(0, wxID_ANY, _("Agender"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxFRAME_TOOL_WINDOW|wxTAB_TRAVERSAL|wxTRANSPARENT_WINDOW, _T("wxID_ANY"));
 	SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUBAR));
 	FlexGridSizer1 = new wxFlexGridSizer(0, 2, 0, 0);
 	FlexGridSizer1->AddGrowableCol(0);
@@ -95,6 +101,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 	Connect(ID_CALENDARCTRL1,wxEVT_CALENDAR_MONTH_CHANGED,(wxObjectEventFunction)&AgenderFrame::OnCalendarCtrl1MonthChanged);
 	Connect(ID_CALENDARCTRL1,wxEVT_CALENDAR_YEAR_CHANGED,(wxObjectEventFunction)&AgenderFrame::OnCalendarCtrl1MonthChanged);
 	Connect(ID_LISTBOX1,wxEVT_COMMAND_LISTBOX_SELECTED,(wxObjectEventFunction)&AgenderFrame::OnListBox1Select);
+	Connect(ID_LISTBOX1,wxEVT_COMMAND_LISTBOX_DOUBLECLICKED,(wxObjectEventFunction)&AgenderFrame::OnListBox1DClick);
 	Connect(ID_TEXTCTRL1,wxEVT_COMMAND_TEXT_UPDATED,(wxObjectEventFunction)&AgenderFrame::OnTextCtrl1Text);
 	Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AgenderFrame::OnBtnNuevoClick);
 	Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AgenderFrame::OnBtnElimClick);
@@ -132,9 +139,10 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 	ChangeSelector();
 	MarkDays();
 	//find dialog shortcut
-	wxAcceleratorEntry entries[1];
+	wxAcceleratorEntry entries[2];
 	entries[0].Set(wxACCEL_CTRL,(int)'f',wxID_FIND);
-	wxAcceleratorTable accel(1, entries);
+	entries[1].Set(wxACCEL_NORMAL,WXK_ESCAPE,wxID_CLOSE);
+	wxAcceleratorTable accel(2, entries);
 	this->SetAcceleratorTable(accel);
 	//find dialog
 	fndData = new wxFindReplaceData;
@@ -144,10 +152,17 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 	trayicon = new AgenderTray(this,schdl->Read(_T("/opacity"),255));
 	trayicon->SetIcon(Agender16x16_xpm,_T("Virtuosonic Agender"));
 	SetTransparent(schdl->Read(_T("/opacity"),255));
-	//
+	//autostart
 	wxCommandEvent event;
 	event.SetId(7005);
 	wxPostEvent(GetEventHandler(),event);
+#ifdef __WXMAC__
+	//this isn't tested, but i read it in wxwiki
+	//if you want me to test it, and make it work,  you can donate me a Mac Pro ;)	-virtuosonic at users dot sourceforge dot net
+	ProcessSerialNumber PSN;
+	GetCurrentProcess(&PSN);
+	TransformProcessType(&PSN,kProcessTransformToForegroundApplication);
+#endif// __WXMAC__
 }
 
 AgenderFrame::~AgenderFrame()
@@ -159,6 +174,7 @@ AgenderFrame::~AgenderFrame()
 	//delete
 	delete trayicon;
 	delete schdl;
+	delete a_cal;
 	//(*Destroy(AgenderFrame)
 	//*)
 }
@@ -173,7 +189,7 @@ void AgenderFrame::OnClose(wxCloseEvent& event)
 void AgenderFrame::OnButton3Click(wxCommandEvent& event)
 {
 	wxAboutDialogInfo info;
-	info.AddDeveloper(_T("Gabriel Espinoza <virtuosonic@users.sourceforge.net"));
+	info.AddDeveloper(_T("Gabriel Espinoza <virtuosonic@users.sourceforge.net>"));
 	info.AddTranslator(_T("Gabriel Espinoza <español>"));
 	info.AddTranslator(_T("Ester Espinoza <deutsch>"));
 	info.SetDescription(_("A cross-plataform schedule tool"));
@@ -183,7 +199,7 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& event)
 				"the Free Software Foundation, either version 3 of the License, or\n"
 				"(at your option) any later version.\n"
 				"\n"
-				"Agender is distributed inthe hope that it will be useful,\n"
+				"Agender is distributed in the hope that it will be useful,\n"
 				"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
 				"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
 				"GNU General Public License for more details.\n"
@@ -221,7 +237,7 @@ void AgenderFrame::OnCalendarCtrl1Changed(wxCalendarEvent& event)
 void AgenderFrame::OnListBox1Select(wxCommandEvent& event)
 {
 	//if (SearchMode)
-		// TODO (virtuoso#1#): mostrar resultado de la busqueda
+	// TODO (virtuoso#1#): mostrar resultado de la busqueda
 	if (ListBox1->GetSelection() != wxNOT_FOUND)
 	{
 		TextCtrl1->Enable();
@@ -375,10 +391,10 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 #else
 	//we ask for help :)
 	wxMessageBox(_("AutoStart is only available under Windows "
-				" and Unix desktop that follow the freedesktop.org standards, "
-			   	"if you add support for any other system, please send patches "
-			   	"to the patch tracker in the Agender project page at "
-			   	"http://sourceforge.net/projects/agender/"));
+			   " and Unix desktop that follow the freedesktop.org standards, "
+			   "if you add support for any other system, please send patches "
+			   "to the patch tracker in the Agender project page at "
+			   "http://sourceforge.net/projects/agender/"));
 	return;
 #endif
 	//add or remove
@@ -418,8 +434,45 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 #endif
 }
 
-
 void AgenderFrame::OnTextCtrl1Text(wxCommandEvent& event)
 {
 	a_cal->SetNoteText(ListBox1->GetStringSelection(),TextCtrl1->GetValue());
+}
+
+void AgenderFrame::OnListBox1DClick(wxCommandEvent& event)
+{
+	wxMenu* noteMenu = new wxMenu;
+	noteMenu->Append(ID_RENAME,_("Rename"));
+	noteMenu->AppendSeparator();
+	noteMenu->AppendRadioItem(ID_NORMAL,_("Normal"));
+	noteMenu->AppendRadioItem(ID_STICKY,_("Sticky"));
+	noteMenu->AppendRadioItem(ID_STICKYW,_("Sticky weekday"));
+	ListBox1->PopupMenu(noteMenu);
+}
+
+void AgenderFrame::OnMenuNoteFlag(wxCommandEvent& event)
+{
+	switch (event.GetId())
+	{
+		case ID_NORMAL:
+			break;
+		case ID_STICKY:
+			break;
+		case ID_STICKYW:
+			break;
+		default:
+			break;
+	}
+
+}
+
+void AgenderFrame::OnMenuRename(wxCommandEvent& event)
+{
+	wxString oldName(ListBox1->GetStringSelection());
+	wxTextEntryDialog dlg(this,_("New name"),_("Rename"),oldName);
+	if (dlg.ShowModal() ==wxID_OK && !oldName.IsSameAs(dlg.GetValue().c_str(),true))
+	{
+		a_cal->RenameNote(ListBox1->GetStringSelection(),dlg.GetValue());
+		ListBox1->SetString(ListBox1->GetSelection(),dlg.GetValue());
+	}
 }

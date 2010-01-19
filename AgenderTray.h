@@ -1,8 +1,12 @@
-// *** ADDED BY HEADER FIXUP ***
-#include <wx/event.h>
-#include <wx/menu.h>
-// *** END ***
-#ifndef AGENDERTRAY_H
+/***************************************************************
+ * Name:      AgenderTray.h
+ * Purpose:   Defines TaskBarIcon Class
+ * Author:    Gabriel Espinoza (virtuosonic@users.sourceforge.net)
+ * Copyright: Gabriel Espinoza
+ * License: GPL 3
+ **************************************************************/
+
+ #ifndef AGENDERTRAY_H
 #define AGENDERTRAY_H
 
 #include <wx/taskbar.h>

@@ -1,3 +1,10 @@
+/***************************************************************
+ * Name:      AgenderIPC.cpp
+ * Purpose:   Code for Inter Process Communication
+ * Author:    Gabriel Espinoza
+ * Copyright: Gabriel Espinoza
+ * License: GPL 3
+ **************************************************************/
 #include "AgenderIPC.h"
 #include <wx/log.h>
 #include <wx/msgdlg.h>
@@ -6,6 +13,10 @@
 {
 	#if defined __WXMSW__ && wxUSE_DDE_FOR_IPC == 0
 		#warning "not using dde under msw"
+		#warning "please configure wxMSW to use DDE"
+		//this can scare windows people, they could think we are trojan
+		//it actually produces a warning by the firewall!!!
+		//tested on Win se7en and XP, linux works fine :P
 	#endif
 	m_frame = frame;
 }

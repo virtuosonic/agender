@@ -1,19 +1,20 @@
 /***************************************************************
  * Name:      AgenderApp.h
  * Purpose:   Defines Application Class
- * Author:    Gabriel Espinoza (virtuoso.sdc@gmail.com)
+ * Author:    Gabriel Espinoza (virtuosonic@users.sourceforge.net)
  * Created:   2008-11-21
- * Copyright: Gabriel Espinoza (www.virtuosonic.110mb.com)
- * License:
+ * Copyright: Gabriel Espinoza
+ * License: GPL 3
  **************************************************************/
 
-#ifndef AGENDERAPP_H
-#define AGENDERAPP_H
+#ifndef AGENDERAPP_H_INCLUDED
+#define AGENDERAPP_H_INCLUDED
 
 #include <wx/app.h>
 #include <wx/snglinst.h>
 #include <wx/intl.h>
-#include "AgenderIPC.h"
+
+#include <wx/ipc.h>
 
 class AgenderApp : public wxApp
 {
@@ -22,8 +23,8 @@ class AgenderApp : public wxApp
 		virtual int OnExit();
 	private:
 		wxSingleInstanceChecker* m_checker;
-		AgenderServer* m_server;
+		wxServer* m_server;
 		wxLocale m_locale;
 };
 
-#endif // AGENDERAPP_H
+#endif // AGENDERAPP_H_INCLUDED

@@ -1,6 +1,10 @@
-// *** ADDED BY HEADER FIXUP ***
-#include <wx/string.h>
-// *** END ***
+/***************************************************************
+ * Name:      AgenderIPC.h
+ * Purpose:   Defines Classes for Inter Process Communication
+ * Author:    Gabriel Espinoza (virtuosonic@users.sourceforge.net)
+ * Copyright: Gabriel Espinoza
+ * License: GPL 3
+ **************************************************************/
 #ifndef AGENDERIPC_H_INCLUDED
 #define AGENDERIPC_H_INCLUDED
 

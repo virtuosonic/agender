@@ -1,6 +1,10 @@
-// *** ADDED BY HEADER FIXUP ***
-#include <wx/app.h>
-// *** END ***
+/***************************************************************
+ * Name:      AgenderTray.cpp
+ * Purpose:   Code for the tray/notification/taskbar/etc icon
+ * Author:    Gabriel Espinoza
+ * Copyright: Gabriel Espinoza
+ * License: GPL 3
+ **************************************************************/
 #include "AgenderTray.h"
 #include <wx/colordlg.h>
 #include <wx/menu.h>
@@ -157,4 +161,3 @@ void AgenderTray::OnMenuAutoStart(wxCommandEvent& event)
 	wxConfig::Get()->Write(_T("/autostart"),event.IsChecked());
 	wxPostEvent(frame->GetEventHandler(),event);
 }
-

@@ -1,3 +1,11 @@
+/***************************************************************
+ * Name:      AgenderCal.h
+ * Purpose:   Defines AgenderCal Class
+ * Author:    Gabriel Espinoza (virtuosonic@users.sourceforge.net)
+ * Copyright: Gabriel Espinoza
+ * License: GPL 3
+ **************************************************************/
+
 #ifndef AGENDERCAL_H_INCLUDED
 #define AGENDERCAL_H_INCLUDED
 
@@ -5,6 +13,12 @@
 #include <wx/string.h>
 #include <wx/arrstr.h>
 #include <wx/dynarray.h>
+
+enum {
+	AG_NORMAL,
+	AG_STICKY,
+	AG_STICKYW
+};
 
 class AgenderCal
 {

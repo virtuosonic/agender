@@ -1,3 +1,10 @@
+/***************************************************************
+ * Name:      AgenderCal.cpp
+ * Purpose:   Code for Reading schedule
+ * Author:    Gabriel Espinoza
+ * Copyright: Gabriel Espinoza
+ * License: GPL 3
+ **************************************************************/
 #include "AgenderCal.h"
 
 #include <wx/config.h>
@@ -6,7 +13,7 @@
 
 AgenderCal::AgenderCal(wxDateTime date)
 {
-	m_date = date;
+	SetDate(date);
 }
 
 AgenderCal::~AgenderCal()
@@ -96,10 +103,12 @@ void AgenderCal::RmNote(wxString note)
 
 bool AgenderCal::RenameNote(wxString OldName,wxString NewName)
 {
+	wxConfig::Get()->SetPath(m_date.Format(_T("/%Y-%m-%d/")));
 	wxString noteVal;
 	if (!wxConfig::Get()->Read(OldName,&noteVal))
 		return false;
 	wxConfig::Get()->DeleteEntry(OldName,true);
 	wxConfig::Get()->Write(NewName,noteVal);
+	wxConfig::Get()->SetPath(_T("/"));
 	return true;
 }

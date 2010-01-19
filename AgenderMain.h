@@ -1,15 +1,10 @@
-// *** ADDED BY HEADER FIXUP ***
-#include <wx/event.h>
-#include <wx/intl.h>
-#include <wx/string.h>
-// *** END ***
 /***************************************************************
  * Name:      AgenderMain.h
  * Purpose:   Defines Application Frame
  * Author:    Gabriel Espinoza
  * Created:   2008-11-21
  * Copyright: Gabriel Espinoza
- * License:
+ * License: GPL 3
  **************************************************************/
 
 #ifndef AGENDERMAIN_H
@@ -49,6 +44,7 @@ class AgenderFrame: public wxFrame
 		void OnClose(wxCloseEvent& event);
 		void OnCalendarCtrl1MonthChanged(wxCalendarEvent& event);
 		void OnTextCtrl1Text(wxCommandEvent& event);
+		void OnListBox1DClick(wxCommandEvent& event);
 		//*)
 		void OnFind(wxFindDialogEvent& event);
 		void OnSearch(wxCommandEvent& event);
@@ -85,6 +81,16 @@ class AgenderFrame: public wxFrame
 		bool SearchMode;
 		wxLocale& m_locale;
 		AgenderCal* a_cal;
+
+		enum {
+			ID_RENAME,
+			ID_NORMAL,
+			ID_STICKY,
+			ID_STICKYW
+		};
+
+		void OnMenuRename(wxCommandEvent& event);
+		void OnMenuNoteFlag(wxCommandEvent& event);
 
 		DECLARE_EVENT_TABLE()
 };
