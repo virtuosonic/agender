@@ -38,12 +38,15 @@ size_t NoteDataObject::GetDataSize(const wxDataFormat& format)
 
 void NoteDataObject::GetAllFormats(wxDataFormat* formats,Direction dir)
 {
+	wxDataFormat fmtTxt(wxDF_TEXT);
+	wxDataFormat fmtTxt(_T("AgNote"));
+}
 
 }
 
 size_t NoteDataObject::GetFormatCount(Direction dir)
 {
-
+	return 2;
 }
 
 wxDataFormat NoteDataObject::GetPreferedFormat(Direction dir)

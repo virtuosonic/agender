@@ -205,8 +205,7 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& event)
 				"GNU General Public License for more details.\n"
 				"\n"
 				"You should have received a copy of the GNU General Public License\n"
-				"along with Agender. If not, see <http://www.gnu.org/licenses/>."
-			     ));
+				"along with Agender. If not, see <http://www.gnu.org/licenses/>."));
 	info.SetVersion(_T("1.1.0"));
 	info.SetCopyright(_T("Copyright (C) 2009-2010 Gabriel Espinoza"));
 	info.SetIcon(agender_xpm);
@@ -293,11 +292,14 @@ void AgenderFrame::OnCalendarCtrl1MonthChanged(wxCalendarEvent& event)
 
 void AgenderFrame::MarkDays()
 {
+	///reset all days attributes
 	for (unsigned int i = 0;
 			i < wxDateTime::GetNumberOfDays(CalendarCtrl1->GetDate().GetMonth());
 			i++)
-		CalendarCtrl1->ResetAttr(i);
+		CalendarCtrl1->ResetAttr(i+1);
+	///get day with notes
 	wxArrayInt days =  a_cal->GetDaysWithNotes();
+	///mark that days
 	for (unsigned int i = 0; i < days.GetCount(); i++)
 	{
 		wxCalendarDateAttr* note_attr = new wxCalendarDateAttr;
@@ -325,10 +327,8 @@ void AgenderFrame::OnFind(wxFindDialogEvent& event)
 				if (str.Lower().Find(event.GetFindString().Lower()) != wxNOT_FOUND)
 					found.Add(wxString::Format(_T("%s/%s"),g_str.c_str(),str.c_str()));
 				while (schdl->GetNextEntry(str,indx))
-				{
 					if (str.Lower().Find(event.GetFindString().Lower()) != wxNOT_FOUND)
 						found.Add(wxString::Format(_T("%s/%s"),g_str.c_str(),str.c_str()));
-				}
 			}
 			schdl->SetPath(_T("/"));
 		}
@@ -343,9 +343,7 @@ void AgenderFrame::OnFind(wxFindDialogEvent& event)
 void AgenderFrame::OnSearch(wxCommandEvent& event)
 {
 	if (!fndDlg->IsShown())
-	{
 		fndDlg->Show();
-	}
 }
 
 void AgenderFrame::OnYearSel(wxCommandEvent& event)
@@ -400,8 +398,9 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 	//add or remove
 	bool autostart;
 	schdl->Read(_T("/autostart"),&autostart,false);
-	if (autostart)//add
+	if (autostart)
 	{
+		///add
 #if defined __UNIX__
 		if (!wxFileExists(desktopFile))
 		{
@@ -424,7 +423,8 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 			key.SetValue(_T("Agender"),wxStandardPaths::Get().GetExecutablePath());
 #endif
 	}
-	else//remove
+	else
+		///remove
 #if defined __UNIX__
 		if (wxFileExists(desktopFile))
 			wxRemoveFile(desktopFile);
