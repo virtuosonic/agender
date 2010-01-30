@@ -9,6 +9,10 @@
 #include <wx/colordlg.h>
 #include <wx/menu.h>
 #include <wx/config.h>
+#include <wx/richtext/richtextsymboldlg.h>
+#include <wx/app.h>
+#include <wx/clipbrd.h>
+#include <wx/dataobj.h>
 
 BEGIN_EVENT_TABLE(AgenderTray,wxTaskBarIcon)
 	EVT_TASKBAR_LEFT_UP(AgenderTray::OnLeft)
@@ -20,6 +24,7 @@ BEGIN_EVENT_TABLE(AgenderTray,wxTaskBarIcon)
 	EVT_MENU(wxID_EXIT,AgenderTray::OnMenuExit)
 	EVT_MENU(wxID_FIND,AgenderTray::OnMenuFind)
 	EVT_MENU(ID_AUTOSTART,AgenderTray::OnMenuAutoStart)
+	EVT_MENU(ID_SYMBOL,AgenderTray::OnMenuSymbols)
 END_EVENT_TABLE()
 
 AgenderTray::AgenderTray(wxFrame* frame,long colalpha)
@@ -79,6 +84,7 @@ wxMenu * AgenderTray::CreatePopupMenu()
 		menu->AppendSubMenu(opcMenu,_("Opacity"));
 	menu->AppendCheckItem(ID_YEARSEL,_("Year selector"));
 	menu->Append(ID_NOTES_COLOUR,_("Notes Colour"));
+	menu->Append(ID_SYMBOL,_("Symbol"));
 	menu->AppendCheckItem(ID_AUTOSTART,_("Autostart"));
 	//menu->AppendSeparator();
 	//menu->Append(wxID_FIND,_("Find"));
@@ -161,3 +167,19 @@ void AgenderTray::OnMenuAutoStart(wxCommandEvent& event)
 	wxConfig::Get()->Write(_T("/autostart"),event.IsChecked());
 	wxPostEvent(frame->GetEventHandler(),event);
 }
+
+void AgenderTray::OnMenuSymbols(wxCommandEvent& event)
+{
+	wxSymbolPickerDialog dlg(_T("*"),wxEmptyString,
+					 wxTheApp->GetTopWindow()->GetFont().GetFaceName(),NULL);
+	if (dlg.ShowModal() ==wxID_OK && dlg.HasSelection())
+	{
+		if (wxTheClipboard->Open())
+		{
+			wxTheClipboard->SetData(new wxTextDataObject(dlg.GetSymbol()));
+			wxTheClipboard->Close();
+		}
+	}
+
+}
+

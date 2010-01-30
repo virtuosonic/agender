@@ -21,7 +21,13 @@ wxDragResult NoteTarget::OnData(wxCoord x,wxCoord y,wxDragResult def)
 	return def;
 }
 
-bool NoteDataObject::SetData(const wxDataFormat& format,size_t len,const void* buf)
+NoteDataObject::NoteDataObject(wxString noteName,wxString noteText)
+{
+	m_noteName = noteName;
+	m_noteText = noteText;
+}
+
+bool NoteDataObject::SetData(const wxDataFormat& format, size_t len,const void* buf)
 {
 
 }
@@ -36,32 +42,23 @@ size_t NoteDataObject::GetDataSize(const wxDataFormat& format)
 
 }
 
-void NoteDataObject::GetAllFormats(wxDataFormat* formats,Direction dir)
+void NoteDataObject::GetAllFormats(wxDataFormat *formats,Direction dir)
 {
-	wxDataFormat fmtTxt(wxDF_TEXT);
-	wxDataFormat fmtTxt(_T("AgNote"));
-}
 
 }
 
 size_t NoteDataObject::GetFormatCount(Direction dir)
 {
-	return 2;
+	return 1;
 }
 
-wxDataFormat NoteDataObject::GetPreferedFormat(Direction dir)
+wxDataFormat NoteDataObject::GetPreferredFormat(Direction WXUNUSED(dir))
 {
-
+	return m_agFormat;
 }
 
- NoteDataObject::~NoteDataObject()
-{
 
-}
 
- NoteDataObject::NoteDataObject(const wxString& note, const wxString& noteText) : m_note(note),
-	m_noteText(noteText)
-{
-}
+
 
 #endif //wxUSE_DRAG_AND_DROP

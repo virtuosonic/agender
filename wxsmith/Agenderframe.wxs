@@ -10,7 +10,7 @@
 		<handler function="OnClose" entry="EVT_CLOSE" />
 		<object class="wxFlexGridSizer" variable="FlexGridSizer1" member="no">
 			<cols>2</cols>
-			<growablecols>0,1</growablecols>
+			<growablecols>0</growablecols>
 			<growablerows>0,1</growablerows>
 			<object class="sizeritem">
 				<object class="wxCalendarCtrl" name="ID_CALENDARCTRL1" variable="CalendarCtrl1" member="yes">
@@ -50,6 +50,7 @@
 						<object class="wxButton" name="ID_BUTTON1" variable="BtnNuevo" member="yes">
 							<label>Add note</label>
 							<default>1</default>
+							<focused>1</focused>
 							<handler function="OnBtnNuevoClick" entry="EVT_BUTTON" />
 						</object>
 						<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>

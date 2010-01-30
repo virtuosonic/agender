@@ -23,6 +23,7 @@ license GPL v3
 		<sources>AgenderCal.cpp</sources>
 		<!-- wxWidgets dependencies -->
 		<wx-lib>net</wx-lib>
+		<wx-lib>richtext</wx-lib>
 		<wx-lib>adv</wx-lib>
 		<wx-lib>core</wx-lib>
 		<wx-lib>base</wx-lib>

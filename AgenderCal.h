@@ -28,6 +28,7 @@ class AgenderCal
 		void SetDate(wxDateTime date);
 		wxDateTime GetDate();
 		wxArrayString GetNotes();
+		bool HasNote(wxString note);
 		wxString GetNoteText(wxString note);
 		void SetNoteText(wxString note,wxString text);
 		wxArrayString Find(wxString FindString);

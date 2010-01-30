@@ -1,11 +1,15 @@
 # depslib dependency file v1.0
-1263940494 source:/home/virtuoso/C++/Agender/AgenderTray.cpp
+1264746201 source:/home/virtuoso/C++/Agender/AgenderTray.cpp
 	"AgenderTray.h"
 	<wx/colordlg.h>
 	<wx/menu.h>
 	<wx/config.h>
+	<wx/richtext/richtextsymboldlg.h>
+	<wx/app.h>
+	<wx/clipbrd.h>
+	<wx/dataobj.h>
 
-1263941048 /home/virtuoso/C++/Agender/AgenderTray.h
+1264744912 /home/virtuoso/C++/Agender/AgenderTray.h
 	<wx/taskbar.h>
 	<wx/colour.h>
 	<wx/frame.h>
@@ -1751,7 +1755,7 @@
 1236340842 /home/virtuoso/wxMSW-2.8.10/include/wx/imagiff.h
 	"wx/image.h"
 
-1264579875 source:/home/virtuoso/C++/Agender/AgenderMain.cpp
+1264747090 source:/home/virtuoso/C++/Agender/AgenderMain.cpp
 	"AgenderMain.h"
 	<wx/msgdlg.h>
 	<wx/settings.h>
@@ -4723,22 +4727,22 @@
 	"wx/dynarray.h"
 	"wx/dialog.h"
 
-1263940491 source:/home/virtuoso/C++/Agender/AgenderCal.cpp
+1264743963 source:/home/virtuoso/C++/Agender/AgenderCal.cpp
 	"AgenderCal.h"
 	<wx/config.h>
 	<wx/textfile.h>
 	<wx/log.h>
 
-1263940783 /home/virtuoso/C++/Agender/AgenderCal.h
+1264743746 /home/virtuoso/C++/Agender/AgenderCal.h
 	<wx/datetime.h>
 	<wx/string.h>
 	<wx/arrstr.h>
 	<wx/dynarray.h>
 
-1263940495 source:/home/virtuoso/C++/Agender/AgenderDnd.cpp
+1264741142 source:/home/virtuoso/C++/Agender/AgenderDnd.cpp
 	"AgenderDnd.h"
 
-1263940962 /home/virtuoso/C++/Agender/AgenderDnd.h
+1264741133 /home/virtuoso/C++/Agender/AgenderDnd.h
 	<wx/defs.h>
 	<wx/dnd.h>
 	<wx/datetime.h>
@@ -4795,4 +4799,34 @@
 
 1257859921 /usr/include/wx-2.8/wx/gtk/dnd.h
 	"wx/icon.h"
+
+1257859923 /usr/include/wx-2.8/wx/richtext/richtextsymboldlg.h
+	"wx/dialog.h"
+	"wx/vscroll.h"
+
+1257859921 /usr/include/wx-2.8/wx/vscroll.h
+	"wx/panel.h"
+
+1257859920 /usr/include/wx-2.8/wx/panel.h
+	"wx/generic/panelg.h"
+
+1257859920 /usr/include/wx-2.8/wx/generic/panelg.h
+	"wx/window.h"
+	"wx/containr.h"
+
+1257859921 /usr/include/wx-2.8/wx/clipbrd.h
+	"wx/defs.h"
+	"wx/object.h"
+	"wx/wxchar.h"
+	"wx/msw/clipbrd.h"
+	"wx/motif/clipbrd.h"
+	"wx/gtk/clipbrd.h"
+	"wx/gtk1/clipbrd.h"
+	"wx/x11/clipbrd.h"
+	"wx/mgl/clipbrd.h"
+	"wx/mac/clipbrd.h"
+	"wx/cocoa/clipbrd.h"
+	"wx/os2/clipbrd.h"
+
+1257859921 /usr/include/wx-2.8/wx/gtk/clipbrd.h
 

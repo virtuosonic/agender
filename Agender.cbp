@@ -89,7 +89,7 @@
 			<envvars />
 			<debugger />
 			<wxsmith version="1">
-				<gui name="wxWidgets" src="AgenderApp.cpp" main="AgenderFrame" init_handlers="necessary" language="CPP" />
+				<gui name="wxWidgets" src="AgenderApp.cpp" main="-- None --" init_handlers="never" language="CPP" />
 				<resources>
 					<wxFrame wxs="wxsmith/Agenderframe.wxs" src="AgenderMain.cpp" hdr="AgenderMain.h" name="AgenderFrame" language="CPP" />
 				</resources>

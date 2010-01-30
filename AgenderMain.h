@@ -30,7 +30,7 @@ class AgenderFrame: public wxFrame
 {
 	public:
 
-		AgenderFrame(wxLocale& locale);
+		AgenderFrame(wxLocale& locale,wxString cfgFile);
 		virtual ~AgenderFrame();
 
 	private:

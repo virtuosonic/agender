@@ -8,14 +8,15 @@
  **************************************************************/
 
 #include "AgenderApp.h"
+#include "AgenderMain.h"
 #include "AgenderIPC.h"
 
 #include <wx/log.h>
 #include <wx/stdpaths.h>
+#include <wx/cmdline.h>
 #include <iostream>
 
 //(*AppHeaders
-#include "AgenderMain.h"
 #include <wx/image.h>
 //*)
 
@@ -26,7 +27,7 @@ bool AgenderApp::OnInit()
 	//who are we?
 	SetAppName(_T("Agender"));
 	SetVendorName(_T("Virtuosonic"));
-	//redirect logging to cout, if you want to annoy users use ::wxMessageBox(_T("do you want me to annoy you"));
+	//redirect logging to cout, if you want to annoy users use ::wxMessageBox(_T("do you want me to annoy you?"));
 	wxLog* logger = new wxLogStream(&std::cout);
 	delete wxLog::SetActiveTarget(logger);
 	wxLog::SetVerbose(true);
@@ -54,16 +55,20 @@ bool AgenderApp::OnInit()
 	// please talk me in a language that i understand
 	if (m_locale.Init(wxLANGUAGE_DEFAULT,wxLOCALE_CONV_ENCODING))
 		m_locale.AddCatalog(wxT("Agender"));
+	//parse arguments
+	wxCmdLineParser cmd(argc,argv);
+	cmd.AddOption(_T("c"),_T("config"),_T("config file to load"),wxCMD_LINE_VAL_STRING);
+	cmd.Parse();
+	wxString cfgFile;
+	cmd.Found(_T("-c"),&cfgFile);
 	//(*AppInitialize
 	bool wxsOK = true;
 	wxInitAllImageHandlers();
-	if ( wxsOK )
-	{
-		AgenderFrame* Frame = new AgenderFrame(m_locale);
-		Frame->Show(false);
-		SetTopWindow(Frame);
-	}
 	//*)
+	//create main frame
+	wxFrame* Frame = new AgenderFrame(m_locale,cfgFile);
+	Frame->Show(false);
+	SetTopWindow(Frame);
 	//lets create a server so Anothers can comunicate with this->m_server
 	m_server = new AgenderServer((wxFrame*)GetTopWindow());
 	if (m_server->Create(IPC_Service))

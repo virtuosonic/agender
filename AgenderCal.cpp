@@ -112,3 +112,11 @@ bool AgenderCal::RenameNote(wxString OldName,wxString NewName)
 	wxConfig::Get()->SetPath(_T("/"));
 	return true;
 }
+
+bool AgenderCal::HasNote(wxString note)
+{
+	wxString Fullnote(m_date.Format(_T("/%Y-%m-%d/")) + note);
+	return wxConfig::Get()->HasEntry(Fullnote);
+}
+
+

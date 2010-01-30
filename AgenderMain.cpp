@@ -62,7 +62,7 @@ BEGIN_EVENT_TABLE(AgenderFrame,wxFrame)
 	//*)
 END_EVENT_TABLE()
 
-AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
+AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 {
 	// TODO (virtuoso#1#): compatibilidad wx-2.9: opcion de usar wxGenericCalenderCtrl en vez de wxCalenderCtrl
 	//(*Initialize(AgenderFrame)
@@ -73,7 +73,6 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 	SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUBAR));
 	FlexGridSizer1 = new wxFlexGridSizer(0, 2, 0, 0);
 	FlexGridSizer1->AddGrowableCol(0);
-	FlexGridSizer1->AddGrowableCol(1);
 	FlexGridSizer1->AddGrowableRow(0);
 	FlexGridSizer1->AddGrowableRow(1);
 	CalendarCtrl1 = new wxCalendarCtrl(this, ID_CALENDARCTRL1, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxCAL_SEQUENTIAL_MONTH_SELECTION|wxSUNKEN_BORDER|wxTAB_TRAVERSAL, _T("ID_CALENDARCTRL1"));
@@ -86,6 +85,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 	BoxSizer1 = new wxBoxSizer(wxVERTICAL);
 	BtnNuevo = new wxButton(this, ID_BUTTON1, _("Add note"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
 	BtnNuevo->SetDefault();
+	BtnNuevo->SetFocus();
 	BoxSizer1->Add(BtnNuevo, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
 	BtnElim = new wxButton(this, ID_BUTTON2, _("Delete selection"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON2"));
 	BoxSizer1->Add(BtnElim, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
@@ -138,11 +138,13 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 		TextCtrl1->Disable();
 	ChangeSelector();
 	MarkDays();
-	//find dialog shortcut
-	wxAcceleratorEntry entries[2];
+	//shortcuts
+	wxAcceleratorEntry entries[4];
 	entries[0].Set(wxACCEL_CTRL,(int)'f',wxID_FIND);
 	entries[1].Set(wxACCEL_NORMAL,WXK_ESCAPE,wxID_CLOSE);
-	wxAcceleratorTable accel(2, entries);
+	entries[2].Set(wxACCEL_CTRL,(int)'n',ID_BUTTON1);
+	entries[3].Set(wxACCEL_CTRL,(int)'x',wxID_EXIT);
+	wxAcceleratorTable accel(4, entries);
 	this->SetAcceleratorTable(accel);
 	//find dialog
 	fndData = new wxFindReplaceData;
@@ -252,6 +254,14 @@ void AgenderFrame::OnBtnNuevoClick(wxCommandEvent& event)
 	wxTextEntryDialog dlg(this,_("To-Do Title"),_("New To-Do"));
 	if (dlg.ShowModal() == wxID_OK  && dlg.GetValue() != wxEmptyString)
 	{
+		if (dlg.GetValue().Find(_T("$@")) != wxNOT_FOUND)
+		{
+			wxMessageBox(_("Expresion '$@' reserved for Agender, please use another name"),
+					_T("Error"),wxICON_ERROR,this);
+			return;
+		}
+		else if (a_cal->HasNote(dlg.GetValue()))
+			return;
 		ListBox1->Append(dlg.GetValue());
 		ListBox1->SetSelection(ListBox1->GetCount()-1);
 		TextCtrl1->Enable();

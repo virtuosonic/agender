@@ -16,27 +16,25 @@
 #include <wx/dnd.h>
 #include <wx/datetime.h>
 
-struct noteData{
-	wxDateTime time;
-	wxString note;
+struct notedmp {
+	wxString name;
 	wxString text;
-	bool sticky;
-	bool wsticky;
 };
 
 class NoteDataObject : public wxDataObject
 {
 	public:
-		NoteDataObject(const wxString& note, const wxString& noteText);
-		~NoteDataObject();
-		virtual wxDataFormat GetPreferedFormat(Direction dir);
+		NoteDataObject(wxString noteName,wxString noteText);
+		//no destructor needed?
+		virtual wxDataFormat GetPreferredFormat(Direction WXUNUSED(dir));
 		virtual size_t GetFormatCount(Direction dir);
-		virtual void GetAllFormats(wxDataFormat* formats,Direction dir);
+		virtual void GetAllFormats(wxDataFormat *formats,Direction dir);
 		virtual size_t GetDataSize(const wxDataFormat& format);
 		virtual bool GetDataHere(const wxDataFormat& format,void* pBuf);
-		virtual bool SetData(const wxDataFormat& format,size_t len,const void* buf);
+		virtual bool SetData(const wxDataFormat& format, size_t len,const void* buf);
 	private:
-		wxString m_note,m_noteText;
+		wxString m_noteName,m_noteText;
+		wxDataFormat m_agFormat;
 };
 
 class NoteTarget : public wxDropTarget
