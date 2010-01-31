@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="UNIX" />
-	<File name="Agender.bkl" open="1" top="1" tabpos="3">
-		<Cursor position="723" topLine="14" />
+	<File name="Agender.bkl" open="0" top="0" tabpos="3">
+		<Cursor position="1688" topLine="99" />
 	</File>
 	<File name="Agender.desktop" open="0" top="0" tabpos="2">
-		<Cursor position="141" topLine="0" />
+		<Cursor position="142" topLine="0" />
 	</File>
 	<File name="Agender.nsi" open="0" top="0" tabpos="1">
 		<Cursor position="1652" topLine="55" />
 	</File>
-	<File name="AgenderApp.cpp" open="1" top="0" tabpos="1">
+	<File name="AgenderApp.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="1977" topLine="57" />
 	</File>
-	<File name="AgenderApp.h" open="1" top="0" tabpos="2">
+	<File name="AgenderApp.h" open="0" top="0" tabpos="2">
 		<Cursor position="420" topLine="11" />
 	</File>
 	<File name="AgenderCal.cpp" open="0" top="0" tabpos="2">
@@ -22,11 +22,11 @@
 	<File name="AgenderCal.h" open="0" top="0" tabpos="3">
 		<Cursor position="709" topLine="21" />
 	</File>
-	<File name="AgenderDnd.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="967" topLine="30" />
+	<File name="AgenderDnd.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="331" topLine="0" />
 	</File>
-	<File name="AgenderDnd.h" open="0" top="0" tabpos="2">
-		<Cursor position="819" topLine="0" />
+	<File name="AgenderDnd.h" open="0" top="0" tabpos="3">
+		<Cursor position="433" topLine="0" />
 	</File>
 	<File name="AgenderIPC.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="66" topLine="0" />
@@ -35,19 +35,19 @@
 		<Cursor position="331" topLine="0" />
 	</File>
 	<File name="AgenderMain.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="1796" topLine="48" />
+		<Cursor position="8411" topLine="11" />
 	</File>
 	<File name="AgenderMain.h" open="0" top="0" tabpos="1">
 		<Cursor position="796" topLine="27" />
 	</File>
-	<File name="AgenderTray.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="506" topLine="0" />
+	<File name="AgenderTray.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="2470" topLine="3" />
 	</File>
 	<File name="AgenderTray.h" open="0" top="0" tabpos="4">
 		<Cursor position="702" topLine="32" />
 	</File>
 	<File name="Readme.txt" open="0" top="0" tabpos="3">
-		<Cursor position="2110" topLine="44" />
+		<Cursor position="3135" topLine="79" />
 	</File>
 	<File name="autopackage/default.apspec.in" open="0" top="0" tabpos="1">
 		<Cursor position="990" topLine="30" />

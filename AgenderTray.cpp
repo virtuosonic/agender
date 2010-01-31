@@ -9,10 +9,12 @@
 #include <wx/colordlg.h>
 #include <wx/menu.h>
 #include <wx/config.h>
-#include <wx/richtext/richtextsymboldlg.h>
 #include <wx/app.h>
 #include <wx/clipbrd.h>
 #include <wx/dataobj.h>
+#if wxUSE_RICHTEXT
+#include <wx/richtext/richtextsymboldlg.h>
+#endif
 
 BEGIN_EVENT_TABLE(AgenderTray,wxTaskBarIcon)
 	EVT_TASKBAR_LEFT_UP(AgenderTray::OnLeft)
@@ -84,7 +86,9 @@ wxMenu * AgenderTray::CreatePopupMenu()
 		menu->AppendSubMenu(opcMenu,_("Opacity"));
 	menu->AppendCheckItem(ID_YEARSEL,_("Year selector"));
 	menu->Append(ID_NOTES_COLOUR,_("Notes Colour"));
+	#if wxUSE_RICHTEXT
 	menu->Append(ID_SYMBOL,_("Symbol"));
+	#endif
 	menu->AppendCheckItem(ID_AUTOSTART,_("Autostart"));
 	//menu->AppendSeparator();
 	//menu->Append(wxID_FIND,_("Find"));
@@ -170,6 +174,7 @@ void AgenderTray::OnMenuAutoStart(wxCommandEvent& event)
 
 void AgenderTray::OnMenuSymbols(wxCommandEvent& event)
 {
+	#if wxUSE_RICHTEXT
 	wxSymbolPickerDialog dlg(_T("*"),wxEmptyString,
 					 wxTheApp->GetTopWindow()->GetFont().GetFaceName(),NULL);
 	if (dlg.ShowModal() ==wxID_OK && dlg.HasSelection())
@@ -180,6 +185,6 @@ void AgenderTray::OnMenuSymbols(wxCommandEvent& event)
 			wxTheClipboard->Close();
 		}
 	}
-
+	#endif
 }
 
