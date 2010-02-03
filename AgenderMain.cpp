@@ -108,11 +108,17 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 	Connect(ID_BUTTON3,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AgenderFrame::OnButton3Click);
 	Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&AgenderFrame::OnClose);
 	//*)
-
-	wxFileName schFname;
-	schFname.AssignDir(wxStandardPaths::Get().GetUserConfigDir());
-	schFname.SetName(_T(".Agender-current user.txt"));
-	schFile = schFname.GetFullPath();
+	if (wxFileExists(cfgFile))
+	{
+		schFile=cfgFile;
+	}
+	else
+	{
+		wxFileName schFname;
+		schFname.AssignDir(wxStandardPaths::Get().GetUserConfigDir());
+		schFname.SetName(_T(".Agender-current user.txt"));
+		schFile = schFname.GetFullPath();
+	}
 	if (wxFileExists(schFile))
 	{
 		wxFileInputStream infile(schFile);

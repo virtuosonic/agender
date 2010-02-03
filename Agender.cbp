@@ -64,6 +64,7 @@
 		<Unit filename="AgenderIPC.h" />
 		<Unit filename="AgenderMain.cpp" />
 		<Unit filename="AgenderMain.h" />
+		<Unit filename="AgenderPortable.nsi" />
 		<Unit filename="AgenderTray.cpp" />
 		<Unit filename="AgenderTray.h" />
 		<Unit filename="Readme.txt">
