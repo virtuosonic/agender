@@ -59,6 +59,11 @@ license GPL v3
   		<install-to>$(DATADIR)/locale/de/LC_MESSAGES</install-to>
   		<files>de/Agender.mo</files>
   	</data-files>
+  	<data-files id="japanesse">
+  		<srcdir>$(SRCDIR)</srcdir>
+  		<install-to>$(DATADIR)/locale/ja/LC_MESSAGES</install-to>
+  		<files>ja/Agender.mo</files>
+  	</data-files>
   	<!-- lets build a package -->
   	<action id="dist">
   		<depends>clean</depends>

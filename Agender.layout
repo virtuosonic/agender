@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="UNIX" />
-	<File name="Agender.bkl" open="0" top="0" tabpos="3">
-		<Cursor position="1688" topLine="99" />
+	<File name="Agender.bkl" open="1" top="0" tabpos="4">
+		<Cursor position="2140" topLine="50" />
 	</File>
 	<File name="Agender.desktop" open="0" top="0" tabpos="2">
 		<Cursor position="142" topLine="0" />
@@ -10,7 +10,7 @@
 	<File name="Agender.nsi" open="0" top="0" tabpos="2">
 		<Cursor position="847" topLine="20" />
 	</File>
-	<File name="AgenderApp.cpp" open="1" top="1" tabpos="3">
+	<File name="AgenderApp.cpp" open="1" top="0" tabpos="3">
 		<Cursor position="2430" topLine="69" />
 	</File>
 	<File name="AgenderApp.h" open="0" top="0" tabpos="2">
@@ -34,8 +34,8 @@
 	<File name="AgenderIPC.h" open="0" top="0" tabpos="3">
 		<Cursor position="331" topLine="15" />
 	</File>
-	<File name="AgenderMain.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="1799" topLine="153" />
+	<File name="AgenderMain.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="8374" topLine="206" />
 	</File>
 	<File name="AgenderMain.h" open="0" top="0" tabpos="1">
 		<Cursor position="796" topLine="27" />
