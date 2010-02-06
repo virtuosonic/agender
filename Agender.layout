@@ -8,16 +8,16 @@
 		<Cursor position="142" topLine="0" />
 	</File>
 	<File name="Agender.nsi" open="0" top="0" tabpos="2">
-		<Cursor position="1867" topLine="50" />
+		<Cursor position="847" topLine="20" />
 	</File>
-	<File name="AgenderApp.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="1977" topLine="57" />
+	<File name="AgenderApp.cpp" open="1" top="1" tabpos="3">
+		<Cursor position="2430" topLine="69" />
 	</File>
 	<File name="AgenderApp.h" open="0" top="0" tabpos="2">
-		<Cursor position="420" topLine="11" />
+		<Cursor position="465" topLine="10" />
 	</File>
 	<File name="AgenderCal.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="2809" topLine="103" />
+		<Cursor position="1692" topLine="71" />
 	</File>
 	<File name="AgenderCal.h" open="0" top="0" tabpos="3">
 		<Cursor position="709" topLine="21" />
@@ -29,28 +29,28 @@
 		<Cursor position="433" topLine="0" />
 	</File>
 	<File name="AgenderIPC.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="66" topLine="0" />
+		<Cursor position="1316" topLine="42" />
 	</File>
 	<File name="AgenderIPC.h" open="0" top="0" tabpos="3">
-		<Cursor position="331" topLine="0" />
+		<Cursor position="331" topLine="15" />
 	</File>
-	<File name="AgenderMain.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="8411" topLine="11" />
+	<File name="AgenderMain.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="1799" topLine="153" />
 	</File>
 	<File name="AgenderMain.h" open="0" top="0" tabpos="1">
 		<Cursor position="796" topLine="27" />
 	</File>
-	<File name="AgenderPortable.nsi" open="1" top="1" tabpos="1">
-		<Cursor position="526" topLine="1" />
+	<File name="AgenderPortable.nsi" open="0" top="0" tabpos="1">
+		<Cursor position="126" topLine="0" />
 	</File>
-	<File name="AgenderTray.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="2470" topLine="3" />
+	<File name="AgenderTray.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="2411" topLine="93" />
 	</File>
 	<File name="AgenderTray.h" open="0" top="0" tabpos="4">
-		<Cursor position="702" topLine="32" />
+		<Cursor position="125" topLine="9" />
 	</File>
 	<File name="Readme.txt" open="0" top="0" tabpos="3">
-		<Cursor position="123" topLine="0" />
+		<Cursor position="3598" topLine="91" />
 	</File>
 	<File name="autopackage/default.apspec.in" open="0" top="0" tabpos="1">
 		<Cursor position="990" topLine="30" />

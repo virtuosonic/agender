@@ -1,5 +1,6 @@
 # depslib dependency file v1.0
-1264839600 source:/home/virtuoso/C++/Agender/AgenderTray.cpp
+1265347666 source:/home/virtuoso/C++/Agender/AgenderTray.cpp
+	<wx/defs.h>
 	"AgenderTray.h"
 	<wx/colordlg.h>
 	<wx/menu.h>
@@ -691,11 +692,12 @@
 	"wx/filefn.h"
 	"wx/strconv.h"
 
-1264751786 source:/home/virtuoso/C++/Agender/AgenderApp.cpp
+1265347918 source:/home/virtuoso/C++/Agender/AgenderApp.cpp
 	"AgenderApp.h"
 	"AgenderMain.h"
 	"AgenderIPC.h"
 	<wx/log.h>
+	<wx/defs.h>
 	<wx/stdpaths.h>
 	<wx/cmdline.h>
 	<iostream>
@@ -1231,7 +1233,7 @@
 1236340877 /home/virtuoso/wxMSW-2.8.10/include/wx/univ/theme.h
 	"wx/string.h"
 
-1264751398 /home/virtuoso/C++/Agender/AgenderMain.h
+1265347591 /home/virtuoso/C++/Agender/AgenderMain.h
 	<wx/sizer.h>
 	<wx/textctrl.h>
 	<wx/calctrl.h>
@@ -1756,9 +1758,10 @@
 1236340842 /home/virtuoso/wxMSW-2.8.10/include/wx/imagiff.h
 	"wx/image.h"
 
-1264751427 source:/home/virtuoso/C++/Agender/AgenderMain.cpp
+1265413674 source:/home/virtuoso/C++/Agender/AgenderMain.cpp
 	"AgenderMain.h"
 	<wx/msgdlg.h>
+	<wx/defs.h>
 	<wx/settings.h>
 	<wx/intl.h>
 	<wx/string.h>
@@ -2688,10 +2691,11 @@
 
 1257859919 /usr/include/wx-2.8/wx/snglinst.h
 
-1263940494 source:/home/virtuoso/C++/Agender/AgenderIPC.cpp
+1265349202 source:/home/virtuoso/C++/Agender/AgenderIPC.cpp
 	"AgenderIPC.h"
 	<wx/log.h>
 	<wx/msgdlg.h>
+	<wx/defs.h>
 
 1263940940 /home/virtuoso/C++/Agender/AgenderIPC.h
 	<wx/ipc.h>

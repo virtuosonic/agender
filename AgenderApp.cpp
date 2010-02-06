@@ -12,6 +12,7 @@
 #include "AgenderIPC.h"
 
 #include <wx/log.h>
+#include <wx/defs.h>
 #include <wx/stdpaths.h>
 #include <wx/cmdline.h>
 #include <iostream>
@@ -58,9 +59,10 @@ bool AgenderApp::OnInit()
 	//parse arguments
 	wxCmdLineParser cmd(argc,argv);
 	cmd.AddOption(_T("c"),_T("config"),_T("config file to load"),wxCMD_LINE_VAL_STRING);
+	cmd.AddSwitch(_T("nt"),_T("no-taskbar"),_T("use when you don't have a taskbar"));
 	cmd.Parse();
 	wxString cfgFile;
-	cmd.Found(_T("-c"),&cfgFile);
+	cmd.Found(_T("c"),&cfgFile);
 	//(*AppInitialize
 	bool wxsOK = true;
 	wxInitAllImageHandlers();
@@ -74,6 +76,17 @@ bool AgenderApp::OnInit()
 		wxLogMessage(_T("server created"));
 	else
 		wxLogError(_T("server creation failed"));
+	if (cmd.Found(_T("nt")))
+		Frame->Show();
+	#if !defined wxHAS_TASK_BAR_ICON
+	Frame->Show();
+	// TODO (virtuoso#1#): think in another way to exit agender
+	//without having to kill it
+	//this is intended for some mobile platform, is it needed?
+	//i remember that windows CE had a function to finish apps
+	// and accoding to its guidelines it should continue in memory
+	//but what about Familiar Linux, iPhoneOS, etc ?
+	#endif//wxHAS_TASK_BAR_ICON
 	return wxsOK;
 }
 

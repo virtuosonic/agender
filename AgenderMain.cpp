@@ -9,6 +9,7 @@
 
 #include "AgenderMain.h"
 #include <wx/msgdlg.h>
+#include <wx/defs.h>
 
 //(*InternalHeaders(AgenderFrame)
 #include <wx/settings.h>
@@ -37,7 +38,11 @@
 #endif// __WXMAC__
 
 #include "AgenderCal.h"
-#include "AgenderTray.h"
+
+#if defined wxHAS_TASK_BAR_ICON
+	#include "AgenderTray.h"
+#endif
+
 #include "Agender16x16.xpm"
 #include "Agender.xpm"
 
@@ -157,8 +162,10 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 	fndDlg = new wxFindReplaceDialog(this,fndData,_("Agender|Search Notes"),wxFR_NOUPDOWN|wxFR_NOMATCHCASE|wxFR_NOWHOLEWORD);
 	SearchMode = false;
 	//taskbaricon
+	#if defined wxHAS_TASK_BAR_ICON
 	trayicon = new AgenderTray(this,schdl->Read(_T("/opacity"),255));
 	trayicon->SetIcon(Agender16x16_xpm,_T("Virtuosonic Agender"));
+	#endif//wxHAS_TASK_BAR_ICON
 	SetTransparent(schdl->Read(_T("/opacity"),255));
 	//autostart
 	wxCommandEvent event;
@@ -177,10 +184,12 @@ AgenderFrame::~AgenderFrame()
 {
 	wxFileOutputStream ofile(schFile);
 	schdl->Save(ofile);
-	//without this Agender will receive SIGSEGV #11
+	//without this Agender would receive SIGSEGV #11
 	wxConfig::Set(NULL);
 	//delete
+	#if defined wxHAS_TASK_BAR_ICON
 	delete trayicon;
+	#endif
 	delete schdl;
 	delete a_cal;
 	//(*Destroy(AgenderFrame)
@@ -391,13 +400,13 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 {
 #if defined __UNIX__ && !defined __APPLE__
 	//we use freedestop.org standard
-	wxFileName	desktopFname;
+	wxFileName desktopFname;
 	desktopFname.AssignDir(wxGetHomeDir());
 	desktopFname.AppendDir(_T(".config"));
 	desktopFname.AppendDir(_T("autostart"));
 	desktopFname.SetName(_T("Agender"));
 	desktopFname.SetExt(_T("desktop"));
-	wxString desktopFile(desktopFname.GetFullPath());
+	wxString desktopFile = desktopFname.GetFullPath();
 #elif defined __WXMSW__
 	//we use the windows registry
 	wxRegKey key;
@@ -405,7 +414,7 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 #else
 	//we ask for help :)
 	wxMessageBox(_("AutoStart is only available under Windows "
-			   " and Unix desktop that follow the freedesktop.org standards, "
+			   " and Unix desktops that follow the freedesktop.org standards, "
 			   "if you add support for any other system, please send patches "
 			   "to the patch tracker in the Agender project page at "
 			   "http://sourceforge.net/projects/agender/"));
@@ -417,7 +426,7 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 	if (autostart)
 	{
 		///add
-#if defined __UNIX__
+#if defined __UNIX__ && !defined __APPLE__
 		if (!wxFileExists(desktopFile))
 		{
 			wxLogMessage(_T("wrinting autostart file: %s"),desktopFile.c_str());
@@ -441,7 +450,7 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 	}
 	else
 		///remove
-#if defined __UNIX__
+#if defined __UNIX__ && !defined __APPLE__
 		if (wxFileExists(desktopFile))
 			wxRemoveFile(desktopFile);
 #elif defined __WXMSW__

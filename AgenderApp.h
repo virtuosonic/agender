@@ -13,7 +13,6 @@
 #include <wx/app.h>
 #include <wx/snglinst.h>
 #include <wx/intl.h>
-
 #include <wx/ipc.h>
 
 class AgenderApp : public wxApp

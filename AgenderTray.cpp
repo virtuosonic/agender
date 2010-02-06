@@ -5,6 +5,10 @@
  * Copyright: Gabriel Espinoza
  * License: GPL 3
  **************************************************************/
+#include <wx/defs.h>
+
+#if defined wxHAS_TASK_BAR_ICON
+
 #include "AgenderTray.h"
 #include <wx/colordlg.h>
 #include <wx/menu.h>
@@ -188,3 +192,4 @@ void AgenderTray::OnMenuSymbols(wxCommandEvent& event)
 	#endif
 }
 
+#endif //wxHAS_TASK_BAR_ICON
