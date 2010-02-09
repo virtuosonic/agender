@@ -16,6 +16,7 @@
 #include <wx/stdpaths.h>
 #include <wx/cmdline.h>
 #include <iostream>
+#include <cstdlib>
 
 //(*AppHeaders
 #include <wx/image.h>
@@ -45,13 +46,16 @@ bool AgenderApp::OnInit()
 			wxLogMessage(_T("executing"));
 			cnn->Execute(IPC_Topic);
 			if (cnn->Execute(IPC_Topic))
+			{
 				wxLogMessage(_T("finished executing"));
+				exit(EXIT_SUCCESS);
+			}
 			else
 				wxLogError(_T("not executed"));
 		}
 		else
 			wxLogError(_T("connection failed"));
-		return false;
+		exit(EXIT_FAILURE);
 	}
 	// please talk me in a language that i understand
 	if (m_locale.Init(wxLANGUAGE_DEFAULT,wxLOCALE_CONV_ENCODING))
@@ -92,8 +96,10 @@ bool AgenderApp::OnInit()
 
 int AgenderApp::OnExit()
 {
-	delete m_checker;
-	delete m_server;
+	if (m_checker)
+		delete m_checker;
+	if (m_server)
+		delete m_server;
 	wxLogMessage(_T("Exiting: goodbye"));
 	return wxApp::OnExit();
 }
