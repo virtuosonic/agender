@@ -6,7 +6,7 @@
 		<bg>wxSYS_COLOUR_MENUBAR</bg>
 		<parent_arg>0</parent_arg>
 		<id_arg>0</id_arg>
-		<style>wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxFRAME_TOOL_WINDOW|wxTAB_TRAVERSAL|wxTRANSPARENT_WINDOW</style>
+		<style>wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxFRAME_TOOL_WINDOW|wxTAB_TRAVERSAL|wxWANTS_CHARS</style>
 		<handler function="OnClose" entry="EVT_CLOSE" />
 		<object class="wxFlexGridSizer" variable="FlexGridSizer1" member="no">
 			<cols>2</cols>
@@ -14,7 +14,7 @@
 			<growablerows>0,1</growablerows>
 			<object class="sizeritem">
 				<object class="wxCalendarCtrl" name="ID_CALENDARCTRL1" variable="CalendarCtrl1" member="yes">
-					<style>wxCAL_SEQUENTIAL_MONTH_SELECTION|wxSUNKEN_BORDER|wxTAB_TRAVERSAL</style>
+					<style>wxCAL_SEQUENTIAL_MONTH_SELECTION|wxSUNKEN_BORDER</style>
 					<handler function="OnCalendarCtrl1Changed" entry="EVT_CALENDAR_SEL_CHANGED" />
 					<handler function="OnCalendarCtrl1MonthChanged" entry="EVT_CALENDAR_MONTH" />
 					<handler function="OnCalendarCtrl1MonthChanged" entry="EVT_CALENDAR_YEAR" />
@@ -36,7 +36,7 @@
 			<object class="sizeritem">
 				<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="TextCtrl1" member="yes">
 					<enabled>0</enabled>
-					<style>wxTE_MULTILINE</style>
+					<style>wxTE_MULTILINE|wxTE_AUTO_URL</style>
 					<handler function="OnTextCtrl1Text" entry="EVT_TEXT" />
 				</object>
 				<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>

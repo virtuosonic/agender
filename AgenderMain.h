@@ -25,6 +25,7 @@
 #include <wx/taskbar.h>
 
 class AgenderCal;
+class wxJoystick;
 
 class AgenderFrame: public wxFrame
 {
@@ -51,6 +52,7 @@ class AgenderFrame: public wxFrame
 		void OnChangeNotesColour(wxCommandEvent& event);
 		void OnYearSel(wxCommandEvent& event);
 		void OnAutoStart(wxCommandEvent& event);
+		void OnJoyMove(wxJoystickEvent& event);
 
 		//(*Identifiers(AgenderFrame)
 		static const long ID_CALENDARCTRL1;
@@ -71,6 +73,7 @@ class AgenderFrame: public wxFrame
 		//*)
 		wxFindReplaceDialog* fndDlg;
 		wxFindReplaceData* fndData;
+		wxJoystick* joy1;
 
 		void MarkDays();
 		void ChangeSelector();

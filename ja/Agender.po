@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Agender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-05 16:51-0800\n"
+"POT-Creation-Date: 2010-02-09 20:34-0800\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Gabriel Espinoza <virtuosonic@users.sourceforge.net>\n"
 "Language-Team: daniel daows\n"
@@ -37,11 +37,11 @@ msgstr ""
 msgid "Agender|Search Notes"
 msgstr ""
 
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:212
+#: /home/virtuoso/C++/Agender/AgenderMain.cpp:213
 msgid "A cross-plataform schedule tool"
 msgstr ""
 
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:214
+#: /home/virtuoso/C++/Agender/AgenderMain.cpp:215
 msgid ""
 "Agender is free software; you can redistribute it and/or modify\n"
 "it under the terms of the GNU General Public License as published by\n"
@@ -57,40 +57,40 @@ msgid ""
 "along with Agender. If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
 
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:269
+#: /home/virtuoso/C++/Agender/AgenderMain.cpp:270
 msgid "To-Do Title"
 msgstr ""
 
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:269
+#: /home/virtuoso/C++/Agender/AgenderMain.cpp:270
 msgid "New To-Do"
 msgstr ""
 
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:274
+#: /home/virtuoso/C++/Agender/AgenderMain.cpp:275
 msgid "Expresion '$@' reserved for Agender, please use another name"
 msgstr ""
 
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:416
+#: /home/virtuoso/C++/Agender/AgenderMain.cpp:417
 msgid "AutoStart is only available under Windows  and Unix desktops that follow the freedesktop.org standards, if you add support for any other system, please send patches to the patch tracker in the Agender project page at http://sourceforge.net/projects/agender/"
 msgstr "自動起動は　freedesktop.org standards　に従ってWindowsとUnixのdesktop だけ利用できて、別のオペレーティングシステムを支持を追加したら、Agender project のページにhttp://sourceforge.net/projects/agender/　 パッチ trackerにパッチを送って下さい。"
 
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:470
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:497
+#: /home/virtuoso/C++/Agender/AgenderMain.cpp:471
+#: /home/virtuoso/C++/Agender/AgenderMain.cpp:498
 msgid "Rename"
 msgstr ""
 
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:472
+#: /home/virtuoso/C++/Agender/AgenderMain.cpp:473
 msgid "Normal"
 msgstr ""
 
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:473
+#: /home/virtuoso/C++/Agender/AgenderMain.cpp:474
 msgid "Sticky"
 msgstr ""
 
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:474
+#: /home/virtuoso/C++/Agender/AgenderMain.cpp:475
 msgid "Sticky weekday"
 msgstr ""
 
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:497
+#: /home/virtuoso/C++/Agender/AgenderMain.cpp:498
 msgid "New name"
 msgstr ""
 

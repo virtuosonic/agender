@@ -43,6 +43,10 @@
 	#include "AgenderTray.h"
 #endif
 
+#if wxUSE_JOYSTICK
+#include <wx/joystick.h>
+#endif
+
 #include "Agender16x16.xpm"
 #include "Agender.xpm"
 
@@ -63,6 +67,7 @@ BEGIN_EVENT_TABLE(AgenderFrame,wxFrame)
 	EVT_MENU(7003,AgenderFrame::OnYearSel)
 	EVT_MENU(7005,AgenderFrame::OnAutoStart)
 	EVT_MENU(ID_RENAME,AgenderFrame::OnMenuRename)
+	EVT_JOY_EVENTS(AgenderFrame::OnJoyMove)
 	//(*EventTable(AgenderFrame)
 	//*)
 END_EVENT_TABLE()
@@ -74,17 +79,17 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 	wxBoxSizer* BoxSizer1;
 	wxFlexGridSizer* FlexGridSizer1;
 
-	Create(0, wxID_ANY, _("Agender"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxFRAME_TOOL_WINDOW|wxTAB_TRAVERSAL|wxTRANSPARENT_WINDOW, _T("wxID_ANY"));
+	Create(0, wxID_ANY, _("Agender"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxFRAME_TOOL_WINDOW|wxTAB_TRAVERSAL|wxWANTS_CHARS, _T("wxID_ANY"));
 	SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUBAR));
 	FlexGridSizer1 = new wxFlexGridSizer(0, 2, 0, 0);
 	FlexGridSizer1->AddGrowableCol(0);
 	FlexGridSizer1->AddGrowableRow(0);
 	FlexGridSizer1->AddGrowableRow(1);
-	CalendarCtrl1 = new wxCalendarCtrl(this, ID_CALENDARCTRL1, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxCAL_SEQUENTIAL_MONTH_SELECTION|wxSUNKEN_BORDER|wxTAB_TRAVERSAL, _T("ID_CALENDARCTRL1"));
+	CalendarCtrl1 = new wxCalendarCtrl(this, ID_CALENDARCTRL1, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxCAL_SEQUENTIAL_MONTH_SELECTION|wxSUNKEN_BORDER, _T("ID_CALENDARCTRL1"));
 	FlexGridSizer1->Add(CalendarCtrl1, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	ListBox1 = new wxListBox(this, ID_LISTBOX1, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_LISTBOX1"));
 	FlexGridSizer1->Add(ListBox1, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-	TextCtrl1 = new wxTextCtrl(this, ID_TEXTCTRL1, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE, wxDefaultValidator, _T("ID_TEXTCTRL1"));
+	TextCtrl1 = new wxTextCtrl(this, ID_TEXTCTRL1, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE|wxTE_AUTO_URL, wxDefaultValidator, _T("ID_TEXTCTRL1"));
 	TextCtrl1->Disable();
 	FlexGridSizer1->Add(TextCtrl1, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer1 = new wxBoxSizer(wxVERTICAL);
@@ -178,6 +183,17 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 	GetCurrentProcess(&PSN);
 	TransformProcessType(&PSN,kProcessTransformToForegroundApplication);
 #endif// __WXMAC__
+	if (wxJoystick::GetNumberJoysticks())
+	{
+		joy1 = new wxJoystick();
+		wxLogMessage(_T("using joystick: %s"),joy1->GetProductName().c_str());
+		joy1->SetCapture(this,100);
+		joy1->SetMovementThreshold(20000);
+		wxLogMessage(_T("%i"),joy1->GetMovementThreshold());
+
+	}
+	else
+		joy1 = NULL;
 }
 
 AgenderFrame::~AgenderFrame()
@@ -190,6 +206,8 @@ AgenderFrame::~AgenderFrame()
 	#if defined wxHAS_TASK_BAR_ICON
 	delete trayicon;
 	#endif
+	if (joy1)
+		delete joy1;
 	delete schdl;
 	delete a_cal;
 	//(*Destroy(AgenderFrame)
@@ -450,7 +468,7 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 #endif
 	}
 	else
-		///remove
+	///remove
 #if defined __UNIX__ && !defined __APPLE__
 		if (wxFileExists(desktopFile))
 			wxRemoveFile(desktopFile);
@@ -501,4 +519,9 @@ void AgenderFrame::OnMenuRename(wxCommandEvent& event)
 		a_cal->RenameNote(ListBox1->GetStringSelection(),dlg.GetValue());
 		ListBox1->SetString(ListBox1->GetSelection(),dlg.GetValue());
 	}
+}
+
+void AgenderFrame::OnJoyMove(wxJoystickEvent& event)
+{
+	wxMessageBox(wxString::Format(_T("x: %i, y: %i"),event.GetPosition().x,event.GetPosition().y));
 }

@@ -692,7 +692,7 @@
 	"wx/filefn.h"
 	"wx/strconv.h"
 
-1265670577 source:/home/virtuoso/C++/Agender/AgenderApp.cpp
+1265671959 source:/home/virtuoso/C++/Agender/AgenderApp.cpp
 	"AgenderApp.h"
 	"AgenderMain.h"
 	"AgenderIPC.h"
@@ -701,6 +701,7 @@
 	<wx/stdpaths.h>
 	<wx/cmdline.h>
 	<iostream>
+	<cstdlib>
 	<wx/image.h>
 
 1265348529 /home/virtuoso/C++/Agender/AgenderApp.h
@@ -1233,7 +1234,7 @@
 1236340877 /home/virtuoso/wxMSW-2.8.10/include/wx/univ/theme.h
 	"wx/string.h"
 
-1265347591 /home/virtuoso/C++/Agender/AgenderMain.h
+1265778926 /home/virtuoso/C++/Agender/AgenderMain.h
 	<wx/sizer.h>
 	<wx/textctrl.h>
 	<wx/calctrl.h>
@@ -1758,7 +1759,7 @@
 1236340842 /home/virtuoso/wxMSW-2.8.10/include/wx/imagiff.h
 	"wx/image.h"
 
-1265418660 source:/home/virtuoso/C++/Agender/AgenderMain.cpp
+1265781196 source:/home/virtuoso/C++/Agender/AgenderMain.cpp
 	"AgenderMain.h"
 	<wx/msgdlg.h>
 	<wx/defs.h>
@@ -1779,6 +1780,7 @@
 	<ApplicationServices/ApplicationServices.h>
 	"AgenderCal.h"
 	"AgenderTray.h"
+	<wx/joystick.h>
 	"Agender16x16.xpm"
 	"Agender.xpm"
 
@@ -4839,4 +4841,18 @@
 	"wx/defs.h"
 	"wx/string.h"
 	"wx/arrstr.h"
+
+1257859922 /usr/include/wx-2.8/wx/joystick.h
+	"wx/defs.h"
+	"wx/msw/joystick.h"
+	"wx/unix/joystick.h"
+	"wx/unix/joystick.h"
+	"wx/unix/joystick.h"
+	"wx/mac/corefoundation/joystick.h"
+	"wx/mac/joystick.h"
+	"wx/os2/joystick.h"
+
+1257859922 /usr/include/wx-2.8/wx/unix/joystick.h
+	"wx/event.h"
+	"wx/thread.h"
 
