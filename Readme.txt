@@ -1,6 +1,7 @@
 /******************************************************************************
 *                   Agender, a crossplataform schedule tool
 ******************************************************************************/
+
 Web:
 ====
     http://agender.souceforge.net
@@ -16,7 +17,6 @@ Intro:
     I didn't want to use software like M$ Works or evolution, they were
     so big, complicated, and sometimes slow, not only talking of
     processor usage but in usage flow.
-    //TODO (virtuoso#1): checar ^
 
     So one I started playing with wxCalendarCtrl, and sometimes later
     I get something that work, Agender was born...
@@ -94,7 +94,6 @@ Porting/Packaging:
 Hacking:
 ========
     Some knogledge of C++, OOP and wxWidgets is required for
-    // TODO (virtuoso#1#): Checar deletreo knoledge ^
     understanding Agender, here is a description of what every
     file does.
 

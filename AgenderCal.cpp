@@ -35,33 +35,47 @@ wxArrayString AgenderCal::GetNotes()
 {
 	wxArrayString notes;
 	wxString dateStr(m_date.Format(_T("%Y-%m-%d")));
-	if (!wxConfig::Get()->HasGroup(m_date.Format(_T("%Y-%m-%d"))))
-		return notes;
-	wxConfig::Get()->SetPath(dateStr);
-	wxString noteName;
-	long indx = 0;
-	if (wxConfig::Get()->GetFirstEntry(noteName,indx))
+	if (wxConfig::Get()->HasGroup(m_date.Format(_T("%Y-%m-%d"))))
 	{
-		notes.Add(noteName);
-		while (wxConfig::Get()->GetNextEntry(noteName,indx))
+		wxConfig::Get()->SetPath(dateStr);
+		wxString noteName;
+		long indx = 0;
+		if (wxConfig::Get()->GetFirstEntry(noteName,indx))
+		{
 			notes.Add(noteName);
+			while (wxConfig::Get()->GetNextEntry(noteName,indx))
+				notes.Add(noteName);
+		}
+		wxConfig::Get()->SetPath(_T("/"));
+		if (notes.GetCount() == 0)
+			wxConfig::Get()->DeleteGroup(dateStr);
 	}
-	wxConfig::Get()->SetPath(_T("/"));
-	if (notes.GetCount() == 0)
-		wxConfig::Get()->DeleteGroup(dateStr);
+	if (wxConfig::Get()->HasGroup(stickPath))
+	{
+		wxConfig::Get()->SetPath(stickPath);
+		wxString noteName;
+		long indx = 0;
+		if (wxConfig::Get()->GetFirstEntry(noteName,indx))
+		{
+			notes.Add(noteName+ stickSymb);
+			while (wxConfig::Get()->GetNextEntry(noteName,indx))
+				notes.Add(noteName+ stickSymb);
+		}
+		wxConfig::Get()->SetPath(_T("/"));
+	}
+	// TODO (virtuoso#1#): declare and make use of constant in some wxString that need it
+
 	return notes;
 }
 
 wxString AgenderCal::GetNoteText(wxString note)
 {
-	wxString fullnote(m_date.Format(_T("/%Y-%m-%d/")) + note);
-	return wxConfig::Get()->Read(fullnote,wxEmptyString);
+	return wxConfig::Get()->Read(GetFullPath(note),wxEmptyString);
 }
 
 void AgenderCal::SetNoteText(wxString note,wxString text)
 {
-	wxString fullnote(m_date.Format(_T("/%Y-%m-%d/")) + note);
-	wxConfig::Get()->Write(fullnote,text);
+	wxConfig::Get()->Write(GetFullPath(note),text);
 }
 
 wxArrayString AgenderCal::Find(wxString FindString)
@@ -77,7 +91,7 @@ wxArrayInt AgenderCal::GetDaysWithNotes()
 	// TODO (virtuoso#1#): agregar algoritmo analizando grupos
 	int count = 1 + wxDateTime::GetNumberOfDays(m_date.GetMonth(),m_date.GetYear());
 	wxString dateStr;
-	for (int i = 1;i < count;i++)
+	for (int i = 1; i < count; i++)
 	{
 		if (i < 10)
 		{
@@ -97,26 +111,66 @@ wxArrayInt AgenderCal::GetDaysWithNotes()
 
 void AgenderCal::RmNote(wxString note)
 {
-	wxString dateStr(m_date.Format(_T("/%Y-%m-%d/")));
-	wxConfig::Get()->DeleteEntry(dateStr + note,true);
+	wxConfig::Get()->DeleteEntry(GetFullPath(note),true);
+	//wxLogMessage(_T("deleted : %s"),GetFullPath(note).c_str());
 }
 
 bool AgenderCal::RenameNote(wxString OldName,wxString NewName)
 {
-	wxConfig::Get()->SetPath(m_date.Format(_T("/%Y-%m-%d/")));
 	wxString noteVal;
-	if (!wxConfig::Get()->Read(OldName,&noteVal))
+	if (!wxConfig::Get()->Read(GetFullPath(OldName),&noteVal))
 		return false;
-	wxConfig::Get()->DeleteEntry(OldName,true);
-	wxConfig::Get()->Write(NewName,noteVal);
-	wxConfig::Get()->SetPath(_T("/"));
+	wxConfig::Get()->DeleteEntry(GetFullPath(OldName),true);
+	wxConfig::Get()->Write(GetFullPath(NewName),noteVal);
 	return true;
 }
 
 bool AgenderCal::HasNote(wxString note)
 {
-	wxString Fullnote(m_date.Format(_T("/%Y-%m-%d/")) + note);
-	return wxConfig::Get()->HasEntry(Fullnote);
+	return wxConfig::Get()->HasEntry(GetFullPath(note));
 }
 
+bool AgenderCal::MakeSticky(wxString note)
+ {
+	wxString stickyNote(wxString::Format(_T("%s/%s"),stickPath,note.c_str()));
+	wxConfig::Get()->Write(stickyNote,GetNoteText(note));
+	RmNote(note);
+	return true;
+}
+
+wxString AgenderCal::GetFullPath(wxString note)
+{
+	int indx = 0;
+	if (RmStickySimb(&note))
+	{
+		return wxString::Format(_T("%s/%s") ,stickPath,note.c_str());
+	}
+	return m_date.Format(_T("/%Y-%m-%d/")) + note;
+}
+
+bool AgenderCal::IsSticky(wxString note)
+{
+	if (RmStickySimb(&note))
+		return wxConfig::Get()->HasEntry(wxString::Format(_T("%s/%s"),stickPath,note.c_str()));
+	return false;
+
+}
+
+bool AgenderCal::UnStick(wxString note)
+{
+	wxString NormalNote(GetFullPath(note.BeforeLast('$')));
+	wxConfig::Get()->Write(NormalNote,GetNoteText(note));
+	RmNote(note);
+	return true;
+}
+
+bool AgenderCal::RmStickySimb(wxString* note)
+{
+	if (int indx = note->Find(stickSymb) != wxNOT_FOUND)
+	{
+		*note = note->BeforeLast('$');
+		return true;
+	}
+	return false;
+}
 

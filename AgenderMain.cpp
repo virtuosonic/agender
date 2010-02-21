@@ -40,7 +40,7 @@
 #include "AgenderCal.h"
 
 #if defined wxHAS_TASK_BAR_ICON
-	#include "AgenderTray.h"
+#include "AgenderTray.h"
 #endif
 
 #if wxUSE_JOYSTICK
@@ -67,7 +67,8 @@ BEGIN_EVENT_TABLE(AgenderFrame,wxFrame)
 	EVT_MENU(7003,AgenderFrame::OnYearSel)
 	EVT_MENU(7005,AgenderFrame::OnAutoStart)
 	EVT_MENU(ID_RENAME,AgenderFrame::OnMenuRename)
-	EVT_JOY_EVENTS(AgenderFrame::OnJoyMove)
+	EVT_MENU_RANGE(ID_NORMAL,ID_STICKYW,AgenderFrame::OnMenuNoteFlag)
+	EVT_JOY_MOVE(AgenderFrame::OnJoyMove)
 	//(*EventTable(AgenderFrame)
 	//*)
 END_EVENT_TABLE()
@@ -167,10 +168,10 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 	fndDlg = new wxFindReplaceDialog(this,fndData,_("Agender|Search Notes"),wxFR_NOUPDOWN|wxFR_NOMATCHCASE|wxFR_NOWHOLEWORD);
 	SearchMode = false;
 	//taskbaricon
-	#if defined wxHAS_TASK_BAR_ICON
+#if defined wxHAS_TASK_BAR_ICON
 	trayicon = new AgenderTray(this,schdl->Read(_T("/opacity"),255));
 	trayicon->SetIcon(Agender16x16_xpm,_T("Virtuosonic Agender"));
-	#endif//wxHAS_TASK_BAR_ICON
+#endif//wxHAS_TASK_BAR_ICON
 	SetTransparent(schdl->Read(_T("/opacity"),255));
 	//autostart
 	wxCommandEvent event;
@@ -203,9 +204,9 @@ AgenderFrame::~AgenderFrame()
 	//without this Agender would receive SIGSEGV #11
 	wxConfig::Set(NULL);
 	//delete
-	#if defined wxHAS_TASK_BAR_ICON
+#if defined wxHAS_TASK_BAR_ICON
 	delete trayicon;
-	#endif
+#endif
 	if (joy1)
 		delete joy1;
 	delete schdl;
@@ -242,7 +243,7 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& event)
 				"\n"
 				"You should have received a copy of the GNU General Public License\n"
 				"along with Agender. If not, see <http://www.gnu.org/licenses/>."));
-	info.SetVersion(_T("1.1.0"));
+	info.SetVersion(_T("1.1.1"));
 	info.SetCopyright(_T("Copyright (C) 2009-2010 Gabriel Espinoza"));
 	info.SetIcon(agender_xpm);
 
@@ -284,14 +285,14 @@ void AgenderFrame::OnListBox1Select(wxCommandEvent& event)
 
 void AgenderFrame::OnBtnNuevoClick(wxCommandEvent& event)
 {
-	// TODO (virtuoso#1#): compatibilidad wx-2.9: no aparece el wxTextDialog, sera en bug en wx
+	// TODO (virtuoso#1#): compatibilidad wx-2.9: no aparece el wxTextEntryDialog, sera en bug en wx
 	wxTextEntryDialog dlg(this,_("To-Do Title"),_("New To-Do"));
 	if (dlg.ShowModal() == wxID_OK  && dlg.GetValue() != wxEmptyString)
 	{
-		if (dlg.GetValue().Find(_T("$@")) != wxNOT_FOUND)
+		if (dlg.GetValue().Find(_T("$(")) != wxNOT_FOUND)
 		{
-			wxMessageBox(_("Expresion '$@' reserved for Agender, please use another name"),
-					_T("Error"),wxICON_ERROR,this);
+			wxMessageBox(_("Expresion '$(' reserved for Agender, please use another name"),
+					 _T("Error"),wxICON_ERROR,this);
 			return;
 		}
 		else if (a_cal->HasNote(dlg.GetValue()))
@@ -468,7 +469,7 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 #endif
 	}
 	else
-	///remove
+		///remove
 #if defined __UNIX__ && !defined __APPLE__
 		if (wxFileExists(desktopFile))
 			wxRemoveFile(desktopFile);
@@ -490,7 +491,9 @@ void AgenderFrame::OnListBox1DClick(wxCommandEvent& event)
 	noteMenu->AppendSeparator();
 	noteMenu->AppendRadioItem(ID_NORMAL,_("Normal"));
 	noteMenu->AppendRadioItem(ID_STICKY,_("Sticky"));
-	noteMenu->AppendRadioItem(ID_STICKYW,_("Sticky weekday"));
+	//noteMenu->AppendRadioItem(ID_STICKYW,_("Sticky weekday"));
+	if (a_cal->IsSticky(ListBox1->GetStringSelection()))
+		noteMenu->Check(ID_STICKY,true);
 	ListBox1->PopupMenu(noteMenu);
 }
 
@@ -499,8 +502,15 @@ void AgenderFrame::OnMenuNoteFlag(wxCommandEvent& event)
 	switch (event.GetId())
 	{
 		case ID_NORMAL:
+			a_cal->UnStick(ListBox1->GetStringSelection());
+			ListBox1->SetString(ListBox1->GetSelection(),ListBox1->GetStringSelection().BeforeLast('$'));
+			MarkDays();
 			break;
 		case ID_STICKY:
+			a_cal->MakeSticky(ListBox1->GetStringSelection());
+			ListBox1->SetString(ListBox1->GetSelection(),wxString::Format(_("%s%s"),
+						  ListBox1->GetStringSelection().c_str(),stickSymb));
+			MarkDays();
 			break;
 		case ID_STICKYW:
 			break;
