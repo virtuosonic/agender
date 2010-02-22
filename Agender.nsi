@@ -64,6 +64,8 @@ Section "Principal" SEC01
   File "es/Agender.mo"
   SetOutPath "$INSTDIR\de"
   File "de/Agender.mo"
+  SetOutPath "$INSTDIR\ja"
+  File "ja/Agender.mo"
 SectionEnd
 
 Section -AdditionalIcons
@@ -104,7 +106,14 @@ Section Uninstall
   Delete "$SMPROGRAMS\Agender\Website.lnk"
   Delete "$DESKTOP\Agender.lnk"
   Delete "$SMPROGRAMS\Agender\Agender.lnk"
-
+  ;remove translations
+  Delete "$INSTDIR\es\Agender.mo"
+  Delete "$INSTDIR\de\Agender.mo"
+  Delete "$INSTDIR\ja\Agender.mo"
+  RMDir "$INSTDIR\es"
+  RMDir "$INSTDIR\de"
+  RMDir "$INSTDIR\ja"
+  ;remove our dir
   RMDir "$SMPROGRAMS\Agender"
   RMDir "$INSTDIR"
 
