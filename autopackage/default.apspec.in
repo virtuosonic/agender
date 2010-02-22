@@ -20,19 +20,21 @@ AutopackageTarget: 1.4
 # InterfaceVersion: 0.0
 
 [BuildPrepare]
-prepareBuild
+prepareBuild --with-wx-config=$HOME/C++/wxWidgets-2.8.10/wx-config
 
 [BuildUnprepare]
 unprepareBuild
 
 [Globals]
 # export MY_VAR=1
+#export APKG_BUILD_SKIP_CONFIGURE=1
+#export APKG_BUILD_SKIP_MAKE=1
 
 [Imports]
 echo '*' | import
 
 [Prepare]
-require @wxwidgets.org/wxgtk 28
+#require @wxwidgets.org/wxgtk 28
 removeOwningPackage $PREFIX/bin/Agender
 
 [Install]

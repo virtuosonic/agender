@@ -34,7 +34,8 @@ license GPL v3
 		<set var="EXE_NAME" cond="PLATFORM_WIN32=='1'">Agender.exe</set>
 		<set var="EXE_NAME" cond="PLATFORM_WIN32=='0'">Agender</set>
 		<!-- compress with UPX!!!-->
-		<postlink-command cond="USE_UPX=='1'">upx --ultra-brute $(EXE_NAME)</postlink-command>
+		<!-- <postlink-command cond="USE_UPX=='1'">upx $(EXE_NAME)</postlink-command>
+		-->
   	</exe>
   	<!-- freedesktop shortcut, for gnome, kde and some other desktops-->
   	<data-files id="shortcut">
@@ -69,6 +70,7 @@ license GPL v3
   		<depends>clean</depends>
   		<depends>srcdist</depends>
   		<depends>esdist</depends>
+  		<depends>jadist</depends>
   		<depends>dedist</depends>
   		<depends>wxsmithdist</depends>
   		<depends>apspecdist</depends>
@@ -87,7 +89,7 @@ license GPL v3
 	<!-- copy src files-->
   	<copy-files id="srcdist">
   		<srcdir>$(SRCDIR)</srcdir>
-  		<files>*.h *.cpp *.rc *.xpm *.png *.ico *.bkl *.nsi *.cbp configure.in license.txt Readme.txt</files>
+  		<files>*.h *.cpp *.rc *.xpm *.png *.ico *.bkl *.nsi *.cbp *.desktop configure.in license.txt Readme.txt</files>
   		<dstdir>$(SRCDIR)/Agender/</dstdir>
   	</copy-files>
   	<!--es-->
@@ -95,6 +97,11 @@ license GPL v3
   		<srcdir>$(SRCDIR)</srcdir>
   		<files>es/*</files>
   		<dstdir>$(SRCDIR)/Agender/es/</dstdir>
+  	</copy-files>
+  	<copy-files id="jadist">
+  		<srcdir>$(SRCDIR)</srcdir>
+  		<files>ja/*</files>
+  		<dstdir>$(SRCDIR)/Agender/ja/</dstdir>
   	</copy-files>
   	<!-- de -->
   	<copy-files id="dedist">
