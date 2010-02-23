@@ -172,6 +172,8 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 	trayicon = new AgenderTray(this,schdl->Read(_T("/opacity"),255));
 	trayicon->SetIcon(Agender16x16_xpm,_T("Virtuosonic Agender"));
 #endif//wxHAS_TASK_BAR_ICON
+	SetSize(schdl->Read(_T("/x"),wxDefaultPosition.x),schdl->Read(_T("/y"),wxDefaultPosition.y),
+		schdl->Read(_T("/w"),wxDefaultSize.x),schdl->Read(_T("/h"),wxDefaultSize.y));
 	SetTransparent(schdl->Read(_T("/opacity"),255));
 	//autostart
 	wxCommandEvent event;
@@ -199,6 +201,10 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 
 AgenderFrame::~AgenderFrame()
 {
+	schdl->Write(_T("/x"),GetPosition().x);
+	schdl->Write(_T("/y"),GetPosition().y);
+	schdl->Write(_T("/w"),GetSize().x);
+	schdl->Write(_T("/h"),GetSize().y);
 	wxFileOutputStream ofile(schFile);
 	schdl->Save(ofile);
 	//without this Agender would receive SIGSEGV #11
@@ -218,6 +224,10 @@ AgenderFrame::~AgenderFrame()
 void AgenderFrame::OnClose(wxCloseEvent& event)
 {
 	Hide();
+	schdl->Write(_T("/x"),GetPosition().x);
+	schdl->Write(_T("/y"),GetPosition().y);
+	schdl->Write(_T("/w"),GetSize().x);
+	schdl->Write(_T("/h"),GetSize().y);
 	wxFileOutputStream ofile(schFile);
 	schdl->Save(ofile);
 }
