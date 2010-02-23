@@ -243,7 +243,7 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& event)
 				"\n"
 				"You should have received a copy of the GNU General Public License\n"
 				"along with Agender. If not, see <http://www.gnu.org/licenses/>."));
-	info.SetVersion(_T("1.1.1"));
+	info.SetVersion(_T("1.1.2"));
 	info.SetCopyright(_T("Copyright (C) 2009-2010 Gabriel Espinoza"));
 	info.SetIcon(agender_xpm);
 
@@ -523,11 +523,26 @@ void AgenderFrame::OnMenuNoteFlag(wxCommandEvent& event)
 void AgenderFrame::OnMenuRename(wxCommandEvent& event)
 {
 	wxString oldName(ListBox1->GetStringSelection());
+	bool sticky = false;
+	if (oldName.Find(stickSymb) != wxNOT_FOUND)
+	{
+		oldName = oldName.BeforeLast('$');
+		sticky=true;
+	}
 	wxTextEntryDialog dlg(this,_("New name"),_("Rename"),oldName);
 	if (dlg.ShowModal() ==wxID_OK && !oldName.IsSameAs(dlg.GetValue().c_str(),true))
 	{
-		a_cal->RenameNote(ListBox1->GetStringSelection(),dlg.GetValue());
-		ListBox1->SetString(ListBox1->GetSelection(),dlg.GetValue());
+
+		if (sticky)
+		{
+			a_cal->RenameNote(ListBox1->GetStringSelection(),dlg.GetValue()+stickSymb);
+			ListBox1->SetString(ListBox1->GetSelection(),dlg.GetValue()+stickSymb);
+		}
+		else
+		{
+			a_cal->RenameNote(ListBox1->GetStringSelection(),dlg.GetValue());
+			ListBox1->SetString(ListBox1->GetSelection(),dlg.GetValue());
+		}
 	}
 }
 

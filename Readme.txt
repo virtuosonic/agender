@@ -1,20 +1,20 @@
 /******************************************************************************
-*                   Agender, a crossplataform schedule tool
+*                   Agender, a cross-platform schedule tool
 ******************************************************************************/
 
 Web:
 ====
-    http://agender.souceforge.net
+    http://agender.sourceforge.net
     http://sourceforge.net/projects/agender
 
 Intro:
 ======
     Thanks for trying this software, Agender is a small tool for
-    writing your schedule, it is  a crossplataform software and should
+    writing your schedule, it is  a cross-platform software and should
     compile and run on X, Windows, Mac OSX and someother platforms.
 
     Its creation started on 21 november 2008, I created Agender because
-    I didn't want to use software like M$ Works or evolution, they were
+    I didn't want to use software like M$ Works or Evolution, they were
     so big, complicated, and sometimes slow, not only talking of
     processor usage but in usage flow.
 
@@ -50,7 +50,7 @@ Dependencies:
 
     Or for cross-compiling to win32
 
-        yum install minggw32-gcc-c++
+        yum install mingw32-gcc-c++
 
 Compiling & Installing:
 =======================
@@ -64,7 +64,7 @@ Compiling & Installing:
             $su -c 'make install'
 
     $(Agender) is the directory where this file is (unless you have
-    move it), don't type the $ at the start of every line.
+    move it:), don't type the $ at the start of every line.
 
     If you aren't using a un*x operating system, there is an archive
     containing the makefiles and project files for several compilers
@@ -98,9 +98,9 @@ Hacking:
     file does.
 
     AgenderApp.{cpp,h}
-        This files include the application class, its the equivalent 
-	to the main function, it initialize some things, like the 
-        locale, command line parsing, checking for other instances, 
+        This files include the application class, its the equivalent
+	to the main function, it initialize some things, like the
+        locale, command line parsing, checking for other instances,
         creating the main window, and creating the interprocess
         communications server. It also cleans up this things.
 
@@ -120,9 +120,9 @@ Hacking:
     AgenderIPC.{cpp,h}
         AgenderServer is used for some interprocess communication, when you
         start Agender it will check for another instances of Agender, if it
-        founds one it will create a wxClient that will connect with 
-        AgenderServer and AgenderServer will show the main window of the 
-        instance that was already running, this should be completely 
+        founds one it will create a wxClient that will connect with
+        AgenderServer and AgenderServer will show the main window of the
+        instance that was already running, this should be completely
         invisible to the user, like if it where magic ;)
 
     AgenderDnd.{cpp,h}
@@ -138,7 +138,7 @@ Hacking:
 Translating/i18n:
 =================
     The wxWidgets approach to i18n closely follows the GNU gettext
-    package. I use and recommend the Poedit program for translating
+    package. The use of Poedit is recommend for translating
     messages catalogs, you can use a simple text editor and the
     command line tools, but Poedit is more easy to use.
 
@@ -151,9 +151,9 @@ TODO:
 =====
     -Clipboard/Drag & Drop support
     -Search
-    -Sticky notes: view on all days
     -Sticky weekday notes
     -More translations
+    -Re-structure project's tree
 
 Distro Makers:
 ==============
