@@ -59,7 +59,7 @@ AgenderTray::AgenderTray(wxFrame* frame,long colalpha)
 
 void AgenderTray::OnLeft(wxTaskBarIconEvent& event)
 {
-	if (frame->IsShown())
+	if (frame->IsShownOnScreen())
 	{
 		frame->Hide();
 	}
