@@ -14,12 +14,6 @@
 #include <wx/arrstr.h>
 #include <wx/dynarray.h>
 
-enum {
-	AG_NORMAL,
-	AG_STICKY,
-	AG_STICKYW
-};
-
 static const wxChar* stickPath = _T("/sticky");
 static const wxChar* stickSymb = _T("$(sticky)");
 

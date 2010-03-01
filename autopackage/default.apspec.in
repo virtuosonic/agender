@@ -6,7 +6,7 @@ Maintainer: Gabriel Espinoza <virtuosonic@users.sourceforge.net>
 Packager: Gabriel Espinoza <virtuosonic@users.sourceforge.net>
 Summary: Agender is a cross-plataform schedule tool
 URL: http://agender.sourceforge.net/
-License: GNU General Public License
+License: GNU General Public License version 3
 SoftwareVersion: @VERSION@
 Repository: http://agender.sourceforge.net/autopackage/agender.xml
 PackageVersion: 1
@@ -18,6 +18,11 @@ AutopackageTarget: 1.4
 # autopackage-dev if you aren't sure about interface versioning.
 #
 # InterfaceVersion: 0.0
+
+[Description]
+Agender is a small cross-platform schedule tool where you asociate some notes
+with a date or with no date in particular if  you mark the note as sticky, you
+simply start it  and it will create a taskbar icon and stay in the background.
 
 [BuildPrepare]
 prepareBuild --with-wx-config=$HOME/C++/wxWidgets-2.8.10/wx-config

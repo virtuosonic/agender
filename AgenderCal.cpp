@@ -140,7 +140,6 @@ bool AgenderCal::MakeSticky(wxString note)
 
 wxString AgenderCal::GetFullPath(wxString note)
 {
-	int indx = 0;
 	if (RmStickySimb(&note))
 	{
 		return wxString::Format(_T("%s/%s") ,stickPath,note.c_str());
@@ -166,7 +165,7 @@ bool AgenderCal::UnStick(wxString note)
 
 bool AgenderCal::RmStickySimb(wxString* note)
 {
-	if (int indx = note->Find(stickSymb) != wxNOT_FOUND)
+	if (note->Find(stickSymb) != wxNOT_FOUND)
 	{
 		*note = note->BeforeLast('$');
 		return true;

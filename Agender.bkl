@@ -34,7 +34,9 @@ license GPL v3
 		<set var="EXE_NAME" cond="PLATFORM_WIN32=='1'">Agender.exe</set>
 		<set var="EXE_NAME" cond="PLATFORM_WIN32=='0'">Agender</set>
 		<!-- compress with UPX!!!-->
-		<!-- <postlink-command cond="USE_UPX=='1'">upx $(EXE_NAME)</postlink-command>
+		<!-- this was  removed because when building with autopackage the process was killed when being run
+		if not using apg++ uncoment this
+		<postlink-command cond="USE_UPX=='1'">upx $(EXE_NAME)</postlink-command>
 		-->
   	</exe>
   	<!-- freedesktop shortcut, for gnome, kde and some other desktops-->

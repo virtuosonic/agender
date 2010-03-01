@@ -2,7 +2,7 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="UNIX" />
 	<File name="Agender.bkl" open="0" top="0" tabpos="2">
-		<Cursor position="1167" topLine="21" />
+		<Cursor position="1960" topLine="49" />
 	</File>
 	<File name="Agender.desktop" open="0" top="0" tabpos="2">
 		<Cursor position="142" topLine="0" />
@@ -10,20 +10,20 @@
 	<File name="Agender.nsi" open="0" top="0" tabpos="3">
 		<Cursor position="3280" topLine="0" />
 	</File>
-	<File name="AgenderApp.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="2681" topLine="84" />
+	<File name="AgenderApp.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="553" topLine="18" />
 	</File>
 	<File name="AgenderApp.h" open="0" top="0" tabpos="2">
 		<Cursor position="465" topLine="10" />
 	</File>
-	<File name="AgenderCal.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="413" topLine="5" />
+	<File name="AgenderCal.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="3363" topLine="136" />
 	</File>
-	<File name="AgenderCal.h" open="0" top="0" tabpos="3">
-		<Cursor position="705" topLine="30" />
+	<File name="AgenderCal.h" open="0" top="0" tabpos="2">
+		<Cursor position="586" topLine="10" />
 	</File>
 	<File name="AgenderDnd.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="331" topLine="0" />
+		<Cursor position="776" topLine="26" />
 	</File>
 	<File name="AgenderDnd.h" open="0" top="0" tabpos="3">
 		<Cursor position="433" topLine="0" />
@@ -52,8 +52,8 @@
 	<File name="Readme.txt" open="0" top="0" tabpos="3">
 		<Cursor position="5856" topLine="141" />
 	</File>
-	<File name="autopackage/default.apspec.in" open="0" top="0" tabpos="1">
-		<Cursor position="1252" topLine="26" />
+	<File name="autopackage/default.apspec.in" open="1" top="1" tabpos="1">
+		<Cursor position="1048" topLine="0" />
 	</File>
 	<File name="configure.in" open="0" top="0" tabpos="1">
 		<Cursor position="322" topLine="0" />

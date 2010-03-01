@@ -40,6 +40,7 @@
 				<Option compiler="gcc" />
 				<Option use_console_runner="0" />
 				<Compiler>
+					<Add option="-Wall" />
 					<Add option="-g" />
 					<Add option="`wx-config --cflags`" />
 				</Compiler>
@@ -59,7 +60,10 @@
 		<Unit filename="AgenderApp.h" />
 		<Unit filename="AgenderCal.cpp" />
 		<Unit filename="AgenderCal.h" />
-		<Unit filename="AgenderDnd.cpp" />
+		<Unit filename="AgenderDnd.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="AgenderDnd.h" />
 		<Unit filename="AgenderIPC.cpp" />
 		<Unit filename="AgenderIPC.h" />
