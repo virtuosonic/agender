@@ -11,6 +11,8 @@
 #include <wx/textfile.h>
 #include <wx/log.h>
 
+const wxChar* AgenderCal::stickPath = _T("/sticky");
+
 AgenderCal::AgenderCal(wxDateTime date)
 {
 	SetDate(date);

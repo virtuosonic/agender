@@ -17,10 +17,10 @@
 		<Cursor position="465" topLine="10" />
 	</File>
 	<File name="AgenderCal.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="3363" topLine="136" />
+		<Cursor position="399" topLine="9" />
 	</File>
 	<File name="AgenderCal.h" open="0" top="0" tabpos="2">
-		<Cursor position="586" topLine="10" />
+		<Cursor position="1181" topLine="26" />
 	</File>
 	<File name="AgenderDnd.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="776" topLine="26" />
@@ -35,7 +35,7 @@
 		<Cursor position="331" topLine="15" />
 	</File>
 	<File name="AgenderMain.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="9245" topLine="237" />
+		<Cursor position="10185" topLine="240" />
 	</File>
 	<File name="AgenderMain.h" open="0" top="0" tabpos="3">
 		<Cursor position="2344" topLine="83" />
@@ -44,19 +44,19 @@
 		<Cursor position="126" topLine="0" />
 	</File>
 	<File name="AgenderTray.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="1462" topLine="54" />
+		<Cursor position="560" topLine="15" />
 	</File>
 	<File name="AgenderTray.h" open="0" top="0" tabpos="4">
-		<Cursor position="125" topLine="9" />
+		<Cursor position="125" topLine="18" />
 	</File>
 	<File name="Readme.txt" open="0" top="0" tabpos="3">
 		<Cursor position="5856" topLine="141" />
 	</File>
-	<File name="autopackage/default.apspec.in" open="1" top="1" tabpos="1">
+	<File name="autopackage/default.apspec.in" open="0" top="0" tabpos="1">
 		<Cursor position="1048" topLine="0" />
 	</File>
-	<File name="configure.in" open="0" top="0" tabpos="1">
-		<Cursor position="322" topLine="0" />
+	<File name="configure.in" open="1" top="1" tabpos="1">
+		<Cursor position="107" topLine="0" />
 	</File>
 	<File name="license.txt" open="0" top="0" tabpos="3">
 		<Cursor position="554" topLine="0" />

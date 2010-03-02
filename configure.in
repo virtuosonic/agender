@@ -1,5 +1,5 @@
 AC_PREREQ(2.53)
-AC_INIT(Agender,1.1.2)
+AC_INIT(Agender,1.1.3)
 AC_CANONICAL_SYSTEM
 AC_PROG_CXX
 AM_OPTIONS_WXCONFIG
@@ -9,7 +9,7 @@ m4_include(autoconf/bakefile-dllar.m4)
 m4_include(autoconf/bakefile-lang.m4)
 m4_include(autoconf/bakefile.m4)
 AC_BAKEFILE([m4_include(autoconf_inc.m4)])
-AC_SUBST(VERSION,1.1.2)
+AC_SUBST(VERSION,1.1.3)
 AC_CHECK_PROG(HAS_UPX,upx,yes,no)
 AC_CONFIG_FILES([Makefile
 	autopackage/default.apspec

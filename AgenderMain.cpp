@@ -253,7 +253,7 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& event)
 				"\n"
 				"You should have received a copy of the GNU General Public License\n"
 				"along with Agender. If not, see <http://www.gnu.org/licenses/>."));
-	info.SetVersion(_T("1.1.2"));
+	info.SetVersion(_T("1.1.3"));
 	info.SetCopyright(_T("Copyright (C) 2009-2010 Gabriel Espinoza"));
 	info.SetIcon(agender_xpm);
 
@@ -358,8 +358,15 @@ void AgenderFrame::MarkDays()
 	for (unsigned int i = 0; i < days.GetCount(); i++)
 	{
 		wxCalendarDateAttr* note_attr = new wxCalendarDateAttr;
-		note_attr->SetTextColour(wxColour(schdl->Read(_T("/notescolour"),_T("#ff0000"))));
+		note_attr->SetTextColour(wxColour(schdl->Read(_T("/notescolour"),_T("#00FF00"))));
 		CalendarCtrl1->SetAttr(days[i],note_attr);
+	}
+	if (wxDateTime::Now().GetMonth() == CalendarCtrl1->GetDate().GetMonth())
+	{
+		wxCalendarDateAttr* today_attr = new wxCalendarDateAttr;
+		today_attr->SetBorder(wxCAL_BORDER_ROUND);
+		today_attr->SetBorderColour(wxColour(schdl->Read(_T("/notescolour"),_T("#00FF00"))));
+		CalendarCtrl1->SetAttr(wxDateTime::Now().GetDay(),today_attr);
 	}
 }
 

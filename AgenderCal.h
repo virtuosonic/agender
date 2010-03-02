@@ -14,8 +14,8 @@
 #include <wx/arrstr.h>
 #include <wx/dynarray.h>
 
-static const wxChar* stickPath = _T("/sticky");
 static const wxChar* stickSymb = _T("$(sticky)");
+
 
 class AgenderCal
 {
@@ -40,6 +40,7 @@ class AgenderCal
 		wxDateTime m_date;
 		wxString GetFullPath(wxString note);
 		bool RmStickySimb(wxString* note);
+		static const wxChar* stickPath;
 };
 
 #endif // AGENDERCAL_H_INCLUDED
