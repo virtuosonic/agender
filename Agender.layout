@@ -2,7 +2,7 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="UNIX" />
 	<File name="Agender.bkl" open="0" top="0" tabpos="2">
-		<Cursor position="1960" topLine="49" />
+		<Cursor position="1701" topLine="76" />
 	</File>
 	<File name="Agender.desktop" open="0" top="0" tabpos="2">
 		<Cursor position="142" topLine="0" />
@@ -34,8 +34,8 @@
 	<File name="AgenderIPC.h" open="0" top="0" tabpos="3">
 		<Cursor position="331" topLine="15" />
 	</File>
-	<File name="AgenderMain.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="10185" topLine="240" />
+	<File name="AgenderMain.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="16665" topLine="377" />
 	</File>
 	<File name="AgenderMain.h" open="0" top="0" tabpos="3">
 		<Cursor position="2344" topLine="83" />
@@ -55,8 +55,8 @@
 	<File name="autopackage/default.apspec.in" open="0" top="0" tabpos="1">
 		<Cursor position="1048" topLine="0" />
 	</File>
-	<File name="configure.in" open="1" top="1" tabpos="1">
-		<Cursor position="107" topLine="0" />
+	<File name="configure.in" open="0" top="0" tabpos="1">
+		<Cursor position="90" topLine="0" />
 	</File>
 	<File name="license.txt" open="0" top="0" tabpos="3">
 		<Cursor position="554" topLine="0" />

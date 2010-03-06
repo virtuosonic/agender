@@ -12,7 +12,8 @@ license GPL v3
 		<default-value>no</default-value>
 	</option>
 	<set var="USE_UPX" cond="HAS_UPX==yes">1</set>
-	<!-- build executable-->
+	<set var="VERSION">1.1.3</set>
+	<!-- build binary-->
 	<exe id="Agender" template="wx-lib">
 		<app-type>gui</app-type>
 		<!-- source files-->
@@ -30,14 +31,8 @@ license GPL v3
 		<!--resource file -->
 		<win32-res>resource.rc</win32-res>
 		<install-to>$(BINDIR)</install-to>
-		<!-- Only Windows has diferent exe name-->
-		<set var="EXE_NAME" cond="PLATFORM_WIN32=='1'">Agender.exe</set>
-		<set var="EXE_NAME" cond="PLATFORM_WIN32=='0'">Agender</set>
 		<!-- compress with UPX!!!-->
-		<!-- this was  removed because when building with autopackage the process was killed when being run
-		if not using apg++ uncoment this
-		<postlink-command cond="USE_UPX=='1'">upx $(EXE_NAME)</postlink-command>
-		-->
+		<postlink-command cond="USE_UPX=='1'">upx $(id)$(EXEEXT)</postlink-command>
   	</exe>
   	<!-- freedesktop shortcut, for gnome, kde and some other desktops-->
   	<data-files id="shortcut">
@@ -70,61 +65,61 @@ license GPL v3
   	<!-- lets build a package -->
   	<action id="dist">
   		<depends>clean</depends>
-  		<depends>srcdist</depends>
-  		<depends>esdist</depends>
-  		<depends>jadist</depends>
-  		<depends>dedist</depends>
-  		<depends>wxsmithdist</depends>
-  		<depends>apspecdist</depends>
-  		<depends>autoconfdist</depends>
   		<!-- -->
   		<command>cd $(SRCDIR)/Agender;bakefile -I/usr/share/bakefile/ -I/usr/local/share/bakefile/ -f autoconf Agender.bkl</command>
   		<command>cd $(SRCDIR)/Agender;bakefilize --copy</command>
   		<command>cd $(SRCDIR)/Agender;aclocal</command>
   		<command>cd $(SRCDIR)/Agender;autoconf</command>
   		<!--tarball -->
-		<command>tar -jcf Agender.tar.bz2 Agender/</command>
+		<command>tar -jcf Agender-$(VERSION).tar.bz2 Agender/</command>
   		<!-- cleanup -->
   		<command>rm -rf $(SRCDIR)/Agender</command>
   	</action>
-  	<!-- make a package -->
+  	<!-- TODO instead of all this chaos use something like copy-files-tree -->
 	<!-- copy src files-->
   	<copy-files id="srcdist">
+  		<dependency-of>dist</dependency-of>
   		<srcdir>$(SRCDIR)</srcdir>
   		<files>*.h *.cpp *.rc *.xpm *.png *.ico *.bkl *.nsi *.cbp *.desktop configure.in license.txt Readme.txt</files>
   		<dstdir>$(SRCDIR)/Agender/</dstdir>
   	</copy-files>
   	<!--es-->
   	<copy-files id="esdist">
+  		<dependency-of>dist</dependency-of>
   		<srcdir>$(SRCDIR)</srcdir>
   		<files>es/*</files>
   		<dstdir>$(SRCDIR)/Agender/es/</dstdir>
   	</copy-files>
   	<copy-files id="jadist">
+  		<dependency-of>dist</dependency-of>
   		<srcdir>$(SRCDIR)</srcdir>
   		<files>ja/*</files>
   		<dstdir>$(SRCDIR)/Agender/ja/</dstdir>
   	</copy-files>
   	<!-- de -->
   	<copy-files id="dedist">
+  		<dependency-of>dist</dependency-of>
   		<srcdir>$(SRCDIR)</srcdir>
   		<files>de/*</files>
   		<dstdir>$(SRCDIR)/Agender/de/</dstdir>
   	</copy-files>
   	<!-- wxsmith -->
   	<copy-files id="wxsmithdist">
+  		<dependency-of>dist</dependency-of>
   		<srcdir>$(SRCDIR)</srcdir>
   		<files>wxsmith/*</files>
   		<dstdir>$(SRCDIR)/Agender/wxsmith/</dstdir>
   	</copy-files>
   	<!-- autopackage -->
   	<copy-files id="apspecdist">
+  		<dependency-of>dist</dependency-of>
   		<srcdir>$(SRCDIR)</srcdir>
   		<files>autopackage/*.in</files>
   		<dstdir>$(SRCDIR)/Agender/autopackage/</dstdir>
   	</copy-files>
   	<!-- autoconf -->
   	<copy-files id="autoconfdist">
+  		<dependency-of>dist</dependency-of>
   		<srcdir>$(SRCDIR)</srcdir>
   		<files>autoconf/*</files>
   		<dstdir>$(SRCDIR)/Agender/autoconf/</dstdir>

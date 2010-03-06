@@ -458,7 +458,7 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 	return;
 #endif
 	//add or remove
-	bool autostart;
+	bool autostart=false;
 	schdl->Read(_T("/autostart"),&autostart,false);
 	if (autostart)
 	{
@@ -474,7 +474,6 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 			desktop.AddLine(_T("Name=Agender"));
 			desktop.AddLine(_T("Exec=Agender"));
 			desktop.AddLine(_T("Icon=Agender"));
-			desktop.AddLine(_T("Comment="));
 			desktop.Write(wxTextFileType_Unix);
 			desktop.Close();
 		}
