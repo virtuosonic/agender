@@ -326,8 +326,7 @@ void AgenderFrame::OnBtnElimClick(wxCommandEvent& event)
 		ListBox1->Delete(ListBox1->GetSelection());
 		TextCtrl1->ChangeValue(wxEmptyString);
 		TextCtrl1->Disable();
-		if ( ListBox1->GetCount() < 1)
-			MarkDays();
+		MarkDays();
 	}
 }
 
