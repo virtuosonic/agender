@@ -32,7 +32,7 @@ license GPL v3
 		<win32-res>resource.rc</win32-res>
 		<install-to>$(BINDIR)</install-to>
 		<!-- compress with UPX!!!-->
-		<postlink-command cond="USE_UPX=='1'">upx $(id)$(EXEEXT)</postlink-command>
+		<!-- <postlink-command cond="USE_UPX=='1'">upx $(id)$(EXEEXT)</postlink-command> -->
   	</exe>
   	<!-- freedesktop shortcut, for gnome, kde and some other desktops-->
   	<data-files id="shortcut">

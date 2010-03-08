@@ -66,9 +66,10 @@ Compiling & Installing:
     $(Agender) is the directory where this file is (unless you have
     move it:), don't type the $ at the start of every line.
 
-    If you aren't using a un*x operating system, there is an archive
-    containing the makefiles and project files for several compilers
-    you can find it at http://sourceforge.net/projects/agender/files
+    If you aren't using a un*x operating system, you can generate 
+    makefiles and project file for several compiler using bakefile
+    for example:
+        bakefile -f gnu Agender.bkl
 Bugs:
 =====
     I don't call them that way, i call them "advanced user features".
