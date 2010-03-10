@@ -253,7 +253,7 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& event)
 				"\n"
 				"You should have received a copy of the GNU General Public License\n"
 				"along with Agender. If not, see <http://www.gnu.org/licenses/>."));
-	info.SetVersion(_T("1.1.3"));
+	info.SetVersion(_T("1.1.4"));
 	info.SetCopyright(_T("Copyright (C) 2009-2010 Gabriel Espinoza"));
 	info.SetIcon(agender_xpm);
 

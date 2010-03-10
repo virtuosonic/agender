@@ -65,8 +65,6 @@ wxArrayString AgenderCal::GetNotes()
 		}
 		wxConfig::Get()->SetPath(_T("/"));
 	}
-	// TODO (virtuoso#1#): declare and make use of constant in some wxString that need it
-
 	return notes;
 }
 
@@ -89,8 +87,34 @@ wxArrayString AgenderCal::Find(wxString FindString)
 
 wxArrayInt AgenderCal::GetDaysWithNotes()
 {
+	//whe have two diferent algorithms  for the same problem
 	wxArrayInt days;
-	// TODO (virtuoso#1#): agregar algoritmo analizando grupos
+	if (wxConfig::Get()->GetNumberOfGroups() < 30)
+	{
+		wxString group;
+		long indx=0;
+		if (wxConfig::Get()->GetFirstGroup(group,indx))
+		{
+			// TODO (virtuoso#1#): send this to a method?
+			if (m_date.Format(_T("%m")) == group.BeforeLast('-').AfterFirst('-'))
+			{
+				long i;
+				group.AfterLast('-').ToLong(&i);
+				days.Add(i);
+			}
+			while(wxConfig::Get()->GetNextGroup(group,indx))
+			{
+				if (m_date.Format(_T("%m")) == group.BeforeLast('-').AfterFirst('-'))
+				{
+					long i;
+					group.AfterLast('-').ToLong(&i);
+					days.Add(i);
+				}
+			}
+		}
+		return days;
+	}
+	//original algorithm
 	int count = 1 + wxDateTime::GetNumberOfDays(m_date.GetMonth(),m_date.GetYear());
 	wxString dateStr;
 	for (int i = 1; i < count; i++)
