@@ -51,4 +51,3 @@ wxConnectionBase * AgenderServer::OnAcceptConnection(const wxString& topic)
 	wxLogMessage(_T("Connection acepted"));
 	return new AgenderConnection(m_frame);
 }
-

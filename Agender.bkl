@@ -124,8 +124,9 @@ license GPL v3
   		<files>autoconf/*</files>
   		<dstdir>$(SRCDIR)/Agender/autoconf/</dstdir>
   	</copy-files>
+  	<!--
   	<copy-files-tree id="build-tree">
-  		<!-- <dependency-of>dist</dependency-of> -->
+  		<dependency-of>dist</dependency-of>
   		<srcdir>$(SRCDIR)</srcdir>
   		<dstdir>$(SRCDIR)/Agender/</dstdir>
   		<files>*.cpp *.h *.rc</files>
@@ -135,4 +136,5 @@ license GPL v3
   		<files>locale/de/* locale/es/* locale/ja/*</files>
   		<files>wxsmith/*</files>
   	</copy-files-tree id="build-tree">
+  	-->
 </makefile>

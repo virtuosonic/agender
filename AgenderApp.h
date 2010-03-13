@@ -6,7 +6,6 @@
  * Copyright: Gabriel Espinoza
  * License: GPL 3
  **************************************************************/
-
 #ifndef AGENDERAPP_H_INCLUDED
 #define AGENDERAPP_H_INCLUDED
 

@@ -89,6 +89,8 @@ wxArrayInt AgenderCal::GetDaysWithNotes()
 {
 	//whe have two diferent algorithms  for the same problem
 	wxArrayInt days;
+	//the first looks if the existing notes
+	//belong to the current month
 	if (wxConfig::Get()->GetNumberOfGroups() < 30)
 	{
 		wxString group;
@@ -114,7 +116,7 @@ wxArrayInt AgenderCal::GetDaysWithNotes()
 		}
 		return days;
 	}
-	//original algorithm
+	//the second (original) checks if there are notes for each date
 	int count = 1 + wxDateTime::GetNumberOfDays(m_date.GetMonth(),m_date.GetYear());
 	wxString dateStr;
 	for (int i = 1; i < count; i++)
@@ -138,7 +140,6 @@ wxArrayInt AgenderCal::GetDaysWithNotes()
 void AgenderCal::RmNote(wxString note)
 {
 	wxConfig::Get()->DeleteEntry(GetFullPath(note),true);
-	//wxLogMessage(_T("deleted : %s"),GetFullPath(note).c_str());
 }
 
 bool AgenderCal::RenameNote(wxString OldName,wxString NewName)

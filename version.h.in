@@ -1,8 +1,0 @@
-#ifndef VERSION_H
-#define VERSION_H
-
-static const char SVN_REVISION[] = "5";
-static const char SVN_DATE[] = "2009-10-16T01:21:55.578303Z";
-#define AgenderVersion "@VERSION@"
-
-#endif //VERSION_h

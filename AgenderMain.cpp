@@ -372,33 +372,6 @@ void AgenderFrame::MarkDays()
 void AgenderFrame::OnFind(wxFindDialogEvent& event)
 {
 	event.GetFindString();
-	wxArrayString found,groups;
-	wxString g_str;
-	long g_indx;
-	//
-	if (schdl->GetFirstGroup(g_str,g_indx))
-	{
-		while (schdl->GetNextGroup(g_str,g_indx))
-		{
-			wxString str;
-			long indx;
-			schdl->SetPath(g_str);
-			if (schdl->GetFirstEntry(str,indx))
-			{
-				if (str.Lower().Find(event.GetFindString().Lower()) != wxNOT_FOUND)
-					found.Add(wxString::Format(_T("%s/%s"),g_str.c_str(),str.c_str()));
-				while (schdl->GetNextEntry(str,indx))
-					if (str.Lower().Find(event.GetFindString().Lower()) != wxNOT_FOUND)
-						found.Add(wxString::Format(_T("%s/%s"),g_str.c_str(),str.c_str()));
-			}
-			schdl->SetPath(_T("/"));
-		}
-	}
-	//show result
-	fndDlg->Hide();
-	ListBox1->Clear();
-	ListBox1->Append(found);
-	SearchMode = true;
 }
 
 void AgenderFrame::OnSearch(wxCommandEvent& event)
@@ -465,7 +438,7 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 #if defined __UNIX__ && !defined __APPLE__
 		if (!wxFileExists(desktopFile))
 		{
-			wxLogMessage(_T("wrinting autostart file: %s"),desktopFile.c_str());
+			wxLogMessage(_T("writing autostart file: %s"),desktopFile.c_str());
 			wxTextFile desktop;
 			desktop.Create(desktopFile);
 			desktop.AddLine(_T("[Desktop Entry]"));
@@ -523,7 +496,7 @@ void AgenderFrame::OnMenuNoteFlag(wxCommandEvent& event)
 			break;
 		case ID_STICKY:
 			a_cal->MakeSticky(ListBox1->GetStringSelection());
-			ListBox1->SetString(ListBox1->GetSelection(),wxString::Format(_("%s%s"),
+			ListBox1->SetString(ListBox1->GetSelection(),wxString::Format(_T("%s%s"),
 						  ListBox1->GetStringSelection().c_str(),stickSymb));
 			MarkDays();
 			break;

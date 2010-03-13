@@ -66,7 +66,7 @@ Compiling & Installing:
     $(Agender) is the directory where this file is (unless you have
     move it:), don't type the $ at the start of every line.
 
-    If you aren't using a un*x operating system, you can generate 
+    If you aren't using a un*x operating system, you can generate
     makefiles and project file for several compiler using bakefile
     for example:
         bakefile -f gnu Agender.bkl
@@ -150,9 +150,12 @@ Translating/i18n:
 
 TODO:
 =====
+    -Undo/Redo!!!!!!!!!
     -Clipboard/Drag & Drop support
     -Search
     -Sticky weekday notes
+    -new file format in xml
+    -richtextctrl
     -More translations
     -Re-structure project's tree
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Agender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-09 20:33-0800\n"
+"POT-Creation-Date: 2010-03-12 18:10-0800\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Gabriel Espinoza <virtuosonic@users.sourceforge.net>\n"
 "Language-Team: \n"
@@ -13,35 +13,35 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: /home/virtuoso/C++/Agender\n"
 
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:77
+#: /home/virtuoso/C++/Agender/AgenderMain.cpp:83
 msgid "Agender"
 msgstr ""
 
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:91
+#: /home/virtuoso/C++/Agender/AgenderMain.cpp:97
 msgid "Add note"
 msgstr "Notiz hinzulfügen"
 
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:95
+#: /home/virtuoso/C++/Agender/AgenderMain.cpp:101
 msgid "Delete selection"
 msgstr "Auswahl löschen"
 
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:97
+#: /home/virtuoso/C++/Agender/AgenderMain.cpp:103
 msgid "About..."
 msgstr "Über..."
 
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:137
+#: /home/virtuoso/C++/Agender/AgenderMain.cpp:143
 msgid "Agender uses this file to save your schedule, don't delete it!"
 msgstr "Agender verwendet diese Datei an Ihre Termine speichern, löschen Sie es nicht!"
 
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:162
+#: /home/virtuoso/C++/Agender/AgenderMain.cpp:168
 msgid "Agender|Search Notes"
 msgstr "Agender|Notiz suchen"
 
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:213
+#: /home/virtuoso/C++/Agender/AgenderMain.cpp:242
 msgid "A cross-plataform schedule tool"
 msgstr "Ein Kreuz-plataform Zeitplan Tool"
 
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:215
+#: /home/virtuoso/C++/Agender/AgenderMain.cpp:244
 #, fuzzy
 msgid ""
 "Agender is free software; you can redistribute it and/or modify\n"
@@ -70,40 +70,36 @@ msgstr ""
 "Sie sollten eine Kopie der GNU General Public License erhalten haben\n"
 "zusammen mit Agender. Falls nicht, siehe <http://www.gnu.org/licenses/>."
 
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:270
+#: /home/virtuoso/C++/Agender/AgenderMain.cpp:299
 msgid "To-Do Title"
 msgstr "Notiz Titel"
 
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:270
+#: /home/virtuoso/C++/Agender/AgenderMain.cpp:299
 msgid "New To-Do"
 msgstr "Neue Notiz"
 
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:275
-msgid "Expresion '$@' reserved for Agender, please use another name"
+#: /home/virtuoso/C++/Agender/AgenderMain.cpp:304
+msgid "Expresion '$(' reserved for Agender, please use another name"
 msgstr ""
 
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:417
+#: /home/virtuoso/C++/Agender/AgenderMain.cpp:425
 msgid "AutoStart is only available under Windows  and Unix desktops that follow the freedesktop.org standards, if you add support for any other system, please send patches to the patch tracker in the Agender project page at http://sourceforge.net/projects/agender/"
 msgstr ""
 
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:471
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:498
+#: /home/virtuoso/C++/Agender/AgenderMain.cpp:478
+#: /home/virtuoso/C++/Agender/AgenderMain.cpp:520
 msgid "Rename"
 msgstr ""
 
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:473
+#: /home/virtuoso/C++/Agender/AgenderMain.cpp:480
 msgid "Normal"
 msgstr ""
 
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:474
+#: /home/virtuoso/C++/Agender/AgenderMain.cpp:481
 msgid "Sticky"
 msgstr ""
 
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:475
-msgid "Sticky weekday"
-msgstr ""
-
-#: /home/virtuoso/C++/Agender/AgenderMain.cpp:498
+#: /home/virtuoso/C++/Agender/AgenderMain.cpp:520
 msgid "New name"
 msgstr ""
 

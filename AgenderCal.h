@@ -14,8 +14,8 @@
 #include <wx/arrstr.h>
 #include <wx/dynarray.h>
 
+//i hate globals
 static const wxChar* stickSymb = _T("$(sticky)");
-
 
 class AgenderCal
 {
@@ -28,14 +28,14 @@ class AgenderCal
 		bool HasNote(wxString note);
 		wxString GetNoteText(wxString note);
 		void SetNoteText(wxString note,wxString text);
-		//pending
-		wxArrayString Find(wxString FindString);
 		wxArrayInt GetDaysWithNotes();
 		void RmNote(wxString note);
 		bool RenameNote(wxString OldName,wxString NewName);
 		bool MakeSticky(wxString note);
 		bool UnStick(wxString note);
 		bool IsSticky(wxString note);
+		//pending
+		wxArrayString Find(wxString FindString);
 	private:
 		wxDateTime m_date;
 		wxString GetFullPath(wxString note);

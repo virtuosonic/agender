@@ -18,9 +18,18 @@
 #include <iostream>
 #include <cstdlib>
 
+#if defined __UNIX__
+	#include <signal.h>
+#endif
+
 //(*AppHeaders
 #include <wx/image.h>
 //*)
+
+#ifdef __UNIX__
+//i hate globals
+void OnSignal(int sig);
+#endif
 
 IMPLEMENT_APP(AgenderApp);
 
@@ -82,6 +91,10 @@ bool AgenderApp::OnInit()
 		wxLogError(_T("server creation failed"));
 	if (cmd.Found(_T("nt")))
 		Frame->Show();
+	#ifdef __UNIX__
+	signal(SIGINT,&OnSignal);
+	signal(SIGTERM,&OnSignal);
+	#endif
 	#if !defined wxHAS_TASK_BAR_ICON
 	Frame->Show();
 	// TODO (virtuoso#1#): think in another way to exit agender
@@ -103,3 +116,12 @@ int AgenderApp::OnExit()
 	wxLogMessage(_T("Exiting: goodbye"));
 	return wxApp::OnExit();
 }
+
+#ifdef __UNIX__
+void OnSignal(int sig)
+{
+	wxLogMessage(_T("signal %i catched"),sig);
+	if (wxTheApp->GetTopWindow())
+		wxTheApp->GetTopWindow()->Destroy();
+}
+#endif
