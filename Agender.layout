@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="UNIX" />
-	<File name="Agender.bkl" open="1" top="0" tabpos="1">
-		<Cursor position="2471" topLine="75" />
+	<File name="Agender.bkl" open="0" top="0" tabpos="1">
+		<Cursor position="2027" topLine="55" />
 	</File>
 	<File name="Agender.desktop" open="0" top="0" tabpos="2">
-		<Cursor position="142" topLine="0" />
+		<Cursor position="15" topLine="0" />
 	</File>
 	<File name="Agender.nsi" open="0" top="0" tabpos="3">
 		<Cursor position="176" topLine="0" />
 	</File>
-	<File name="AgenderApp.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="3081" topLine="84" />
+	<File name="AgenderApp.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="2166" topLine="70" />
 	</File>
 	<File name="AgenderApp.h" open="0" top="0" tabpos="2">
-		<Cursor position="465" topLine="10" />
+		<Cursor position="337" topLine="7" />
 	</File>
 	<File name="AgenderCal.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="4650" topLine="181" />
@@ -35,7 +35,7 @@
 		<Cursor position="331" topLine="15" />
 	</File>
 	<File name="AgenderMain.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="18439" topLine="519" />
+		<Cursor position="17503" topLine="488" />
 	</File>
 	<File name="AgenderMain.h" open="0" top="0" tabpos="3">
 		<Cursor position="2344" topLine="83" />
@@ -49,8 +49,8 @@
 	<File name="AgenderTray.h" open="0" top="0" tabpos="4">
 		<Cursor position="125" topLine="18" />
 	</File>
-	<File name="Readme.txt" open="1" top="1" tabpos="2">
-		<Cursor position="5849" topLine="150" />
+	<File name="Readme.txt" open="0" top="0" tabpos="2">
+		<Cursor position="5849" topLine="129" />
 	</File>
 	<File name="autopackage/default.apspec.in" open="0" top="0" tabpos="1">
 		<Cursor position="388" topLine="0" />
@@ -63,8 +63,5 @@
 	</File>
 	<File name="resource.rc" open="0" top="0" tabpos="4">
 		<Cursor position="18" topLine="0" />
-	</File>
-	<File name="version.h.in" open="0" top="0" tabpos="0">
-		<Cursor position="101" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

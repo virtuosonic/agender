@@ -86,9 +86,6 @@
 			<Option compilerVar="WINDRES" />
 			<Option target="Release" />
 		</Unit>
-		<Unit filename="version.h.in">
-			<Option target="UNIX" />
-		</Unit>
 		<Unit filename="wxsmith/Agenderframe.wxs" />
 		<Extensions>
 			<code_completion />
