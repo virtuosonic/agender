@@ -94,6 +94,7 @@ class AgenderFrame: public wxFrame
 
 		void OnMenuRename(wxCommandEvent& event);
 		void OnMenuNoteFlag(wxCommandEvent& event);
+		void OnActivate(wxActivateEvent& event);
 
 		DECLARE_EVENT_TABLE()
 };

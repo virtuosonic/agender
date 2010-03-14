@@ -15,6 +15,7 @@
 #include <wx/defs.h>
 #include <wx/stdpaths.h>
 #include <wx/cmdline.h>
+#include <wx/filename.h>
 #include <iostream>
 #include <cstdlib>
 
@@ -30,6 +31,12 @@
 //i hate globals
 void OnSignal(int sig);
 #endif
+
+BEGIN_EVENT_TABLE(AgenderApp,wxApp)
+	EVT_QUERY_END_SESSION(AgenderApp::OnEndSession)
+	EVT_END_SESSION(AgenderApp::OnEndSession)
+	// TODO (virtuoso#1#): probar usar idleevent
+END_EVENT_TABLE()
 
 IMPLEMENT_APP(AgenderApp);
 
@@ -122,6 +129,26 @@ void OnSignal(int sig)
 {
 	wxLogMessage(_T("signal %i catched"),sig);
 	if (wxTheApp->GetTopWindow())
+	{
+		wxTheApp->GetTopWindow()->Show();
 		wxTheApp->GetTopWindow()->Destroy();
+	}
 }
 #endif
+
+/** @brief OnEndSession
+  *
+  * @todo: document this function
+  */
+void AgenderApp::OnEndSession(wxCloseEvent& event)
+{
+	wxLogMessage(_T("ending session"));
+	wxFileName fname(_T("goodbye"));
+	if (wxTheApp->GetTopWindow())
+	{
+		wxTheApp->GetTopWindow()->Show();
+		wxTheApp->GetTopWindow()->Destroy();
+	}
+}
+
+

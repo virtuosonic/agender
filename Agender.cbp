@@ -41,10 +41,12 @@
 				<Option use_console_runner="0" />
 				<Compiler>
 					<Add option="-Wall" />
+					<Add option="-pg" />
 					<Add option="-g" />
 					<Add option="`wx-config --cflags`" />
 				</Compiler>
 				<Linker>
+					<Add option="-pg" />
 					<Add option="`wx-config --libs`" />
 				</Linker>
 			</Target>
@@ -56,6 +58,7 @@
 		<Unit filename="Agender.nsi">
 			<Option target="Release" />
 		</Unit>
+		<Unit filename="Agender.spec" />
 		<Unit filename="AgenderApp.cpp" />
 		<Unit filename="AgenderApp.h" />
 		<Unit filename="AgenderCal.cpp" />

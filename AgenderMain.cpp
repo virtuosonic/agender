@@ -69,6 +69,7 @@ BEGIN_EVENT_TABLE(AgenderFrame,wxFrame)
 	EVT_MENU(ID_RENAME,AgenderFrame::OnMenuRename)
 	EVT_MENU_RANGE(ID_NORMAL,ID_STICKYW,AgenderFrame::OnMenuNoteFlag)
 	EVT_JOY_MOVE(AgenderFrame::OnJoyMove)
+	EVT_ACTIVATE(AgenderFrame::OnActivate)
 	//(*EventTable(AgenderFrame)
 	//*)
 END_EVENT_TABLE()
@@ -228,8 +229,8 @@ void AgenderFrame::OnClose(wxCloseEvent& event)
 	schdl->Write(_T("/y"),GetPosition().y);
 	schdl->Write(_T("/w"),GetSize().x);
 	schdl->Write(_T("/h"),GetSize().y);
-	wxFileOutputStream ofile(schFile);
-	schdl->Save(ofile);
+	//wxFileOutputStream ofile(schFile);
+	//schdl->Save(ofile);
 }
 
 void AgenderFrame::OnButton3Click(wxCommandEvent& event)
@@ -537,4 +538,13 @@ void AgenderFrame::OnMenuRename(wxCommandEvent& event)
 void AgenderFrame::OnJoyMove(wxJoystickEvent& event)
 {
 	wxMessageBox(wxString::Format(_T("x: %i, y: %i"),event.GetPosition().x,event.GetPosition().y));
+}
+
+void AgenderFrame::OnActivate(wxActivateEvent& event)
+{
+	if (!event.GetActive())
+	{
+		wxFileOutputStream ofile(schFile);
+		schdl->Save(ofile);
+	}
 }

@@ -692,7 +692,7 @@
 	"wx/filefn.h"
 	"wx/strconv.h"
 
-1268447893 source:/home/virtuoso/C++/Agender/AgenderApp.cpp
+1268572019 source:/home/virtuoso/C++/Agender/AgenderApp.cpp
 	"AgenderApp.h"
 	"AgenderMain.h"
 	"AgenderIPC.h"
@@ -700,12 +700,13 @@
 	<wx/defs.h>
 	<wx/stdpaths.h>
 	<wx/cmdline.h>
+	<wx/filename.h>
 	<iostream>
 	<cstdlib>
 	<signal.h>
 	<wx/image.h>
 
-1268447787 /home/virtuoso/C++/Agender/AgenderApp.h
+1268570961 /home/virtuoso/C++/Agender/AgenderApp.h
 	<wx/app.h>
 	<wx/snglinst.h>
 	<wx/intl.h>
@@ -1235,7 +1236,7 @@
 1236340877 /home/virtuoso/wxMSW-2.8.10/include/wx/univ/theme.h
 	"wx/string.h"
 
-1265778926 /home/virtuoso/C++/Agender/AgenderMain.h
+1268572157 /home/virtuoso/C++/Agender/AgenderMain.h
 	<wx/sizer.h>
 	<wx/textctrl.h>
 	<wx/calctrl.h>
@@ -1760,7 +1761,7 @@
 1236340842 /home/virtuoso/wxMSW-2.8.10/include/wx/imagiff.h
 	"wx/image.h"
 
-1268446050 source:/home/virtuoso/C++/Agender/AgenderMain.cpp
+1268572333 source:/home/virtuoso/C++/Agender/AgenderMain.cpp
 	"AgenderMain.h"
 	<wx/msgdlg.h>
 	<wx/defs.h>

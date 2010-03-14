@@ -20,9 +20,14 @@ class AgenderApp : public wxApp
 		virtual bool OnInit();
 		virtual int OnExit();
 	private:
+		void OnEndSession(wxCloseEvent& event);
 		wxSingleInstanceChecker* m_checker;
 		wxServer* m_server;
 		wxLocale m_locale;
+
+		DECLARE_EVENT_TABLE()
 };
+
+DECLARE_APP(AgenderApp)
 
 #endif // AGENDERAPP_H_INCLUDED
