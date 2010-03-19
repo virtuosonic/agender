@@ -50,23 +50,23 @@ license GPL v3
   	<data-files id="spanish">
   		<srcdir>$(SRCDIR)</srcdir>
   		<install-to>$(DATADIR)/locale/es/LC_MESSAGES</install-to>
-  		<files>es/Agender.mo</files>
+  		<files>locale/es/Agender.mo</files>
   	</data-files>
   	<data-files id="german">
   		<srcdir>$(SRCDIR)</srcdir>
   		<install-to>$(DATADIR)/locale/de/LC_MESSAGES</install-to>
-  		<files>de/Agender.mo</files>
+  		<files>locale/de/Agender.mo</files>
   	</data-files>
   	<data-files id="japanesse">
   		<srcdir>$(SRCDIR)</srcdir>
   		<install-to>$(DATADIR)/locale/ja/LC_MESSAGES</install-to>
-  		<files>ja/Agender.mo</files>
+  		<files>locale/ja/Agender.mo</files>
   	</data-files>
   	<!-- lets build a package -->
   	<action id="dist">
   		<depends>clean</depends>
   		<!-- -->
-  		<command>cd $(SRCDIR)/Agender;bakefile -I/usr/share/bakefile/ -I/usr/local/share/bakefile/ -f autoconf Agender.bkl</command>
+  		<command>cd $(SRCDIR)/Agender;bakefile -f autoconf Agender.bkl</command>
   		<command>cd $(SRCDIR)/Agender;bakefilize --copy</command>
   		<command>cd $(SRCDIR)/Agender;aclocal</command>
   		<command>cd $(SRCDIR)/Agender;autoconf</command>
@@ -87,21 +87,21 @@ license GPL v3
   	<copy-files id="esdist">
   		<dependency-of>dist</dependency-of>
   		<srcdir>$(SRCDIR)</srcdir>
-  		<files>es/*</files>
-  		<dstdir>$(SRCDIR)/Agender/es/</dstdir>
+  		<files>locale/es/*</files>
+  		<dstdir>$(SRCDIR)/Agender/locale/es/</dstdir>
   	</copy-files>
   	<copy-files id="jadist">
   		<dependency-of>dist</dependency-of>
   		<srcdir>$(SRCDIR)</srcdir>
-  		<files>ja/*</files>
-  		<dstdir>$(SRCDIR)/Agender/ja/</dstdir>
+  		<files>locale/ja/*</files>
+  		<dstdir>$(SRCDIR)/Agender/locale/ja/</dstdir>
   	</copy-files>
   	<!-- de -->
   	<copy-files id="dedist">
   		<dependency-of>dist</dependency-of>
   		<srcdir>$(SRCDIR)</srcdir>
-  		<files>de/*</files>
-  		<dstdir>$(SRCDIR)/Agender/de/</dstdir>
+  		<files>locale/de/*</files>
+  		<dstdir>$(SRCDIR)/Agender/locale/de/</dstdir>
   	</copy-files>
   	<!-- wxsmith -->
   	<copy-files id="wxsmithdist">
@@ -116,13 +116,6 @@ license GPL v3
   		<srcdir>$(SRCDIR)</srcdir>
   		<files>autopackage/*.in</files>
   		<dstdir>$(SRCDIR)/Agender/autopackage/</dstdir>
-  	</copy-files>
-  	<!-- autoconf -->
-  	<copy-files id="autoconfdist">
-  		<dependency-of>dist</dependency-of>
-  		<srcdir>$(SRCDIR)</srcdir>
-  		<files>autoconf/*</files>
-  		<dstdir>$(SRCDIR)/Agender/autoconf/</dstdir>
   	</copy-files>
   	<!--
   	<copy-files-tree id="build-tree">
