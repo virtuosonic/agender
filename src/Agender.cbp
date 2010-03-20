@@ -51,14 +51,7 @@
 				</Linker>
 			</Target>
 		</Build>
-		<Unit filename="Agender.bkl" />
-		<Unit filename="Agender.desktop">
-			<Option target="UNIX" />
-		</Unit>
-		<Unit filename="Agender.nsi">
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="Agender.spec" />
+		<Unit filename="../Agender.bkl" />
 		<Unit filename="AgenderApp.cpp" />
 		<Unit filename="AgenderApp.h" />
 		<Unit filename="AgenderCal.cpp" />
@@ -72,19 +65,8 @@
 		<Unit filename="AgenderIPC.h" />
 		<Unit filename="AgenderMain.cpp" />
 		<Unit filename="AgenderMain.h" />
-		<Unit filename="AgenderPortable.nsi" />
 		<Unit filename="AgenderTray.cpp" />
 		<Unit filename="AgenderTray.h" />
-		<Unit filename="Readme.txt">
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="autopackage/default.apspec.in">
-			<Option target="UNIX" />
-		</Unit>
-		<Unit filename="configure.in">
-			<Option target="UNIX" />
-		</Unit>
-		<Unit filename="license.txt" />
 		<Unit filename="resource.rc">
 			<Option compilerVar="WINDRES" />
 			<Option target="Release" />

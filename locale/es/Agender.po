@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Agender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-16 21:37-0800\n"
+"POT-Creation-Date: 2010-03-19 16:08-0800\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Gabriel Espinoza <virtuosonic@users.sourceforge.net>\n"
 "Language-Team: \n"
@@ -35,7 +35,7 @@ msgstr "Agender usa este archivo para guardar tu agenda, no lo borres"
 
 #: /home/virtuoso/C++/Agender/AgenderMain.cpp:169
 msgid "Agender|Search Notes"
-msgstr "Ageder|Buscar notas"
+msgstr "Agender|Buscar notas"
 
 #: /home/virtuoso/C++/Agender/AgenderMain.cpp:243
 msgid "A cross-plataform schedule tool"

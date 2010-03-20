@@ -17,11 +17,11 @@ license GPL v3
 	<exe id="Agender" template="wx-lib">
 		<app-type>gui</app-type>
 		<!-- source files-->
-		<sources>AgenderIPC.cpp</sources>
-		<sources>AgenderApp.cpp</sources>
-		<sources>AgenderMain.cpp</sources>
-		<sources>AgenderTray.cpp</sources>
-		<sources>AgenderCal.cpp</sources>
+		<sources>src/AgenderIPC.cpp</sources>
+		<sources>src/AgenderApp.cpp</sources>
+		<sources>src/AgenderMain.cpp</sources>
+		<sources>src/AgenderTray.cpp</sources>
+		<sources>src/AgenderCal.cpp</sources>
 		<!-- wxWidgets dependencies -->
 		<wx-lib>net</wx-lib>
 		<wx-lib>richtext</wx-lib>
@@ -38,13 +38,13 @@ license GPL v3
   	<data-files id="shortcut">
   		<srcdir>$(SRCDIR)</srcdir>
   		<install-to>$(DATADIR)/applications</install-to>
-  		<files>Agender.desktop</files>
+  		<files>share/Agender.desktop</files>
   	</data-files>
   	<!-- icon for the above shortcut-->
   	<data-files id="icon">
   		<srcdir>$(SRCDIR)</srcdir>
   		<install-to>$(DATADIR)/pixmaps</install-to>
-  		<files>Agender.png</files>
+  		<files>share/Agender.png</files>
   	</data-files>
   	<!--translations-->
   	<data-files id="spanish">
@@ -77,11 +77,23 @@ license GPL v3
   	</action>
   	<!-- TODO instead of all this chaos use something like copy-files-tree -->
 	<!-- copy src files-->
+	<copy-files id="topdist">
+  		<dependency-of>dist</dependency-of>
+  		<srcdir>$(SRCDIR)/</srcdir>
+  		<files>*.bkl *.nsi configure.in license.txt Readme.txt</files>
+  		<dstdir>$(SRCDIR)/Agender/</dstdir>
+  	</copy-files>
   	<copy-files id="srcdist">
   		<dependency-of>dist</dependency-of>
-  		<srcdir>$(SRCDIR)</srcdir>
-  		<files>*.h *.cpp *.rc *.xpm *.png *.ico *.bkl *.nsi *.cbp *.desktop configure.in license.txt Readme.txt</files>
+  		<srcdir>$(SRCDIR)/src/</srcdir>
+  		<files>*.h *.cpp *.rc *.xpm *.ico *.cbp</files>
   		<dstdir>$(SRCDIR)/Agender/</dstdir>
+  	</copy-files>
+  	<copy-files id="sharedist">
+		<dependency-of>dist</dependency-of>
+		<srcdir>$(SRCDIR)/</srcdir>
+  		<files>$(SRCDIR)/share/*</files>
+  		<dstdir>$(SRCDIR)/Agender/share/</dstdir>
   	</copy-files>
   	<!--es-->
   	<copy-files id="esdist">
@@ -107,8 +119,8 @@ license GPL v3
   	<copy-files id="wxsmithdist">
   		<dependency-of>dist</dependency-of>
   		<srcdir>$(SRCDIR)</srcdir>
-  		<files>wxsmith/*</files>
-  		<dstdir>$(SRCDIR)/Agender/wxsmith/</dstdir>
+  		<files>$(SRCDIR)/src/wxsmith/*</files>
+  		<dstdir>$(SRCDIR)/Agender/src/wxsmith/</dstdir>
   	</copy-files>
   	<!-- autopackage -->
   	<copy-files id="apspecdist">
@@ -117,17 +129,4 @@ license GPL v3
   		<files>autopackage/*.in</files>
   		<dstdir>$(SRCDIR)/Agender/autopackage/</dstdir>
   	</copy-files>
-  	<!--
-  	<copy-files-tree id="build-tree">
-  		<dependency-of>dist</dependency-of>
-  		<srcdir>$(SRCDIR)</srcdir>
-  		<dstdir>$(SRCDIR)/Agender/</dstdir>
-  		<files>*.cpp *.h *.rc</files>
-  		<files>*.ico *.png *.xpm</files>
-  		<files>*.bkl *.nsi *.cbp *.desktop configure.in license.txt Readme.txt</files>
-  		<files>autoconf/*</files>
-  		<files>locale/de/* locale/es/* locale/ja/*</files>
-  		<files>wxsmith/*</files>
-  	</copy-files-tree id="build-tree">
-  	-->
 </makefile>
