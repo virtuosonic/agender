@@ -15,9 +15,7 @@
 #include <wx/defs.h>
 #include <wx/stdpaths.h>
 #include <wx/cmdline.h>
-#include <wx/filename.h>
 #include <iostream>
-#include <cstdlib>
 
 #if defined __UNIX__
 	#include <signal.h>
@@ -33,6 +31,7 @@ void OnSignal(int sig);
 #endif
 
 BEGIN_EVENT_TABLE(AgenderApp,wxApp)
+	//does this work somewhere? write once, debug everywhere!
 	EVT_QUERY_END_SESSION(AgenderApp::OnEndSession)
 	EVT_END_SESSION(AgenderApp::OnEndSession)
 	// TODO (virtuoso#1#): probar usar idleevent
@@ -50,6 +49,21 @@ bool AgenderApp::OnInit()
 	delete wxLog::SetActiveTarget(logger);
 	wxLog::SetVerbose(true);
 	wxLogMessage(wxStandardPaths::Get().GetExecutablePath());
+	//parse arguments
+	wxCmdLineParser cmd(argc,argv);
+	cmd.AddOption(_T("c"),_T("config"),_T("specify a config file to load"),wxCMD_LINE_VAL_STRING);
+	cmd.AddSwitch(_T("nt"),_T("no-taskbar"),_T("use when you don't have a taskbar"));
+	cmd.AddSwitch(_T("h"),_T("help"),_T("show this message ;)"),wxCMD_LINE_OPTION_HELP);
+	cmd.AddSwitch(_T("?"),_T("?"),_T("same as -h"),wxCMD_LINE_OPTION_HELP);
+	int res = cmd.Parse(false);
+	if (res < 0)
+	{
+		cmd.Usage();
+		exit(EXIT_SUCCESS);
+	}
+	wxString cfgFile;
+	cmd.Found(_T("c"),&cfgFile);
+	//are we alone?
 	m_checker = new wxSingleInstanceChecker(_T(".") + GetAppName() + _T("-") + ::wxGetUserId());
 	if (m_checker->IsAnotherRunning())
 	{
@@ -64,25 +78,20 @@ bool AgenderApp::OnInit()
 			if (cnn->Execute(IPC_Topic))
 			{
 				wxLogMessage(_T("finished executing"));
+				//first ending, like on video games it sucks!
 				exit(EXIT_SUCCESS);
 			}
-			else
-				wxLogError(_T("not executed"));
+			wxLogError(_T("not executed"));
 		}
 		else
 			wxLogError(_T("connection failed"));
+		//this goes outside of the 'else' because  if everything goes right : exit(EXIT_SUCCESS);
+		//second ending, like on videogames it sucks even more!
 		exit(EXIT_FAILURE);
 	}
 	// please talk me in a language that i understand
 	if (m_locale.Init(wxLANGUAGE_DEFAULT,wxLOCALE_CONV_ENCODING))
 		m_locale.AddCatalog(wxT("Agender"));
-	//parse arguments
-	wxCmdLineParser cmd(argc,argv);
-	cmd.AddOption(_T("c"),_T("config"),_T("config file to load"),wxCMD_LINE_VAL_STRING);
-	cmd.AddSwitch(_T("nt"),_T("no-taskbar"),_T("use when you don't have a taskbar"));
-	cmd.Parse();
-	wxString cfgFile;
-	cmd.Found(_T("c"),&cfgFile);
 	//(*AppInitialize
 	bool wxsOK = true;
 	wxInitAllImageHandlers();
@@ -96,6 +105,7 @@ bool AgenderApp::OnInit()
 		wxLogMessage(_T("server created"));
 	else
 		wxLogError(_T("server creation failed"));
+	//no taskbar?
 	if (cmd.Found(_T("nt")))
 		Frame->Show();
 	#ifdef __UNIX__
@@ -136,19 +146,12 @@ void OnSignal(int sig)
 }
 #endif
 
-/** @brief OnEndSession
-  *
-  * @todo: document this function
-  */
 void AgenderApp::OnEndSession(wxCloseEvent& event)
 {
 	wxLogMessage(_T("ending session"));
-	wxFileName fname(_T("goodbye"));
 	if (wxTheApp->GetTopWindow())
 	{
 		wxTheApp->GetTopWindow()->Show();
 		wxTheApp->GetTopWindow()->Destroy();
 	}
 }
-
-

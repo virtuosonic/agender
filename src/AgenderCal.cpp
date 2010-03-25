@@ -8,7 +8,6 @@
 #include "AgenderCal.h"
 
 #include <wx/config.h>
-#include <wx/textfile.h>
 #include <wx/log.h>
 
 const wxChar* AgenderCal::stickPath = _T("/sticky");

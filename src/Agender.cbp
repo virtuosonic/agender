@@ -11,6 +11,7 @@
 				<Option object_output="obj/" />
 				<Option type="0" />
 				<Option compiler="gcc" />
+				<Option parameters="--help" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
 					<Add option="-O2" />
@@ -38,15 +39,13 @@
 				<Option object_output="obj/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option use_console_runner="0" />
+				<Option parameters="-h" />
 				<Compiler>
 					<Add option="-Wall" />
-					<Add option="-pg" />
 					<Add option="-g" />
 					<Add option="`wx-config --cflags`" />
 				</Compiler>
 				<Linker>
-					<Add option="-pg" />
 					<Add option="`wx-config --libs`" />
 				</Linker>
 			</Target>

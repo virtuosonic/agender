@@ -7,7 +7,6 @@
  **************************************************************/
 #include "AgenderIPC.h"
 #include <wx/log.h>
-#include <wx/msgdlg.h>
 #include <wx/defs.h>
 
  AgenderConnection::AgenderConnection(wxFrame* frame)
