@@ -53,6 +53,10 @@ class AgenderFrame: public wxFrame
 		void OnYearSel(wxCommandEvent& event);
 		void OnAutoStart(wxCommandEvent& event);
 		void OnJoyMove(wxJoystickEvent& event);
+		void OnMenuRename(wxCommandEvent& event);
+		void OnMenuNoteFlag(wxCommandEvent& event);
+		void OnActivate(wxActivateEvent& event);
+		void OnEscape(wxCommandEvent& event);
 
 		//(*Identifiers(AgenderFrame)
 		static const long ID_CALENDARCTRL1;
@@ -91,10 +95,6 @@ class AgenderFrame: public wxFrame
 			ID_STICKY,
 			ID_STICKYW
 		};
-
-		void OnMenuRename(wxCommandEvent& event);
-		void OnMenuNoteFlag(wxCommandEvent& event);
-		void OnActivate(wxActivateEvent& event);
 
 		DECLARE_EVENT_TABLE()
 };

@@ -10,6 +10,9 @@
 #include <wx/config.h>
 #include <wx/log.h>
 
+//since this  software has a very bad design, now I have to use hacks because it wasn't mean to
+//be extensible, however it acomplishes it goals: small, fast & portable
+
 const wxChar* AgenderCal::stickPath = _T("/sticky");
 
 AgenderCal::AgenderCal(wxDateTime date)
@@ -48,6 +51,7 @@ wxArrayString AgenderCal::GetNotes()
 				notes.Add(noteName);
 		}
 		wxConfig::Get()->SetPath(_T("/"));
+		// TODO (virtuoso#1#): is this needed?
 		if (notes.GetCount() == 0)
 			wxConfig::Get()->DeleteGroup(dateStr);
 	}

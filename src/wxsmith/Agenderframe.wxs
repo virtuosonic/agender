@@ -48,7 +48,7 @@
 					<orient>wxVERTICAL</orient>
 					<object class="sizeritem">
 						<object class="wxButton" name="ID_BUTTON1" variable="BtnNuevo" member="yes">
-							<label>Add note</label>
+							<label>Add &amp;note</label>
 							<default>1</default>
 							<focused>1</focused>
 							<handler function="OnBtnNuevoClick" entry="EVT_BUTTON" />
@@ -58,7 +58,7 @@
 					</object>
 					<object class="sizeritem">
 						<object class="wxButton" name="ID_BUTTON2" variable="BtnElim" member="yes">
-							<label>Delete selection</label>
+							<label>&amp;Delete selection</label>
 							<handler function="OnBtnElimClick" entry="EVT_BUTTON" />
 						</object>
 						<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
@@ -66,7 +66,7 @@
 					</object>
 					<object class="sizeritem">
 						<object class="wxButton" name="ID_BUTTON3" variable="Button3" member="yes">
-							<label>About...</label>
+							<label>&amp;About...</label>
 							<handler function="OnButton3Click" entry="EVT_BUTTON" />
 						</object>
 						<flag>wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>

@@ -70,6 +70,7 @@ BEGIN_EVENT_TABLE(AgenderFrame,wxFrame)
 	EVT_MENU_RANGE(ID_NORMAL,ID_STICKYW,AgenderFrame::OnMenuNoteFlag)
 	EVT_JOY_MOVE(AgenderFrame::OnJoyMove)
 	EVT_ACTIVATE(AgenderFrame::OnActivate)
+	EVT_MENU(wxID_CLOSE,AgenderFrame::OnEscape)
 	//(*EventTable(AgenderFrame)
 	//*)
 END_EVENT_TABLE()
@@ -95,13 +96,13 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 	TextCtrl1->Disable();
 	FlexGridSizer1->Add(TextCtrl1, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer1 = new wxBoxSizer(wxVERTICAL);
-	BtnNuevo = new wxButton(this, ID_BUTTON1, _("Add note"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
+	BtnNuevo = new wxButton(this, ID_BUTTON1, _("Add &note"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
 	BtnNuevo->SetDefault();
 	BtnNuevo->SetFocus();
 	BoxSizer1->Add(BtnNuevo, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
-	BtnElim = new wxButton(this, ID_BUTTON2, _("Delete selection"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON2"));
+	BtnElim = new wxButton(this, ID_BUTTON2, _("&Delete selection"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON2"));
 	BoxSizer1->Add(BtnElim, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
-	Button3 = new wxButton(this, ID_BUTTON3, _("About..."), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON3"));
+	Button3 = new wxButton(this, ID_BUTTON3, _("&About..."), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON3"));
 	BoxSizer1->Add(Button3, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
 	FlexGridSizer1->Add(BoxSizer1, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	SetSizer(FlexGridSizer1);
@@ -157,12 +158,12 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 	ChangeSelector();
 	MarkDays();
 	//shortcuts
-	wxAcceleratorEntry entries[4];
+	wxAcceleratorEntry entries[3];
 	entries[0].Set(wxACCEL_CTRL,(int)'f',wxID_FIND);
 	entries[1].Set(wxACCEL_NORMAL,WXK_ESCAPE,wxID_CLOSE);
-	entries[2].Set(wxACCEL_CTRL,(int)'n',ID_BUTTON1);
-	entries[3].Set(wxACCEL_CTRL,(int)'x',wxID_EXIT);
-	wxAcceleratorTable accel(4, entries);
+	// TODO (virtuoso#1#): use for cut
+	entries[2].Set(wxACCEL_CTRL,(int)'x',wxID_ANY);
+	wxAcceleratorTable accel(3, entries);
 	this->SetAcceleratorTable(accel);
 	//find dialog
 	fndData = new wxFindReplaceData;
@@ -174,7 +175,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 	trayicon->SetIcon(Agender16x16_xpm,_T("Virtuosonic Agender"));
 #endif//wxHAS_TASK_BAR_ICON
 	SetSize(schdl->Read(_T("/x"),wxDefaultPosition.x),schdl->Read(_T("/y"),wxDefaultPosition.y),
-		schdl->Read(_T("/w"),wxDefaultSize.x),schdl->Read(_T("/h"),wxDefaultSize.y));
+		  schdl->Read(_T("/w"),wxDefaultSize.x),schdl->Read(_T("/h"),wxDefaultSize.y));
 	SetTransparent(schdl->Read(_T("/opacity"),255));
 	//autostart
 	wxCommandEvent event;
@@ -240,7 +241,7 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& event)
 	info.AddTranslator(_T("Gabriel Espinoza <español>"));
 	info.AddTranslator(_T("Ester Espinoza <deutsch>"));
 	info.AddTranslator(_T("Daniel Daows <japanese>"));
-	info.SetDescription(_("A cross-plataform schedule tool"));
+	info.SetDescription(_("A cross-platform schedule tool"));
 	info.SetWebSite(_T("http://agender.sourceforge.net"));
 	info.SetLicence(_("Agender is free software; you can redistribute it and/or modify\n"
 				"it under the terms of the GNU General Public License as published by\n"
@@ -417,22 +418,28 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 	desktopFname.SetName(_T("Agender"));
 	desktopFname.SetExt(_T("desktop"));
 	wxString desktopFile = desktopFname.GetFullPath();
+	//fluxbox startup script
+	wxFileName fluxFname;
+	fluxFname.AssignDir(wxGetHomeDir());
+	fluxFname.AppendDir(_T(".fluxbox"));
+	fluxFname.SetName(_T("startup"));
+	wxString  fluxFile= fluxFname.GetFullPath();
 #elif defined __WXMSW__
 	//we use the windows registry
 	wxRegKey key;
 	key.SetName(_T("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"));
-#else
+#else //__WXOSX__
 	//we ask for help :)
-	wxMessageBox(_("AutoStart is only available under Windows "
-			   " and Unix desktops that follow the freedesktop.org standards, "
-			   "if you add support for any other system, please send patches "
+	wxMessageBox(_("AutoStart is only available under Windows, Fluxbox "
+			   " and Unix desktops that follow the freedesktop.org standards. "//how sadly! =(
+			   "If you add support for any other system, please send patches "
 			   "to the patch tracker in the Agender project page at "
 			   "http://sourceforge.net/projects/agender/"));
 	return;
 #endif
 	//add or remove
 	bool autostart=false;
-	schdl->Read(_T("/autostart"),&autostart,false);
+	wxConfig::Get()->Read(_T("/autostart"),&autostart,false);
 	if (autostart)
 	{
 		///add
@@ -440,6 +447,7 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 		if (!wxFileExists(desktopFile))
 		{
 			wxLogMessage(_T("writing autostart file: %s"),desktopFile.c_str());
+			//lets use the easyest way
 			wxTextFile desktop;
 			desktop.Create(desktopFile);
 			desktop.AddLine(_T("[Desktop Entry]"));
@@ -450,6 +458,28 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 			desktop.Write(wxTextFileType_Unix);
 			desktop.Close();
 		}
+		//add a command to run Agender to the fluxbox  startup script
+		wxTextFile startflux;
+		if (startflux.Open(fluxFile))
+		{
+			wxString command;
+			int indx = -1;
+			bool alreadyThere = false;
+			for (command = startflux.GetLastLine(); startflux.GetCurrentLine() > 0;
+					command = startflux.GetPrevLine())
+			{
+				if (command.Matches(_T("exec*fluxbox*")))
+					indx = startflux.GetCurrentLine();
+				if (command.Matches(_T("Agender &")))
+					alreadyThere = true;
+			}
+			if (indx > -1 && !alreadyThere)
+			{
+				startflux.InsertLine(_T("Agender &"),indx);
+				startflux.Write();
+			}
+			startflux.Close();
+		}
 #elif defined __WXMSW__
 		wxString AgenderValue;
 		key.QueryValue(_T("Agender"),AgenderValue);
@@ -457,11 +487,28 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 			key.SetValue(_T("Agender"),wxStandardPaths::Get().GetExecutablePath());
 #endif
 	}
-	else
-		///remove
+	else///remove
 #if defined __UNIX__ && !defined __APPLE__
+	{
 		if (wxFileExists(desktopFile))
 			wxRemoveFile(desktopFile);
+		//clean fluxbox startup script
+		wxTextFile startflux;
+		if (startflux.Open(fluxFile))
+		{
+			wxString command;
+			for (command = startflux.GetLastLine(); startflux.GetCurrentLine() > 0;
+					command = startflux.GetPrevLine())
+			{
+				if (command.Matches(_T("Agender &")))
+				{
+					startflux.RemoveLine(startflux.GetCurrentLine());
+					startflux.Write();
+				}
+			}
+			startflux.Close();
+		}
+	}
 #elif defined __WXMSW__
 		if (key.HasValue(_T("Agender")))
 			key.DeleteValue(_T("Agender"));
@@ -480,7 +527,6 @@ void AgenderFrame::OnListBox1DClick(wxCommandEvent& event)
 	noteMenu->AppendSeparator();
 	noteMenu->AppendRadioItem(ID_NORMAL,_("Normal"));
 	noteMenu->AppendRadioItem(ID_STICKY,_("Sticky"));
-	//noteMenu->AppendRadioItem(ID_STICKYW,_("Sticky weekday"));
 	if (a_cal->IsSticky(ListBox1->GetStringSelection()))
 		noteMenu->Check(ID_STICKY,true);
 	ListBox1->PopupMenu(noteMenu);
@@ -547,4 +593,9 @@ void AgenderFrame::OnActivate(wxActivateEvent& event)
 		wxFileOutputStream ofile(schFile);
 		schdl->Save(ofile);
 	}
+}
+
+void AgenderFrame::OnEscape(wxCommandEvent& event)
+{
+	Close();
 }
