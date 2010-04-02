@@ -9,5 +9,6 @@ AC_SUBST(VERSION,1.1.4)
 AC_CHECK_PROG(HAS_UPX,upx,yes,no)
 AC_CONFIG_FILES([Makefile
 	autopackage/default.apspec
+	Agender.spec
 ])
 AC_OUTPUT

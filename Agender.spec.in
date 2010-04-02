@@ -1,0 +1,48 @@
+#
+#This File is part of the Agender Projects
+#you are free to modify it to build packages for your distro
+#
+Summary: A cross-platform schedule tool!
+Name: Agender
+Version: @VERSION@
+Release:1
+Copiright: GPL 3
+Group: Applications/Utility/Office
+Source: http://sourceforge.net/projects/agender/files/Agender-@VERSION@.tar.bz2/download
+URL: http://agender.sourceforge.net/
+Distribution: virtuosonic #put your distro here
+Vendor: virtuosonic sdc #put your company here
+Packager: virtuoso #put your name here
+
+%description
+Agender is a small cross-platform schedule tool where you asociate some notes
+with a date or with no date in particular if  you mark the note as sticky, you
+simply start it  and it will create a taskbar icon and stay in the background.
+
+%prep
+rm -fr $RPM_BUILD_DIR/Agender
+tar -xf $RPM_SRC_DIR/Agender-@VERSION@.tar.bz2
+
+%build
+#you could also try adding --with-wx-config=/path/to/wx-config  to use a non default wxWidgets build
+./configure --prefix=/usr
+make
+
+%install
+make install
+
+%files #rpm isn't very fun, some times worse than NSIS, i would prefer autopackage
+#documentation
+%doc Readme.txt
+%doc gpl-3.0.txt
+#the  executable
+/usr/bin/Agender
+#shortcut
+/usr/share/applications/Agender.desktop
+/usr/share/pixmaps/Agender.png
+#translations
+/usr/share/locale/es/LC_MESSAGES/Agender.mo
+/usr/share/locale/de/LC_MESSAGES/Agender.mo
+/usr/share/locale/ja/LC_MESSAGES/Agender.mo
+
+
