@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- this file is part of the Agender package
 http://agender.sourceforge.net
-license GPL v3
+license GPL 3
 -->
 <makefile>
 	<include file="presets/wx.bkl"/>
@@ -17,6 +17,7 @@ license GPL v3
 	<exe id="Agender" template="wx-lib">
 		<app-type>gui</app-type>
 		<!-- source files-->
+		<srcdir>$(SRCDIR)</srcdir>
 		<sources>src/AgenderIPC.cpp</sources>
 		<sources>src/AgenderApp.cpp</sources>
 		<sources>src/AgenderMain.cpp</sources>
@@ -80,7 +81,7 @@ license GPL v3
 	<copy-files id="topdist">
   		<dependency-of>dist</dependency-of>
   		<srcdir>$(SRCDIR)/</srcdir>
-  		<files>*.bkl *.nsi configure.in gpl-3.0.txt Readme.txt</files>
+  		<files>*.spec.in *.bkl *.nsi configure.in gpl-3.0.txt Readme.txt</files>
   		<dstdir>$(SRCDIR)/Agender/</dstdir>
   	</copy-files>
   	<copy-files id="srcdist">

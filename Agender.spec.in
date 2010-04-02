@@ -10,8 +10,10 @@ Copiright: GPL 3
 Group: Applications/Utility/Office
 Source: http://sourceforge.net/projects/agender/files/Agender-@VERSION@.tar.bz2/download
 URL: http://agender.sourceforge.net/
-Distribution: virtuosonic #put your distro here
-Vendor: virtuosonic sdc #put your company here
+Requires: wxGTK >= 2.8.0
+BuildRequires: wxGTK-devel >= 2.8.0
+Distribution: VirtuosoniX #put your distro here
+Vendor: Virtuosonic SDC #put your company here
 Packager: virtuoso #put your name here
 
 %description
