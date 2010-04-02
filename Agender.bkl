@@ -80,7 +80,7 @@ license GPL v3
 	<copy-files id="topdist">
   		<dependency-of>dist</dependency-of>
   		<srcdir>$(SRCDIR)/</srcdir>
-  		<files>*.bkl *.nsi configure.in license.txt Readme.txt</files>
+  		<files>*.bkl *.nsi configure.in gpl-3.0.txt Readme.txt</files>
   		<dstdir>$(SRCDIR)/Agender/</dstdir>
   	</copy-files>
   	<copy-files id="srcdist">

@@ -3,7 +3,7 @@
 
 
 ;this defines are configurable, change them when needed
-!define MINGWDIR "/usr/i686-pc-mingw/sys-root/mingw/"
+!define MINGWDIR "/usr/i686-pc-mingw32/sys-root/mingw"
 !define PRODUCT_VERSION "1.1.4"
 ;constants
 !define PRODUCT_NAME "Agender"
@@ -24,16 +24,18 @@ SetCompressor lzma
 !define MUI_UNICON "${NSISDIR}\Contrib\Graphics\Icons\modern-uninstall.ico"
 
 ; Welcome page
+;//TODO #1# virtuoso change welcome page text
+;!define MUI_WELCOMEPAGE_TEXT
 !insertmacro MUI_PAGE_WELCOME
 ; License page
-;// TODO (virtuoso#1#): cambiar por gpl
-!insertmacro MUI_PAGE_LICENSE "license.txt"
+!insertmacro MUI_PAGE_LICENSE "gpl-3.0.txt"
 ; Directory page
 !insertmacro MUI_PAGE_DIRECTORY
 ; Instfiles page
 !insertmacro MUI_PAGE_INSTFILES
 ; Finish page
 !define MUI_FINISHPAGE_RUN "$INSTDIR\Agender.exe"
+!define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\Readme.txt"
 !insertmacro MUI_PAGE_FINISH
 
 ; Uninstaller pages
@@ -58,18 +60,24 @@ InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" ""
 ShowInstDetails show
 ShowUnInstDetails show
 
-Function onInit
+Function .onInit
 	!insertmacro MUI_LANGDLL_DISPLAY
 FunctionEnd
 
 Section "Principal" SEC01
   SetOutPath "$INSTDIR"
   SetOverwrite ifnewer
+  ;executable
   File "Agender.exe"
+  ;shortcuts
   CreateDirectory "$SMPROGRAMS\Agender"
   CreateShortCut "$SMPROGRAMS\Agender\Agender.lnk" "$INSTDIR\Agender.exe"
   CreateShortCut "$DESKTOP\Agender.lnk" "$INSTDIR\Agender.exe"
+  ;compiler runtime
   File "${MINGWDIR}\bin\mingwm10.dll"
+  ;please read it
+  File "Readme.txt"
+  ;translations
   SetOutPath "$INSTDIR\es"
   File "locale\es\Agender.mo"
   SetOutPath "$INSTDIR\de"
