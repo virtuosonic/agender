@@ -1,14 +1,19 @@
 #
-#This File is part of the Agender Projects
+#This File is part of the Agender Project, 100% free  software
 #you are free to modify it to build packages for your distro
+#File: Agender.spec.in
+#Created:01-abr-2010
+#If you're reading the file Agender.spec don't edit it
+#it will be overwrited by configure, edit Agender.spec.in
 #
 Summary: A cross-platform schedule tool!
 Name: Agender
 Version: @VERSION@
 Release:1
-Copiright: GPL 3
+License: GPL 3
 Group: Applications/Utility/Office
-Source: http://sourceforge.net/projects/agender/files/Agender-@VERSION@.tar.bz2/download
+#Source: http://sourceforge.net/projects/agender/files/Agender-@VERSION@.tar.bz2/download
+Source: Agender-@VERSION@.tar.bz2
 URL: http://agender.sourceforge.net/
 Requires: wxGTK >= 2.8.0
 BuildRequires: wxGTK-devel >= 2.8.0
@@ -19,32 +24,36 @@ Packager: virtuoso #put your name here
 %description
 Agender is a small cross-platform schedule tool where you asociate some notes
 with a date or with no date in particular if  you mark the note as sticky, you
-simply start it  and it will create a taskbar icon and stay in the background.
+simply start it  and it will create a taskbar icon and stay in the background,
+without anoying you,it can also be configured to run on login.
 
 %prep
-rm -fr $RPM_BUILD_DIR/Agender
-tar -xf $RPM_SRC_DIR/Agender-@VERSION@.tar.bz2
+
+%setup -n Agender
+
 
 %build
-#you could also try adding --with-wx-config=/path/to/wx-config  to use a non default wxWidgets build
-./configure --prefix=/usr
+#you could also try adding --with-wx-config=/path/to/wx-config
+#to use a non default wxWidgets build
+./configure --prefix=%{_prefix}
 make
 
 %install
-make install
+	%__make DESTDIR=RPM_BUILD_ROOT install
 
-%files #rpm isn't very fun, some times worse than NSIS, i would prefer autopackage
+%files
 #documentation
 %doc Readme.txt
 %doc gpl-3.0.txt
 #the  executable
-/usr/bin/Agender
+%{_bindir}/Agender
 #shortcut
-/usr/share/applications/Agender.desktop
-/usr/share/pixmaps/Agender.png
+%{_datadir}/applications/Agender.desktop
+%{_datadir}/pixmaps/Agender.png
 #translations
-/usr/share/locale/es/LC_MESSAGES/Agender.mo
-/usr/share/locale/de/LC_MESSAGES/Agender.mo
-/usr/share/locale/ja/LC_MESSAGES/Agender.mo
+%{_datadir}/locale/es/LC_MESSAGES/Agender.mo
+%{_datadir}/locale/de/LC_MESSAGES/Agender.mo
+%{_datadir}/locale/ja/LC_MESSAGES/Agender.mo
+
 
 

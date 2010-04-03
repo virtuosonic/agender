@@ -6,18 +6,11 @@ license GPL 3
 <makefile>
 	<include file="presets/wx.bkl"/>
 	<using module="datafiles"/>
-	<!-- upx -->
-	<option name="HAS_UPX">
-		<values>yes,no</values>
-		<default-value>no</default-value>
-	</option>
-	<set var="USE_UPX" cond="HAS_UPX==yes">1</set>
 	<set var="VERSION">1.1.4</set>
-	<!-- build binary-->
+	<!--build binary -->
 	<exe id="Agender" template="wx-lib">
 		<app-type>gui</app-type>
 		<!-- source files-->
-		<srcdir>$(SRCDIR)</srcdir>
 		<sources>src/AgenderIPC.cpp</sources>
 		<sources>src/AgenderApp.cpp</sources>
 		<sources>src/AgenderMain.cpp</sources>
@@ -30,12 +23,10 @@ license GPL 3
 		<wx-lib>core</wx-lib>
 		<wx-lib>base</wx-lib>
 		<!--resource file -->
-		<win32-res>resource.rc</win32-res>
+		<win32-res>src/resource.rc</win32-res>
 		<install-to>$(BINDIR)</install-to>
-		<!-- compress with UPX!!!-->
-		<!-- <postlink-command cond="USE_UPX=='1'">upx $(id)$(EXEEXT)</postlink-command> -->
   	</exe>
-  	<!-- freedesktop shortcut, for gnome, kde and some other desktops-->
+  	<!-- freedesktop.org shortcut, for gnome, kde and some other desktops-->
   	<data-files id="shortcut">
   		<srcdir>$(SRCDIR)</srcdir>
   		<install-to>$(DATADIR)/applications</install-to>
@@ -88,7 +79,7 @@ license GPL 3
   		<dependency-of>dist</dependency-of>
   		<srcdir>$(SRCDIR)/src/</srcdir>
   		<files>*.h *.cpp *.rc *.xpm *.ico *.cbp</files>
-  		<dstdir>$(SRCDIR)/Agender/</dstdir>
+  		<dstdir>$(SRCDIR)/Agender/src</dstdir>
   	</copy-files>
   	<copy-files id="sharedist">
 		<dependency-of>dist</dependency-of>
@@ -127,7 +118,7 @@ license GPL 3
   	<copy-files id="apspecdist">
   		<dependency-of>dist</dependency-of>
   		<srcdir>$(SRCDIR)</srcdir>
-  		<files>autopackage/*.in</files>
+  		<files>autopackage/*.apspec.in</files>
   		<dstdir>$(SRCDIR)/Agender/autopackage/</dstdir>
   	</copy-files>
 </makefile>
