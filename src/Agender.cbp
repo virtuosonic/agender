@@ -41,10 +41,10 @@
 				<Compiler>
 					<Add option="-Wall" />
 					<Add option="-g" />
-					<Add option="`wx-config --cflags`" />
+					<Add option="`/home/virtuoso/C++/wxWidgets-2.8.10/gtk2/wx-config --cflags`" />
 				</Compiler>
 				<Linker>
-					<Add option="`wx-config --libs`" />
+					<Add option="`/home/virtuoso/C++/wxWidgets-2.8.10/gtk2/wx-config --libs`" />
 				</Linker>
 			</Target>
 		</Build>

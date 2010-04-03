@@ -12,8 +12,8 @@
  AgenderConnection::AgenderConnection(wxFrame* frame)
 {
 	#if defined __WXMSW__ && wxUSE_DDE_FOR_IPC == 0
-		#warning "not using dde under msw"
-		#warning "please configure wxMSW to use DDE"
+		#warning not using dde under msw
+		#warning please configure wxMSW to use DDE
 		//this can scare windows people, they could think we are trojan
 		//it actually produces a warning by the firewall!!!
 		//and doesn't work! help needed here

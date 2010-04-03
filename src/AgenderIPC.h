@@ -18,6 +18,7 @@ class AgenderConnection : public wxConnection
 {
 	public:
 		AgenderConnection(wxFrame* frame);
+		virtual ~AgenderConnection(){/* if one function is virtual then the destructor must be virtual!*/}
 		 virtual bool OnExecute(const wxString& topic,wxChar* data,int size,wxIPCFormat format);
 	private:
 		wxFrame* m_frame;
@@ -27,6 +28,7 @@ class AgenderConnection : public wxConnection
  {
  	public:
 		AgenderServer(wxFrame* frame);
+		virtual ~AgenderServer(){}
  		virtual wxConnectionBase* OnAcceptConnection(const wxString& topic);
 	private:
  		wxFrame* m_frame;
