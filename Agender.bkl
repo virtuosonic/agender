@@ -6,7 +6,7 @@ license GPL 3
 <makefile>
 	<include file="presets/wx.bkl"/>
 	<using module="datafiles"/>
-	<set var="VERSION">1.1.4</set>
+	<set var="VERSION">1.1.5</set>
 	<!--build binary -->
 	<exe id="Agender" template="wx-lib">
 		<app-type>gui</app-type>

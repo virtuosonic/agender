@@ -4,7 +4,7 @@
 
 ;this defines are configurable, change them when needed
 !define MINGWDIR "/usr/i686-pc-mingw32/sys-root/mingw"
-!define PRODUCT_VERSION "1.1.4"
+!define PRODUCT_VERSION "1.1.5"
 ;constants
 !define PRODUCT_NAME "Agender"
 !define PRODUCT_PUBLISHER "virtuosonic"
@@ -32,6 +32,7 @@ SetCompressor lzma
 ; Directory page
 !insertmacro MUI_PAGE_DIRECTORY
 ; Instfiles page
+SetAutoClose false
 !insertmacro MUI_PAGE_INSTFILES
 ; Finish page
 !define MUI_FINISHPAGE_RUN "$INSTDIR\Agender.exe"
@@ -77,6 +78,7 @@ Section "Principal" SEC01
   File "${MINGWDIR}\bin\mingwm10.dll"
   ;please read it
   File "Readme.txt"
+  File "gpl-3.0.txt"
   ;translations
   SetOutPath "$INSTDIR\es"
   File "locale\es\Agender.mo"
@@ -108,6 +110,8 @@ Section Uninstall
   Delete "$INSTDIR\uninst.exe"
   Delete "$INSTDIR\mingwm10.dll"
   Delete "$INSTDIR\Agender.exe"
+  Delete "$INSTDIR\Readme.txt"
+  Delete "$INSTDIR\gpl-3.0.txt"
 
   Delete "$SMPROGRAMS\Agender\Uninstall.lnk"
   Delete "$SMPROGRAMS\Agender\Website.lnk"

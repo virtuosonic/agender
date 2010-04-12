@@ -49,9 +49,9 @@
 			</Target>
 		</Build>
 		<Unit filename="../Agender.bkl" />
+		<Unit filename="../Agender.nsi" />
 		<Unit filename="../Agender.spec.in" />
 		<Unit filename="../configure.in" />
-		<Unit filename="Agender.bkl" />
 		<Unit filename="AgenderApp.cpp" />
 		<Unit filename="AgenderApp.h" />
 		<Unit filename="AgenderCal.cpp" />

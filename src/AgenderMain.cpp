@@ -195,7 +195,6 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 		joy1->SetCapture(this,100);
 		joy1->SetMovementThreshold(20000);
 		wxLogMessage(_T("%i"),joy1->GetMovementThreshold());
-
 	}
 	else
 		joy1 = NULL;
@@ -209,7 +208,6 @@ AgenderFrame::~AgenderFrame()
 	schdl->Write(_T("/h"),GetSize().y);
 	wxFileOutputStream ofile(schFile);
 	schdl->Save(ofile);
-	//without this Agender would receive SIGSEGV #11
 	wxConfig::Set(NULL);
 	//delete
 #if defined wxHAS_TASK_BAR_ICON
@@ -230,8 +228,6 @@ void AgenderFrame::OnClose(wxCloseEvent& event)
 	schdl->Write(_T("/y"),GetPosition().y);
 	schdl->Write(_T("/w"),GetSize().x);
 	schdl->Write(_T("/h"),GetSize().y);
-	//wxFileOutputStream ofile(schFile);
-	//schdl->Save(ofile);
 }
 
 void AgenderFrame::OnButton3Click(wxCommandEvent& event)
@@ -255,10 +251,9 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& event)
 				"\n"
 				"You should have received a copy of the GNU General Public License\n"
 				"along with Agender. If not, see <http://www.gnu.org/licenses/>."));
-	info.SetVersion(_T("1.1.4"));
+	info.SetVersion(_T("1.1.5"));
 	info.SetCopyright(_T("Copyright (C) 2009-2010 Gabriel Espinoza"));
 	info.SetIcon(agender_xpm);
-
 	wxAboutBox(info);
 }
 
