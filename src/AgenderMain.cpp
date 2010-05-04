@@ -43,10 +43,6 @@
 #include "AgenderTray.h"
 #endif
 
-#if wxUSE_JOYSTICK
-#include <wx/joystick.h>
-#endif
-
 #include "Agender16x16.xpm"
 #include "Agender.xpm"
 
@@ -56,7 +52,6 @@ const long AgenderFrame::ID_LISTBOX1 = wxNewId();
 const long AgenderFrame::ID_TEXTCTRL1 = wxNewId();
 const long AgenderFrame::ID_BUTTON1 = wxNewId();
 const long AgenderFrame::ID_BUTTON2 = wxNewId();
-const long AgenderFrame::ID_BUTTON3 = wxNewId();
 //*)
 
 BEGIN_EVENT_TABLE(AgenderFrame,wxFrame)
@@ -67,8 +62,7 @@ BEGIN_EVENT_TABLE(AgenderFrame,wxFrame)
 	EVT_MENU(7003,AgenderFrame::OnYearSel)
 	EVT_MENU(7005,AgenderFrame::OnAutoStart)
 	EVT_MENU(ID_RENAME,AgenderFrame::OnMenuRename)
-	EVT_MENU_RANGE(ID_NORMAL,ID_STICKYW,AgenderFrame::OnMenuNoteFlag)
-	EVT_JOY_MOVE(AgenderFrame::OnJoyMove)
+	EVT_MENU_RANGE(ID_NORMAL,ID_STICKY,AgenderFrame::OnMenuNoteFlag)
 	EVT_ACTIVATE(AgenderFrame::OnActivate)
 	EVT_MENU(wxID_CLOSE,AgenderFrame::OnEscape)
 	//(*EventTable(AgenderFrame)
@@ -102,7 +96,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 	BoxSizer1->Add(BtnNuevo, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
 	BtnElim = new wxButton(this, ID_BUTTON2, _("&Delete selection"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON2"));
 	BoxSizer1->Add(BtnElim, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
-	Button3 = new wxButton(this, ID_BUTTON3, _("&About..."), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON3"));
+	Button3 = new wxButton(this, wxID_ABOUT, _("&About..."), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("wxID_ABOUT"));
 	BoxSizer1->Add(Button3, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
 	FlexGridSizer1->Add(BoxSizer1, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	SetSizer(FlexGridSizer1);
@@ -118,7 +112,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 	Connect(ID_TEXTCTRL1,wxEVT_COMMAND_TEXT_UPDATED,(wxObjectEventFunction)&AgenderFrame::OnTextCtrl1Text);
 	Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AgenderFrame::OnBtnNuevoClick);
 	Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AgenderFrame::OnBtnElimClick);
-	Connect(ID_BUTTON3,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AgenderFrame::OnButton3Click);
+	Connect(wxID_ABOUT,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AgenderFrame::OnButton3Click);
 	Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&AgenderFrame::OnClose);
 	//*)
 	if (wxFileExists(cfgFile))
@@ -188,20 +182,11 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 	GetCurrentProcess(&PSN);
 	TransformProcessType(&PSN,kProcessTransformToForegroundApplication);
 #endif// __WXMAC__
-	if (wxJoystick::GetNumberJoysticks())
-	{
-		joy1 = new wxJoystick();
-		wxLogMessage(_T("using joystick: %s"),joy1->GetProductName().c_str());
-		joy1->SetCapture(this,100);
-		joy1->SetMovementThreshold(20000);
-		wxLogMessage(_T("%i"),joy1->GetMovementThreshold());
-	}
-	else
-		joy1 = NULL;
 }
 
 AgenderFrame::~AgenderFrame()
 {
+	wxLogDebug(_T("destroying AgenderFrame"));
 	schdl->Write(_T("/x"),GetPosition().x);
 	schdl->Write(_T("/y"),GetPosition().y);
 	schdl->Write(_T("/w"),GetSize().x);
@@ -213,8 +198,6 @@ AgenderFrame::~AgenderFrame()
 #if defined wxHAS_TASK_BAR_ICON
 	delete trayicon;
 #endif
-	if (joy1)
-		delete joy1;
 	delete schdl;
 	delete a_cal;
 	//(*Destroy(AgenderFrame)
@@ -237,8 +220,9 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& event)
 	info.AddTranslator(_T("Gabriel Espinoza <español>"));
 	info.AddTranslator(_T("Ester Espinoza <deutsch>"));
 	info.AddTranslator(_T("Daniel Daows <japanese>"));
-	info.SetDescription(_("A cross-platform schedule tool"));
-	info.SetWebSite(_T("http://agender.sourceforge.net"));
+	info.SetDescription(wxString::Format(_T("%s\n%s %s %s"),_("A cross-platform schedule tool"),
+				_("Build:"),__TDATE__,__TTIME__));
+	info.SetWebSite(_T("http://agender.sourceforge.net"),_("Agender Web Site"));
 	info.SetLicence(_("Agender is free software; you can redistribute it and/or modify\n"
 				"it under the terms of the GNU General Public License as published by\n"
 				"the Free Software Foundation, either version 3 of the License, or\n"
@@ -279,8 +263,6 @@ void AgenderFrame::OnCalendarCtrl1Changed(wxCalendarEvent& event)
 
 void AgenderFrame::OnListBox1Select(wxCommandEvent& event)
 {
-	//if (SearchMode)
-	// TODO (virtuoso#1#): mostrar resultado de la busqueda
 	if (ListBox1->GetSelection() != wxNOT_FOUND)
 	{
 		TextCtrl1->Enable();
@@ -292,7 +274,6 @@ void AgenderFrame::OnListBox1Select(wxCommandEvent& event)
 
 void AgenderFrame::OnBtnNuevoClick(wxCommandEvent& event)
 {
-	// TODO (virtuoso#1#): compatibilidad wx-2.9: no aparece el wxTextEntryDialog, sera en bug en wx
 	wxTextEntryDialog dlg(this,_("To-Do Title"),_("New To-Do"));
 	if (dlg.ShowModal() == wxID_OK  && dlg.GetValue() != wxEmptyString)
 	{
@@ -404,7 +385,7 @@ void AgenderFrame::ChangeSelector()
 
 void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 {
-#if defined __UNIX__ && !defined __APPLE__
+#if defined __UNIX__ && !defined __APPLE__ //should i simply use __LINUX__ || __BSD__ ? and maybe __SOLARIS__
 	//we use freedestop.org standard
 	wxFileName desktopFname;
 	desktopFname.AssignDir(wxGetHomeDir());
@@ -419,17 +400,29 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 	fluxFname.AppendDir(_T(".fluxbox"));
 	fluxFname.SetName(_T("startup"));
 	wxString  fluxFile= fluxFname.GetFullPath();
+	//existance!
+	if (!wxDirExists(desktopFname.GetPath()) && !wxFileExists(fluxFile))
+	{
+		wxMessageBox(_("AutoStart is only available under Windows, Fluxbox "
+				" and Unix desktops that follow the freedesktop.org standards. "//how sadly! =(
+				"If you add support for any other system, please send patches "
+				"to the patch tracker in the Agender project page at "
+				"http://sourceforge.net/projects/agender/ or you can also help "
+				"donating hardware that runs your favorite system."));
+		return;
+	}
 #elif defined __WXMSW__
 	//we use the windows registry
 	wxRegKey key;
 	key.SetName(_T("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"));
-#else //__WXOSX__
+#else //__WXOSX__ || __WXMAC__
 	//we ask for help :)
 	wxMessageBox(_("AutoStart is only available under Windows, Fluxbox "
-			   " and Unix desktops that follow the freedesktop.org standards. "//how sadly! =(
-			   "If you add support for any other system, please send patches "
-			   "to the patch tracker in the Agender project page at "
-			   "http://sourceforge.net/projects/agender/"));
+				" and Unix desktops that follow the freedesktop.org standards. "//how sadly! =(
+				"If you add support for any other system, please send patches "
+				"to the patch tracker in the Agender project page at "
+				"http://sourceforge.net/projects/agender/ or you can also help "
+				"donating hardware that runs your favorite system."));
 	return;
 #endif
 	//add or remove
@@ -439,9 +432,9 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 	{
 		///add
 #if defined __UNIX__ && !defined __APPLE__
+		//freedesktop.org
 		if (!wxFileExists(desktopFile))
 		{
-			wxLogMessage(_T("writing autostart file: %s"),desktopFile.c_str());
 			//lets use the easyest way
 			wxTextFile desktop;
 			desktop.Create(desktopFile);
@@ -450,7 +443,7 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 			desktop.AddLine(_T("Name=Agender"));
 			desktop.AddLine(_T("Exec=Agender"));
 			desktop.AddLine(_T("Icon=Agender"));
-			desktop.Write(wxTextFileType_Unix);
+			desktop.Write(wxTextFileType_Unix);//needed?
 			desktop.Close();
 		}
 		//add a command to run Agender to the fluxbox  startup script
@@ -478,7 +471,7 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 #elif defined __WXMSW__
 		wxString AgenderValue;
 		key.QueryValue(_T("Agender"),AgenderValue);
-		if (!key.HasValue(_T("Agender")) && AgenderValue != wxStandardPaths::Get().GetExecutablePath())
+		if (!key.HasValue(_T("Agender")) || AgenderValue != wxStandardPaths::Get().GetExecutablePath())
 			key.SetValue(_T("Agender"),wxStandardPaths::Get().GetExecutablePath());
 #endif
 	}
@@ -542,12 +535,9 @@ void AgenderFrame::OnMenuNoteFlag(wxCommandEvent& event)
 						  ListBox1->GetStringSelection().c_str(),stickSymb));
 			MarkDays();
 			break;
-		case ID_STICKYW:
-			break;
 		default:
 			break;
 	}
-
 }
 
 void AgenderFrame::OnMenuRename(wxCommandEvent& event)
@@ -562,7 +552,6 @@ void AgenderFrame::OnMenuRename(wxCommandEvent& event)
 	wxTextEntryDialog dlg(this,_("New name"),_("Rename"),oldName);
 	if (dlg.ShowModal() ==wxID_OK && !oldName.IsSameAs(dlg.GetValue().c_str(),true))
 	{
-
 		if (sticky)
 		{
 			a_cal->RenameNote(ListBox1->GetStringSelection(),dlg.GetValue()+stickSymb);
@@ -574,11 +563,6 @@ void AgenderFrame::OnMenuRename(wxCommandEvent& event)
 			ListBox1->SetString(ListBox1->GetSelection(),dlg.GetValue());
 		}
 	}
-}
-
-void AgenderFrame::OnJoyMove(wxJoystickEvent& event)
-{
-	wxMessageBox(wxString::Format(_T("x: %i, y: %i"),event.GetPosition().x,event.GetPosition().y));
 }
 
 void AgenderFrame::OnActivate(wxActivateEvent& event)

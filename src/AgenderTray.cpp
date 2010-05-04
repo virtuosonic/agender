@@ -94,12 +94,9 @@ wxMenu * AgenderTray::CreatePopupMenu()
 	menu->Append(ID_SYMBOL,_("Symbol"));
 	#endif
 	menu->AppendCheckItem(ID_AUTOSTART,_("Autostart"));
-	//menu->AppendSeparator();
-	//menu->Append(wxID_FIND,_("Find"));
-	// TODO (virtuoso#1#): uncomment the above code
 	menu->AppendSeparator();
 	menu->Append(wxID_EXIT,_("Exit"));
-	//
+	//read value from config
 	bool test_bool= false;
 	wxConfig::Get()->Read(_T("/yearselector"),&test_bool);
 	menu->Check(ID_YEARSEL,test_bool);

@@ -1,6 +1,6 @@
 table Icon
   Caption: Agender
-  Command: /usr/local/bin/Agender
+  Command: Agender
   Icon: /usr/local/share/pixmaps/Agender.png
   Width: 32
   Height: 32

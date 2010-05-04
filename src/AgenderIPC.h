@@ -17,21 +17,13 @@ const wxString IPC_Service(_T(".agender-server"));
 class AgenderConnection : public wxConnection
 {
 	public:
-		AgenderConnection(wxFrame* frame);
-		virtual ~AgenderConnection(){/* if one function is virtual then the destructor must be virtual!*/}
 		 virtual bool OnExecute(const wxString& topic,wxChar* data,int size,wxIPCFormat format);
-	private:
-		wxFrame* m_frame;
 };
 
  class AgenderServer : public wxServer
  {
  	public:
-		AgenderServer(wxFrame* frame);
-		virtual ~AgenderServer(){}
  		virtual wxConnectionBase* OnAcceptConnection(const wxString& topic);
-	private:
- 		wxFrame* m_frame;
  };
 
 #endif // AGENDERIPC_H_INCLUDED

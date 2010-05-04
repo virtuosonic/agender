@@ -134,7 +134,7 @@ wxArrayInt AgenderCal::GetDaysWithNotes()
 			dateStr = m_date.Format(_T("%Y-%m-")) +
 				    wxString::Format(_T("%i"),i);
 		}
-		if (wxConfig::Get()->HasGroup(dateStr) && wxConfig::Get()->GetNumberOfEntries(dateStr))
+		if (wxConfig::Get()->HasGroup(dateStr))
 			days.Add(i);
 	}
 	return days;

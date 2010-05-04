@@ -25,7 +25,6 @@
 #include <wx/taskbar.h>
 
 class AgenderCal;
-class wxJoystick;
 
 class AgenderFrame: public wxFrame
 {
@@ -52,7 +51,6 @@ class AgenderFrame: public wxFrame
 		void OnChangeNotesColour(wxCommandEvent& event);
 		void OnYearSel(wxCommandEvent& event);
 		void OnAutoStart(wxCommandEvent& event);
-		void OnJoyMove(wxJoystickEvent& event);
 		void OnMenuRename(wxCommandEvent& event);
 		void OnMenuNoteFlag(wxCommandEvent& event);
 		void OnActivate(wxActivateEvent& event);
@@ -64,7 +62,6 @@ class AgenderFrame: public wxFrame
 		static const long ID_TEXTCTRL1;
 		static const long ID_BUTTON1;
 		static const long ID_BUTTON2;
-		static const long ID_BUTTON3;
 		//*)
 
 		//(*Declarations(AgenderFrame)
@@ -77,11 +74,6 @@ class AgenderFrame: public wxFrame
 		//*)
 		wxFindReplaceDialog* fndDlg;
 		wxFindReplaceData* fndData;
-		wxJoystick* joy1;
-
-		void MarkDays();
-		void ChangeSelector();
-
 		wxFileConfig* schdl;
 		wxString schFile;
 		wxTaskBarIcon* trayicon;
@@ -89,11 +81,13 @@ class AgenderFrame: public wxFrame
 		wxLocale& m_locale;
 		AgenderCal* a_cal;
 
+		void MarkDays();
+		void ChangeSelector();
+
 		enum {
 			ID_RENAME,
 			ID_NORMAL,
-			ID_STICKY,
-			ID_STICKYW
+			ID_STICKY
 		};
 
 		DECLARE_EVENT_TABLE()

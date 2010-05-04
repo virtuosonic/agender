@@ -51,6 +51,7 @@
 		<Unit filename="../Agender.bkl" />
 		<Unit filename="../Agender.nsi" />
 		<Unit filename="../Agender.spec.in" />
+		<Unit filename="../autopackage/default.apspec.in" />
 		<Unit filename="../configure.in" />
 		<Unit filename="AgenderApp.cpp" />
 		<Unit filename="AgenderApp.h" />

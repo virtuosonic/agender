@@ -15,6 +15,7 @@
 #include <wx/defs.h>
 #include <wx/stdpaths.h>
 #include <wx/cmdline.h>
+#include <wx/apptrait.h>
 #include <iostream>
 
 #if defined __UNIX__
@@ -45,16 +46,12 @@ bool AgenderApp::OnInit()
 	SetAppName(_T("Agender"));
 	SetVendorName(_T("Virtuosonic"));
 	//redirect logging to cout, if you want to annoy users use ::wxMessageBox(_T("do you want me to annoy you?"));
-	wxLog* logger = new wxLogStream(&std::cout);
-	delete wxLog::SetActiveTarget(logger);
-	wxLog::SetVerbose(true);
-	wxLogMessage(wxStandardPaths::Get().GetExecutablePath());
+	delete wxLog::SetActiveTarget(new wxLogStream(&std::cout));
 	//parse arguments
 	wxCmdLineParser cmd(argc,argv);
 	cmd.AddOption(_T("c"),_T("config"),_T("specify a config file to load"),wxCMD_LINE_VAL_STRING);
 	cmd.AddSwitch(_T("nt"),_T("no-taskbar"),_T("use when you don't have a taskbar"));
-	cmd.AddSwitch(_T("h"),_T("help"),_T("show this message ;)"),wxCMD_LINE_OPTION_HELP);
-	cmd.AddSwitch(_T("?"),_T("?"),_T("same as -h"),wxCMD_LINE_OPTION_HELP);
+	OnInitCmdLine(cmd);
 	int res = cmd.Parse(false);
 	if (res < 0)
 	{
@@ -64,8 +61,9 @@ bool AgenderApp::OnInit()
 	wxString cfgFile;
 	cmd.Found(_T("c"),&cfgFile);
 	//are we alone?
-	m_checker = new wxSingleInstanceChecker(_T(".") + GetAppName() + _T("-") + ::wxGetUserId());
-	if (m_checker->IsAnotherRunning())
+	m_checker = new wxSingleInstanceChecker;
+	if (m_checker->Create(_T(".") + GetAppName() + _T("-") + ::wxGetUserId())
+		&& m_checker->IsAnotherRunning())
 	{
 		//lets try to connect to Another and  asking to show it self
 		wxClient client;
@@ -100,7 +98,7 @@ bool AgenderApp::OnInit()
 	wxFrame* Frame = new AgenderFrame(m_locale,cfgFile);
 	SetTopWindow(Frame);
 	//lets create a server so Anothers can comunicate with this->m_server
-	m_server = new AgenderServer(Frame);
+	m_server = new AgenderServer;
 	if (m_server->Create(IPC_Service))
 		wxLogMessage(_T("server created"));
 	else
@@ -149,9 +147,10 @@ void OnSignal(int sig)
 void AgenderApp::OnEndSession(wxCloseEvent& event)
 {
 	wxLogMessage(_T("ending session"));
-	if (wxTheApp->GetTopWindow())
+	if (GetTopWindow())
 	{
-		wxTheApp->GetTopWindow()->Show();
-		wxTheApp->GetTopWindow()->Destroy();
+		GetTopWindow()->Show();
+		GetTopWindow()->Destroy();
 	}
 }
+

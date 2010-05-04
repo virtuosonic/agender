@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Agender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-02 00:21-0800\n"
+"POT-Creation-Date: 2010-04-21 20:23-0800\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Gabriel Espinoza <virtuosonic@users.sourceforge.net>\n"
 "Language-Team: daniel daows\n"
@@ -13,43 +13,43 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: /home/virtuoso/C++/Agender\n"
 
-#: /home/virtuoso/C++/Agender/Agender/AgenderMain.cpp:85
-#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:85
+#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:79
 msgid "Agender"
 msgstr "Agender"
 
-#: /home/virtuoso/C++/Agender/Agender/AgenderMain.cpp:99
-#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:99
+#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:93
 msgid "Add &note"
 msgstr "メモを追加します"
 
-#: /home/virtuoso/C++/Agender/Agender/AgenderMain.cpp:103
-#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:103
+#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:97
 msgid "&Delete selection"
 msgstr " 年セレクタ"
 
-#: /home/virtuoso/C++/Agender/Agender/AgenderMain.cpp:105
-#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:105
+#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:99
 msgid "&About..."
 msgstr "について..."
 
-#: /home/virtuoso/C++/Agender/Agender/AgenderMain.cpp:145
-#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:145
+#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:139
 msgid "Agender uses this file to save your schedule, don't delete it!"
 msgstr ""
 
-#: /home/virtuoso/C++/Agender/Agender/AgenderMain.cpp:170
-#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:170
+#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:164
 msgid "Agender|Search Notes"
 msgstr ""
 
-#: /home/virtuoso/C++/Agender/Agender/AgenderMain.cpp:244
-#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:244
+#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:223
 msgid "A cross-platform schedule tool"
 msgstr ""
 
-#: /home/virtuoso/C++/Agender/Agender/AgenderMain.cpp:246
-#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:246
+#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:224
+msgid "Build:"
+msgstr ""
+
+#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:225
+msgid "Agender Web Site"
+msgstr ""
+
+#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:226
 msgid ""
 "Agender is free software; you can redistribute it and/or modify\n"
 "it under the terms of the GNU General Public License as published by\n"
@@ -65,106 +65,86 @@ msgid ""
 "along with Agender. If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
 
-#: /home/virtuoso/C++/Agender/Agender/AgenderMain.cpp:301
-#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:301
+#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:277
 msgid "To-Do Title"
 msgstr ""
 
-#: /home/virtuoso/C++/Agender/Agender/AgenderMain.cpp:301
-#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:301
+#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:277
 msgid "New To-Do"
 msgstr ""
 
-#: /home/virtuoso/C++/Agender/Agender/AgenderMain.cpp:306
-#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:306
+#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:282
 msgid "Expresion '$(' reserved for Agender, please use another name"
 msgstr ""
 
-#: /home/virtuoso/C++/Agender/Agender/AgenderMain.cpp:433
-#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:433
+#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:406
+#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:419
 #, fuzzy
 msgid "AutoStart is only available under Windows, Fluxbox  and Unix desktops that follow the freedesktop.org standards. If you add support for any other system, please send patches to the patch tracker in the Agender project page at http://sourceforge.net/projects/agender/"
 msgstr "自動起動は　freedesktop.org standards　に従ってWindowsとUnixのdesktop だけ利用できて、別のオペレーティングシステムを支持を追加したら、Agender project のページにhttp://sourceforge.net/projects/agender/　 パッチ trackerにパッチを送って下さい。"
 
-#: /home/virtuoso/C++/Agender/Agender/AgenderMain.cpp:526
-#: /home/virtuoso/C++/Agender/Agender/AgenderMain.cpp:567
-#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:526
-#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:567
+#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:512
+#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:550
 msgid "Rename"
 msgstr ""
 
-#: /home/virtuoso/C++/Agender/Agender/AgenderMain.cpp:528
-#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:528
+#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:514
 msgid "Normal"
 msgstr ""
 
-#: /home/virtuoso/C++/Agender/Agender/AgenderMain.cpp:529
-#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:529
+#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:515
 msgid "Sticky"
 msgstr ""
 
-#: /home/virtuoso/C++/Agender/Agender/AgenderMain.cpp:567
-#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:567
+#: /home/virtuoso/C++/Agender/src/AgenderMain.cpp:550
 msgid "New name"
 msgstr ""
 
-#: /home/virtuoso/C++/Agender/Agender/AgenderTray.cpp:78
 #: /home/virtuoso/C++/Agender/src/AgenderTray.cpp:78
 msgid "100%"
 msgstr "100%"
 
-#: /home/virtuoso/C++/Agender/Agender/AgenderTray.cpp:79
 #: /home/virtuoso/C++/Agender/src/AgenderTray.cpp:79
 msgid "75%"
 msgstr "75%"
 
-#: /home/virtuoso/C++/Agender/Agender/AgenderTray.cpp:80
 #: /home/virtuoso/C++/Agender/src/AgenderTray.cpp:80
 msgid "50%"
 msgstr "50%"
 
-#: /home/virtuoso/C++/Agender/Agender/AgenderTray.cpp:81
 #: /home/virtuoso/C++/Agender/src/AgenderTray.cpp:81
 msgid "25%"
 msgstr "25%"
 
-#: /home/virtuoso/C++/Agender/Agender/AgenderTray.cpp:86
 #: /home/virtuoso/C++/Agender/src/AgenderTray.cpp:86
 msgid "Show"
 msgstr " 見せます"
 
-#: /home/virtuoso/C++/Agender/Agender/AgenderTray.cpp:87
 #: /home/virtuoso/C++/Agender/src/AgenderTray.cpp:87
 msgid "Hide"
 msgstr "隠します\""
 
-#: /home/virtuoso/C++/Agender/Agender/AgenderTray.cpp:90
 #: /home/virtuoso/C++/Agender/src/AgenderTray.cpp:90
 msgid "Opacity"
 msgstr " 不透明"
 
-#: /home/virtuoso/C++/Agender/Agender/AgenderTray.cpp:91
 #: /home/virtuoso/C++/Agender/src/AgenderTray.cpp:91
 msgid "Year selector"
 msgstr " 年セレクタ"
 
-#: /home/virtuoso/C++/Agender/Agender/AgenderTray.cpp:92
 #: /home/virtuoso/C++/Agender/src/AgenderTray.cpp:92
 msgid "Notes Colour"
 msgstr " ノートの色"
 
-#: /home/virtuoso/C++/Agender/Agender/AgenderTray.cpp:94
 #: /home/virtuoso/C++/Agender/src/AgenderTray.cpp:94
 msgid "Symbol"
 msgstr ""
 
-#: /home/virtuoso/C++/Agender/Agender/AgenderTray.cpp:96
 #: /home/virtuoso/C++/Agender/src/AgenderTray.cpp:96
 msgid "Autostart"
 msgstr " 自動起動"
 
-#: /home/virtuoso/C++/Agender/Agender/AgenderTray.cpp:101
-#: /home/virtuoso/C++/Agender/src/AgenderTray.cpp:101
+#: /home/virtuoso/C++/Agender/src/AgenderTray.cpp:98
 msgid "Exit"
 msgstr "出ます"
 
