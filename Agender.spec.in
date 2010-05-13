@@ -1,13 +1,14 @@
 #
 #This File is part of the Agender Project, 100% free  software
 #you are free to modify it to build packages for your distro
+#patches are welcome :-)
 #File: Agender.spec.in
 #Created:01-abr-2010
 #Author: Gabriel Espinoza
 #Modified:
 #If you're reading the file Agender.spec don't edit it
 #it will be overwrited by configure, edit Agender.spec.in
-#this file was tested under fedora 10 using RPM version 4.6.1
+#this file was tested under fedora 13 using RPM version 4.8.0
 #
 Summary: A cross-platform schedule tool!
 Name: Agender
@@ -23,6 +24,7 @@ Vendor: Virtuosonic SDC #put your company here
 Packager: virtuoso #put your name here
 Requires: wxGTK >= 2.8.0
 BuildRequires: wxGTK-devel >= 2.8.0,make,gcc-c++
+Icon: share/Agender.png
 
 %description
 Agender is a small cross-platform schedule tool where you asociate some notes
@@ -38,7 +40,7 @@ without anoying you,it can also be configured to run on login.
 	%{__make}
 
 %install
-	%__make DESTDIR=RPM_BUILD_ROOT install
+	%__make DESTDIR=$RPM_BUILD_ROOT install
 
 %files
 #documentation
