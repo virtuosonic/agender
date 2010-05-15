@@ -66,8 +66,8 @@ void AgenderTray::OnLeft(wxTaskBarIconEvent& event)
 	else
 	{
 		frame->Show();
-		frame->SetFocus();
-		frame->Raise();
+		//frame->SetFocus();
+		//frame->Raise();
 	}
 }
 

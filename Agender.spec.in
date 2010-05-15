@@ -41,8 +41,9 @@ without anoying you,it can also be configured to run on login.
 
 %install
 	%__make DESTDIR=$RPM_BUILD_ROOT install
+	%find_lang %{name}
 
-%files
+%files -f %{name}.lang
 #documentation
 %doc Readme.txt
 %doc gpl-3.0.txt
@@ -51,7 +52,3 @@ without anoying you,it can also be configured to run on login.
 #shortcut
 %{_datadir}/applications/Agender.desktop
 %{_datadir}/pixmaps/Agender.png
-#translations
-%{_datadir}/locale/es/LC_MESSAGES/Agender.mo
-%{_datadir}/locale/de/LC_MESSAGES/Agender.mo
-%{_datadir}/locale/ja/LC_MESSAGES/Agender.mo
