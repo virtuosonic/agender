@@ -3,7 +3,7 @@
  * Purpose:   Defines Classes for using Drag & Drop
  * Author:    Gabriel Espinoza (virtuosonic@users.sourceforge.net)
  * Copyright: Gabriel Espinoza
- * License: GPL 3
+ * License: GPLv3+
  **************************************************************/
 
 #ifndef AGENDERDND_H_INCLUDED

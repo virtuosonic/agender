@@ -3,7 +3,7 @@
  * Purpose:   Code for Drag & Drop support
  * Author:    Gabriel Espinoza
  * Copyright: Gabriel Espinoza
- * License: GPL 3
+ * License: GPLv3+
  **************************************************************/
 #include "AgenderDnd.h"
 

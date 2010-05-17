@@ -3,7 +3,7 @@
  * Purpose:   Defines AgenderCal Class
  * Author:    Gabriel Espinoza (virtuosonic@users.sourceforge.net)
  * Copyright: Gabriel Espinoza
- * License: GPL 3
+ * License: GPLv3+
  **************************************************************/
 
 #ifndef AGENDERCAL_H_INCLUDED

@@ -1,9 +1,9 @@
-;Name:      Agender.nsi
-;Purpose:   Agender's win32 installer
-;Author:    Gabriel Espinoza
-;License: GPL 3
+;Name: Agender.nsi
+;Purpose: Agender's win32 installer
+;Author: Gabriel Espinoza
+;License: GPLv3+
 
-;i think this file needs some hacking, if you are using m$w  please help
+;this file needs some hacking, if you are using m$w  please help
 
 ;this defines are configurable, change them when needed
 !define MINGW_RUNTIME 1
@@ -107,7 +107,9 @@ SectionEnd
 Section Uninstall
 	Delete "$INSTDIR\${PRODUCT_NAME}.url"
 	Delete "$INSTDIR\uninst.exe"
-	Delete "$INSTDIR\mingwm10.dll"
+	!if ${MINGW_RUNTIME}
+		Delete "$INSTDIR\mingwm10.dll"
+	!endif
 	Delete "$INSTDIR\Agender.exe"
 	Delete "$INSTDIR\Readme.txt"
 	Delete "$INSTDIR\gpl-3.0.txt"

@@ -70,6 +70,9 @@ Compiling & Installing:
     makefiles and project file for several compiler using bakefile
     for example:
         bakefile -f gnu Agender.bkl
+    If you're building from svn then you need to generate your
+    makefile using bakefile, you can get bakefile at:
+        http://www.bakefile.org/
 Bugs:
 =====
     I don't call them that way, i call them "advanced user features".
@@ -98,27 +101,27 @@ Hacking:
     understanding Agender, here is a description of what every
     file does.
 
-    AgenderApp.{cpp,h}
+    src/AgenderApp.{cpp,h}
         This files include the application class, its the equivalent
 	to the main function, it initialize some things, like the
         locale, command line parsing, checking for other instances,
         creating the main window, and creating the interprocess
         communications server. It also cleans up this things.
 
-    AgenderMain.{cpp,h}
+    src/AgenderMain.{cpp,h}
         This may be the more important files of the program, they
         contain the class for the main window it also loads and
         saves configuration files and creates the tray icon.
 
-    AgenderCal.{cpp,h}
+    src/AgenderCal.{cpp,h}
         Here is the class that abstracts read & writing notes, once
         AgenderFrame loads the files AgenderCal reads from wxConfig::Get
 
-    AgenderTray.{cpp,h}
+    src/AgenderTray.{cpp,h}
         Agender's tray icon lives heres it uses wxEvent's to communicate
-        with the rest of the gu, it is owned by AgenderFrame.
+        with the rest of the gui, it is owned by AgenderFrame.
 
-    AgenderIPC.{cpp,h}
+    src/AgenderIPC.{cpp,h}
         AgenderServer is used for some interprocess communication, when you
         start Agender it will check for another instances of Agender, if it
         founds one it will create a wxClient that will connect with
@@ -126,7 +129,7 @@ Hacking:
         instance that was already running, this should be completely
         invisible to the user, like if it where magic ;)
 
-    AgenderDnd.{cpp,h}
+    src/AgenderDnd.{cpp,h}
         All the code related to copy/paste and Drag&Drop is in this file,
         actually its incomplete, and doesn't work, it even isn't in the makefiles.
 

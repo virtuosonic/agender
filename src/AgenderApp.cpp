@@ -4,7 +4,7 @@
  * Author:    Gabriel Espinoza
  * Created:   2008-11-21
  * Copyright: Gabriel Espinoza
- * License: GPL 3
+ * License: GPLv3+
  **************************************************************/
 
 #include "AgenderApp.h"

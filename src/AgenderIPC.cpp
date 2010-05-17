@@ -3,7 +3,7 @@
  * Purpose:   Code for Inter Process Communication
  * Author:    Gabriel Espinoza
  * Copyright: Gabriel Espinoza
- * License: GPL 3
+ * License: GPLv3+
  **************************************************************/
 #include "AgenderIPC.h"
 #include <wx/log.h>

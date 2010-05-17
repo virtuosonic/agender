@@ -3,7 +3,7 @@
  * Purpose:   Code for Reading schedule
  * Author:    Gabriel Espinoza
  * Copyright: Gabriel Espinoza
- * License: GPL 3
+ * License: GPLv3+
  **************************************************************/
 #include "AgenderCal.h"
 

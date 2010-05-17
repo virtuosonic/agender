@@ -3,7 +3,7 @@
  * Purpose:   Code for the tray/notification/taskbar/etc icon
  * Author:    Gabriel Espinoza
  * Copyright: Gabriel Espinoza
- * License: GPL 3
+ * License: GPLv3+
  **************************************************************/
 #include <wx/defs.h>
 

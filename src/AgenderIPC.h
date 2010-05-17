@@ -3,7 +3,7 @@
  * Purpose:   Defines Classes for Inter Process Communication
  * Author:    Gabriel Espinoza (virtuosonic@users.sourceforge.net)
  * Copyright: Gabriel Espinoza
- * License: GPL 3
+ * License: GPLv3+
  **************************************************************/
 #ifndef AGENDERIPC_H_INCLUDED
 #define AGENDERIPC_H_INCLUDED

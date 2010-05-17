@@ -3,9 +3,8 @@
  * Purpose:   Defines TaskBarIcon Class
  * Author:    Gabriel Espinoza (virtuosonic@users.sourceforge.net)
  * Copyright: Gabriel Espinoza
- * License: GPL 3
+ * License: GPLv3+
  **************************************************************/
-
  #ifndef AGENDERTRAY_H
 #define AGENDERTRAY_H
 

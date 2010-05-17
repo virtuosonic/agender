@@ -1,4 +1,3 @@
-#
 #This File is part of the Agender Project, 100% free  software
 #you are free to modify it to build packages for your distro
 #patches are welcome :-)
@@ -6,17 +5,19 @@
 #Created:01-abr-2010
 #Author: Gabriel Espinoza
 #Modified:
+#
 #If you're reading the file Agender.spec don't edit it
 #it will be overwrited by configure, edit Agender.spec.in
+#
 #this file was tested under fedora 13 using RPM version 4.8.0
 #
 Summary: A cross-platform schedule tool!
 Name: Agender
 Version: @VERSION@
-Release: 1
+Release: 1.fc13
 License: GPLv3+
 Group: Applications/Utility/Office
-#Source: http://sourceforge.net/projects/agender/files/Agender-@VERSION@.tar.bz2/download
+#Source: http://sourceforge.net/projects/agender/files/Agender-@VERSION@.tar.bz2/download/
 Source: Agender-@VERSION@.tar.bz2
 URL: http://agender.sourceforge.net/
 Distribution: VirtuosoniX #put your distro here
@@ -33,7 +34,7 @@ simply start it  and it will create a taskbar icon and stay in the background,
 without anoying you,it can also be configured to run on login.
 
 %prep
-%setup -n Agender
+	%setup -n Agender
 
 %build
 	%configure --prefix=%{_prefix} --with-wx-config=%{_bindir}/wx-config
@@ -44,11 +45,11 @@ without anoying you,it can also be configured to run on login.
 	%find_lang %{name}
 
 %files -f %{name}.lang
-#documentation
-%doc Readme.txt
-%doc gpl-3.0.txt
-#the  executable
-%{_bindir}/Agender
-#shortcut
-%{_datadir}/applications/Agender.desktop
-%{_datadir}/pixmaps/Agender.png
+	#documentation
+	%doc Readme.txt
+	%doc gpl-3.0.txt
+	#the  executable
+	%{_bindir}/Agender
+	#shortcut
+	%{_datadir}/applications/Agender.desktop
+	%{_datadir}/pixmaps/Agender.png

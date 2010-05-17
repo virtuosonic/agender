@@ -4,7 +4,7 @@
  * Author:    Gabriel Espinoza (virtuosonic@users.sourceforge.net)
  * Created:   2008-11-21
  * Copyright: Gabriel Espinoza
- * License: GPL 3
+ * License: GPLv3+
  **************************************************************/
 #ifndef AGENDERAPP_H_INCLUDED
 #define AGENDERAPP_H_INCLUDED
