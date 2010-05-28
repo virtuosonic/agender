@@ -58,14 +58,14 @@ license GPLv3+
   	<action id="dist">
   		<depends>clean</depends>
   		<!-- -->
-  		<command>cd $(SRCDIR)/Agender;bakefile -f autoconf Agender.bkl</command>
-  		<command>cd $(SRCDIR)/Agender;bakefilize --copy</command>
-  		<command>cd $(SRCDIR)/Agender;aclocal</command>
-  		<command>cd $(SRCDIR)/Agender;autoconf</command>
+  		<command>cd $(SRCDIR)/Agender-$(VERSION);bakefile -f autoconf Agender.bkl</command>
+  		<command>cd $(SRCDIR)/Agender-$(VERSION);bakefilize --copy</command>
+  		<command>cd $(SRCDIR)/Agender-$(VERSION);aclocal</command>
+  		<command>cd $(SRCDIR)/Agender-$(VERSION);autoconf</command>
   		<!--tarball -->
 		<command>tar -jcf Agender-$(VERSION).tar.bz2 Agender/</command>
   		<!-- cleanup -->
-  		<command>rm -rf $(SRCDIR)/Agender</command>
+  		<command>rm -rf $(SRCDIR)/Agender-$(VERSION)</command>
   	</action>
   	<!-- TODO instead of all this chaos use something like copy-files-tree -->
 	<!-- copy src files-->
@@ -73,52 +73,52 @@ license GPLv3+
   		<dependency-of>dist</dependency-of>
   		<srcdir>$(SRCDIR)/</srcdir>
   		<files>*.spec.in *.bkl *.nsi configure.in gpl-3.0.txt Readme.txt</files>
-  		<dstdir>$(SRCDIR)/Agender/</dstdir>
+  		<dstdir>$(SRCDIR)/Agender-$(VERSION)/</dstdir>
   	</copy-files>
   	<copy-files id="srcdist">
   		<dependency-of>dist</dependency-of>
   		<srcdir>$(SRCDIR)/src/</srcdir>
   		<files>*.h *.cpp *.rc *.xpm *.ico *.cbp</files>
-  		<dstdir>$(SRCDIR)/Agender/src</dstdir>
+  		<dstdir>$(SRCDIR)/Agender-$(VERSION)/src</dstdir>
   	</copy-files>
   	<copy-files id="sharedist">
 		<dependency-of>dist</dependency-of>
 		<srcdir>$(SRCDIR)/</srcdir>
   		<files>$(SRCDIR)/share/*</files>
-  		<dstdir>$(SRCDIR)/Agender/share/</dstdir>
+  		<dstdir>$(SRCDIR)/Agender-$(VERSION)/share/</dstdir>
   	</copy-files>
   	<!--es-->
   	<copy-files id="esdist">
   		<dependency-of>dist</dependency-of>
   		<srcdir>$(SRCDIR)</srcdir>
   		<files>locale/es/*</files>
-  		<dstdir>$(SRCDIR)/Agender/locale/es/</dstdir>
+  		<dstdir>$(SRCDIR)/Agender-$(VERSION)/locale/es/</dstdir>
   	</copy-files>
   	<copy-files id="jadist">
   		<dependency-of>dist</dependency-of>
   		<srcdir>$(SRCDIR)</srcdir>
   		<files>locale/ja/*</files>
-  		<dstdir>$(SRCDIR)/Agender/locale/ja/</dstdir>
+  		<dstdir>$(SRCDIR)/Agender-$(VERSION)/locale/ja/</dstdir>
   	</copy-files>
   	<!-- de -->
   	<copy-files id="dedist">
   		<dependency-of>dist</dependency-of>
   		<srcdir>$(SRCDIR)</srcdir>
   		<files>locale/de/*</files>
-  		<dstdir>$(SRCDIR)/Agender/locale/de/</dstdir>
+  		<dstdir>$(SRCDIR)/Agender-$(VERSION)/locale/de/</dstdir>
   	</copy-files>
   	<!-- wxsmith -->
   	<copy-files id="wxsmithdist">
   		<dependency-of>dist</dependency-of>
   		<srcdir>$(SRCDIR)</srcdir>
   		<files>$(SRCDIR)/src/wxsmith/*</files>
-  		<dstdir>$(SRCDIR)/Agender/src/wxsmith/</dstdir>
+  		<dstdir>$(SRCDIR)/Agender-$(VERSION)/src/wxsmith/</dstdir>
   	</copy-files>
   	<!-- autopackage -->
   	<copy-files id="apspecdist">
   		<dependency-of>dist</dependency-of>
   		<srcdir>$(SRCDIR)</srcdir>
   		<files>autopackage/*.apspec.in</files>
-  		<dstdir>$(SRCDIR)/Agender/autopackage/</dstdir>
+  		<dstdir>$(SRCDIR)/Agender-$(VERSION)/autopackage/</dstdir>
   	</copy-files>
 </makefile>
