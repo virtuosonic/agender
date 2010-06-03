@@ -63,7 +63,7 @@ license GPLv3+
   		<command>cd $(SRCDIR)/Agender-$(VERSION);aclocal</command>
   		<command>cd $(SRCDIR)/Agender-$(VERSION);autoconf</command>
   		<!--tarball -->
-		<command>tar -jcf Agender-$(VERSION).tar.bz2 Agender/</command>
+		<command>tar -jcf Agender-$(VERSION).tar.bz2 Agender-$(VERSION)</command>
   		<!-- cleanup -->
   		<command>rm -rf $(SRCDIR)/Agender-$(VERSION)</command>
   	</action>
