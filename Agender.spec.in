@@ -25,7 +25,6 @@ Vendor: Virtuosonic SDC #put your company here
 Packager: virtuoso #put your name here
 Requires: wxGTK >= 2.8.0
 BuildRequires: wxGTK-devel >= 2.8.0,make,gcc-c++
-Icon: share/Agender.png
 
 %description
 Agender is a small cross-platform schedule tool where you asociate some notes
@@ -34,7 +33,7 @@ simply start it  and it will create a taskbar icon and stay in the background,
 without anoying you,it can also be configured to run on login.
 
 %prep
-	%setup -n Agender
+%setup
 
 %build
 	%configure --prefix=%{_prefix} --with-wx-config=%{_bindir}/wx-config
