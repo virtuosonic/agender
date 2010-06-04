@@ -20,9 +20,9 @@ Group: Applications/Utility/Office
 #Source: http://sourceforge.net/projects/agender/files/Agender-@VERSION@.tar.bz2/download/
 Source: Agender-@VERSION@.tar.bz2
 URL: http://agender.sourceforge.net/
-Distribution: VirtuosoniX #put your distro here
-Vendor: Virtuosonic SDC #put your company here
-Packager: virtuoso #put your name here
+Distribution: VirtuosoniX
+Vendor: Virtuosonic
+Packager: virtuoso belmont <virtuosonic@users.sourceforge.net>
 Requires: wxGTK >= 2.8.0
 BuildRequires: wxGTK-devel >= 2.8.0,make,gcc-c++
 
@@ -42,6 +42,8 @@ without anoying you,it can also be configured to run on login.
 %install
 	%__make DESTDIR=$RPM_BUILD_ROOT install
 	%find_lang %{name}
+%clean
+	rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 	#documentation
