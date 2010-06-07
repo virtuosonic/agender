@@ -9,7 +9,7 @@
 !define MINGW_RUNTIME 1
 !define MINGW_DIR "/usr/i686-pc-mingw32/sys-root/mingw"
 ;!define MINGW_DIR "C:\Archivos de Programa\codeblocks\MINGW"
-!define PRODUCT_VERSION "1.1.5"
+!define PRODUCT_VERSION "1.1.5.1"
 ;constants
 !define PRODUCT_NAME "Agender"
 !define PRODUCT_PUBLISHER "Virtuosonic"

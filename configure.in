@@ -5,7 +5,7 @@ AC_PROG_CXX
 AM_OPTIONS_WXCONFIG
 AM_PATH_WXCONFIG
 AC_BAKEFILE([m4_include(autoconf_inc.m4)])
-AC_SUBST(VERSION,1.1.5)
+AC_SUBST(VERSION,1.1.5.1)
 AC_CONFIG_FILES([Makefile
 	autopackage/default.apspec
 	Agender.spec
