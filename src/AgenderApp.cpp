@@ -19,23 +19,18 @@
 #include <iostream>
 
 #if defined __UNIX__
-	#include <signal.h>
+#include <signal.h>
+//i hate globals
+void OnSignal(int sig);
 #endif
 
 //(*AppHeaders
 #include <wx/image.h>
 //*)
 
-#ifdef __UNIX__
-//i hate globals
-void OnSignal(int sig);
-#endif
-
 BEGIN_EVENT_TABLE(AgenderApp,wxApp)
-	//does this work somewhere? write once, debug everywhere!
 	EVT_QUERY_END_SESSION(AgenderApp::OnEndSession)
 	EVT_END_SESSION(AgenderApp::OnEndSession)
-	// TODO (virtuoso#1#): probar usar idleevent
 END_EVENT_TABLE()
 
 IMPLEMENT_APP(AgenderApp);
@@ -67,13 +62,12 @@ bool AgenderApp::OnInit()
 	{
 		//lets try to connect to Another and  asking to show it self
 		wxClient client;
-		AgenderConnection* cnn = NULL;
-		cnn = (AgenderConnection*)client.MakeConnection(_T("localhost"),IPC_Service,IPC_Topic);
+		wxConnection* cnn = NULL;
+		cnn = (wxConnection*)client.MakeConnection(_T("localhost"),IPC_Service,IPC_Topic);
 		if (cnn)
 		{
 			wxLogMessage(_T("executing"));
-			cnn->Execute(IPC_Topic);
-			if (cnn->Execute(IPC_Topic))
+			if (cnn->Execute(NULL))
 			{
 				wxLogMessage(_T("finished executing"));
 				//first ending, like on video games it sucks!
@@ -82,7 +76,7 @@ bool AgenderApp::OnInit()
 			wxLogError(_T("not executed"));
 		}
 		else
-			wxLogError(_T("connection failed"));
+			wxLogError(_T("connection failed: %s"),wxSysErrorMsg());
 		//this goes outside of the 'else' because  if everything goes right : exit(EXIT_SUCCESS);
 		//second ending, like on videogames it sucks even more!
 		exit(EXIT_FAILURE);
@@ -98,11 +92,15 @@ bool AgenderApp::OnInit()
 	wxFrame* Frame = new AgenderFrame(m_locale,cfgFile);
 	SetTopWindow(Frame);
 	//lets create a server so Anothers can comunicate with this->m_server
+	#ifndef __WXMSW__
 	m_server = new AgenderServer;
 	if (m_server->Create(IPC_Service))
 		wxLogMessage(_T("server created"));
 	else
 		wxLogError(_T("server creation failed"));
+	#else
+	m_server = NULL;
+	#endif
 	//no taskbar?
 	if (cmd.Found(_T("nt")))
 		Frame->Show();

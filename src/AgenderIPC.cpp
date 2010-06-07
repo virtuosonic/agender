@@ -37,7 +37,6 @@ bool AgenderConnection::OnExecute(const wxString& topic,wxChar* data,int size,wx
 
 wxConnectionBase * AgenderServer::OnAcceptConnection(const wxString& topic)
 {
-	// TODO (virtuoso#1#): compatibilidad wx-2.9: al parecer  no se establece una conexion
 	if (topic != IPC_Topic)
 		return NULL;
 	wxLogMessage(_T("Connection acepted"));

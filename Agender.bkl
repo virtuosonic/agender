@@ -121,4 +121,16 @@ license GPLv3+
   		<files>autopackage/*.apspec.in</files>
   		<dstdir>$(SRCDIR)/Agender-$(VERSION)/autopackage/</dstdir>
   	</copy-files>
+  	<!-- rpm build -->
+  	<action id="rpm">
+  		<depends>dist</depends>
+  		<command>rpmdev-setuptree</command>
+  		<command>mv Agender-$(VERSION).tar.bz2 ~/rpmbuild/SOURCES/</command>
+  		<command>cd ~/rpmbuild/SOURCES/;tar -xf Agender-$(VERSION).tar.bz2</command>
+  		<command>cd ~/rpmbuild/SOURCES/Agender-$(VERSION);./configure</command>
+  		<command>cp ~/rpmbuild/SOURCES/Agender-$(VERSION)/Agender.spec ~/rpmbuild/SPECS/</command>
+  		<command>cp ~/rpmbuild/SOURCES/Agender-$(VERSION)/src/Agender.xpm ~/rpmbuild/SOURCES/</command>
+  		<command>rm -rf ~/rpmbuild/SOURCES/Agender-$(VERSION)</command>
+  		<command>rpmbuild -ba ~/rpmbuild/SPECS/Agender.spec</command>
+  	</action>
 </makefile>

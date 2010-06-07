@@ -72,6 +72,7 @@ Section "Agender" SEC01
 	;compiler runtime
 	!if ${MINGW_RUNTIME}
 		File "${MINGW_DIR}\bin\mingwm10.dll"
+		File "${MINGW_DIR}\bin\libgcc_s_sjlj-1.dll"
 	!endif
 	;please read it
 	File "Readme.txt"
