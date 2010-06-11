@@ -79,6 +79,8 @@ Bugs:
     If you find one report it at the project bug tracker, patches are
     welcome, thank you.
 
+    You can also send a mail to agender-support@lists.sourceforge.net
+
 Porting/Packaging:
 ==================
     Agender uses, the wxWidgets library, it almost doesn't use the
