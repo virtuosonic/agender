@@ -221,7 +221,7 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& event)
 	info.AddTranslator(_T("Ester Espinoza <deutsch>"));
 	info.AddTranslator(_T("Daniel Daows <japanese>"));
 	info.SetDescription(wxString::Format(_T("%s\n%s %s %s"),_("A cross-platform schedule tool"),
-				_("Build:"),__TDATE__,__TTIME__));
+							 _("Build:"),__TDATE__,__TTIME__));
 	info.SetWebSite(_T("http://agender.sourceforge.net"),_("Agender Web Site"));
 	info.SetLicence(_("Agender is free software; you can redistribute it and/or modify\n"
 				"it under the terms of the GNU General Public License as published by\n"
@@ -340,10 +340,14 @@ void AgenderFrame::MarkDays()
 	}
 	if (wxDateTime::Now().GetMonth() == CalendarCtrl1->GetDate().GetMonth())
 	{
-		wxCalendarDateAttr* today_attr = new wxCalendarDateAttr;
+		wxCalendarDateAttr* today_attr = CalendarCtrl1->GetAttr(wxDateTime::Now().GetDay());
+		if (today_attr == NULL)
+		{
+			today_attr = new wxCalendarDateAttr;
+			CalendarCtrl1->SetAttr(wxDateTime::Now().GetDay(),today_attr);
+		}
 		today_attr->SetBorder(wxCAL_BORDER_ROUND);
-		today_attr->SetBorderColour(wxColour(schdl->Read(_T("/notescolour"),_T("#00FF00"))));
-		CalendarCtrl1->SetAttr(wxDateTime::Now().GetDay(),today_attr);
+		today_attr->SetBorderColour(wxColour(schdl->Read(_T("/notescolour"),_T("#00ff00"))));
 	}
 }
 
@@ -404,11 +408,11 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 	if (!wxDirExists(desktopFname.GetPath()) && !wxFileExists(fluxFile))
 	{
 		wxMessageBox(_("AutoStart is only available under Windows, Fluxbox "
-				" and Unix desktops that follow the freedesktop.org standards. "//how sadly! =(
-				"If you add support for any other system, please send patches "
-				"to the patch tracker in the Agender project page at "
-				"http://sourceforge.net/projects/agender/ or you can also help "
-				"donating hardware that runs your favorite system."));
+				   " and Unix desktops that follow the freedesktop.org standards. "//how sadly! =(
+				   "If you add support for any other system, please send patches "
+				   "to the patch tracker in the Agender project page at "
+				   "http://sourceforge.net/projects/agender/ or you can also help "
+				   "donating hardware that runs your favorite system."));
 		return;
 	}
 #elif defined __WXMSW__
@@ -418,11 +422,11 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 #else //__WXOSX__ || __WXMAC__
 	//we ask for help :)
 	wxMessageBox(_("AutoStart is only available under Windows, Fluxbox "
-				" and Unix desktops that follow the freedesktop.org standards. "//how sadly! =(
-				"If you add support for any other system, please send patches "
-				"to the patch tracker in the Agender project page at "
-				"http://sourceforge.net/projects/agender/ or you can also help "
-				"donating hardware that runs your favorite system."));
+			   " and Unix desktops that follow the freedesktop.org standards. "//how sadly! =(
+			   "If you add support for any other system, please send patches "
+			   "to the patch tracker in the Agender project page at "
+			   "http://sourceforge.net/projects/agender/ or you can also help "
+			   "donating hardware that runs your favorite system."));
 	return;
 #endif
 	//add or remove
