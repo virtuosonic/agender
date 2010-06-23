@@ -15,7 +15,7 @@
 Summary: A cross-platform schedule tool!
 Name: Agender
 Version: @VERSION@
-Release: 1.fc13
+Release: 1%{dist}
 License: GPLv3+
 Group: Applications/Productivity
 #Source: http://sourceforge.net/projects/agender/files/Agender-@VERSION@.tar.bz2/download/
@@ -43,6 +43,7 @@ without annoying you,it can also be configured to run on login.
 	%{__make}
 
 %install
+	test -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != "/" && %{__rm} -rf $RPM_BUILD_ROOT
 	%__make DESTDIR=$RPM_BUILD_ROOT install
 	%find_lang %{name}
 %clean
