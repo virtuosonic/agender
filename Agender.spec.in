@@ -22,12 +22,8 @@ Group: Applications/Productivity
 Source: Agender-@VERSION@.tar.bz2
 Icon: Agender.xpm
 URL: http://agender.sourceforge.net/
-Distribution: VirtuosoniX
-Vendor: Virtuosonic
-Packager: virtuoso belmont <virtuosonic@users.sourceforge.net>
 Requires: wxGTK >= 2.8.0
-BuildRequires: wxGTK-devel >= 2.8.0,make,gcc-c++
-Prefix: %{_prefix}
+BuildRequires: wxGTK-devel >= 2.8.0
 
 %description
 Agender is a small cross-platform schedule tool where you associate some notes
