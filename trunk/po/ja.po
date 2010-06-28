@@ -1,0 +1,150 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Agender\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-06-27 23:45-0800\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Gabriel Espinoza <virtuosonic@users.sourceforge.net>\n"
+"Language-Team: daniel daows\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: /home/virtuoso/C++/Agender\n"
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:78
+msgid "100%"
+msgstr "100%"
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:79
+msgid "75%"
+msgstr "75%"
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:80
+msgid "50%"
+msgstr "50%"
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:81
+msgid "25%"
+msgstr "25%"
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:86
+msgid "Show"
+msgstr " 見せます"
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:87
+msgid "Hide"
+msgstr "隠します\""
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:90
+msgid "Opacity"
+msgstr " 不透明"
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:91
+msgid "Year selector"
+msgstr " 年セレクタ"
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:92
+msgid "Notes Colour"
+msgstr " ノートの色"
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:94
+msgid "Symbol"
+msgstr ""
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:96
+msgid "Autostart"
+msgstr " 自動起動"
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:98
+msgid "Exit"
+msgstr "出ます"
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:79
+msgid "Agender"
+msgstr "Agender"
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:93
+msgid "Add &note"
+msgstr "メモを追加します"
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:97
+msgid "&Delete selection"
+msgstr " 年セレクタ"
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:99
+msgid "&About..."
+msgstr "について..."
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:139
+msgid "Agender uses this file to save your schedule, don't delete it!"
+msgstr ""
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:164
+msgid "Agender|Search Notes"
+msgstr ""
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:223
+msgid "A cross-platform schedule tool"
+msgstr ""
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:224
+msgid "Build:"
+msgstr ""
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:225
+msgid "Agender Web Site"
+msgstr ""
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:226
+msgid ""
+"Agender is free software; you can redistribute it and/or modify\n"
+"it under the terms of the GNU General Public License as published by\n"
+"the Free Software Foundation, either version 3 of the License, or\n"
+"(at your option) any later version.\n"
+"\n"
+"Agender is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License\n"
+"along with Agender. If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:277
+msgid "To-Do Title"
+msgstr ""
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:277
+msgid "New To-Do"
+msgstr ""
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:282
+msgid "Expresion '$(' reserved for Agender, please use another name"
+msgstr ""
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:410
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:424
+#, fuzzy
+msgid "AutoStart is only available under Windows, Fluxbox  and Unix desktops that follow the freedesktop.org standards. If you add support for any other system, please send patches to the patch tracker in the Agender project page at http://sourceforge.net/projects/agender/ or you can also help donating hardware that runs your favorite system."
+msgstr "自動起動は　freedesktop.org standards　に従ってWindowsとUnixのdesktop だけ利用できて、別のオペレーティングシステムを支持を追加したら、Agender project のページにhttp://sourceforge.net/projects/agender/　 パッチ trackerにパッチを送って下さい。"
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:518
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:556
+msgid "Rename"
+msgstr ""
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:520
+msgid "Normal"
+msgstr ""
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:521
+msgid "Sticky"
+msgstr ""
+
+#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:556
+msgid "New name"
+msgstr ""
+

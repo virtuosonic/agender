@@ -6,6 +6,7 @@ license GPLv3+
 <makefile>
 	<include file="presets/wx.bkl"/>
 	<using module="datafiles"/>
+	<using module="gettext"/>
 	<set var="VERSION">1.1.5.2</set>
 	<!--build binary -->
 	<exe id="Agender" template="wx-lib">
@@ -39,21 +40,12 @@ license GPLv3+
   		<files>share/Agender.png</files>
   	</data-files>
   	<!--translations-->
-  	<data-files id="spanish">
-  		<srcdir>$(SRCDIR)</srcdir>
-  		<install-to>$(DATADIR)/locale/es/LC_MESSAGES</install-to>
-  		<files>locale/es/Agender.mo</files>
-  	</data-files>
-  	<data-files id="german">
-  		<srcdir>$(SRCDIR)</srcdir>
-  		<install-to>$(DATADIR)/locale/de/LC_MESSAGES</install-to>
-  		<files>locale/de/Agender.mo</files>
-  	</data-files>
-  	<data-files id="japanesse">
-  		<srcdir>$(SRCDIR)</srcdir>
-  		<install-to>$(DATADIR)/locale/ja/LC_MESSAGES</install-to>
-  		<files>locale/ja/Agender.mo</files>
-  	</data-files>
+  	<gettext-catalogs>
+  		<catalog-name>Agender</catalog-name>
+  		<linguas>es de ja</linguas>
+  		<srcdir>$(SRCDIR)/po</srcdir>
+  		<install-to>$(DATADIR)/locale</install-to>
+  	</gettext-catalogs>
   	<!-- lets build a package -->
   	<action id="dist">
   		<depends>clean</depends>
@@ -87,32 +79,19 @@ license GPLv3+
   		<files>$(SRCDIR)/share/*</files>
   		<dstdir>$(SRCDIR)/Agender-$(VERSION)/share/</dstdir>
   	</copy-files>
-  	<!--es-->
-  	<copy-files id="esdist">
-  		<dependency-of>dist</dependency-of>
-  		<srcdir>$(SRCDIR)</srcdir>
-  		<files>locale/es/*</files>
-  		<dstdir>$(SRCDIR)/Agender-$(VERSION)/locale/es/</dstdir>
-  	</copy-files>
-  	<copy-files id="jadist">
-  		<dependency-of>dist</dependency-of>
-  		<srcdir>$(SRCDIR)</srcdir>
-  		<files>locale/ja/*</files>
-  		<dstdir>$(SRCDIR)/Agender-$(VERSION)/locale/ja/</dstdir>
-  	</copy-files>
-  	<!-- de -->
-  	<copy-files id="dedist">
-  		<dependency-of>dist</dependency-of>
-  		<srcdir>$(SRCDIR)</srcdir>
-  		<files>locale/de/*</files>
-  		<dstdir>$(SRCDIR)/Agender-$(VERSION)/locale/de/</dstdir>
-  	</copy-files>
   	<!-- wxsmith -->
   	<copy-files id="wxsmithdist">
   		<dependency-of>dist</dependency-of>
   		<srcdir>$(SRCDIR)</srcdir>
   		<files>$(SRCDIR)/src/wxsmith/*</files>
   		<dstdir>$(SRCDIR)/Agender-$(VERSION)/src/wxsmith/</dstdir>
+  	</copy-files>
+  	<!-- translations -->
+  	<copy-files id="podist">
+		<dependency-of>dist</dependency-of>
+  		<srcdir>$(SRCDIR)/po</srcdir>
+  		<files>*.po</files>
+  		<dstdir>$(SRCDIR)/Agender-$(VERSION)/po</dstdir>
   	</copy-files>
   	<!-- autopackage -->
   	<copy-files id="apspecdist">
