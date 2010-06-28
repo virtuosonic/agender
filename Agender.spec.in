@@ -1,0 +1,57 @@
+#This File is part of the Agender Project, 100% free  software
+#you are free to modify it to build packages for your distro, patches are welcome :-)
+#File: Agender.spec.in
+#Created:01-abr-2010
+#Author: Gabriel Espinoza
+#License: GPLv3+
+#Copyright: Copyright (C) 2010 Gabriel Espinoza
+#Modified:
+#
+#If you're reading the file Agender.spec don't edit it
+#it will be overwrited by configure, edit Agender.spec.in
+#
+#this file was tested under fedora 13 using RPM version 4.8.0
+#
+Summary: A cross-platform schedule tool!
+Name: Agender
+Version: @VERSION@
+Release: 1%{dist}
+License: GPLv3+
+Group: Applications/Productivity
+#Source: http://sourceforge.net/projects/agender/files/Agender-@VERSION@.tar.bz2/download/
+Source: Agender-@VERSION@.tar.bz2
+Icon: Agender.xpm
+URL: http://agender.sourceforge.net/
+Requires: wxGTK >= 2.8.0
+BuildRequires: wxGTK-devel >= 2.8.0
+
+%description
+Agender is a small cross-platform schedule tool where you associate some notes
+with a date or with no date in particular if  you mark the note as sticky, you
+simply start it  and it will create a task-bar icon and stay in the background,
+without annoying you,it can also be configured to run on login.
+
+%prep
+%setup
+
+%build
+	%configure --prefix=%{_prefix} --with-wx-config=%{_bindir}/wx-config
+	%{__make}
+
+%install
+	test -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != "/" && %{__rm} -rf $RPM_BUILD_ROOT
+	%__make DESTDIR=$RPM_BUILD_ROOT install
+	%find_lang %{name}
+%clean
+	test -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != "/" && %{__rm} -rf $RPM_BUILD_ROOT
+
+%files -f %{name}.lang
+	%defattr (-, root, root)
+	#documentation
+	%doc Readme.txt
+	%doc gpl-3.0.txt
+	#the  executable
+	%{_bindir}/Agender
+	#shortcut
+	%{_datadir}/applications/Agender.desktop
+	%{_datadir}/pixmaps/Agender.png
