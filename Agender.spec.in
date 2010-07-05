@@ -32,7 +32,7 @@ simply start it  and it will create a task-bar icon and stay in the background,
 without annoying you,it can also be configured to run on login.
 
 %prep
-%setup
+%setup -q
 
 %build
 	%configure --prefix=%{_prefix} --with-wx-config=%{_bindir}/wx-config
@@ -40,7 +40,7 @@ without annoying you,it can also be configured to run on login.
 
 %install
 	test -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != "/" && %{__rm} -rf $RPM_BUILD_ROOT
-	%__make DESTDIR=$RPM_BUILD_ROOT install
+	%{__make} DESTDIR=$RPM_BUILD_ROOT install
 	%find_lang %{name}
 %clean
 	test -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != "/" && %{__rm} -rf $RPM_BUILD_ROOT
