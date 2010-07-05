@@ -27,6 +27,8 @@
 #include <wx/utils.h>
 #include <wx/log.h>
 #include <wx/filename.h>
+#include <wx/app.h>
+#include <wx/apptrait.h>
 
 //escribir algunas cosas en el registro
 #ifdef __WXMSW__
@@ -163,11 +165,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 	fndData = new wxFindReplaceData;
 	fndDlg = new wxFindReplaceDialog(this,fndData,_("Agender|Search Notes"),wxFR_NOUPDOWN|wxFR_NOMATCHCASE|wxFR_NOWHOLEWORD);
 	SearchMode = false;
-	//taskbaricon
-#if defined wxHAS_TASK_BAR_ICON
-	trayicon = new AgenderTray(this,schdl->Read(_T("/opacity"),255));
-	trayicon->SetIcon(Agender16x16_xpm,_T("Virtuosonic Agender"));
-#endif//wxHAS_TASK_BAR_ICON
+	//size
 	SetSize(schdl->Read(_T("/x"),wxDefaultPosition.x),schdl->Read(_T("/y"),wxDefaultPosition.y),
 		  schdl->Read(_T("/w"),wxDefaultSize.x),schdl->Read(_T("/h"),wxDefaultSize.y));
 	SetTransparent(schdl->Read(_T("/opacity"),255));
@@ -175,6 +173,26 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 	wxCommandEvent event;
 	event.SetId(7005);
 	wxPostEvent(GetEventHandler(),event);
+	//taskbaricon
+#if defined wxHAS_TASK_BAR_ICON
+	//this is a stupid hack, but gnome is a very stupid desktop environment
+#if defined __X__ || defined __WXGTK__
+	wxArrayString output;
+	wxExecute(_T("pidof gnome-session"),output,wxEXEC_SYNC);
+	if (!output.IsEmpty()) {
+		output.Empty();
+		do
+		{
+			wxExecute(_T("pidof gnome-panel"),output,wxEXEC_SYNC);
+			if (output.IsEmpty())
+				wxSleep(3);
+		} while(output.IsEmpty());
+		wxSleep(3);
+	}
+#endif
+	trayicon = new AgenderTray(this,schdl->Read(_T("/opacity"),255));
+	trayicon->SetIcon(Agender16x16_xpm,_T("Virtuosonic Agender"));
+#endif//wxHAS_TASK_BAR_ICON
 #ifdef __WXMAC__
 	//this isn't tested, but i read it in wxwiki
 	//if you want me to test it, and make it work,  you can donate me a Mac Pro ;)	-virtuosonic at users dot sourceforge dot net
