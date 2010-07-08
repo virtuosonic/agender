@@ -100,6 +100,13 @@ license GPLv3+
   		<files>autopackage/*.apspec.in</files>
   		<dstdir>$(SRCDIR)/Agender-$(VERSION)/autopackage/</dstdir>
   	</copy-files>
+  	<!-- compile po-->
+  	<action id="mo">
+  		<dependency-of>all</dependency-of>
+  		<command>msgfmt po/es.po -o po/es.mo</command>
+  		<command>msgfmt po/de.po -o po/de.mo</command>
+  		<command>msgfmt po/ja.po -o po/ja.mo</command>
+  	</action>
   	<!-- rpm build -->
   	<action id="rpm">
   		<depends>dist</depends>
