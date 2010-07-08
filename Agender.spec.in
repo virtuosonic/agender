@@ -24,6 +24,7 @@ Icon: Agender.xpm
 URL: http://agender.sourceforge.net/
 Requires: wxGTK >= 2.8.0
 BuildRequires: wxGTK-devel >= 2.8.0
+Prefix: %{_prefix}
 
 %description
 Agender is a small cross-platform schedule tool where you associate some notes
