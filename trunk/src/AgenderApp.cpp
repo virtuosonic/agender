@@ -6,6 +6,9 @@
  * Copyright: Gabriel Espinoza
  * License: GPLv3+
  **************************************************************/
+#ifdef __BORLANDC__
+    #pragma hdrstop
+#endif
 
 #include "AgenderApp.h"
 #include "AgenderMain.h"

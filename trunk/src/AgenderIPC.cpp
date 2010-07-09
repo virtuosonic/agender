@@ -5,6 +5,10 @@
  * Copyright: Gabriel Espinoza
  * License: GPLv3+
  **************************************************************/
+#ifdef __BORLANDC__
+    #pragma hdrstop
+#endif
+
 #include "AgenderIPC.h"
 #include <wx/log.h>
 #include <wx/defs.h>

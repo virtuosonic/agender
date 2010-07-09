@@ -5,6 +5,10 @@
  * Copyright: Gabriel Espinoza
  * License: GPLv3+
  **************************************************************/
+#ifdef __BORLANDC__
+    #pragma hdrstop
+#endif
+
 #include <wx/defs.h>
 
 #if defined wxHAS_TASK_BAR_ICON
