@@ -110,7 +110,8 @@ license GPLv3+
   	<!-- rpm build -->
   	<action id="rpm">
   		<depends>dist</depends>
-  		<command>rpmdev-setuptree</command>
+		<command>mkdir -p ~/rpmbuild/SOURCES/</command>
+		<command>mkdir -p ~/rpmbuild/SPECS/</command>
   		<command>mv Agender-$(VERSION).tar.bz2 ~/rpmbuild/SOURCES/</command>
   		<command>cd ~/rpmbuild/SOURCES/;tar -xf Agender-$(VERSION).tar.bz2</command>
   		<command>cd ~/rpmbuild/SOURCES/Agender-$(VERSION);./configure</command>
