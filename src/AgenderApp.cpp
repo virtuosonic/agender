@@ -44,7 +44,11 @@ bool AgenderApp::OnInit()
 	SetAppName(_T("Agender"));
 	SetVendorName(_T("Virtuosonic"));
 	//redirect logging to cout, if you want to annoy users use ::wxMessageBox(_T("do you want me to annoy you?"));
+	#if defined __WXMAC__ || defined __WXOSX__
+	wxLogNull logNo;
+	#else
 	delete wxLog::SetActiveTarget(new wxLogStream(&std::cout));
+	#endif
 	//parse arguments
 	wxCmdLineParser cmd(argc,argv);
 	cmd.AddOption(_T("c"),_T("config"),_T("specify a config file to load"),wxCMD_LINE_VAL_STRING);
