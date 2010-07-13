@@ -108,16 +108,18 @@ license GPLv3+
   		<command>msgfmt po/ja.po -o po/ja.mo</command>
   	</action>
   	<!-- rpm build -->
+	<set var="rpmbuilddir">/usr/src/packages</set>
+	<!-- <set var="rpmbuilddir">~/rpmbuild</set> -->
   	<action id="rpm">
   		<depends>dist</depends>
 		<command>mkdir -p ~/rpmbuild/SOURCES/</command>
 		<command>mkdir -p ~/rpmbuild/SPECS/</command>
-  		<command>mv Agender-$(VERSION).tar.bz2 ~/rpmbuild/SOURCES/</command>
-  		<command>cd ~/rpmbuild/SOURCES/;tar -xf Agender-$(VERSION).tar.bz2</command>
-  		<command>cd ~/rpmbuild/SOURCES/Agender-$(VERSION);./configure</command>
-  		<command>cp ~/rpmbuild/SOURCES/Agender-$(VERSION)/Agender.spec ~/rpmbuild/SPECS/</command>
-  		<command>cp ~/rpmbuild/SOURCES/Agender-$(VERSION)/src/Agender.xpm ~/rpmbuild/SOURCES/</command>
-  		<command>rm -rf ~/rpmbuild/SOURCES/Agender-$(VERSION)</command>
-  		<command>rpmbuild -ba ~/rpmbuild/SPECS/Agender.spec</command>
+  		<command>mv Agender-$(VERSION).tar.bz2 $(rpmbuilddir)/SOURCES/</command>
+  		<command>cd $(rpmbuilddir)/SOURCES/;tar -xf Agender-$(VERSION).tar.bz2</command>
+  		<command>cd $(rpmbuilddir)/SOURCES/Agender-$(VERSION);./configure</command>
+  		<command>cp $(rpmbuilddir)/SOURCES/Agender-$(VERSION)/Agender.spec $(rpmbuilddir)/SPECS/</command>
+  		<command>cp $(rpmbuilddir)/SOURCES/Agender-$(VERSION)/src/Agender.xpm $(rpmbuilddir)/SOURCES/</command>
+  		<command>rm -rf $(rpmbuilddir)/SOURCES/Agender-$(VERSION)</command>
+  		<command>rpmbuild -ba $(rpmbuilddir)/SPECS/Agender.spec</command>
   	</action>
 </makefile>

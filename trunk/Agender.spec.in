@@ -26,6 +26,10 @@ Requires: wxGTK >= 2.8.0
 BuildRequires: wxGTK-devel >= 2.8.0
 Prefix: %{_prefix}
 
+%if 0%{?suse_version}
+	%define dist .suse
+%endif
+
 %description
 Agender is a small cross-platform schedule tool where you associate some notes
 with a date or with no date in particular if  you mark the note as sticky, you
