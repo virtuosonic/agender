@@ -175,13 +175,13 @@ mo:
 rpm: dist
 	mkdir -p ~/rpmbuild/SOURCES/
 	mkdir -p ~/rpmbuild/SPECS/
-	mv Agender-1.1.6.tar.bz2 ~/rpmbuild/SOURCES/
-	cd ~/rpmbuild/SOURCES/;tar -xf Agender-1.1.6.tar.bz2
-	cd ~/rpmbuild/SOURCES/Agender-1.1.6;./configure
-	cp ~/rpmbuild/SOURCES/Agender-1.1.6/Agender.spec ~/rpmbuild/SPECS/
-	cp ~/rpmbuild/SOURCES/Agender-1.1.6/src/Agender.xpm ~/rpmbuild/SOURCES/
-	rm -rf ~/rpmbuild/SOURCES/Agender-1.1.6
-	rpmbuild -ba ~/rpmbuild/SPECS/Agender.spec
+	mv Agender-1.1.6.tar.bz2 /usr/src/packages/SOURCES/
+	cd /usr/src/packages/SOURCES/;tar -xf Agender-1.1.6.tar.bz2
+	cd /usr/src/packages/SOURCES/Agender-1.1.6;./configure
+	cp /usr/src/packages/SOURCES/Agender-1.1.6/Agender.spec /usr/src/packages/SPECS/
+	cp /usr/src/packages/SOURCES/Agender-1.1.6/src/Agender.xpm /usr/src/packages/SOURCES/
+	rm -rf /usr/src/packages/SOURCES/Agender-1.1.6
+	rpmbuild -ba /usr/src/packages/SPECS/Agender.spec
 
 Agender_AgenderIPC.o: ./src/AgenderIPC.cpp
 	$(CXX) -c -o $@ $(AGENDER_CXXFLAGS) $(CPPDEPS) $<
