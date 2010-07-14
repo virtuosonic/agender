@@ -1,8 +1,9 @@
 [Desktop Entry]
 Exec=Agender
 Name=Agender
+GenericName=Agender
 Icon=Agender
 Terminal=false
 Type=Application
-Comment=Schedule tool
-Categories=GTK;Calendar;Utility;
+Comment=Schedule tool!
+Categories=Utility;Calendar;0ffice;GTK;
