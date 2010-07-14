@@ -12,6 +12,11 @@
 #
 #this file was tested under fedora 13 using RPM version 4.8.0
 #
+
+%if 0%{?suse_version}
+	%define dist .suse
+%endif
+
 Summary: A cross-platform schedule tool!
 Name: Agender
 Version: @VERSION@
@@ -23,12 +28,9 @@ Source: Agender-@VERSION@.tar.bz2
 Icon: Agender.xpm
 URL: http://agender.sourceforge.net/
 Requires: wxGTK >= 2.8.0
-BuildRequires: wxGTK-devel >= 2.8.0
+BuildRequires: wxGTK-devel >= 2.8.0,make, gcc-c++
 Prefix: %{_prefix}
-
-%if 0%{?suse_version}
-	%define dist .suse
-%endif
+BuildRoot: %{?buildroot}
 
 %description
 Agender is a small cross-platform schedule tool where you associate some notes
@@ -44,11 +46,11 @@ without annoying you,it can also be configured to run on login.
 	%{__make}
 
 %install
-	test -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != "/" && %{__rm} -rf $RPM_BUILD_ROOT
-	%{__make} DESTDIR=$RPM_BUILD_ROOT install
+	%{__make} DESTDIR="$RPM_BUILD_ROOT" install
 	%find_lang %{name}
 %clean
-	test -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != "/" && %{__rm} -rf $RPM_BUILD_ROOT
+	#test -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != "/" && %{__rm} -rf $RPM_BUILD_ROOT
+	%{__rm} -rf "$RPM_BUILD_ROOT"
 
 %files -f %{name}.lang
 	%defattr (-, root, root)
