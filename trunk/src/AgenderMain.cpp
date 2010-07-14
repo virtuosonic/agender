@@ -242,7 +242,7 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& event)
 	info.AddTranslator(_T("Ester Espinoza : deutsch"));
 	info.AddTranslator(_T("Florian Haag : deutsch"));
 	info.AddTranslator(_T("Daniel Daows : japanese"));
-	info.AddTRanslator(_T("Pedro Silva : portuguese"));
+	info.AddTRanslator(_T("Pedro Silva <pbsilva@users.sourceforge.net> : portuguese"));
 	info.SetDescription(wxString::Format(_T("%s\n%s %s %s"),_("A cross-platform schedule tool"),
 							 _("Build:"),__TDATE__,__TTIME__));
 	info.SetWebSite(_T("http://agender.sourceforge.net"),_("Agender Web Site"));
