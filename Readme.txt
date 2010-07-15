@@ -44,13 +44,6 @@ Dependencies:
     using wxWidgets 2.8.10 maybe it works with another, not sure.
     The website is www.wxwidgets.org.
 
-    Under fedora you can install it with the command:
-
-        yum install wxGTK-devel gcc-c++
-
-    Or for cross-compiling to win32
-
-        yum install mingw32-gcc-c++
 
 Compiling & Installing:
 =======================
@@ -150,8 +143,6 @@ Translating/i18n:
 
     You can get Poedit at:
         http://www.poedit.net
-    Or from my beloved fedora:
-        yum install poedit
 
 TODO:
 =====
