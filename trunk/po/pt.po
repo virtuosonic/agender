@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Agender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-14 08:37-0800\n"
-"PO-Revision-Date: 2010-07-14 19:00+0100\n"
+"POT-Creation-Date: 2010-07-14 20:29-0800\n"
+"PO-Revision-Date: 2010-07-14 20:29-0800\n"
 "Last-Translator: Gabriel Espinoza <virtuosonic@users.sourceforge.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -37,19 +37,19 @@ msgstr "Agender utiliza este ficheiro para guardar a sua agenda, não o apague!"
 msgid "Agender|Search Notes"
 msgstr "Agender|Procurar notas"
 
-#: ../src/AgenderMain.cpp:245
+#: ../src/AgenderMain.cpp:246
 msgid "A cross-platform schedule tool"
 msgstr "Uma agenda multi-plataforma"
 
-#: ../src/AgenderMain.cpp:246
+#: ../src/AgenderMain.cpp:247
 msgid "Build:"
 msgstr "Versão:"
 
-#: ../src/AgenderMain.cpp:247
+#: ../src/AgenderMain.cpp:248
 msgid "Agender Web Site"
 msgstr "Website do Agender"
 
-#: ../src/AgenderMain.cpp:248
+#: ../src/AgenderMain.cpp:249
 msgid ""
 "Agender is free software; you can redistribute it and/or modify\n"
 "it under the terms of the GNU General Public License as published by\n"
@@ -76,37 +76,37 @@ msgstr ""
 "Deve ter recebido uma cópia da Licença Pública Geral GNU\n"
 "com o Agender. Caso não tenha, veja <http://www.gnu.org/licenses/>."
 
-#: ../src/AgenderMain.cpp:299
+#: ../src/AgenderMain.cpp:300
 msgid "To-Do Title"
 msgstr "Nome da nota"
 
-#: ../src/AgenderMain.cpp:299
+#: ../src/AgenderMain.cpp:300
 msgid "New To-Do"
 msgstr "Novo afazer"
 
-#: ../src/AgenderMain.cpp:304
+#: ../src/AgenderMain.cpp:305
 msgid "Expresion '$(' reserved for Agender, please use another name"
 msgstr "A expressão '$(' está reservada para o Agender, por favor utilize outro nome."
 
-#: ../src/AgenderMain.cpp:432
-#: ../src/AgenderMain.cpp:446
+#: ../src/AgenderMain.cpp:433
+#: ../src/AgenderMain.cpp:447
 msgid "AutoStart is only available under Windows, Fluxbox  and Unix desktops that follow the freedesktop.org standards. If you add support for any other system, please send patches to the patch tracker in the Agender project page at http://sourceforge.net/projects/agender/ or you can also help donating hardware that runs your favorite system."
 msgstr "O auto-início está apenas disponível para sistemas Windows, Fluxbox e Unix que cumpram os padrões de freedesktop.org. Se adicionar suporte a qualquer outro sistema, por favor envie as \"patches\" para o \"patch tracker\" na página do projecto Agender em at http://sourceforge.net/projects/agender/ . Pode também ajudar doando hardware onde o seu sistema favorito corra."
 
-#: ../src/AgenderMain.cpp:540
-#: ../src/AgenderMain.cpp:578
+#: ../src/AgenderMain.cpp:541
+#: ../src/AgenderMain.cpp:579
 msgid "Rename"
 msgstr "Renomear"
 
-#: ../src/AgenderMain.cpp:542
+#: ../src/AgenderMain.cpp:543
 msgid "Normal"
 msgstr "Normal"
 
-#: ../src/AgenderMain.cpp:543
+#: ../src/AgenderMain.cpp:544
 msgid "Sticky"
 msgstr "Fixa"
 
-#: ../src/AgenderMain.cpp:578
+#: ../src/AgenderMain.cpp:579
 msgid "New name"
 msgstr "Novo nome"
 
