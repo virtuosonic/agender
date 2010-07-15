@@ -237,12 +237,15 @@ void AgenderFrame::OnClose(wxCloseEvent& event)
 void AgenderFrame::OnButton3Click(wxCommandEvent& event)
 {
 	wxAboutDialogInfo info;
+	//developer
 	info.AddDeveloper(_T("Gabriel Espinoza <virtuosonic@users.sourceforge.net>"));
+	//translators
 	info.AddTranslator(_T("Gabriel Espinoza : español"));
 	info.AddTranslator(_T("Ester Espinoza : deutsch"));
-	info.AddTranslator(_T("Florian Haag : deutsch"));
+	info.AddTranslator(_T("Florian Haag <fhaag@users.sourceforge.net> : deutsch"));
 	info.AddTranslator(_T("Daniel Daows : japanese"));
 	info.AddTranslator(_T("Pedro Silva <pbsilva@users.sourceforge.net> : portuguese"));
+	//etc
 	info.SetDescription(wxString::Format(_T("%s\n%s %s %s"),_("A cross-platform schedule tool"),
 							 _("Build:"),__TDATE__,__TTIME__));
 	info.SetWebSite(_T("http://agender.sourceforge.net"),_("Agender Web Site"));
