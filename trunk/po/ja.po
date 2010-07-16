@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-06-27 23:45-0800\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Gabriel Espinoza <virtuosonic@users.sourceforge.net>\n"
+"Last-Translator: Haruki Yamaguchi <mhy@users.sourceforge.net>\n"
 "Language-Team: daniel daows\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,35 +31,35 @@ msgstr "25%"
 
 #: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:86
 msgid "Show"
-msgstr " 見せます"
+msgstr "表示する"
 
 #: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:87
 msgid "Hide"
-msgstr "隠します\""
+msgstr "隠す"
 
 #: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:90
 msgid "Opacity"
-msgstr " 不透明"
+msgstr "透過度"
 
 #: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:91
 msgid "Year selector"
-msgstr " 年セレクタ"
+msgstr "年を選択"
 
 #: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:92
 msgid "Notes Colour"
-msgstr " ノートの色"
+msgstr "ノートの色"
 
 #: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:94
 msgid "Symbol"
-msgstr ""
+msgstr "シンボル"
 
 #: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:96
 msgid "Autostart"
-msgstr " 自動起動"
+msgstr "オート起動"
 
 #: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:98
 msgid "Exit"
-msgstr "出ます"
+msgstr "閉じる"
 
 #: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:79
 msgid "Agender"
@@ -67,11 +67,11 @@ msgstr "Agender"
 
 #: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:93
 msgid "Add &note"
-msgstr "メモを追加します"
+msgstr "メモを追加"
 
 #: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:97
 msgid "&Delete selection"
-msgstr " 年セレクタ"
+msgstr "選択された範囲を削除"
 
 #: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:99
 msgid "&About..."
@@ -79,23 +79,23 @@ msgstr "について..."
 
 #: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:139
 msgid "Agender uses this file to save your schedule, don't delete it!"
-msgstr ""
+msgstr "このファイルはAgenderがスケージュルの保存用に使用しています。削除しないで下さい。"
 
 #: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:164
 msgid "Agender|Search Notes"
-msgstr ""
+msgstr "Agender|検索ノート"
 
 #: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:223
 msgid "A cross-platform schedule tool"
-msgstr ""
+msgstr "クロスプラットフォームのスケジュール管理ツール"
 
 #: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:224
 msgid "Build:"
-msgstr ""
+msgstr "ビルド:"
 
 #: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:225
 msgid "Agender Web Site"
-msgstr ""
+msgstr "Agender　ホームページ"
 
 #: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:226
 msgid ""
@@ -115,36 +115,36 @@ msgstr ""
 
 #: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:277
 msgid "To-Do Title"
-msgstr ""
+msgstr "タスクのタイトル"
 
 #: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:277
 msgid "New To-Do"
-msgstr ""
+msgstr "新しいタスク"
 
 #: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:282
-msgid "Expresion '$(' reserved for Agender, please use another name"
-msgstr ""
+msgid "Expression '$(' reserved for Agender, please use another name"
+msgstr "'$('　は既にAgenderに使用されています。別の名前を選んで下さい。"
 
 #: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:410
 #: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:424
 #, fuzzy
 msgid "AutoStart is only available under Windows, Fluxbox  and Unix desktops that follow the freedesktop.org standards. If you add support for any other system, please send patches to the patch tracker in the Agender project page at http://sourceforge.net/projects/agender/ or you can also help donating hardware that runs your favorite system."
-msgstr "自動起動は　freedesktop.org standards　に従ってWindowsとUnixのdesktop だけ利用できて、別のオペレーティングシステムを支持を追加したら、Agender project のページにhttp://sourceforge.net/projects/agender/　 パッチ trackerにパッチを送って下さい。"
+msgstr "オート起動機能は　freedesktop.orgの基準に準拠したWindows, Fluxbox, ならびにUnixのデスクトップのみで利用出来ます。他のOSのサポートを追加された方は、http://sourceforge.net/projects/agender/　にあるパッチのとラッカーにパッチをご送信ください。"
 
 #: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:518
 #: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:556
 msgid "Rename"
-msgstr ""
+msgstr "名前の変更"
 
 #: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:520
 msgid "Normal"
-msgstr ""
+msgstr "普通"
 
 #: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:521
 msgid "Sticky"
-msgstr ""
+msgstr "スティッキー"
 
 #: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:556
 msgid "New name"
-msgstr ""
+msgstr "新しい名前"
 
