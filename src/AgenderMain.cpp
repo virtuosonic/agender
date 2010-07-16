@@ -246,6 +246,7 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& event)
 	info.AddTranslator(_T("Daniel Daows : japanese"));
 	info.AddTranslator(_T("Miguel Haruki Yamaguchi <mhy@users.sourceforge.net> : japanese"));
 	info.AddTranslator(_T("Pedro Silva <pbsilva@users.sourceforge.net> : portuguese"));
+	info.AddTranslator(_T("George Petsagourakis :greek"));
 	//etc
 	info.SetDescription(wxString::Format(_T("%s\n%s %s %s"),_("A cross-platform schedule tool"),
 							 _("Build:"),__TDATE__,__TTIME__));

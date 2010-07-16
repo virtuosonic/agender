@@ -108,6 +108,7 @@ license GPLv3+
   		<command>msgfmt po/ja.po -o po/ja.mo</command>
   		<command>msgfmt po/pt.po -o po/pt.mo</command>
   		<command>msgfmt po/fr.po -o po/fr.mo</command>
+  		<command>msgfmt po/el.po -o po/el.mo</command>
   	</action>
   	<!-- rpm build -->
 	<set var="rpmbuilddir">/usr/src/packages</set>
