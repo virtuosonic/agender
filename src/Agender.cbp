@@ -53,6 +53,10 @@
 		<Unit filename="../Agender.spec.in" />
 		<Unit filename="../autopackage/default.apspec.in" />
 		<Unit filename="../configure.in" />
+		<Unit filename="../debian/Agender.dsc" />
+		<Unit filename="../debian/debian.changelog" />
+		<Unit filename="../debian/debian.control" />
+		<Unit filename="../debian/debian.rules" />
 		<Unit filename="AgenderApp.cpp" />
 		<Unit filename="AgenderApp.h" />
 		<Unit filename="AgenderCal.cpp" />

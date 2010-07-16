@@ -42,7 +42,7 @@ license GPLv3+
   	<!--translations-->
   	<gettext-catalogs>
   		<catalog-name>Agender</catalog-name>
-  		<linguas>es de ja</linguas>
+  		<linguas>es de ja pt fr</linguas>
   		<srcdir>$(SRCDIR)/po</srcdir>
   		<install-to>$(DATADIR)/locale</install-to>
   	</gettext-catalogs>
@@ -107,6 +107,7 @@ license GPLv3+
   		<command>msgfmt po/de.po -o po/de.mo</command>
   		<command>msgfmt po/ja.po -o po/ja.mo</command>
   		<command>msgfmt po/pt.po -o po/pt.mo</command>
+  		<command>msgfmt po/fr.po -o po/fr.mo</command>
   	</action>
   	<!-- rpm build -->
 	<set var="rpmbuilddir">/usr/src/packages</set>
