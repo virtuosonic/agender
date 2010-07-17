@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Agender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-14 16:32-0800\n"
+"POT-Creation-Date: 2010-07-16 20:55-0800\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Gabriel Espinoza <virtuosonic@users.sourceforge.net>\n"
 "Language-Team: \n"
@@ -11,45 +11,45 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: German\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: /home/virtuoso/C++/Agender\n"
+"X-Poedit-SearchPath-0: ../src\n"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:84
+#: ../src/AgenderMain.cpp:84
 msgid "Agender"
 msgstr "Agender"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:98
+#: ../src/AgenderMain.cpp:98
 msgid "Add &note"
 msgstr "&Notiz hinzufügen"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:102
+#: ../src/AgenderMain.cpp:102
 msgid "&Delete selection"
 msgstr "&Auswahl löschen"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:104
+#: ../src/AgenderMain.cpp:104
 msgid "&About..."
 msgstr "Ü&ber..."
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:144
+#: ../src/AgenderMain.cpp:144
 msgid "Agender uses this file to save your schedule, don't delete it!"
 msgstr "Agender verwendet diese Datei, um Ihre Termine zu speichern; löschen Sie sie nicht!"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:169
+#: ../src/AgenderMain.cpp:169
 msgid "Agender|Search Notes"
 msgstr "Agender|Notiz suchen"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:246
+#: ../src/AgenderMain.cpp:251
 msgid "A cross-platform schedule tool"
 msgstr "Ein plattformunabhängiges Zeitplanungs-Werkzeug"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:247
+#: ../src/AgenderMain.cpp:252
 msgid "Build:"
 msgstr "Build:"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:248
+#: ../src/AgenderMain.cpp:253
 msgid "Agender Web Site"
 msgstr "Agender-Webseite"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:249
+#: ../src/AgenderMain.cpp:254
 msgid ""
 "Agender is free software; you can redistribute it and/or modify\n"
 "it under the terms of the GNU General Public License as published by\n"
@@ -78,85 +78,85 @@ msgstr ""
 "Agender erhalten haben. Falls nicht, besuchen Sie\n"
 "<http://www.gnu.org/licenses/>."
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:300
+#: ../src/AgenderMain.cpp:305
 msgid "To-Do Title"
 msgstr "Aufgabentitel"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:300
+#: ../src/AgenderMain.cpp:305
 msgid "New To-Do"
 msgstr "Neue Aufgabe"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:305
+#: ../src/AgenderMain.cpp:310
 msgid "Expresion '$(' reserved for Agender, please use another name"
 msgstr "Der Ausdruck '$(' ist in Agender reserviert, bitte benutzen Sie einen anderen Namen"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:433
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:447
+#: ../src/AgenderMain.cpp:438
+#: ../src/AgenderMain.cpp:452
 msgid "AutoStart is only available under Windows, Fluxbox  and Unix desktops that follow the freedesktop.org standards. If you add support for any other system, please send patches to the patch tracker in the Agender project page at http://sourceforge.net/projects/agender/ or you can also help donating hardware that runs your favorite system."
 msgstr "AutoStart ist nur unter Windows, Fluxbox und Unix-Desktops verfügbar, welche die freedesktop.org-Standards einhalten. Wenn Sie Unterstützung für ein anderes System hinzufügen, senden Sie bitte Patches an den Patch-Tracker auf der Agender-Projektwebseite unter http://sourceforge.net/projects/agender/. Sie können auch helfen, indem Sie Hardware für Ihr Lieblingssystem zur Verfügung stellen."
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:541
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:579
+#: ../src/AgenderMain.cpp:546
+#: ../src/AgenderMain.cpp:584
 msgid "Rename"
 msgstr "Umbenennen"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:543
+#: ../src/AgenderMain.cpp:548
 msgid "Normal"
 msgstr "Normal"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:544
+#: ../src/AgenderMain.cpp:549
 msgid "Sticky"
 msgstr "Wichtig"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:579
+#: ../src/AgenderMain.cpp:584
 msgid "New name"
 msgstr "Neuer Name"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:82
+#: ../src/AgenderTray.cpp:82
 msgid "100%"
 msgstr "100%"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:83
+#: ../src/AgenderTray.cpp:83
 msgid "75%"
 msgstr "75%"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:84
+#: ../src/AgenderTray.cpp:84
 msgid "50%"
 msgstr "50%"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:85
+#: ../src/AgenderTray.cpp:85
 msgid "25%"
 msgstr "25%"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:90
+#: ../src/AgenderTray.cpp:90
 msgid "Show"
 msgstr "Zeigen"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:91
+#: ../src/AgenderTray.cpp:91
 msgid "Hide"
 msgstr "Verbergen"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:94
+#: ../src/AgenderTray.cpp:94
 msgid "Opacity"
 msgstr "Deckkraft"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:95
+#: ../src/AgenderTray.cpp:95
 msgid "Year selector"
 msgstr "Auswahl des Jahrs"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:96
+#: ../src/AgenderTray.cpp:96
 msgid "Notes Colour"
 msgstr "Farbe von Notizen"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:98
+#: ../src/AgenderTray.cpp:98
 msgid "Symbol"
 msgstr "Symbol"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:100
+#: ../src/AgenderTray.cpp:100
 msgid "Autostart"
 msgstr "AutoStart"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:102
+#: ../src/AgenderTray.cpp:102
 msgid "Exit"
 msgstr "Beenden"
 
