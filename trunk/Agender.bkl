@@ -42,8 +42,8 @@ license GPLv3+
   	<!--translations-->
   	<gettext-catalogs>
   		<catalog-name>Agender</catalog-name>
-  		<linguas>es de ja pt fr el</linguas>
-  		<srcdir>$(SRCDIR)/po</srcdir>
+		<linguas>es de ja pt fr el</linguas>
+		<srcdir>$(SRCDIR)/po</srcdir>
   		<install-to>$(DATADIR)/locale</install-to>
   	</gettext-catalogs>
   	<!-- lets build a package -->
@@ -67,6 +67,12 @@ license GPLv3+
   		<files>*.spec.in *.bkl *.nsi configure.in gpl-3.0.txt Readme.txt</files>
   		<dstdir>$(SRCDIR)/Agender-$(VERSION)/</dstdir>
   	</copy-files>
+	<copy-files id="debian-dist">
+		<dependency-of>dist</dependency-of>
+		<srcdir>$(SRCDIR)/debian/</srcdir>
+  		<files>Agender.dsc.in debian.rules debian.control debian.changelog.in</files>
+  		<dstdir>$(SRCDIR)/Agender-$(VERSION)/debian</dstdir>
+	</copy-files>
   	<copy-files id="srcdist">
   		<dependency-of>dist</dependency-of>
   		<srcdir>$(SRCDIR)/src/</srcdir>
