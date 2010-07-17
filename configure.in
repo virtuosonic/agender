@@ -9,5 +9,7 @@ AC_SUBST(VERSION,1.1.6)
 AC_CONFIG_FILES([Makefile
 	autopackage/default.apspec
 	Agender.spec
+	debian/Agender.dsc
+	debian/debian.changelog
 ])
 AC_OUTPUT
