@@ -42,7 +42,7 @@ license GPLv3+
   	<!--translations-->
   	<gettext-catalogs>
   		<catalog-name>Agender</catalog-name>
-  		<linguas>es de ja pt fr</linguas>
+  		<linguas>es de ja pt fr el</linguas>
   		<srcdir>$(SRCDIR)/po</srcdir>
   		<install-to>$(DATADIR)/locale</install-to>
   	</gettext-catalogs>
