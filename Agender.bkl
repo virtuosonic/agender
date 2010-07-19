@@ -26,6 +26,9 @@ license GPLv3+
 		<!--resource file -->
 		<win32-res>src/resource.rc</win32-res>
 		<install-to>$(BINDIR)</install-to>
+		<if cond="FORMAT=='autoconf'">
+			<cxxflags>-D__REVISION__=@REVISION@</cxxflags>
+		</if>
   	</exe>
   	<!-- freedesktop.org shortcut, for gnome, kde and some other desktops-->
   	<data-files id="shortcut">
@@ -64,7 +67,7 @@ license GPLv3+
 	<copy-files id="topdist">
   		<dependency-of>dist</dependency-of>
   		<srcdir>$(SRCDIR)/</srcdir>
-  		<files>*.spec.in *.bkl *.nsi configure.in gpl-3.0.txt Readme.txt</files>
+  		<files>*.spec.in *.bkl *.nsi configure.in gpl-3.0.txt Readme.txt revision.m4 update_revision.sh</files>
   		<dstdir>$(SRCDIR)/Agender-$(VERSION)/</dstdir>
   	</copy-files>
 	<copy-files id="debian-dist">

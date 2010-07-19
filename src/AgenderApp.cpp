@@ -19,7 +19,9 @@
 #include <wx/stdpaths.h>
 #include <wx/cmdline.h>
 #include <wx/apptrait.h>
+#if !defined __WXMAC__ || !defined __WXOSX__
 #include <iostream>
+#endif
 
 #if defined __UNIX__
 #include <signal.h>
@@ -62,6 +64,10 @@ bool AgenderApp::OnInit()
 	}
 	wxString cfgFile;
 	cmd.Found(_T("c"),&cfgFile);
+	if(cmd.Found(_T("verbose")))
+	{
+		wxLog::SetVerbose(true);
+	}
 	//are we alone?
 	m_checker = new wxSingleInstanceChecker;
 	if (m_checker->Create(_T(".") + GetAppName() + _T("-") + ::wxGetUserId())
@@ -76,21 +82,21 @@ bool AgenderApp::OnInit()
 			wxLogMessage(_T("executing"));
 			if (cnn->Execute(NULL))
 			{
-				wxLogMessage(_T("finished executing"));
+				wxLogDebug(_T("finished executing"));
 				//first ending, like on video games it sucks!
 				exit(EXIT_SUCCESS);
 			}
-			wxLogError(_T("not executed"));
+			wxLogDebug(_T("not executed"));
 		}
 		else
-			wxLogError(_T("connection failed: %s"),wxSysErrorMsg());
+			wxLogDebug(_T("connection failed: %s"),wxSysErrorMsg());
 		//this goes outside of the 'else' because  if everything goes right : exit(EXIT_SUCCESS);
 		//second ending, like on videogames it sucks even more!
 		exit(EXIT_FAILURE);
 	}
 	// please talk me in a language that i understand
 	if (m_locale.Init(wxLANGUAGE_DEFAULT,wxLOCALE_CONV_ENCODING))
-		m_locale.AddCatalog(wxT("Agender"));
+		m_locale.AddCatalog(wxT("Agender"),wxLANGUAGE_ENGLISH,wxT("UTF-8"));
 	//(*AppInitialize
 	bool wxsOK = true;
 	wxInitAllImageHandlers();
@@ -102,9 +108,9 @@ bool AgenderApp::OnInit()
 	#ifndef __WXMSW__
 	m_server = new AgenderServer;
 	if (m_server->Create(IPC_Service))
-		wxLogMessage(_T("server created"));
+		wxLogDebug(_T("server created"));
 	else
-		wxLogError(_T("server creation failed"));
+		wxLogDebug(_T("server creation failed"));
 	#else
 	m_server = NULL;
 	#endif
@@ -133,14 +139,14 @@ int AgenderApp::OnExit()
 		delete m_checker;
 	if (m_server)
 		delete m_server;
-	wxLogMessage(_T("Exiting: goodbye"));
+	wxLogDebug(_T("Exiting: goodbye"));
 	return wxApp::OnExit();
 }
 
 #ifdef __UNIX__
 void OnSignal(int sig)
 {
-	wxLogMessage(_T("signal %i catched"),sig);
+	wxLogDebug(_T("signal %i catched"),sig);
 	if (wxTheApp->GetTopWindow())
 	{
 		wxTheApp->GetTopWindow()->Show();
@@ -151,7 +157,7 @@ void OnSignal(int sig)
 
 void AgenderApp::OnEndSession(wxCloseEvent& event)
 {
-	wxLogMessage(_T("ending session"));
+	wxLogDebug(_T("ending session"));
 	if (GetTopWindow())
 	{
 		GetTopWindow()->Show();
