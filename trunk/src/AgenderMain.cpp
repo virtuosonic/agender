@@ -8,6 +8,7 @@
  **************************************************************/
 #ifdef __BORLANDC__
     #pragma hdrstop
+    //for those who can't change turboc++, like theacher Nancy
 #endif
 
 #include "AgenderMain.h"
@@ -38,14 +39,14 @@
 #include <wx/msw/registry.h>
 #endif//__WXMSW__
 
-#ifdef __WXMAC__
-#include <ApplicationServices/ApplicationServices.h>
-#endif// __WXMAC__
-
 #include "AgenderCal.h"
 
 #if defined wxHAS_TASK_BAR_ICON
 #include "AgenderTray.h"
+#endif
+
+#ifndef __REVISION__
+#define __REVISION__ 0
 #endif
 
 #include "Agender16x16.xpm"
@@ -136,7 +137,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 		wxFileInputStream infile(schFile);
 		schdl = new wxFileConfig(infile);
 		::wxCopyFile(schFile,schFile+_T(".bak"));
-		wxLogMessage(_T("config loaded from: %s"),schFile.c_str());
+		wxLogDebug(_T("config loaded from: %s"),schFile.c_str());
 	}
 	else
 		schdl = new wxFileConfig;
@@ -188,21 +189,14 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 		{
 			wxExecute(_T("pidof gnome-panel"),output,wxEXEC_SYNC);
 			if (output.IsEmpty())
-				wxSleep(3);
+				wxSleep(4);
 		} while(output.IsEmpty());
-		wxSleep(3);
+		wxSleep(4);
 	}
 #endif
 	trayicon = new AgenderTray(this,schdl->Read(_T("/opacity"),255));
 	trayicon->SetIcon(Agender16x16_xpm,_T("Virtuosonic Agender"));
 #endif//wxHAS_TASK_BAR_ICON
-#ifdef __WXMAC__
-	//this isn't tested, but i read it in wxwiki
-	//if you want me to test it, and make it work,  you can donate me a Mac Pro ;)	-virtuosonic at users dot sourceforge dot net
-	ProcessSerialNumber PSN;
-	GetCurrentProcess(&PSN);
-	TransformProcessType(&PSN,kProcessTransformToForegroundApplication);
-#endif// __WXMAC__
 }
 
 AgenderFrame::~AgenderFrame()
@@ -240,16 +234,17 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& event)
 	//developer
 	info.AddDeveloper(_T("Gabriel Espinoza <virtuosonic@users.sourceforge.net>"));
 	//translators
-	info.AddTranslator(_T("Gabriel Espinoza : español"));
+	info.AddTranslator(_T("Gabriel Espinoza : spanish"));
 	info.AddTranslator(_T("Ester Espinoza : deutsch"));
 	info.AddTranslator(_T("Florian Haag <fhaag@users.sourceforge.net> : deutsch"));
 	info.AddTranslator(_T("Daniel Daows : japanese"));
 	info.AddTranslator(_T("Miguel Haruki Yamaguchi <mhy@users.sourceforge.net> : japanese"));
 	info.AddTranslator(_T("Pedro Silva <pbsilva@users.sourceforge.net> : portuguese"));
-	info.AddTranslator(_T("George Petsagourakis :greek"));
+	info.AddTranslator(_T("George Petsagourakis : greek"));
 	//etc
-	info.SetDescription(wxString::Format(_T("%s\n%s %s %s"),_("A cross-platform schedule tool"),
-							 _("Build:"),__TDATE__,__TTIME__));
+	// TODO (virtuoso#1#): create some way to add the svn revision here
+	info.SetDescription(wxString::Format(_T("%s\n%s %s %s %s %i"),_("A cross-platform schedule tool"),
+							 _("Build:"),__TDATE__,__TTIME__,_("From: svn"),__REVISION__));
 	info.SetWebSite(_T("http://agender.sourceforge.net"),_("Agender Web Site"));
 	info.SetLicence(_("Agender is free software; you can redistribute it and/or modify\n"
 				"it under the terms of the GNU General Public License as published by\n"
