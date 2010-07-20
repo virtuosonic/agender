@@ -2,7 +2,7 @@ Source: Agender
 Section: Accessories
 Priority: extra
 Maintainer: Agender project <agender-support@lists.sourceforge.net>
-Build-Depends: debhelper (>= 4.1.16), g++, make, libwxgtk2.8-0-dev
+Build-Depends: debhelper (>= 4.1.16), g++, make, libwxgtk2.8-dev
 Package: Agender
 Architecture: any
 Depends: libwxgtk2.8-0
