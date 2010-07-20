@@ -137,7 +137,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 		wxFileInputStream infile(schFile);
 		schdl = new wxFileConfig(infile);
 		::wxCopyFile(schFile,schFile+_T(".bak"));
-		wxLogDebug(_T("config loaded from: %s"),schFile.c_str());
+		wxLogVerbose(_T("config loaded from: %s"),schFile.c_str());
 	}
 	else
 		schdl = new wxFileConfig;
@@ -201,7 +201,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 
 AgenderFrame::~AgenderFrame()
 {
-	wxLogDebug(_T("destroying AgenderFrame"));
+	wxLogVerbose(_T("destroying AgenderFrame"));
 	schdl->Write(_T("/x"),GetPosition().x);
 	schdl->Write(_T("/y"),GetPosition().y);
 	schdl->Write(_T("/w"),GetSize().x);

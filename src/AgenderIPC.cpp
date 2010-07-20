@@ -27,13 +27,13 @@
 
 bool AgenderConnection::OnExecute(const wxString& topic,wxChar* data,int size,wxIPCFormat format)
 {
-	wxLogDebug(_T("checking topic"));
+	wxLogVerbose(_T("checking topic"));
 	if (topic != IPC_Topic)
 		return false;
-	wxLogDebug(_T("checking frame"));
+	wxLogVerbose(_T("checking frame"));
 	if (wxTheApp->GetTopWindow())
 	{
-		wxLogDebug(_T("showing frame"));
+		wxLogVerbose(_T("showing frame"));
 		wxTheApp->GetTopWindow()->Show(true);
 	}
 	return true;
@@ -43,6 +43,6 @@ wxConnectionBase * AgenderServer::OnAcceptConnection(const wxString& topic)
 {
 	if (topic != IPC_Topic)
 		return NULL;
-	wxLogDebug(_T("Connection acepted"));
+	wxLogVerbose(_T("Connection acepted"));
 	return new AgenderConnection;
 }
