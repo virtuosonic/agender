@@ -241,6 +241,7 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& event)
 	info.AddTranslator(_T("Miguel Haruki Yamaguchi <mhy@users.sourceforge.net> : japanese"));
 	info.AddTranslator(_T("Pedro Silva <pbsilva@users.sourceforge.net> : portuguese"));
 	info.AddTranslator(_T("George Petsagourakis : greek"));
+	info.AddTranslator(_T("Rickard Hedlund <bigricke@hotmail.com> : swedish"));
 	//etc
 	// TODO (virtuoso#1#): create some way to add the svn revision here
 	info.SetDescription(wxString::Format(_T("%s\n%s %s %s %s %i"),_("A cross-platform schedule tool"),
