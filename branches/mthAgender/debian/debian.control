@@ -1,0 +1,13 @@
+Source: Agender
+Section: Accessories
+Priority: extra
+Maintainer: Agender project <agender-support@lists.sourceforge.net>
+Build-Depends: debhelper (>= 4.1.16), g++, make, libwxgtk2.8-dev
+Package: Agender
+Architecture: any
+Depends: libwxgtk2.8-0
+Description: A cross-platform schedule tool!
+ Agender is a small cross-platform schedule tool where you associate some notes
+ with a date or with no date in particular if  you mark the note as sticky, you
+ simply start it  and it will create a task-bar icon and stay in the background,
+ without annoying you,it can also be configured to run on login

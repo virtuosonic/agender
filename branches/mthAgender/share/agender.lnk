@@ -1,0 +1,10 @@
+table Icon
+  Caption: Agender
+  Command: Agender
+  Icon: /usr/local/share/pixmaps/Agender.png
+  Width: 32
+  Height: 32
+  X: 231
+  Y: 261
+end
+
