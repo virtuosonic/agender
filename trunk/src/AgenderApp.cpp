@@ -80,16 +80,18 @@ bool AgenderApp::OnInit()
 		if (cnn)
 		{
 			wxLogMessage(_T("executing"));
-			if (cnn->Execute(NULL))
+			//this is a security issue, someone could write a client application(even you),
+			//that sends NULL, via Execute and causes Agender to crash
+			if (cnn->Execute(wxEmptyString))
 			{
-				wxLogDebug(_T("finished executing"));
+				wxLogVerbose(_T("finished executing"));
 				//first ending, like on video games it sucks!
 				exit(EXIT_SUCCESS);
 			}
-			wxLogDebug(_T("not executed"));
+			wxLogVerbose(_T("not executed"));
 		}
 		else
-			wxLogDebug(_T("connection failed: %s"),wxSysErrorMsg());
+			wxLogVerbose(_T("connection failed: %s"),wxSysErrorMsg());
 		//this goes outside of the 'else' because  if everything goes right : exit(EXIT_SUCCESS);
 		//second ending, like on videogames it sucks even more!
 		exit(EXIT_FAILURE);
@@ -108,9 +110,9 @@ bool AgenderApp::OnInit()
 	#ifndef __WXMSW__
 	m_server = new AgenderServer;
 	if (m_server->Create(IPC_Service))
-		wxLogDebug(_T("server created"));
+		wxLogVerbose(_T("server created"));
 	else
-		wxLogDebug(_T("server creation failed"));
+		wxLogVerbose(_T("server creation failed"));
 	#else
 	m_server = NULL;
 	#endif
@@ -139,14 +141,14 @@ int AgenderApp::OnExit()
 		delete m_checker;
 	if (m_server)
 		delete m_server;
-	wxLogDebug(_T("Exiting: goodbye"));
+	wxLogVerbose(_T("Exiting: goodbye"));
 	return wxApp::OnExit();
 }
 
 #ifdef __UNIX__
 void OnSignal(int sig)
 {
-	wxLogDebug(_T("signal %i catched"),sig);
+	wxLogVerbose(_T("signal %i catched"),sig);
 	if (wxTheApp->GetTopWindow())
 	{
 		wxTheApp->GetTopWindow()->Show();
@@ -157,7 +159,7 @@ void OnSignal(int sig)
 
 void AgenderApp::OnEndSession(wxCloseEvent& event)
 {
-	wxLogDebug(_T("ending session"));
+	wxLogVerbose(_T("ending session"));
 	if (GetTopWindow())
 	{
 		GetTopWindow()->Show();

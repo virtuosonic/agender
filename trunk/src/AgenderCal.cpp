@@ -26,7 +26,7 @@ AgenderCal::AgenderCal(wxDateTime date)
 
 AgenderCal::~AgenderCal()
 {
-	wxLogDebug(_T("destroying AgenderCal"));
+	wxLogVerbose(_T("destroying AgenderCal"));
 }
 
 void AgenderCal::SetDate(wxDateTime date)
