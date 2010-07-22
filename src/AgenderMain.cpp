@@ -528,6 +528,8 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 #elif defined __WXMSW__
 		if (key.HasValue(_T("Agender")))
 			key.DeleteValue(_T("Agender"));
+#elif defined __WXOSX__
+	return;
 #endif
 }
 
