@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Agender\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-07-15 19:00-0800\n"
-"PO-Revision-Date: 2010-07-15 19:00-0800\n"
-"Last-Translator: Gabriel Espinoza <virtuosonic@users.sourceforge.net>\n"
+"PO-Revision-Date: 2010-07-20 23:11+0100\n"
+"Last-Translator: Bruno Mace\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,43 +14,36 @@ msgstr ""
 "X-Poedit-Language: French\n"
 "X-Poedit-SearchPath-0: ../src\n"
 
-#: ../src/AgenderMain.cpp:84
-msgid "Agender"
-msgstr ""
-
-#: ../src/AgenderMain.cpp:98
-msgid "Add &note"
-msgstr ""
-
-#: ../src/AgenderMain.cpp:102
-msgid "&Delete selection"
-msgstr ""
-
-#: ../src/AgenderMain.cpp:104
 msgid "&About..."
-msgstr ""
+msgstr "&A propos de"
 
-#: ../src/AgenderMain.cpp:144
-msgid "Agender uses this file to save your schedule, don't delete it!"
-msgstr ""
+msgid "&Delete selection"
+msgstr "&Supprimer la sélection"
 
-#: ../src/AgenderMain.cpp:169
-msgid "Agender|Search Notes"
-msgstr ""
+msgid "100%"
+msgstr "100%"
 
-#: ../src/AgenderMain.cpp:249
+msgid "25%"
+msgstr "25%"
+
+msgid "50%"
+msgstr "50%"
+
+msgid "75%"
+msgstr "75%"
+
 msgid "A cross-platform schedule tool"
-msgstr ""
+msgstr "Un outil de planification multiplate-forme"
 
-#: ../src/AgenderMain.cpp:250
-msgid "Build:"
-msgstr ""
+msgid "Add &note"
+msgstr "Ajouter une &note"
 
-#: ../src/AgenderMain.cpp:251
+msgid "Agender"
+msgstr "Agender"
+
 msgid "Agender Web Site"
-msgstr ""
+msgstr "Site Web d'Agender"
 
-#: ../src/AgenderMain.cpp:252
 msgid ""
 "Agender is free software; you can redistribute it and/or modify\n"
 "it under the terms of the GNU General Public License as published by\n"
@@ -65,86 +58,86 @@ msgid ""
 "You should have received a copy of the GNU General Public License\n"
 "along with Agender. If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
+"Agender est un logiciel gratuit. Vous êtes libre de le distribuer\n"
+"et/ou de le modifier conformément aux termes prévus par la licence\n"
+"GNU General Public License publiée par la Free Software Foundation,\n"
+"dans sa version 3 ou toute version ultérieure.\n"
+"\n"
+"Agender est distribué dans l'espoir qu'il sera utile,\n"
+"SANS GARANTIE AUCUNE, y compris la garantie tacite de GARANTIE\n"
+"MARCHANDE ou D'ADÉQUATION À UN USAGE SPÉCIFIQUE. Pour plus\n"
+"d'informations, reportez-vous à la licence GNU General Public Licence.\n"
+"\n"
+"Une copie de licence GNU General Public Licence est fournie avec Agender\n"
+"Dans le cas contraire, consultez la licence à l'adresse\n"
+"<http://www.gnu.org/licenses/>."
 
-#: ../src/AgenderMain.cpp:303
-msgid "To-Do Title"
+msgid "Agender uses this file to save your schedule, don't delete it!"
 msgstr ""
+"Ne supprimez pas ce fichier, car il est utilisé par Agender pour enregistrer "
+"votre agenda."
 
-#: ../src/AgenderMain.cpp:303
-msgid "New To-Do"
+msgid "Agender|Search Notes"
+msgstr "Agender|Rechercher des notes"
+
+msgid ""
+"AutoStart is only available under Windows, Fluxbox  and Unix desktops that "
+"follow the freedesktop.org standards. If you add support for any other "
+"system, please send patches to the patch tracker in the Agender project page "
+"at http://sourceforge.net/projects/agender/ or you can also help donating "
+"hardware that runs your favorite system."
 msgstr ""
+"Le démarrage automatique est disponible sur les ordinateurs Windows, Fluxbox "
+"et UNIX conformes aux standards freedesktop.org. Si vous développez une "
+"prise en charge sur tout autre système, envoyez vos patchs au dispositif de "
+"suivi des patchs d'Agender, à la page http://sourceforge.net/projects/"
+"agender/ ou aidez-nous en faisant don de votre matériel exécutant votre "
+"système favori."
 
-#: ../src/AgenderMain.cpp:308
-msgid "Expresion '$(' reserved for Agender, please use another name"
-msgstr ""
-
-#: ../src/AgenderMain.cpp:436
-#: ../src/AgenderMain.cpp:450
-msgid "AutoStart is only available under Windows, Fluxbox  and Unix desktops that follow the freedesktop.org standards. If you add support for any other system, please send patches to the patch tracker in the Agender project page at http://sourceforge.net/projects/agender/ or you can also help donating hardware that runs your favorite system."
-msgstr ""
-
-#: ../src/AgenderMain.cpp:544
-#: ../src/AgenderMain.cpp:582
-msgid "Rename"
-msgstr ""
-
-#: ../src/AgenderMain.cpp:546
-msgid "Normal"
-msgstr ""
-
-#: ../src/AgenderMain.cpp:547
-msgid "Sticky"
-msgstr ""
-
-#: ../src/AgenderMain.cpp:582
-msgid "New name"
-msgstr ""
-
-#: ../src/AgenderTray.cpp:82
-msgid "100%"
-msgstr ""
-
-#: ../src/AgenderTray.cpp:83
-msgid "75%"
-msgstr ""
-
-#: ../src/AgenderTray.cpp:84
-msgid "50%"
-msgstr ""
-
-#: ../src/AgenderTray.cpp:85
-msgid "25%"
-msgstr ""
-
-#: ../src/AgenderTray.cpp:90
-msgid "Show"
-msgstr ""
-
-#: ../src/AgenderTray.cpp:91
-msgid "Hide"
-msgstr ""
-
-#: ../src/AgenderTray.cpp:94
-msgid "Opacity"
-msgstr ""
-
-#: ../src/AgenderTray.cpp:95
-msgid "Year selector"
-msgstr ""
-
-#: ../src/AgenderTray.cpp:96
-msgid "Notes Colour"
-msgstr ""
-
-#: ../src/AgenderTray.cpp:98
-msgid "Symbol"
-msgstr ""
-
-#: ../src/AgenderTray.cpp:100
 msgid "Autostart"
-msgstr ""
+msgstr "Démarrage automatique"
 
-#: ../src/AgenderTray.cpp:102
+msgid "Build:"
+msgstr "Version :"
+
 msgid "Exit"
-msgstr ""
+msgstr "Quitter"
 
+msgid "Expresion '$(' reserved for Agender, please use another name"
+msgstr "L'expression $( est réservée à Agender. Utilisez un autre nom."
+
+msgid "Hide"
+msgstr "Masquer"
+
+msgid "New To-Do"
+msgstr "Créer une tâche"
+
+msgid "New name"
+msgstr "Nouveau nom"
+
+msgid "Normal"
+msgstr "Normal"
+
+msgid "Notes Colour"
+msgstr "Couleur des notes"
+
+msgid "Opacity"
+msgstr "Opacité"
+
+msgid "Rename"
+msgstr "Renommer"
+
+msgid "Show"
+msgstr "Afficher"
+
+msgid "Sticky"
+msgstr "Pense-bête"
+
+msgid "Symbol"
+msgstr "Symbole"
+
+msgid "To-Do Title"
+msgstr "Titre de la tâche"
+
+msgid "Year selector"
+msgstr "Sélecteur d'année"
