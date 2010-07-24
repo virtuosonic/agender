@@ -47,6 +47,7 @@ bool AgenderApp::OnInit()
 	SetVendorName(_T("Virtuosonic"));
 	#if defined __WXMAC__ || defined __WXOSX__
 	wxLogNull logNo;
+	wxSystemOptions::SetOptionInt(wxMAC_TEXTCONTROL_USE_SPELL_CHECKER,1);
 	#else
 	/*redirect logging to cout, if you want to annoy users use ::wxMessageBox(_T("do you want me to annoy you?"));*/
 	delete wxLog::SetActiveTarget(new wxLogStream(&std::cout));
