@@ -69,6 +69,8 @@
 		<Unit filename="AgenderMain.h" />
 		<Unit filename="AgenderTray.cpp" />
 		<Unit filename="AgenderTray.h" />
+		<Unit filename="ServerThread.cpp" />
+		<Unit filename="ServerThread.h" />
 		<Unit filename="resource.rc">
 			<Option compilerVar="WINDRES" />
 			<Option target="Release" />
