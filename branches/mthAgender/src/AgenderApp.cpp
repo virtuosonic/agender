@@ -13,6 +13,7 @@
 #include "AgenderApp.h"
 #include "AgenderMain.h"
 #include "AgenderIPC.h"
+#include "ServerThread.h"
 
 #include <wx/log.h>
 #include <wx/defs.h>
@@ -107,15 +108,12 @@ bool AgenderApp::OnInit()
 	wxFrame* Frame = new AgenderFrame(m_locale,cfgFile);
 	SetTopWindow(Frame);
 	//lets create a server so Anothers can comunicate with this->m_server
-	#ifndef __WXMSW__
 	m_server = new AgenderServer;
-	if (m_server->Create(IPC_Service))
-		wxLogVerbose(_T("server created"));
-	else
-		wxLogVerbose(_T("server creation failed"));
-	#else
-	m_server = NULL;
-	#endif
+	thread = new ServerThread(m_server);
+
+	thread->Create();
+	thread->SetPriority(WXTHREAD_MIN_PRIORITY);
+	thread->Run();
 	//no taskbar?
 	if (cmd.Found(_T("nt")))
 		Frame->Show();
@@ -137,6 +135,7 @@ bool AgenderApp::OnInit()
 
 int AgenderApp::OnExit()
 {
+	thread->Delete();
 	if (m_checker)
 		delete m_checker;
 	if (m_server)

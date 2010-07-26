@@ -13,6 +13,7 @@
 #include <wx/snglinst.h>
 #include <wx/intl.h>
 #include <wx/ipc.h>
+#include <wx/thread.h>
 
 class AgenderApp : public wxApp
 {
@@ -23,6 +24,7 @@ class AgenderApp : public wxApp
 		void OnEndSession(wxCloseEvent& event);
 		wxSingleInstanceChecker* m_checker;
 		wxServer* m_server;
+		wxThread* thread;
 		wxLocale m_locale;
 	DECLARE_EVENT_TABLE()
 };
