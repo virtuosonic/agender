@@ -79,12 +79,15 @@ Section "Agender" SEC01
 	File "Readme.txt"
 	File "gpl-3.0.txt"
 	;translations
-	SetOutPath "$INSTDIR\es"
-	File "locale\es\Agender.mo"
-	SetOutPath "$INSTDIR\de"
-	File "locale\de\Agender.mo"
-	SetOutPath "$INSTDIR\ja"
-	File "locale\ja\Agender.mo"
+	SetOutPath "$INSTDIR\"
+	File "po\es.mo"
+	File "po\de.mo"
+	File "po\ja.mo"
+	File "po\pt.mo"
+	File "po\fr.mo"
+	File "po\el.mo"
+	File "po\sv.mo"
+	File "po\zh.mo"
 	SetAutoClose false
 SectionEnd
 
@@ -122,12 +125,14 @@ Section Uninstall
 	Delete "$SMPROGRAMS\Agender\Agender.lnk"
 	Delete "$SMPROGRAMS\Agender\License.lnk"
 	;remove translations
-	Delete "$INSTDIR\es\Agender.mo"
-	RMDir "$INSTDIR\es"
-	Delete "$INSTDIR\de\Agender.mo"
-	RMDir "$INSTDIR\de"
-	Delete "$INSTDIR\ja\Agender.mo"
-	RMDir "$INSTDIR\ja"
+	Delete "$INSTDIR\es.mo"
+	Delete "$INSTDIR\de.mo"
+	Delete "$INSTDIR\ja.mo"
+	Delete "$INSTDIR\pt.mo"
+	Delete "$INSTDIR\fr.mo"
+	Delete "$INSTDIR\el.mo"
+	Delete "$INSTDIR\sv.mo"
+	Delete "$INSTDIR\zh.mo"
 	;remove our dir
 	RMDir "$SMPROGRAMS\Agender"
 	RMDir "$INSTDIR"
