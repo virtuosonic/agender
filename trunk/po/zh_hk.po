@@ -1,0 +1,163 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Agender\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-07-27 15:36+0800\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Wen Xie <senoutouya@gmail.com>\n"
+"Language-Team: daniel daows\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Chinese\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Country: CHINA\n"
+"X-Poedit-SearchPath-0: ../src\n"
+
+#: ../src/AgenderMain.cpp:85
+msgid "Agender"
+msgstr "Agender"
+
+#: ../src/AgenderMain.cpp:99
+msgid "Add &note"
+msgstr "增加便籤(&n)"
+
+#: ../src/AgenderMain.cpp:103
+msgid "&Delete selection"
+msgstr "删除所選便籤(&D)"
+
+#: ../src/AgenderMain.cpp:105
+msgid "&About..."
+msgstr "關於(&A)"
+
+#: ../src/AgenderMain.cpp:145
+msgid "Agender uses this file to save your schedule, don't delete it!"
+msgstr "Agender使用此文件來保存您的時間表，請勿刪除！"
+
+#: ../src/AgenderMain.cpp:170
+msgid "Agender|Search Notes"
+msgstr "Agender|搜索便籤"
+
+#: ../src/AgenderMain.cpp:248
+msgid "A cross-platform schedule tool"
+msgstr "A cross-platform schedule tool"
+
+#: ../src/AgenderMain.cpp:249
+msgid "Build:"
+msgstr "構建:"
+
+#: ../src/AgenderMain.cpp:249
+msgid "From: svn"
+msgstr "From: svn"
+
+#: ../src/AgenderMain.cpp:250
+msgid "Agender Web Site"
+msgstr "Agender 首頁"
+
+#: ../src/AgenderMain.cpp:251
+msgid ""
+"Agender is free software; you can redistribute it and/or modify\n"
+"it under the terms of the GNU General Public License as published by\n"
+"the Free Software Foundation, either version 3 of the License, or\n"
+"(at your option) any later version.\n"
+"\n"
+"Agender is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License\n"
+"along with Agender. If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+"Agender是自由軟體，您可以根據自由軟件基金會發布的\n"
+"GNU通用公共許可證（GPL）第三版或更新的版本（根據您的選擇）\n"
+"進行重分發和/或修改。\n"
+"\n"
+"Agender發布的目的是希望它對您有用，但無任何擔保責任；亦無對\n"
+"適售性或針對特定目的而隱含的擔保。詳情請參閱GNU通用公共許可證。\n"
+"\n"
+"您應該已經收到一份隨Agender發布的GNU通用公共許可證（GPL）的\n"
+"副本。如果没有，參閱<http://www.gnu.org/licenses/>。"
+
+#: ../src/AgenderMain.cpp:302
+msgid "To-Do Title"
+msgstr "待辦事項標題"
+
+#: ../src/AgenderMain.cpp:302
+msgid "New To-Do"
+msgstr "新待辦事項"
+
+#: ../src/AgenderMain.cpp:307
+msgid "Expresion '$(' reserved for Agender, please use another name"
+msgstr "'$(' 由Agender預留，請使用另一名稱。"
+
+#: ../src/AgenderMain.cpp:435
+#: ../src/AgenderMain.cpp:449
+msgid "AutoStart is only available under Windows, Fluxbox  and Unix desktops that follow the freedesktop.org standards. If you add support for any other system, please send patches to the patch tracker in the Agender project page at http://sourceforge.net/projects/agender/ or you can also help donating hardware that runs your favorite system."
+msgstr "自動啟動功能只在Windows、遵循freedesktop.org標準的Fluxbox和Unix桌面上才可用。如果您為其他系統增加此功能，請將補丁包發到Agender工程的補丁追踪頁http://sourceforge.net/projects/agender/,另外您也可以通過捐贈裝有您喜愛的系統的硬體來幫助我們。"
+
+#: ../src/AgenderMain.cpp:545
+#: ../src/AgenderMain.cpp:583
+msgid "Rename"
+msgstr "重命名"
+
+#: ../src/AgenderMain.cpp:547
+msgid "Normal"
+msgstr "標準"
+
+#: ../src/AgenderMain.cpp:548
+msgid "Sticky"
+msgstr "固頂"
+
+#: ../src/AgenderMain.cpp:583
+msgid "New name"
+msgstr "新名稱"
+
+#: ../src/AgenderTray.cpp:82
+msgid "100%"
+msgstr "100%"
+
+#: ../src/AgenderTray.cpp:83
+msgid "75%"
+msgstr "75%"
+
+#: ../src/AgenderTray.cpp:84
+msgid "50%"
+msgstr "50%"
+
+#: ../src/AgenderTray.cpp:85
+msgid "25%"
+msgstr "25%"
+
+#: ../src/AgenderTray.cpp:90
+msgid "Show"
+msgstr "顯示"
+
+#: ../src/AgenderTray.cpp:91
+msgid "Hide"
+msgstr "隱藏"
+
+#: ../src/AgenderTray.cpp:94
+msgid "Opacity"
+msgstr "透明度"
+
+#: ../src/AgenderTray.cpp:95
+msgid "Year selector"
+msgstr "年份選擇"
+
+#: ../src/AgenderTray.cpp:96
+msgid "Notes Colour"
+msgstr "便籤顏色"
+
+#: ../src/AgenderTray.cpp:98
+msgid "Symbol"
+msgstr "符號"
+
+#: ../src/AgenderTray.cpp:100
+msgid "Autostart"
+msgstr "自動啟動"
+
+#: ../src/AgenderTray.cpp:102
+msgid "Exit"
+msgstr "關閉"
+
