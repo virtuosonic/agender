@@ -7,7 +7,9 @@
 
 ;this defines are configurable, change them when needed
 !define MINGW_RUNTIME 1
-!define MINGW_DIR "/usr/i686-pc-mingw32/sys-root/mingw"
+!define SJLJ_EXCEPTIONS 0
+!define MINGW_DIR "/home/virtuoso/.local"
+;!define MINGW_DIR "/usr/i686-pc-mingw32/sys-root/mingw"
 ;!define MINGW_DIR "C:\Archivos de Programa\codeblocks\MINGW"
 ;!define MINGW_DIR "C:\MINGW"
 !define PRODUCT_VERSION "1.1.6"
@@ -49,6 +51,9 @@ SetCompressor lzma
 !insertmacro MUI_LANGUAGE "Japanese"
 !insertmacro MUI_LANGUAGE "Swedish"
 !insertmacro MUI_LANGUAGE "Greek"
+!insertmacro MUI_LANGUAGE "French"
+!insertmacro MUI_LANGUAGE "Portuguese"
+!insertmacro MUI_LANGUAGE "Chinese"
 ; ReserveFiles
 !insertmacro MUI_RESERVEFILE_INSTALLOPTIONS
 ; MUI end ------
@@ -75,6 +80,8 @@ Section "Agender" SEC01
 	;compiler runtime
 	!if ${MINGW_RUNTIME}
 		File "${MINGW_DIR}\bin\mingwm10.dll"
+	!endif
+	!if ${SJLJ_EXCEPTIONS}
 		File "${MINGW_DIR}\bin\libgcc_s_sjlj-1.dll"
 	!endif
 	;please read it
@@ -89,7 +96,8 @@ Section "Agender" SEC01
 	File "po\fr.mo"
 	File "po\el.mo"
 	File "po\sv.mo"
-	File "po\zh.mo"
+	File "po\zh_HK.mo"
+	File "po\zh_CN.mo"
 	SetAutoClose false
 SectionEnd
 
@@ -114,8 +122,12 @@ SectionEnd
 Section Uninstall
 	Delete "$INSTDIR\${PRODUCT_NAME}.url"
 	Delete "$INSTDIR\uninst.exe"
+	;runtime
 	!if ${MINGW_RUNTIME}
 		Delete "$INSTDIR\mingwm10.dll"
+	!endif
+	!if ${SJLJ_EXCEPTIONS}
+		Delete "$INSTDIR\bin\libgcc_s_sjlj-1.dll"
 	!endif
 	Delete "$INSTDIR\Agender.exe"
 	Delete "$INSTDIR\Readme.txt"
@@ -134,7 +146,8 @@ Section Uninstall
 	Delete "$INSTDIR\fr.mo"
 	Delete "$INSTDIR\el.mo"
 	Delete "$INSTDIR\sv.mo"
-	Delete "$INSTDIR\zh.mo"
+	Delete "$INSTDIR\zh_HK.mo"
+	Delete "$INSTDIR\zh_CN.mo"
 	;remove our dir
 	RMDir "$SMPROGRAMS\Agender"
 	RMDir "$INSTDIR"
