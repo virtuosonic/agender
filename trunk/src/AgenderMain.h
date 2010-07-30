@@ -20,7 +20,6 @@
 //*)
 #include <wx/fileconf.h>
 #include <wx/config.h>
-#include <wx/arrstr.h>
 #include <wx/fdrepdlg.h>
 #include <wx/taskbar.h>
 

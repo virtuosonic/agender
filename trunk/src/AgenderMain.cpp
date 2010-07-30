@@ -24,15 +24,12 @@
 #include <wx/aboutdlg.h>
 #include <wx/accel.h>
 #include <wx/textdlg.h>
-#include <wx/choicdlg.h>
 #include <wx/menu.h>
 #include <wx/stdpaths.h>
 #include <wx/wfstream.h>
 #include <wx/utils.h>
 #include <wx/log.h>
 #include <wx/filename.h>
-#include <wx/app.h>
-#include <wx/apptrait.h>
 
 //escribir algunas cosas en el registro
 #ifdef __WXMSW__

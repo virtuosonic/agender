@@ -12,6 +12,7 @@
 #include "AgenderIPC.h"
 #include <wx/log.h>
 #include <wx/defs.h>
+#include <wx/window.h>
 #include <wx/app.h>
 
 #if defined __WXMSW__ && wxUSE_DDE_FOR_IPC == 0

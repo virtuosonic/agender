@@ -9,7 +9,6 @@
 #define AGENDERIPC_H_INCLUDED
 
 #include <wx/ipc.h>
-#include <wx/frame.h>
 
 const wxString IPC_Topic(_T("Agender wakeup"));
 const wxString IPC_Service(_T(".agender-server"));
