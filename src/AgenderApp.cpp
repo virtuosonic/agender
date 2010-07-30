@@ -18,7 +18,6 @@
 #include <wx/defs.h>
 #include <wx/stdpaths.h>
 #include <wx/cmdline.h>
-#include <wx/apptrait.h>
 #if !defined __WXMAC__ || !defined __WXOSX__
 #include <iostream>
 #endif
@@ -46,6 +45,8 @@ bool AgenderApp::OnInit()
 	SetAppName(_T("Agender"));
 	SetVendorName(_T("Virtuosonic"));
 	#if defined __WXMAC__ || defined __WXOSX__
+	//under OSX the next block gives a compilation error
+	//so we use this instead
 	wxLogNull logNo;
 	wxSystemOptions::SetOptionInt(wxMAC_TEXTCONTROL_USE_SPELL_CHECKER,1);
 	#else
@@ -152,6 +153,7 @@ void OnSignal(int sig)
 	wxLogVerbose(_T("signal %i catched"),sig);
 	if (wxTheApp->GetTopWindow())
 	{
+		//if the frame is hiden calling destroy won't work
 		wxTheApp->GetTopWindow()->Show();
 		wxTheApp->GetTopWindow()->Destroy();
 	}

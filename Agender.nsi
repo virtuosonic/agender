@@ -47,6 +47,8 @@ SetCompressor lzma
 !insertmacro MUI_LANGUAGE "English"
 !insertmacro MUI_LANGUAGE "German"
 !insertmacro MUI_LANGUAGE "Japanese"
+!insertmacro MUI_LANGUAGE "Swedish"
+!insertmacro MUI_LANGUAGE "Greek"
 ; ReserveFiles
 !insertmacro MUI_RESERVEFILE_INSTALLOPTIONS
 ; MUI end ------

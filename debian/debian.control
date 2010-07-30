@@ -2,10 +2,10 @@ Source: Agender
 Section: Accessories
 Priority: extra
 Maintainer: Agender project <agender-support@lists.sourceforge.net>
-Build-Depends: debhelper (>= 4.1.16), g++, make, libwxgtk2.8-dev
+Build-Depends: debhelper (>= 4.1.16), g++, make, libwxgtk2.8-dev, wx2.8-headers
 Package: Agender
 Architecture: any
-Depends: libwxgtk2.8-0
+Depends: libwxgtk2.8-0, wx-common
 Description: A cross-platform schedule tool!
  Agender is a small cross-platform schedule tool where you associate some notes
  with a date or with no date in particular if  you mark the note as sticky, you
