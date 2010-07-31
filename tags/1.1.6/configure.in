@@ -1,0 +1,19 @@
+AC_PREREQ(2.53)
+AC_INIT(Agender,1.1.6)
+AC_CANONICAL_SYSTEM
+AC_PROG_CXX
+AM_OPTIONS_WXCONFIG
+AM_PATH_WXCONFIG(2.8.0)
+AC_BAKEFILE([m4_include(autoconf_inc.m4)])
+
+AC_SUBST(VERSION,1.1.6)
+m4_include(revision.m4)
+AC_SUBST(REVISION,SVN_REV)
+
+AC_CONFIG_FILES([Makefile
+	autopackage/default.apspec
+	Agender.spec
+	debian/Agender.dsc
+	debian/debian.changelog
+])
+AC_OUTPUT
