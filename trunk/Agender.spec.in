@@ -10,6 +10,8 @@
 #If you're reading the file Agender.spec don't edit it
 #it will be overwrited by configure, edit Agender.spec.in
 #
+#this file was tested in the opeSUSE Build Service
+#
 
 %if 0%{?suse_version}
 	%define dist .suse
@@ -20,8 +22,7 @@ Name: Agender
 Version: @VERSION@
 Release: 1%{dist}
 License: GPLv3+
-Group: Applications/Productivity/Office/Calendar
-#Source: http://sourceforge.net/projects/agender/files/Agender-@VERSION@.tar.bz2/download/
+Group: Applications/Office/Calendar
 Source: Agender-@VERSION@.tar.bz2
 Icon: Agender.xpm
 URL: http://agender.sourceforge.net/
@@ -55,6 +56,13 @@ without annoying you,it can also be configured to run on login
 
 %clean
 	%{__rm} -rf "$RPM_BUILD_ROOT"
+#menu magic for mandriva
+%if 0%{?mdkversion}
+%post
+	%update_menus
+%postun
+	%clean_menus
+%endif
 
 %files -f %{name}.lang
 	%defattr (-, root, root, -)

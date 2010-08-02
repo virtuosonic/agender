@@ -1,3 +1,4 @@
+#!/usr/bin/makensis
 ;Name: Agender.nsi
 ;Purpose: Agender's win32 installer
 ;Author: Gabriel Espinoza
@@ -12,7 +13,7 @@
 ;!define MINGW_DIR "/usr/i686-pc-mingw32/sys-root/mingw"
 ;!define MINGW_DIR "C:\Archivos de Programa\codeblocks\MINGW"
 ;!define MINGW_DIR "C:\MINGW"
-!define PRODUCT_VERSION "1.1.6"
+!define PRODUCT_VERSION "1.1.6.1"
 ;constants
 !define PRODUCT_NAME "Agender"
 !define PRODUCT_PUBLISHER "Virtuosonic"
