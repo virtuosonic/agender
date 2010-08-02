@@ -7,7 +7,7 @@ license GPLv3+
 	<include file="presets/wx.bkl"/>
 	<using module="datafiles"/>
 	<using module="gettext"/>
-	<set var="VERSION">1.1.6</set>
+	<set var="VERSION">1.1.6.1</set>
 	<!--build binary -->
 	<exe id="Agender" template="wx-lib">
 		<app-type>gui</app-type>
@@ -52,13 +52,15 @@ license GPLv3+
   	<!-- lets build a package -->
   	<action id="dist">
   		<depends>clean</depends>
-  		<!-- -->
+  		<!-- dependencies should create $(SRCDIR)/Agender-$(VERSION)-->
+  		<!--then we create all the build scripts-->
   		<command>cd $(SRCDIR)/Agender-$(VERSION);bakefile -f autoconf Agender.bkl</command>
   		<command>cd $(SRCDIR)/Agender-$(VERSION);bakefilize --copy</command>
   		<command>cd $(SRCDIR)/Agender-$(VERSION);aclocal</command>
   		<command>cd $(SRCDIR)/Agender-$(VERSION);autoconf</command>
   		<!--tarball -->
 		<command>tar -jcf Agender-$(VERSION).tar.bz2 Agender-$(VERSION)</command>
+		<command>tar -zcf Agender-$(VERSION).tar.gz Agender-$(VERSION)</command>
   		<!-- cleanup -->
   		<command>rm -rf $(SRCDIR)/Agender-$(VERSION)</command>
   	</action>
@@ -72,8 +74,8 @@ license GPLv3+
   	</copy-files>
 	<copy-files id="debian-dist">
 		<dependency-of>dist</dependency-of>
-		<srcdir>$(SRCDIR)/debian/</srcdir>
-  		<files>Agender.dsc.in debian.rules debian.control debian.changelog.in</files>
+		<srcdir>$(SRCDIR)/deb/</srcdir>
+  		<files>Agender.dsc.in debian.rules debian.control debian.changelog.in README.debian</files>
   		<dstdir>$(SRCDIR)/Agender-$(VERSION)/debian</dstdir>
 	</copy-files>
   	<copy-files id="srcdist">

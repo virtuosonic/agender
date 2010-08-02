@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Agender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-15 19:00-0800\n"
-"PO-Revision-Date: 2010-07-20 23:11+0100\n"
-"Last-Translator: Bruno Mace\n"
+"POT-Creation-Date: 2010-02-15 16:37-0800\n"
+"PO-Revision-Date: 2010-02-15 16:37-0800\n"
+"Last-Translator: Gabriel Espinoza <virtuosonic@users.sourceforge.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,36 +14,47 @@ msgstr ""
 "X-Poedit-Language: French\n"
 "X-Poedit-SearchPath-0: ../src\n"
 
-msgid "&About..."
-msgstr "&A propos de"
-
-msgid "&Delete selection"
-msgstr "&Supprimer la sélection"
-
-msgid "100%"
-msgstr "100%"
-
-msgid "25%"
-msgstr "25%"
-
-msgid "50%"
-msgstr "50%"
-
-msgid "75%"
-msgstr "75%"
-
-msgid "A cross-platform schedule tool"
-msgstr "Un outil de planification multiplate-forme"
-
-msgid "Add &note"
-msgstr "Ajouter une &note"
-
+#: ../src/AgenderMain.cpp:82
 msgid "Agender"
 msgstr "Agender"
 
+#: ../src/AgenderMain.cpp:96
+msgid "Add &note"
+msgstr "Ajouter une &note"
+
+#: ../src/AgenderMain.cpp:100
+msgid "&Delete selection"
+msgstr "&Supprimer la sélection"
+
+#: ../src/AgenderMain.cpp:102
+msgid "&About..."
+msgstr "&A propos de"
+
+#: ../src/AgenderMain.cpp:142
+msgid "Agender uses this file to save your schedule, don't delete it!"
+msgstr "Ne supprimez pas ce fichier, car il est utilisé par Agender pour enregistrer votre agenda."
+
+#: ../src/AgenderMain.cpp:167
+msgid "Agender|Search Notes"
+msgstr "Agender|Rechercher des notes"
+
+#: ../src/AgenderMain.cpp:246
+msgid "A cross-platform schedule tool"
+msgstr "Un outil de planification multiplate-forme"
+
+#: ../src/AgenderMain.cpp:247
+msgid "Build:"
+msgstr "Version :"
+
+#: ../src/AgenderMain.cpp:247
+msgid "From: svn"
+msgstr ""
+
+#: ../src/AgenderMain.cpp:248
 msgid "Agender Web Site"
 msgstr "Site Web d'Agender"
 
+#: ../src/AgenderMain.cpp:249
 msgid ""
 "Agender is free software; you can redistribute it and/or modify\n"
 "it under the terms of the GNU General Public License as published by\n"
@@ -72,72 +83,85 @@ msgstr ""
 "Dans le cas contraire, consultez la licence à l'adresse\n"
 "<http://www.gnu.org/licenses/>."
 
-msgid "Agender uses this file to save your schedule, don't delete it!"
-msgstr ""
-"Ne supprimez pas ce fichier, car il est utilisé par Agender pour enregistrer "
-"votre agenda."
-
-msgid "Agender|Search Notes"
-msgstr "Agender|Rechercher des notes"
-
-msgid ""
-"AutoStart is only available under Windows, Fluxbox  and Unix desktops that "
-"follow the freedesktop.org standards. If you add support for any other "
-"system, please send patches to the patch tracker in the Agender project page "
-"at http://sourceforge.net/projects/agender/ or you can also help donating "
-"hardware that runs your favorite system."
-msgstr ""
-"Le démarrage automatique est disponible sur les ordinateurs Windows, Fluxbox "
-"et UNIX conformes aux standards freedesktop.org. Si vous développez une "
-"prise en charge sur tout autre système, envoyez vos patchs au dispositif de "
-"suivi des patchs d'Agender, à la page http://sourceforge.net/projects/"
-"agender/ ou aidez-nous en faisant don de votre matériel exécutant votre "
-"système favori."
-
-msgid "Autostart"
-msgstr "Démarrage automatique"
-
-msgid "Build:"
-msgstr "Version :"
-
-msgid "Exit"
-msgstr "Quitter"
-
-msgid "Expresion '$(' reserved for Agender, please use another name"
-msgstr "L'expression $( est réservée à Agender. Utilisez un autre nom."
-
-msgid "Hide"
-msgstr "Masquer"
-
-msgid "New To-Do"
-msgstr "Créer une tâche"
-
-msgid "New name"
-msgstr "Nouveau nom"
-
-msgid "Normal"
-msgstr "Normal"
-
-msgid "Notes Colour"
-msgstr "Couleur des notes"
-
-msgid "Opacity"
-msgstr "Opacité"
-
-msgid "Rename"
-msgstr "Renommer"
-
-msgid "Show"
-msgstr "Afficher"
-
-msgid "Sticky"
-msgstr "Pense-bête"
-
-msgid "Symbol"
-msgstr "Symbole"
-
+#: ../src/AgenderMain.cpp:300
 msgid "To-Do Title"
 msgstr "Titre de la tâche"
 
+#: ../src/AgenderMain.cpp:300
+msgid "New To-Do"
+msgstr "Créer une tâche"
+
+#: ../src/AgenderMain.cpp:305
+msgid "Expresion '$(' reserved for Agender, please use another name"
+msgstr "L'expression $( est réservée à Agender. Utilisez un autre nom."
+
+#: ../src/AgenderMain.cpp:433
+#: ../src/AgenderMain.cpp:447
+msgid "AutoStart is only available under Windows, Fluxbox  and Unix desktops that follow the freedesktop.org standards. If you add support for any other system, please send patches to the patch tracker in the Agender project page at http://sourceforge.net/projects/agender/ or you can also help donating hardware that runs your favorite system."
+msgstr "Le démarrage automatique est disponible sur les ordinateurs Windows, Fluxbox et UNIX conformes aux standards freedesktop.org. Si vous développez une prise en charge sur tout autre système, envoyez vos patchs au dispositif de suivi des patchs d'Agender, à la page http://sourceforge.net/projects/agender/ ou aidez-nous en faisant don de votre matériel exécutant votre système favori."
+
+#: ../src/AgenderMain.cpp:543
+#: ../src/AgenderMain.cpp:581
+msgid "Rename"
+msgstr "Renommer"
+
+#: ../src/AgenderMain.cpp:545
+msgid "Normal"
+msgstr "Normal"
+
+#: ../src/AgenderMain.cpp:546
+msgid "Sticky"
+msgstr "Pense-bête"
+
+#: ../src/AgenderMain.cpp:581
+msgid "New name"
+msgstr "Nouveau nom"
+
+#: ../src/AgenderTray.cpp:82
+msgid "100%"
+msgstr "100%"
+
+#: ../src/AgenderTray.cpp:83
+msgid "75%"
+msgstr "75%"
+
+#: ../src/AgenderTray.cpp:84
+msgid "50%"
+msgstr "50%"
+
+#: ../src/AgenderTray.cpp:85
+msgid "25%"
+msgstr "25%"
+
+#: ../src/AgenderTray.cpp:90
+msgid "Show"
+msgstr "Afficher"
+
+#: ../src/AgenderTray.cpp:91
+msgid "Hide"
+msgstr "Masquer"
+
+#: ../src/AgenderTray.cpp:94
+msgid "Opacity"
+msgstr "Opacité"
+
+#: ../src/AgenderTray.cpp:95
 msgid "Year selector"
 msgstr "Sélecteur d'année"
+
+#: ../src/AgenderTray.cpp:96
+msgid "Notes Colour"
+msgstr "Couleur des notes"
+
+#: ../src/AgenderTray.cpp:98
+msgid "Symbol"
+msgstr "Symbole"
+
+#: ../src/AgenderTray.cpp:100
+msgid "Autostart"
+msgstr "Démarrage automatique"
+
+#: ../src/AgenderTray.cpp:102
+msgid "Exit"
+msgstr "Quitter"
+
