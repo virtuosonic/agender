@@ -76,7 +76,7 @@ license GPLv3+
 		<dependency-of>dist</dependency-of>
 		<srcdir>$(SRCDIR)/deb/</srcdir>
   		<files>Agender.dsc.in debian.rules debian.control debian.changelog.in README.debian</files>
-  		<dstdir>$(SRCDIR)/Agender-$(VERSION)/debian</dstdir>
+  		<dstdir>$(SRCDIR)/Agender-$(VERSION)/deb</dstdir>
 	</copy-files>
   	<copy-files id="srcdist">
   		<dependency-of>dist</dependency-of>
