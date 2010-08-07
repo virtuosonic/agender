@@ -30,7 +30,7 @@ Requires: wxGTK >= 2.8.0
 BuildRequires: wxGTK-devel >= 2.8.0,make,gcc-c++
 Prefix: %{_prefix}
 %if 0%{?suse_version}
-BuildRequires: update-desktop-files,gettext-runtime,brp-check-suse
+BuildRequires: update-desktop-files,gettext-runtime
 BuildRoot: %{_tmppath}/%{name}-{version}-build
 %endif
 
