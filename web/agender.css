@@ -1,29 +1,54 @@
+
 * {
-    font-family: sans-serif;
-    color: #fff;
+    font-family: Georgia,sans-serif;
 }
+
 body {
     margin: 0 auto;
-    width: 800px;
-    background-image: url("bg.png") ;
+    width: 60%;
+    background: url(bg.png);
+}
+.container {
+	margin: 30px;
+	padding: 10px;
+	background: #ffffff;
+}
+.lshadow {
+	float: right;
+	clear: right;
+	background: url(sha.png) repeat-y left;
+}
+.rshadow {
+	float: left;
+	clear: left;
+	background: url(rsha.png) repeat-y right;
 }
 
-h1 {
-    color: #fdcf66;
-    font-size: 200%;
-    text-align: center;
+ul {
+	padding-left: 5em;
 }
+
+li { margin: 3em;}
+li#suse {list-style-image: url(SuSE-logo_48.png);}
+li#mdv {list-style-image: url(mandriva-logo_48.png);}
+li#fedora {list-style-image: url(Fedora-logo_48.png);}
+li#tar {list-style-image: url(package-x-generic.png);}
+li#svn {list-style-image: url(package-x-generic.png);}
+li#apple {list-style-image: url(Apple-logo_48.png);}
+li#deb {list-style-image: url(Debian-logo_48.png);}
+li#msw {list-style-image: url(Microsoft_Windows-logo_48.png);}
 
 a {
-    color: #ffffff;
+    color: #47C4FF;
     font-weight: normal;
     text-decoration: none;
 }
 
 a:hover {
-    color: #fdcf66;
-    font-weight: normal;
-    text-decoration: underline;
+    color: #47C4FF;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
 }
 
 .menu {
@@ -36,5 +61,6 @@ text-indent: 2em;
 }
 
 img {
-border: 0;
+border: none;
 }
+
