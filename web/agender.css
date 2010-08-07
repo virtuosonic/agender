@@ -1,0 +1,40 @@
+* {
+    font-family: sans-serif;
+    color: #fff;
+}
+body {
+    margin: 0 auto;
+    width: 800px;
+    background-image: url("bg.png") ;
+}
+
+h1 {
+    color: #fdcf66;
+    font-size: 200%;
+    text-align: center;
+}
+
+a {
+    color: #ffffff;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #fdcf66;
+    font-weight: normal;
+    text-decoration: underline;
+}
+
+.menu {
+    background-color: #344444;
+    width: 200;
+}
+
+p {
+text-indent: 2em;
+}
+
+img {
+border: 0;
+}
