@@ -2,6 +2,9 @@
 <head>
 	<title>Get Agender</title>
 	<link rel="stylesheet" type="text/css" href="agender.css" media="screen"/>
+	<link rel="alternate" type="application/rss+xml"
+		href="rss.xml" title="Agender - a cross-platform schedule tool!"/>
+
 </head>
 
 <body>
@@ -54,7 +57,7 @@
 		how Agender works, you can download the
 		<a href="http://sourceforge.net/projects/agender/files/Agender-1.1.6.tar.bz2/download">sourcecode</a>
 		</li>
-		<li class="svn">
+		<li id="svn">
 		Keep up with Agender development.<br/>
 		svn co https://agender.svn.sourceforge.net/svnroot/agender/trunk Agender
 		</li>
