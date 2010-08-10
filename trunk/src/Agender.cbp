@@ -80,6 +80,15 @@
 			<wxsmith version="1">
 				<gui name="wxWidgets" src="AgenderApp.cpp" main="-- None --" init_handlers="never" language="CPP" />
 			</wxsmith>
+			<DoxyBlocks>
+				<comment_style block="0" line="0" />
+				<doxyfile_project />
+				<doxyfile_build />
+				<doxyfile_warnings />
+				<doxyfile_output />
+				<doxyfile_dot />
+				<general />
+			</DoxyBlocks>
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

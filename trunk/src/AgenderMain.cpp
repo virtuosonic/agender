@@ -6,21 +6,19 @@
  * Copyright: Gabriel Espinoza
  * License: GPLv3+
  **************************************************************/
+ #include <wx/wxprec.h>
+
 #ifdef __BORLANDC__
     #pragma hdrstop
     //for those who can't change turboc++, like theacher Nancy
 #endif
 
-#include "AgenderMain.h"
+#ifndef WX_PRECOMP
 #include <wx/msgdlg.h>
 #include <wx/defs.h>
-
-//(*InternalHeaders(AgenderFrame)
 #include <wx/settings.h>
 #include <wx/intl.h>
 #include <wx/string.h>
-//*)
-
 #include <wx/aboutdlg.h>
 #include <wx/accel.h>
 #include <wx/textdlg.h>
@@ -30,17 +28,17 @@
 #include <wx/utils.h>
 #include <wx/log.h>
 #include <wx/filename.h>
-
 //escribir algunas cosas en el registro
 #ifdef __WXMSW__
 #include <wx/msw/registry.h>
 #endif//__WXMSW__
-
-#include "AgenderCal.h"
-
 #if defined wxHAS_TASK_BAR_ICON
 #include "AgenderTray.h"
 #endif
+#endif
+
+#include "AgenderMain.h"
+#include "AgenderCal.h"
 
 #ifndef __REVISION__
 #define __REVISION__ 0
@@ -80,7 +78,9 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 	wxFlexGridSizer* FlexGridSizer1;
 
 	Create(0, wxID_ANY, _("Agender"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxFRAME_TOOL_WINDOW|wxTAB_TRAVERSAL|wxWANTS_CHARS, _T("wxID_ANY"));
+	#ifdef __WXMSW__
 	SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUBAR));
+	#endif
 	FlexGridSizer1 = new wxFlexGridSizer(0, 2, 0, 0);
 	FlexGridSizer1->AddGrowableCol(0);
 	FlexGridSizer1->AddGrowableRow(0);

@@ -5,7 +5,7 @@
  * Copyright: Gabriel Espinoza
  * License: GPLv3+
  **************************************************************/
- #ifndef AGENDERTRAY_H
+#ifndef AGENDERTRAY_H
 #define AGENDERTRAY_H
 
 #include <wx/taskbar.h>

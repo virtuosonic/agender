@@ -16,7 +16,8 @@
 #include <wx/dnd.h>
 #include <wx/datetime.h>
 
-struct notedmp {
+struct notedmp
+{
 	wxString name;
 	wxString text;
 };
@@ -39,9 +40,9 @@ class NoteDataObject : public wxDataObject
 
 class NoteTarget : public wxDropTarget
 {
-	virtual wxDragResult OnEnter(wxCoord x,wxCoord y,wxDragResult def);
-	virtual void OnLeave();
-	virtual wxDragResult OnData(wxCoord x,wxCoord y,wxDragResult def);
+		virtual wxDragResult OnEnter(wxCoord x,wxCoord y,wxDragResult def);
+		virtual void OnLeave();
+		virtual wxDragResult OnData(wxCoord x,wxCoord y,wxDragResult def);
 };
 
 #endif //wxUSE_DRAG_AND_DROP

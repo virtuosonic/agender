@@ -5,15 +5,20 @@
  * Copyright: Gabriel Espinoza
  * License: GPLv3+
  **************************************************************/
+#include <wx/wxprec.h>
+
 #ifdef __BORLANDC__
     #pragma hdrstop
 #endif
 
 #include "AgenderIPC.h"
+#ifndef WX_PRECOMP
 #include <wx/log.h>
 #include <wx/defs.h>
 #include <wx/window.h>
 #include <wx/app.h>
+#endif
+
 
 #if defined __WXMSW__ && wxUSE_DDE_FOR_IPC == 0
 #warning not using dde under msw

@@ -83,7 +83,8 @@ class AgenderFrame: public wxFrame
 		void MarkDays();
 		void ChangeSelector();
 
-		enum {
+		enum
+		{
 			ID_RENAME,
 			ID_NORMAL,
 			ID_STICKY
