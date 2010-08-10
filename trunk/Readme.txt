@@ -68,7 +68,7 @@ Compiling & Installing:
         http://www.bakefile.org/
 Bugs:
 =====
-    I don't call them that way, i call them "advanced user features".
+    I don't call them that way, I call them "advanced user features".
     If you find one report it at the project bug tracker, patches are
     welcome, thank you.
 
@@ -200,9 +200,9 @@ Changelog:
 Distro Makers:
 ==============
     Hi distro maker, if you want to include Agender in your operating
-    system, you are free to do it, just follow the license, but i request
+    system, you are free to do it, just follow the license, but I request
     you to send me the instructions on how to install Agender on your
-    system, so i can add them to the website documentation.
+    system, so I can add them to the website documentation.
 
 Author:
 =======
