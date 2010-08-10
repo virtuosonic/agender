@@ -16,13 +16,13 @@ const wxString IPC_Service(_T(".agender-server"));
 class AgenderConnection : public wxConnection
 {
 	public:
-		 virtual bool OnExecute(const wxString& topic,wxChar* data,int size,wxIPCFormat format);
+		virtual bool OnExecute(const wxString& topic,wxChar* data,int size,wxIPCFormat format);
 };
 
- class AgenderServer : public wxServer
- {
- 	public:
- 		virtual wxConnectionBase* OnAcceptConnection(const wxString& topic);
- };
+class AgenderServer : public wxServer
+{
+	public:
+		virtual wxConnectionBase* OnAcceptConnection(const wxString& topic);
+};
 
 #endif // AGENDERIPC_H_INCLUDED

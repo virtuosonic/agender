@@ -6,7 +6,7 @@
  * License: GPLv3+
  **************************************************************/
 #ifdef __BORLANDC__
-    #pragma hdrstop
+#pragma hdrstop
 #endif
 
 #include "AgenderDnd.h"

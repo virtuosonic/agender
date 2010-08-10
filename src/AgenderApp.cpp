@@ -6,18 +6,23 @@
  * Copyright: Gabriel Espinoza
  * License: GPLv3+
  **************************************************************/
+#include <wx/wxprec.h>
+
 #ifdef __BORLANDC__
-    #pragma hdrstop
+#pragma hdrstop
 #endif
 
 #include "AgenderApp.h"
 #include "AgenderMain.h"
 #include "AgenderIPC.h"
 
+#ifndef WX_PRECOMP
 #include <wx/log.h>
 #include <wx/defs.h>
 #include <wx/stdpaths.h>
 #include <wx/cmdline.h>
+#endif
+
 #if !defined __WXMAC__ || !defined __WXOSX__
 #include <iostream>
 #endif
@@ -44,15 +49,15 @@ bool AgenderApp::OnInit()
 	//who are we?
 	SetAppName(_T("Agender"));
 	SetVendorName(_T("Virtuosonic"));
-	#if defined __WXMAC__ || defined __WXOSX__
+#if defined __WXMAC__ || defined __WXOSX__
 	//under OSX the next block gives a compilation error
 	//so we use this instead
 	wxLogNull logNo;
 	wxSystemOptions::SetOptionInt(wxMAC_TEXTCONTROL_USE_SPELL_CHECKER,1);
-	#else
+#else
 	/*redirect logging to cout, if you want to annoy users use ::wxMessageBox(_T("do you want me to annoy you?"));*/
 	delete wxLog::SetActiveTarget(new wxLogStream(&std::cout));
-	#endif
+#endif
 	//parse arguments
 	wxCmdLineParser cmd(argc,argv);
 	cmd.AddOption(_T("c"),_T("config"),_T("specify a config file to load"),wxCMD_LINE_VAL_STRING);
@@ -73,7 +78,7 @@ bool AgenderApp::OnInit()
 	//are we alone?
 	m_checker = new wxSingleInstanceChecker;
 	if (m_checker->Create(_T(".") + GetAppName() + _T("-") + ::wxGetUserId())
-		&& m_checker->IsAnotherRunning())
+			&& m_checker->IsAnotherRunning())
 	{
 		//lets try to connect to Another and  asking to show it self
 		wxClient client;
@@ -109,23 +114,23 @@ bool AgenderApp::OnInit()
 	wxFrame* Frame = new AgenderFrame(m_locale,cfgFile);
 	SetTopWindow(Frame);
 	//lets create a server so Anothers can comunicate with this->m_server
-	#ifndef __WXMSW__
+#ifndef __WXMSW__
 	m_server = new AgenderServer;
 	if (m_server->Create(IPC_Service))
 		wxLogVerbose(_T("server created"));
 	else
 		wxLogVerbose(_T("server creation failed"));
-	#else
+#else
 	m_server = NULL;
-	#endif
+#endif
 	//no taskbar?
 	if (cmd.Found(_T("nt")))
 		Frame->Show();
-	#ifdef __UNIX__
+#ifdef __UNIX__
 	signal(SIGINT,&OnSignal);
 	signal(SIGTERM,&OnSignal);
-	#endif
-	#if !defined wxHAS_TASK_BAR_ICON
+#endif
+#if !defined wxHAS_TASK_BAR_ICON
 	Frame->Show();
 	// TODO (virtuoso#1#): think in another way to exit agender
 	//without having to kill it
@@ -133,7 +138,7 @@ bool AgenderApp::OnInit()
 	//i remember that windows CE had a function to finish apps
 	// and accoding to its guidelines it should continue in memory
 	//but what about Familiar Linux, iPhoneOS, etc ?
-	#endif//wxHAS_TASK_BAR_ICON
+#endif//wxHAS_TASK_BAR_ICON
 	return wxsOK;
 }
 

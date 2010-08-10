@@ -24,7 +24,7 @@ class AgenderApp : public wxApp
 		wxSingleInstanceChecker* m_checker;
 		wxServer* m_server;
 		wxLocale m_locale;
-	DECLARE_EVENT_TABLE()
+		DECLARE_EVENT_TABLE()
 };
 
 #endif // AGENDERAPP_H_INCLUDED

@@ -5,14 +5,17 @@
  * Copyright: Gabriel Espinoza
  * License: GPLv3+
  **************************************************************/
+#include <wx/wxprec.h>
+
 #ifdef __BORLANDC__
-    #pragma hdrstop
+#pragma hdrstop
 #endif
-
+#ifndef WX_PRECOMP
 #include <wx/defs.h>
-
+#endif
 #if defined wxHAS_TASK_BAR_ICON
 
+#ifndef WX_PRECOMP
 #include "AgenderTray.h"
 #include <wx/colordlg.h>
 #include <wx/menu.h>
@@ -22,6 +25,7 @@
 #include <wx/dataobj.h>
 #if wxUSE_RICHTEXT
 #include <wx/richtext/richtextsymboldlg.h>
+#endif
 #endif
 
 BEGIN_EVENT_TABLE(AgenderTray,wxTaskBarIcon)
@@ -94,9 +98,9 @@ wxMenu * AgenderTray::CreatePopupMenu()
 		menu->AppendSubMenu(opcMenu,_("Opacity"));
 	menu->AppendCheckItem(ID_YEARSEL,_("Year selector"));
 	menu->Append(ID_NOTES_COLOUR,_("Notes Colour"));
-	#if wxUSE_RICHTEXT
+#if wxUSE_RICHTEXT
 	menu->Append(ID_SYMBOL,_("Symbol"));
-	#endif
+#endif
 	menu->AppendCheckItem(ID_AUTOSTART,_("Autostart"));
 	menu->AppendSeparator();
 	menu->Append(wxID_EXIT,_("Exit"));
@@ -179,9 +183,9 @@ void AgenderTray::OnMenuAutoStart(wxCommandEvent& event)
 
 void AgenderTray::OnMenuSymbols(wxCommandEvent& event)
 {
-	#if wxUSE_RICHTEXT
+#if wxUSE_RICHTEXT
 	wxSymbolPickerDialog dlg(_T("*"),wxEmptyString,
-					 wxTheApp->GetTopWindow()->GetFont().GetFaceName(),NULL);
+							 wxTheApp->GetTopWindow()->GetFont().GetFaceName(),NULL);
 	if (dlg.ShowModal() ==wxID_OK && dlg.HasSelection())
 	{
 		if (wxTheClipboard->Open())
@@ -190,7 +194,7 @@ void AgenderTray::OnMenuSymbols(wxCommandEvent& event)
 			wxTheClipboard->Close();
 		}
 	}
-	#endif
+#endif
 }
 
 #endif //wxHAS_TASK_BAR_ICON

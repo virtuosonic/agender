@@ -5,14 +5,18 @@
  * Copyright: Gabriel Espinoza
  * License: GPLv3+
  **************************************************************/
+#include <wx/wxprec.h>
+
 #ifdef __BORLANDC__
-    #pragma hdrstop
+#pragma hdrstop
 #endif
 
 #include "AgenderCal.h"
 
+#ifndef WX_PRECOMP
 #include <wx/config.h>
 #include <wx/log.h>
+#endif
 
 //since this  software has a very bad design, now I have to use hacks because it wasn't mean to
 //be extensible, however it acomplishes it goals: small, fast & portable
@@ -131,12 +135,12 @@ wxArrayInt AgenderCal::GetDaysWithNotes()
 		if (i < 10)
 		{
 			dateStr = m_date.Format(_T("%Y-%m-")) +
-				    wxString::Format(_T("0%i"),i);
+					  wxString::Format(_T("0%i"),i);
 		}
 		else
 		{
 			dateStr = m_date.Format(_T("%Y-%m-")) +
-				    wxString::Format(_T("%i"),i);
+					  wxString::Format(_T("%i"),i);
 		}
 		if (wxConfig::Get()->HasGroup(dateStr))
 			days.Add(i);
@@ -165,7 +169,7 @@ bool AgenderCal::HasNote(wxString note)
 }
 
 bool AgenderCal::MakeSticky(wxString note)
- {
+{
 	wxString stickyNote(wxString::Format(_T("%s/%s"),stickPath,note.c_str()));
 	wxConfig::Get()->Write(stickyNote,GetNoteText(note));
 	RmNote(note);
