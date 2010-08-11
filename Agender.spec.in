@@ -19,6 +19,7 @@
 
 Summary: A cross-platform schedule tool!
 Name: Agender
+Packager: Gabriel Espinoza <virtuosonic@users.sourceforge.net>
 Version: @VERSION@
 Release: 1%{dist}
 License: GPLv3+
@@ -31,7 +32,7 @@ BuildRequires: wxGTK-devel >= 2.8.0,make,gcc-c++
 Prefix: %{_prefix}
 %if 0%{?suse_version}
 BuildRequires: update-desktop-files,gettext-runtime
-BuildRoot: %{_tmppath}/%{name}-{version}-build
+BuildRoot: %{_tmppath}/%{name}-%{version}-build
 %endif
 
 %description
