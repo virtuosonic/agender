@@ -159,15 +159,42 @@ Section Uninstall
 	Delete "$SMPROGRAMS\Agender\Agender.lnk"
 	Delete "$SMPROGRAMS\Agender\License.lnk"
 	;remove translations
-	Delete "$INSTDIR\es.mo"
-	Delete "$INSTDIR\de.mo"
-	Delete "$INSTDIR\ja.mo"
-	Delete "$INSTDIR\pt.mo"
-	Delete "$INSTDIR\fr.mo"
-	Delete "$INSTDIR\el.mo"
-	Delete "$INSTDIR\sv.mo"
-	Delete "$INSTDIR\zh_HK.mo"
-	Delete "$INSTDIR\zh_CN.mo"
+	;spanish
+	Delete "$INSTDIR\es\Agender.mo"
+	Delete "$INSTDIR\es\wxstd.mo"
+	RMDir"$INSTDIR\es"
+	;german
+	Delete "$INSTDIR\de\Agender.mo"
+	Delete "$INSTDIR\de\wxstd.mo"
+	Delete "$INSTDIR\de\wxstd.mo"
+	;japanese
+	Delete "$INSTDIR\ja\Agender.mo"
+	Delete "$INSTDIR\ja\wxstd.mo"
+	RMDir "$INSTDIR\ja"
+	;portuguese
+	Delete "$INSTDIR\pt\Agender.mo"
+	Delete "$INSTDIR\pt\wxstd.mo"
+	RMDir "$INSTDIR\pt"
+	;french
+	Delete "$INSTDIR\fr\Agender.mo"
+	Delete "$INSTDIR\fr\wxstd.mo"
+	RMDir "$INSTDIR\fr"
+	;greek
+	Delete "$INSTDIR\el\Agender.mo"
+	Delete "$INSTDIR\el\wxstd.mo"
+	Delete "$INSTDIR\el"
+	;swedish
+	Delete "$INSTDIR\sv\Agender.mo"
+	Delete "$INSTDIR\sv\wxstd.mo"
+	Delete "$INSTDIR\sv"
+	;chinese traditional/hongkong
+	Delete "$INSTDIR\zh_HK\Agender.mo"
+	Delete "$INSTDIR\zh_HK\wxstd.mo"
+	RMDir "$INSTDIR\zh_HK"
+	;chinese simplified
+	Delete "$INSTDIR\zh_CN\Agender.mo"
+	Delete "$INSTDIR\zh_CN\wxstd.mo"
+	RMDir "$INSTDIR\zh_CN"
 	;remove our dir
 	RMDir "$SMPROGRAMS\Agender"
 	RMDir "$INSTDIR"
