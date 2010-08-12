@@ -7,6 +7,7 @@
 ;this file needs some hacking, if you are using m$w  please help
 
 ;this defines are configurable, change them when needed
+!define WX_DIR "/home/virtuoso/C++wxWidgets-2.8.11
 !define MINGW_RUNTIME 1
 !define SJLJ_EXCEPTIONS 0
 !define MINGW_DIR "/home/virtuoso/.local"
@@ -90,16 +91,33 @@ Section "Agender" SEC01
 	File "Readme.txt"
 	File "gpl-3.0.txt"
 	;translations
-	SetOutPath "$INSTDIR\"
-	File "po\es.mo"
-	File "po\de.mo"
-	File "po\ja.mo"
-	File "po\pt.mo"
-	File "po\fr.mo"
-	File "po\el.mo"
-	File "po\sv.mo"
-	File "po\zh_HK.mo"
-	File "po\zh_CN.mo"
+	SetOutPath "$INSTDIR\es"
+	File /oname=Agender.mo "po\es.mo"
+	File /oname=wxstd.mo "${WX_DIR}\locale\es.mo"
+	SetOutPath "$INSTDIR\de"
+	File /oname=Agender.mo "po\de.mo"
+	File /oname=wxstd.mo "${WX_DIR}\locale\de.mo"
+	SetOutPath "$INSTDIR\ja"
+	File /oname=Agender.mo "po\ja.mo"
+	File /oname=wxstd.mo "${WX_DIR}\locale\ja.mo"
+	SetOutPath "$INSTDIR\pt"
+	File /oname=Agender.mo "po\pt.mo"
+	File /oname=wxstd.mo "${WX_DIR}\locale\pt.mo"
+	SetOutPath "$INSTDIR\fr"
+	File /oname=Agender.mo "po\fr.mo"
+	File /oname=wxstd.mo "${WX_DIR}\locale\fr.mo"
+	SetOutPath "$INSTDIR\el"
+	File /oname=Agender.mo "po\el.mo"
+	File /oname=wxstd.mo "${WX_DIR}\locale\el.mo"
+	SetOutPath "$INSTDIR\sv"
+	File /oname=Agender.mo "po\sv.mo"
+	File /oname=wxstd.mo "${WX_DIR}\locale\sv.mo"
+	SetOutPath "$INSTDIR\zh_HK"
+	File /oname="$INSTDIR\zh_HK\Agender.mo" "po\zh_HK.mo"
+	File /oname=wxstd.mo "${WX_DIR}\locale\zh_HK.mo"
+	SetOutPath "$INSTDIR\zh_CN"
+	File /oname=Agender.mo "po\zh_CN.mo"
+	File /oname=wxstd.mo "${WX_DIR}\locale\zh_CN.mo"
 	SetAutoClose false
 SectionEnd
 
