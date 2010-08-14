@@ -7,14 +7,15 @@
 ;this file needs some hacking, if you are using m$w  please help
 
 ;this defines are configurable, change them when needed
-!define WX_DIR "/home/virtuoso/C++wxWidgets-2.8.11
+!define WX_DIR "/home/virtuoso/C++/wxWidgets-2.8.11"
+;!define WX_DIR "C:\wxWidgets-2.8.11"
 !define MINGW_RUNTIME 1
 !define SJLJ_EXCEPTIONS 0
-!define MINGW_DIR "/home/virtuoso/.local"
+!define MINGW_DIR "/home/virtuoso/mingw32"
 ;!define MINGW_DIR "/usr/i686-pc-mingw32/sys-root/mingw"
 ;!define MINGW_DIR "C:\Archivos de Programa\codeblocks\MINGW"
 ;!define MINGW_DIR "C:\MINGW"
-!define PRODUCT_VERSION "1.1.6.1"
+!define PRODUCT_VERSION "1.1.7"
 ;constants
 !define PRODUCT_NAME "Agender"
 !define PRODUCT_PUBLISHER "Virtuosonic"
@@ -91,30 +92,39 @@ Section "Agender" SEC01
 	File "Readme.txt"
 	File "gpl-3.0.txt"
 	;translations
+	;spanish
 	SetOutPath "$INSTDIR\es"
 	File /oname=Agender.mo "po\es.mo"
 	File /oname=wxstd.mo "${WX_DIR}\locale\es.mo"
+	;deutch/german
 	SetOutPath "$INSTDIR\de"
 	File /oname=Agender.mo "po\de.mo"
 	File /oname=wxstd.mo "${WX_DIR}\locale\de.mo"
+	;japanese
 	SetOutPath "$INSTDIR\ja"
 	File /oname=Agender.mo "po\ja.mo"
 	File /oname=wxstd.mo "${WX_DIR}\locale\ja.mo"
+	;portuguese
 	SetOutPath "$INSTDIR\pt"
 	File /oname=Agender.mo "po\pt.mo"
 	File /oname=wxstd.mo "${WX_DIR}\locale\pt.mo"
+	;french
 	SetOutPath "$INSTDIR\fr"
 	File /oname=Agender.mo "po\fr.mo"
 	File /oname=wxstd.mo "${WX_DIR}\locale\fr.mo"
+	;greek
 	SetOutPath "$INSTDIR\el"
 	File /oname=Agender.mo "po\el.mo"
 	File /oname=wxstd.mo "${WX_DIR}\locale\el.mo"
+	;swedish
 	SetOutPath "$INSTDIR\sv"
 	File /oname=Agender.mo "po\sv.mo"
 	File /oname=wxstd.mo "${WX_DIR}\locale\sv.mo"
+	;traditional chinese
 	SetOutPath "$INSTDIR\zh_HK"
-	File /oname="$INSTDIR\zh_HK\Agender.mo" "po\zh_HK.mo"
-	File /oname=wxstd.mo "${WX_DIR}\locale\zh_HK.mo"
+	File /oname=Agender.mo "po\zh_HK.mo"
+	File /oname=wxstd.mo "${WX_DIR}\locale\zh_TW.mo"
+	;simplified chinese
 	SetOutPath "$INSTDIR\zh_CN"
 	File /oname=Agender.mo "po\zh_CN.mo"
 	File /oname=wxstd.mo "${WX_DIR}\locale\zh_CN.mo"
@@ -162,11 +172,11 @@ Section Uninstall
 	;spanish
 	Delete "$INSTDIR\es\Agender.mo"
 	Delete "$INSTDIR\es\wxstd.mo"
-	RMDir"$INSTDIR\es"
+	RMDir "$INSTDIR\es"
 	;german
 	Delete "$INSTDIR\de\Agender.mo"
 	Delete "$INSTDIR\de\wxstd.mo"
-	Delete "$INSTDIR\de\wxstd.mo"
+	RMDir "$INSTDIR\de"
 	;japanese
 	Delete "$INSTDIR\ja\Agender.mo"
 	Delete "$INSTDIR\ja\wxstd.mo"
@@ -182,11 +192,11 @@ Section Uninstall
 	;greek
 	Delete "$INSTDIR\el\Agender.mo"
 	Delete "$INSTDIR\el\wxstd.mo"
-	Delete "$INSTDIR\el"
+	RMDir "$INSTDIR\el"
 	;swedish
 	Delete "$INSTDIR\sv\Agender.mo"
 	Delete "$INSTDIR\sv\wxstd.mo"
-	Delete "$INSTDIR\sv"
+	RMDir "$INSTDIR\sv"
 	;chinese traditional/hongkong
 	Delete "$INSTDIR\zh_HK\Agender.mo"
 	Delete "$INSTDIR\zh_HK\wxstd.mo"
