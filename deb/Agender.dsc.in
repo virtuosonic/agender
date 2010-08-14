@@ -1,9 +1,0 @@
-Format: 1.0
-Source: Agender
-Version: @VERSION@
-Binary: Agender
-Maintainer: Agender project <agender-support@lists.sourceforge.net>
-Architecture: any
-Build-Depends: debhelper (>= 4.1.16), g++, make, libwxgtk2.8-dev
-Files:
- 0ac77172e74e80c4b400b331cd44742a 133282 Agender-@VERSION@.tar.bz2

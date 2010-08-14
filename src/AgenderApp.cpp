@@ -105,7 +105,11 @@ bool AgenderApp::OnInit()
 	}
 	// please talk me in a language that i understand
 	if (m_locale.Init(wxLANGUAGE_DEFAULT,wxLOCALE_CONV_ENCODING))
+	{
 		m_locale.AddCatalog(wxT("Agender"),wxLANGUAGE_ENGLISH,wxT("UTF-8"));
+		m_locale.AddCatalog(wxT("wxstd"),wxLANGUAGE_ENGLISH,wxT("UTF-8"));
+	}
+
 	//(*AppInitialize
 	bool wxsOK = true;
 	wxInitAllImageHandlers();

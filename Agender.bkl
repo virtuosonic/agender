@@ -7,7 +7,7 @@ license GPLv3+
 	<include file="presets/wx.bkl"/>
 	<using module="datafiles"/>
 	<using module="gettext"/>
-	<set var="VERSION">1.1.6.1</set>
+	<set var="VERSION">1.1.7</set>
 	<!--build binary -->
 	<exe id="Agender" template="wx-lib">
 		<app-type>gui</app-type>
@@ -72,12 +72,6 @@ license GPLv3+
   		<files>*.spec.in *.bkl *.nsi configure.in gpl-3.0.txt Readme.txt revision.m4 update_revision.sh</files>
   		<dstdir>$(SRCDIR)/Agender-$(VERSION)/</dstdir>
   	</copy-files>
-	<copy-files id="debian-dist">
-		<dependency-of>dist</dependency-of>
-		<srcdir>$(SRCDIR)/deb/</srcdir>
-  		<files>Agender.dsc.in debian.rules debian.control debian.changelog.in README.debian</files>
-  		<dstdir>$(SRCDIR)/Agender-$(VERSION)/deb</dstdir>
-	</copy-files>
   	<copy-files id="srcdist">
   		<dependency-of>dist</dependency-of>
   		<srcdir>$(SRCDIR)/src/</srcdir>
