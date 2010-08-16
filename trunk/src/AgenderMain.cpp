@@ -186,7 +186,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 		{
 			wxExecute(_T("pidof gnome-panel"),output,wxEXEC_SYNC);
 			if (output.IsEmpty())
-				wxSleep(4);
+				wxSleep(5);
 		} while(output.IsEmpty());
 		wxSleep(4);
 	}

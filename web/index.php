@@ -1,35 +1,40 @@
 <?php
-$page = $_GET['page'];
-if ($page == '') {$page = 'home';}
+$page = 'Home' ;// $_GET['page'];
+if ($page == '') {$page = 'Home';}
 
 $active = "id='active'";
 $inactive = "";
-if ($page == 'home') {
-	$home = $active;
-	$title="Agender";
+if ($page == 'Home') {
+	$Home = $active;
+	$title="A cross-platform schedule tool!";
+}
+if ($page == 'Downloads') {
+	$Home = $active;
+	$title="Get Agender";
 }
 else {
-	$home = $inactive;
+	$Home = $inactive;
 	$title = $page;
 }
 
+// TODO (virtuoso#1#): add google search here
 
 $error404 = "<center><img src='Agender-screenshot-svn-1.png'><br><br></center>\n".
-            "<h3 class='heading'>This cannot be a page <i>since it doesn't exist</i>.</h3>error 405";
+            "<h3 class='heading'>This page cannot be found <i>try using google</i>.</h3>error 405";
 
 
-if ($page == 'get-agender') {$get-agender = $active;}
-else {$get-agender = $inactive;}
+if ($page == 'Downloads') {$Downloads = $active;}
+else {$Downloads = $inactive;}
 
-if ($page == 'screenshots') {$screenshots = $active;}
-else {$screenshots = $inactive;}
+if ($page == 'Screenshots') {$Screenshots = $active;}
+else {$Screenshots = $inactive;}
 
-if ($page == 'links') {$links = $active;}
-else {$links = $inactive;}
+if ($page == 'Links') {$Links = $active;}
+else {$Links = $inactive;}
 
-$page_name = $page.'.html';
+$page_name = $page.'.elf';
 
-$pages = glob("*.html");
+$pages = glob("*.elf");
 
 if (in_array($page_name, $pages) and file_exists($page_name)){
     $page_data = file_get_contents($page_name);
@@ -39,22 +44,36 @@ else {$page_data = $error404;}
 
 <html>
 <head>
-	<title>Agender - <?= $title ?></title>
+	<title>Agender - <?php echo $title ?></title>
 	<link rel="stylesheet" type="text/css" href="agender.css" media="screen"/>
 	<link rel="alternate" type="application/rss+xml"
-		href="rss.xml" title="Agender - a cross-platform schedule tool!"/>
+		href="https://sourceforge.net/export/rss2_keepsake.php?group_id=271084"
+		title="Agender - a cross-platform schedule tool!"/>
 </head>
 
 <body>
-	<div class="lshadow">
+	<!-- menu -->
+		<ul id="menu">
+		<li><a href="index.php?page=Home">Home</a></li>
+		<li><a href="index.php?page=Downloads">Downloads</a></li>
+		<li><a href="index.php?page=Press">Press</a></li>
+		<li><a href="index.php?page=Screenshots">Screenshots</a></li>
+		<li><a href="index.php?page=About">About</a></li>
+		<li><a href="index.php?page=Links">Links</a></li>
+		</ul>
+	<center>
+
+	<!--
+	<div class="lshadow"/>
 	<div class="rshadow">
+-->
+
 	<div class="container">
 		<!-- contents -->
-		<?= $page_data ?>
+		<?php echo $page_data ?>
 		<!-- end of contents -->
 	</div>
-	</div>
-	</div>
+	<center>
 </body>
 
 </html>

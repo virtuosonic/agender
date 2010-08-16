@@ -4,31 +4,63 @@
 }
 
 body {
-    margin: 0 auto;
-    width: 60%;
+/*    margin: 0 auto;*/
     background: url(bg.png);
+    background-attachment: fixed;
 }
 .container {
-	margin: 30px;
+	margin: 20px;
+	margin-top: 0px;
 	padding: 10px;
 	background: #ffffff;
+	width: 60%;
+/*	position: absolute;*/
+/*	top: 0px;*/
+/*	left:20%;*/
+/*	right: 80%;*/
+/*	float: left;*/
+	border: 1px solid #7C7C7C;
 }
 .lshadow {
 	float: right;
-	clear: right;
+	display: inline;
+/*	clear: right;*/
 	background: url(sha.png) repeat-y left;
 }
 .rshadow {
 	float: left;
-	clear: left;
+/*	clear: left;*/
 	background: url(rsha.png) repeat-y right;
+}
+
+ul#menu {
+	margin: 0px;
+	display: inline;
+	list-style: none;
+	position: fixed;
+	float: left;
+}
+
+ul#menu li {
+	margin: 0;
+	padding: 0;
+	border: 1px solid #7C7C7C;
+}
+
+ul#menu li a {
+	padding: 1em;
+	display: block;
+	text-decoration: none;
+	color: #333;
+	background: #F4F4F4;
+	font-style: normal;
 }
 
 ul {
 	padding-left: 5em;
 }
 
-li { margin: 3em;}
+/*li { margin: 3em;}*/
 li#suse {list-style-image: url(SuSE-logo_48.png);}
 li#mdv {list-style-image: url(mandriva-logo_48.png);}
 li#fedora {list-style-image: url(Fedora-logo_48.png);}
@@ -57,10 +89,10 @@ a:hover {
 }
 
 p {
-text-indent: 2em;
+	text-indent: 2em;
+	text-align: justify;
 }
 
 img {
-border: none;
+	border: none;
 }
-
