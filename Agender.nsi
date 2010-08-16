@@ -5,10 +5,16 @@
 ;License: GPLv3+
 
 ;this file needs some hacking, if you are using m$w  please help
+;TODO: add support for multiple users
+;TODO: add support for shared version of wxWidgets
 
 ;this defines are configurable, change them when needed
-!define WX_DIR "/home/virtuoso/C++/wxWidgets-2.8.11"
-;!define WX_DIR "C:\wxWidgets-2.8.11"
+!define WX_LIBS 0
+!define WX_UNICODE 1
+!define WX_MONOLITHIC 1
+!define WX_VERSION 2.8.11
+!define WX_DIR "/home/virtuoso/C++/wxWidgets-${WX_VERSION}"
+;Mingw
 !define MINGW_RUNTIME 1
 !define SJLJ_EXCEPTIONS 0
 !define MINGW_DIR "/home/virtuoso/mingw32"
@@ -67,12 +73,19 @@ InstallDir "$PROGRAMFILES\${PRODUCT_NAME}"
 InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" ""
 ShowInstDetails show
 ShowUnInstDetails show
-;lang
+
 Function .onInit
+	;lang
 	!insertmacro MUI_LANGDLL_DISPLAY
 FunctionEnd
 
 Section "Agender" SEC01
+	;search for 1.1.6.1 and clean that mess
+	ReadRegStr $0 ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion"
+	StrCmp $0 "" +1 +2
+		Goto +2
+		ExecWait "$0 /S"
+	;installer
 	SetOutPath "$INSTDIR"
 	SetOverwrite ifdiff
 	;executable
@@ -91,45 +104,57 @@ Section "Agender" SEC01
 	;please read it
 	File "Readme.txt"
 	File "gpl-3.0.txt"
-	;translations
-	;spanish
-	SetOutPath "$INSTDIR\es"
-	File /oname=Agender.mo "po\es.mo"
-	File /oname=wxstd.mo "${WX_DIR}\locale\es.mo"
-	;deutch/german
-	SetOutPath "$INSTDIR\de"
-	File /oname=Agender.mo "po\de.mo"
-	File /oname=wxstd.mo "${WX_DIR}\locale\de.mo"
-	;japanese
-	SetOutPath "$INSTDIR\ja"
-	File /oname=Agender.mo "po\ja.mo"
-	File /oname=wxstd.mo "${WX_DIR}\locale\ja.mo"
-	;portuguese
-	SetOutPath "$INSTDIR\pt"
-	File /oname=Agender.mo "po\pt.mo"
-	File /oname=wxstd.mo "${WX_DIR}\locale\pt.mo"
-	;french
-	SetOutPath "$INSTDIR\fr"
-	File /oname=Agender.mo "po\fr.mo"
-	File /oname=wxstd.mo "${WX_DIR}\locale\fr.mo"
-	;greek
-	SetOutPath "$INSTDIR\el"
-	File /oname=Agender.mo "po\el.mo"
-	File /oname=wxstd.mo "${WX_DIR}\locale\el.mo"
-	;swedish
-	SetOutPath "$INSTDIR\sv"
-	File /oname=Agender.mo "po\sv.mo"
-	File /oname=wxstd.mo "${WX_DIR}\locale\sv.mo"
-	;traditional chinese
-	SetOutPath "$INSTDIR\zh_HK"
-	File /oname=Agender.mo "po\zh_HK.mo"
-	File /oname=wxstd.mo "${WX_DIR}\locale\zh_TW.mo"
-	;simplified chinese
-	SetOutPath "$INSTDIR\zh_CN"
-	File /oname=Agender.mo "po\zh_CN.mo"
-	File /oname=wxstd.mo "${WX_DIR}\locale\zh_CN.mo"
 	SetAutoClose false
 SectionEnd
+
+SectionGroup "Translations" SEC02
+	;translations
+	Section "Español"
+		SetOutPath "$INSTDIR\es"
+		File /oname=Agender.mo "po\es.mo"
+		File /oname=wxstd.mo "${WX_DIR}\locale\es.mo"
+	SectionEnd
+	Section "Deutch"
+		SetOutPath "$INSTDIR\de"
+		File /oname=Agender.mo "po\de.mo"
+		File /oname=wxstd.mo "${WX_DIR}\locale\de.mo"
+	SectionEnd
+	Section "japanese"
+		SetOutPath "$INSTDIR\ja"
+		File /oname=Agender.mo "po\ja.mo"
+		File /oname=wxstd.mo "${WX_DIR}\locale\ja.mo"
+	SectionEnd
+	Section "portuguese"
+		SetOutPath "$INSTDIR\pt"
+		File /oname=Agender.mo "po\pt.mo"
+		File /oname=wxstd.mo "${WX_DIR}\locale\pt.mo"
+	SectionEnd
+	Section "Français"
+		SetOutPath "$INSTDIR\fr"
+		File /oname=Agender.mo "po\fr.mo"
+		File /oname=wxstd.mo "${WX_DIR}\locale\fr.mo"
+	SectionEnd
+	Section "Greek"
+		SetOutPath "$INSTDIR\el"
+		File /oname=Agender.mo "po\el.mo"
+		File /oname=wxstd.mo "${WX_DIR}\locale\el.mo"
+	SectionEnd
+	Section "Swedish"
+		SetOutPath "$INSTDIR\sv"
+		File /oname=Agender.mo "po\sv.mo"
+		File /oname=wxstd.mo "${WX_DIR}\locale\sv.mo"
+	SectionEnd
+	Section "traditional chinese"
+		SetOutPath "$INSTDIR\zh_HK"
+		File /oname=Agender.mo "po\zh_HK.mo"
+		File /oname=wxstd.mo "${WX_DIR}\locale\zh_TW.mo"
+	SectionEnd
+	Section "simplified chinese"
+		SetOutPath "$INSTDIR\zh_CN"
+		File /oname=Agender.mo "po\zh_CN.mo"
+		File /oname=wxstd.mo "${WX_DIR}\locale\zh_CN.mo"
+	SectionEnd
+SectionGroupEnd
 
 Section -AdditionalIcons
 	WriteIniStr "$INSTDIR\${PRODUCT_NAME}.url" "InternetShortcut" "URL" "${PRODUCT_WEB_SITE}"
