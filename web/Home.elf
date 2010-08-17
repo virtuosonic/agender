@@ -11,18 +11,18 @@ create a task-bar icon and stay in the background, without annoying you,
 it can also be configured to run on login.
 </p>
 
-<center><img src="Agender-screenshot-svn-1.png"></p></center>
+<center><img src="Agender-screenshot-svn-1.png"></center>
 
 Its features includes:
 <ul>
-	<li>GPL version 3+ licensed
-	<li>Loads and saves automatically
-	<li>Tray icon for fast access
-	<li>Y2K compliant
-	<li>Manages dates from 4,300 B.C. to 10,000 A.D.
-	<li>Sticky notes(showed all time)
+	<li>GPL version 3+ licensed</li>
+	<li>Loads and saves automatically</li>
+	<li>Tray icon for fast access</li>
+	<li>Y2K compliant</li>
+	<li>Manages dates from 4,300 B.C. to 10,000 A.D.</li>
+	<li>Sticky notes(showed all time)</li>
 	<li>Multilingual, already available in english, spanish,
 		deutsch, japanese, swedish,portuguese, greek, chinese(simplified),
-		chinese(traditional) and french
+		chinese(traditional) and french</li>
 </ul>
 

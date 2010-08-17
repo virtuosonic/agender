@@ -1,5 +1,5 @@
 <?php
-$page = 'Home' ;// $_GET['page'];
+$page = $_GET['page'];
 if ($page == '') {$page = 'Home';}
 
 $active = "id='active'";
@@ -61,7 +61,7 @@ else {$page_data = $error404;}
 		<li><a href="index.php?page=About">About</a></li>
 		<li><a href="index.php?page=Links">Links</a></li>
 		</ul>
-	<center>
+	
 
 	<!--
 	<div class="lshadow"/>
@@ -73,7 +73,19 @@ else {$page_data = $error404;}
 		<?php echo $page_data ?>
 		<!-- end of contents -->
 	</div>
-	<center>
+	<div id="vs_google_adsense">
+		<script type="text/javascript"><!--
+			google_ad_client = "pub-8829282890738806";
+			/* agender website */
+			google_ad_slot = "0472286487";
+			google_ad_width = 336;
+			google_ad_height = 280;
+			//-->
+		</script>
+		<script type="text/javascript"
+			src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+		</script>
+	</div>
 </body>
 
 </html>
