@@ -89,7 +89,7 @@ void AgenderCal::SetNoteText(wxString note,wxString text)
 	wxConfig::Get()->Write(GetFullPath(note),text);
 }
 
-wxArrayString AgenderCal::Find(wxString FindString)
+wxArrayString AgenderCal::Find(wxString WXUNUSED(FindString))
 {
 	wxArrayString found;
 	// TODO (virtuoso#1#): implement!!!
