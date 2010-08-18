@@ -40,6 +40,8 @@
 #include "AgenderMain.h"
 #include "AgenderCal.h"
 
+#define __AGENDER_VERSION__ "1.1.7"
+
 #ifndef __REVISION__
 #define __REVISION__ 0
 #endif
@@ -177,7 +179,9 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 	//taskbaricon
 #if defined wxHAS_TASK_BAR_ICON
 	//this is a stupid hack, but gnome is a very stupid desktop environment
-#if defined __X__ || defined __WXGTK__
+#if wxCHECK_VERSION(2,9,0)
+	wxLogVerbose(_T("using dev"));
+#elif defined __X__ || defined __WXGTK__
 	wxArrayString output;
 	wxExecute(_T("pidof gnome-session"),output,wxEXEC_SYNC);
 	if (!output.IsEmpty()) {
@@ -216,7 +220,7 @@ AgenderFrame::~AgenderFrame()
 	//*)
 }
 
-void AgenderFrame::OnClose(wxCloseEvent& event)
+void AgenderFrame::OnClose(wxCloseEvent& WXUNUSED(event))
 {
 	Hide();
 	schdl->Write(_T("/x"),GetPosition().x);
@@ -225,7 +229,7 @@ void AgenderFrame::OnClose(wxCloseEvent& event)
 	schdl->Write(_T("/h"),GetSize().y);
 }
 
-void AgenderFrame::OnButton3Click(wxCommandEvent& event)
+void AgenderFrame::OnButton3Click(wxCommandEvent& WXUNUSED(event))
 {
 	wxAboutDialogInfo info;
 	//developer
@@ -257,13 +261,13 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& event)
 				"\n"
 				"You should have received a copy of the GNU General Public License\n"
 				"along with Agender. If not, see <http://www.gnu.org/licenses/>."));
-	info.SetVersion(_T("1.1.7"));
+	info.SetVersion(_T(__AGENDER_VERSION__));
 	info.SetCopyright(_T("Copyright (C) 2009-2010 Gabriel Espinoza"));
 	info.SetIcon(agender_xpm);
 	wxAboutBox(info);
 }
 
-void AgenderFrame::OnCalendarCtrl1Changed(wxCalendarEvent& event)
+void AgenderFrame::OnCalendarCtrl1Changed(wxCalendarEvent& WXUNUSED(event))
 {
 	ListBox1->Clear();
 	TextCtrl1->ChangeValue(wxEmptyString);
@@ -283,7 +287,7 @@ void AgenderFrame::OnCalendarCtrl1Changed(wxCalendarEvent& event)
 	schdl->Save(ofile);
 }
 
-void AgenderFrame::OnListBox1Select(wxCommandEvent& event)
+void AgenderFrame::OnListBox1Select(wxCommandEvent& WXUNUSED(event))
 {
 	if (ListBox1->GetSelection() != wxNOT_FOUND)
 	{
@@ -294,7 +298,7 @@ void AgenderFrame::OnListBox1Select(wxCommandEvent& event)
 	}
 }
 
-void AgenderFrame::OnBtnNuevoClick(wxCommandEvent& event)
+void AgenderFrame::OnBtnNuevoClick(wxCommandEvent& WXUNUSED(event))
 {
 	wxTextEntryDialog dlg(this,_("To-Do Title"),_("New To-Do"));
 	if (dlg.ShowModal() == wxID_OK  && dlg.GetValue() != wxEmptyString)
@@ -318,7 +322,7 @@ void AgenderFrame::OnBtnNuevoClick(wxCommandEvent& event)
 	}
 }
 
-void AgenderFrame::OnBtnElimClick(wxCommandEvent& event)
+void AgenderFrame::OnBtnElimClick(wxCommandEvent& WXUNUSED(event))
 {
 	if (ListBox1->GetSelection() != wxNOT_FOUND)
 	{
@@ -338,7 +342,7 @@ void AgenderFrame::OnChangeNotesColour(wxCommandEvent& event)
 }
 
 
-void AgenderFrame::OnCalendarCtrl1MonthChanged(wxCalendarEvent& event)
+void AgenderFrame::OnCalendarCtrl1MonthChanged(wxCalendarEvent& WXUNUSED(event))
 {
 	a_cal->SetDate(CalendarCtrl1->GetDate());
 	MarkDays();
@@ -378,13 +382,13 @@ void AgenderFrame::OnFind(wxFindDialogEvent& event)
 	event.GetFindString();
 }
 
-void AgenderFrame::OnSearch(wxCommandEvent& event)
+void AgenderFrame::OnSearch(wxCommandEvent& WXUNUSED(event))
 {
 	if (!fndDlg->IsShown())
 		fndDlg->Show();
 }
 
-void AgenderFrame::OnYearSel(wxCommandEvent& event)
+void AgenderFrame::OnYearSel(wxCommandEvent& WXUNUSED(event))
 {
 	ChangeSelector();
 }
@@ -409,7 +413,7 @@ void AgenderFrame::ChangeSelector()
 	MarkDays();
 }
 
-void AgenderFrame::OnAutoStart(wxCommandEvent& event)
+void AgenderFrame::OnAutoStart(wxCommandEvent& WXUNUSED(event))
 {
 #if defined __UNIX__ && !defined __APPLE__ //should i simply use __LINUX__ || __BSD__ ? and maybe __SOLARIS__
 	//we use freedestop.org standard
@@ -531,12 +535,12 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& event)
 #endif
 }
 
-void AgenderFrame::OnTextCtrl1Text(wxCommandEvent& event)
+void AgenderFrame::OnTextCtrl1Text(wxCommandEvent& WXUNUSED(event))
 {
 	a_cal->SetNoteText(ListBox1->GetStringSelection(),TextCtrl1->GetValue());
 }
 
-void AgenderFrame::OnListBox1DClick(wxCommandEvent& event)
+void AgenderFrame::OnListBox1DClick(wxCommandEvent& WXUNUSED(event))
 {
 	wxMenu* noteMenu = new wxMenu;
 	noteMenu->Append(ID_RENAME,_("Rename"));
@@ -568,7 +572,7 @@ void AgenderFrame::OnMenuNoteFlag(wxCommandEvent& event)
 	}
 }
 
-void AgenderFrame::OnMenuRename(wxCommandEvent& event)
+void AgenderFrame::OnMenuRename(wxCommandEvent& WXUNUSED(event))
 {
 	wxString oldName(ListBox1->GetStringSelection());
 	bool sticky = false;
@@ -602,7 +606,7 @@ void AgenderFrame::OnActivate(wxActivateEvent& event)
 	}
 }
 
-void AgenderFrame::OnEscape(wxCommandEvent& event)
+void AgenderFrame::OnEscape(wxCommandEvent& WXUNUSED(event))
 {
 	Close();
 }

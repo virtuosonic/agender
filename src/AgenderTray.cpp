@@ -65,7 +65,7 @@ AgenderTray::AgenderTray(wxFrame* frame,long colalpha)
 	}
 }
 
-void AgenderTray::OnLeft(wxTaskBarIconEvent& event)
+void AgenderTray::OnLeft(wxTaskBarIconEvent& WXUNUSED(event))
 {
 	if (frame->IsShownOnScreen())
 	{
@@ -114,17 +114,17 @@ wxMenu * AgenderTray::CreatePopupMenu()
 	return menu;
 }
 
-void AgenderTray::OnMenuExit(wxCommandEvent& event)
+void AgenderTray::OnMenuExit(wxCommandEvent& WXUNUSED(event))
 {
 	frame->Destroy();
 }
 
-void AgenderTray::OnMenuHide(wxCommandEvent& event)
+void AgenderTray::OnMenuHide(wxCommandEvent& WXUNUSED(event))
 {
 	frame->Hide();
 }
 
-void AgenderTray::OnMenuShow(wxCommandEvent& event)
+void AgenderTray::OnMenuShow(wxCommandEvent& WXUNUSED(event))
 {
 	frame->Show();
 	frame->SetFocus();
@@ -181,7 +181,7 @@ void AgenderTray::OnMenuAutoStart(wxCommandEvent& event)
 	wxPostEvent(frame->GetEventHandler(),event);
 }
 
-void AgenderTray::OnMenuSymbols(wxCommandEvent& event)
+void AgenderTray::OnMenuSymbols(wxCommandEvent& WXUNUSED(event))
 {
 #if wxUSE_RICHTEXT
 	wxSymbolPickerDialog dlg(_T("*"),wxEmptyString,

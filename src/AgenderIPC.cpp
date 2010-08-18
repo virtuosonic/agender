@@ -31,7 +31,7 @@
 #endif
 
 
-bool AgenderConnection::OnExecute(const wxString& topic,wxChar* data,int size,wxIPCFormat format)
+bool AgenderConnection::OnExecute(const wxString& topic,wxChar* WXUNUSED(data),int WXUNUSED(size),wxIPCFormat WXUNUSED(format))
 {
 	wxLogVerbose(_T("checking topic"));
 	if (topic != IPC_Topic)

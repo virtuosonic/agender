@@ -104,8 +104,7 @@ bool AgenderApp::OnInit()
 		exit(EXIT_FAILURE);
 	}
 	// please talk me in a language that i understand
-	if (m_locale.Init(wxLANGUAGE_DEFAULT,wxLOCALE_LOAD_DEFAULT|
-			wxLOCALE_CONV_ENCODING))
+	if (m_locale.Init(wxLANGUAGE_DEFAULT,wxLOCALE_LOAD_DEFAULT))
 		m_locale.AddCatalog(wxT("Agender"),wxLANGUAGE_ENGLISH,wxT("UTF-8"));
 
 	//(*AppInitialize
@@ -167,7 +166,7 @@ void OnSignal(int sig)
 }
 #endif
 
-void AgenderApp::OnEndSession(wxCloseEvent& event)
+void AgenderApp::OnEndSession(wxCloseEvent& WXUNUSED(event))
 {
 	wxLogVerbose(_T("ending session"));
 	if (GetTopWindow())

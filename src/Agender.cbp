@@ -41,11 +41,25 @@
 				<Option parameters="--verbose" />
 				<Compiler>
 					<Add option="-Wall" />
-					<Add option="-g" />
 					<Add option="`wx-config --cflags`" />
 				</Compiler>
 				<Linker>
 					<Add option="`wx-config --libs`" />
+				</Linker>
+			</Target>
+			<Target title="Debug">
+				<Option output="bin/Agender" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option parameters="--verbose" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-g" />
+					<Add option="`/home/virtuoso/C++/wxWidgets-2.9.1/wx-config --cflags`" />
+				</Compiler>
+				<Linker>
+					<Add option="`/home/virtuoso/C++/wxWidgets-2.9.1/wx-config --libs`" />
 				</Linker>
 			</Target>
 		</Build>
