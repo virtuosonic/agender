@@ -57,6 +57,7 @@ ul {
 }
 
 /*li { margin: 3em;}*/
+/*download icons*/
 li#suse {list-style-image: url(SuSE-logo_48.png);}
 li#mdv {list-style-image: url(mandriva-logo_48.png);}
 li#fedora {list-style-image: url(Fedora-logo_48.png);}
@@ -65,6 +66,9 @@ li#svn {list-style-image: url(subversion.png);}
 li#apple {list-style-image: url(Apple-logo_48.png);}
 li#deb {list-style-image: url(Debian-logo_48.png);}
 li#msw {list-style-image: url(Microsoft_Windows-logo_48.png);}
+/*awards icons*/
+li#softpedia {list-style-image: url(softpedia.png);}
+li#softoxi {list-style-image: url(softoxi5of5.png);}
 
 a {
     color: #47C4FF;
@@ -93,6 +97,12 @@ img {
 	border: none;
 }
 
+.citado {
+	font-size: .9em;
+	font-family: serif;
+	font-style: italic;
+	padding: 2em;
+}
 
 #vs_google_adsense {
 	position: fixed;

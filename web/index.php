@@ -1,5 +1,5 @@
 <?php
-$page = $_GET['page'];
+$page = "About" ;//$_GET['page'];
 if ($page == '') {$page = 'Home';}
 
 $active = "id='active'";
@@ -61,7 +61,7 @@ else {$page_data = $error404;}
 		<li><a href="index.php?page=About">About</a></li>
 		<li><a href="index.php?page=Links">Links</a></li>
 		</ul>
-	
+
 
 	<!--
 	<div class="lshadow"/>
