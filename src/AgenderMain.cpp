@@ -40,7 +40,7 @@
 #include "AgenderMain.h"
 #include "AgenderCal.h"
 
-#define __AGENDER_VERSION__ "1.1.7"
+#define __AGENDER_VERSION__ "1.1.7.1"
 
 #ifndef __REVISION__
 #define __REVISION__ 0
