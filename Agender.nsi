@@ -64,6 +64,7 @@ SetCompressor lzma
 !insertmacro MUI_LANGUAGE "Portuguese"
 !insertmacro MUI_LANGUAGE "TradChinese"
 !insertmacro MUI_LANGUAGE "SimpChinese"
+!insertmacro MUI_LANGUAGE "Romanian"
 ; ReserveFiles
 !insertmacro MUI_RESERVEFILE_INSTALLOPTIONS
 ; MUI end ------
@@ -153,6 +154,11 @@ SectionGroup "Translations" SEC02
 		SetOutPath "$INSTDIR\zh_CN"
 		File /oname=Agender.mo "po\zh_CN.mo"
 		File /oname=wxstd.mo "${WX_DIR}\locale\zh_CN.mo"
+	SectionEnd
+	Section "Romanian"
+		SetOutPath "$INSTDIR\ro"
+		File /oname=Agender.mo "po\ro.mo"
+		File /oname=wxstd.mo "${WX_DIR}\locale\ro.mo"
 	SectionEnd
 SectionGroupEnd
 
