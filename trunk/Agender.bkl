@@ -45,7 +45,7 @@ license GPLv3+
   	<!--translations-->
   	<gettext-catalogs>
   		<catalog-name>Agender</catalog-name>
-		<linguas>es de ja pt fr el sv zh_HK zh_CN</linguas>
+		<linguas>es de ja pt fr el sv zh_HK zh_CN ro</linguas>
 		<srcdir>$(SRCDIR)/po</srcdir>
   		<install-to>$(DATADIR)/locale</install-to>
   	</gettext-catalogs>
@@ -117,6 +117,7 @@ license GPLv3+
   		<command>msgfmt po/sv.po -o po/sv.mo</command>
   		<command>msgfmt po/zh_HK.po -o po/zh_HK.mo</command>
   		<command>msgfmt po/zh_CN.po -o po/zh_CN.mo</command>
+  		<command>msgfmt po/ro.po -o po/ro.mo</command>
   	</action>
   	<!-- rpm build -->
 	<set var="rpmbuilddir">/usr/src/packages</set>
