@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<!-- this file is part of the Agender package
+http://agender.sourceforge.net
+license GPLv3+
+-->
+<makefile>
+	<include file="presets/wx.bkl"/>
+	<using module="datafiles"/>
+	<using module="gettext"/>
+	<set var="VERSION">1.1.7.1</set>
+	<!--build binary -->
+	<exe id="Agender" template="wx-lib">
+		<app-type>gui</app-type>
+		<!-- source files-->
+		<sources>src/AgenderIPC.cpp</sources>
+		<sources>src/AgenderApp.cpp</sources>
+		<sources>src/AgenderMain.cpp</sources>
+		<sources>src/AgenderTray.cpp</sources>
+		<sources>src/AgenderCal.cpp</sources>
+		<!-- wxWidgets dependencies -->
+		<wx-lib>net</wx-lib>
+		<wx-lib>richtext</wx-lib>
+		<wx-lib>adv</wx-lib>
+		<wx-lib>core</wx-lib>
+		<wx-lib>base</wx-lib>
+		<!--resource file -->
+		<win32-res>src/resource.rc</win32-res>
+		<install-to>$(BINDIR)</install-to>
+		<if cond="FORMAT=='autoconf'">
+			<cxxflags>-D__REVISION__=@REVISION@</cxxflags>
+		</if>
+  	</exe>
+  	<!-- freedesktop.org shortcut, for gnome, kde and some other desktops-->
+  	<data-files id="shortcut">
+  		<srcdir>$(SRCDIR)</srcdir>
+  		<install-to>$(DATADIR)/applications</install-to>
+  		<files>share/Agender.desktop</files>
+  	</data-files>
+  	<!-- icon for the above shortcut-->
+  	<data-files id="icon">
+  		<srcdir>$(SRCDIR)</srcdir>
+  		<install-to>$(DATADIR)/pixmaps</install-to>
+  		<files>share/Agender.png</files>
+  	</data-files>
+  	<!--translations-->
+  	<gettext-catalogs>
+  		<catalog-name>Agender</catalog-name>
+		<linguas>es de ja pt fr el sv zh_HK zh_CN ro</linguas>
+		<srcdir>$(SRCDIR)/po</srcdir>
+  		<install-to>$(DATADIR)/locale</install-to>
+  	</gettext-catalogs>
+  	<!-- lets build a package -->
+  	<action id="dist">
+  		<depends>clean</depends>
+  		<!-- dependencies should create $(SRCDIR)/Agender-$(VERSION)-->
+  		<!--then we create all the build scripts-->
+  		<command>cd $(SRCDIR)/Agender-$(VERSION);bakefile -f autoconf Agender.bkl</command>
+  		<command>cd $(SRCDIR)/Agender-$(VERSION);bakefilize --copy</command>
+  		<command>cd $(SRCDIR)/Agender-$(VERSION);aclocal</command>
+  		<command>cd $(SRCDIR)/Agender-$(VERSION);autoconf</command>
+  		<!--tarball -->
+		<command>tar -jcf Agender-$(VERSION).tar.bz2 Agender-$(VERSION)</command>
+		<command>tar -zcf Agender-$(VERSION).tar.gz Agender-$(VERSION)</command>
+  		<!-- cleanup -->
+  		<command>rm -rf $(SRCDIR)/Agender-$(VERSION)</command>
+  	</action>
+  	<!-- TODO instead of all this chaos use something like copy-files-tree -->
+	<!-- copy src files-->
+	<copy-files id="topdist">
+  		<dependency-of>dist</dependency-of>
+  		<srcdir>$(SRCDIR)/</srcdir>
+  		<files>*.spec.in *.bkl *.nsi configure.in gpl-3.0.txt Readme.txt revision.m4 update_revision.sh</files>
+  		<dstdir>$(SRCDIR)/Agender-$(VERSION)/</dstdir>
+  	</copy-files>
+  	<copy-files id="srcdist">
+  		<dependency-of>dist</dependency-of>
+  		<srcdir>$(SRCDIR)/src/</srcdir>
+  		<files>*.h *.cpp *.rc *.xpm *.ico *.cbp</files>
+  		<dstdir>$(SRCDIR)/Agender-$(VERSION)/src</dstdir>
+  	</copy-files>
+  	<copy-files id="sharedist">
+		<dependency-of>dist</dependency-of>
+		<srcdir>$(SRCDIR)/</srcdir>
+  		<files>$(SRCDIR)/share/*</files>
+  		<dstdir>$(SRCDIR)/Agender-$(VERSION)/share/</dstdir>
+  	</copy-files>
+  	<!-- wxsmith -->
+  	<copy-files id="wxsmithdist">
+  		<dependency-of>dist</dependency-of>
+  		<srcdir>$(SRCDIR)</srcdir>
+  		<files>$(SRCDIR)/src/wxsmith/*</files>
+  		<dstdir>$(SRCDIR)/Agender-$(VERSION)/src/wxsmith/</dstdir>
+  	</copy-files>
+  	<!-- translations -->
+  	<copy-files id="podist">
+		<dependency-of>dist</dependency-of>
+  		<srcdir>$(SRCDIR)/po</srcdir>
+  		<files>*.po</files>
+  		<dstdir>$(SRCDIR)/Agender-$(VERSION)/po</dstdir>
+  	</copy-files>
+  	<!-- autopackage -->
+  	<copy-files id="apspecdist">
+  		<dependency-of>dist</dependency-of>
+  		<srcdir>$(SRCDIR)</srcdir>
+  		<files>autopackage/*.apspec.in</files>
+  		<dstdir>$(SRCDIR)/Agender-$(VERSION)/autopackage/</dstdir>
+  	</copy-files>
+  	<!-- compile po-->
+  	<action id="mo">
+  		<dependency-of>all</dependency-of>
+  		<command>msgfmt po/es.po -o po/es.mo</command>
+  		<command>msgfmt po/de.po -o po/de.mo</command>
+  		<command>msgfmt po/ja.po -o po/ja.mo</command>
+  		<command>msgfmt po/pt.po -o po/pt.mo</command>
+  		<command>msgfmt po/fr.po -o po/fr.mo</command>
+  		<command>msgfmt po/el.po -o po/el.mo</command>
+  		<command>msgfmt po/sv.po -o po/sv.mo</command>
+  		<command>msgfmt po/zh_HK.po -o po/zh_HK.mo</command>
+  		<command>msgfmt po/zh_CN.po -o po/zh_CN.mo</command>
+  		<command>msgfmt po/ro.po -o po/ro.mo</command>
+  	</action>
+  	<!-- rpm build -->
+	<set var="rpmbuilddir">/usr/src/packages</set>
+	<!-- <set var="rpmbuilddir">~/rpmbuild</set> -->
+  	<action id="rpm">
+  		<depends>dist</depends>
+		<command>mkdir -p ~/rpmbuild/SOURCES/</command>
+		<command>mkdir -p ~/rpmbuild/SPECS/</command>
+  		<command>mv Agender-$(VERSION).tar.bz2 $(rpmbuilddir)/SOURCES/</command>
+  		<command>cd $(rpmbuilddir)/SOURCES/;tar -xf Agender-$(VERSION).tar.bz2</command>
+  		<command>cd $(rpmbuilddir)/SOURCES/Agender-$(VERSION);./configure</command>
+  		<command>cp $(rpmbuilddir)/SOURCES/Agender-$(VERSION)/Agender.spec $(rpmbuilddir)/SPECS/</command>
+  		<command>cp $(rpmbuilddir)/SOURCES/Agender-$(VERSION)/src/Agender.xpm $(rpmbuilddir)/SOURCES/</command>
+  		<command>rm -rf $(rpmbuilddir)/SOURCES/Agender-$(VERSION)</command>
+  		<command>rpmbuild -ba $(rpmbuilddir)/SPECS/Agender.spec</command>
+  	</action>
+</makefile>

@@ -1,0 +1,17 @@
+AC_PREREQ(2.53)
+AC_INIT(Agender,1.1.7.1)
+AC_CANONICAL_SYSTEM
+AC_PROG_CXX
+AM_OPTIONS_WXCONFIG
+AM_PATH_WXCONFIG(2.8.0)
+AC_BAKEFILE([m4_include(autoconf_inc.m4)])
+
+AC_SUBST(VERSION,1.1.7.1)
+m4_include(revision.m4)
+AC_SUBST(REVISION,SVN_REV)
+
+AC_CONFIG_FILES([Makefile
+	autopackage/default.apspec
+	Agender.spec
+])
+AC_OUTPUT
