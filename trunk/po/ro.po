@@ -79,7 +79,7 @@ msgstr ""
 "Licența Publică Generală GNU pentru mai multe detalii.\n"
 "\n"
 "Ar fi trebuit să primiți o copie a Licenței Publice Generale GNU împreună cu Agender.\n"
-"În caz contrar, consultați "<http://www.gnu.org/licenses/>."
+"În caz contrar, consultați <http://www.gnu.org/licenses/>."
 
 #: ../src/AgenderMain.cpp:300
 msgid "To-Do Title"
