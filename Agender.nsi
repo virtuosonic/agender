@@ -158,7 +158,7 @@ SectionGroup "Translations" SEC02
 	Section "Romanian"
 		SetOutPath "$INSTDIR\ro"
 		File /oname=Agender.mo "po\ro.mo"
-		File /oname=wxstd.mo "${WX_DIR}\locale\ro.mo"
+		;File /oname=wxstd.mo "${WX_DIR}\locale\ro.mo"
 	SectionEnd
 SectionGroupEnd
 
