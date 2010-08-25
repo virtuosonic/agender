@@ -1,0 +1,3 @@
+aaaa ICON "Agender.ico"
+
+#include "wx/msw/wx.rc"
