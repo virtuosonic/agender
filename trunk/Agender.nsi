@@ -21,7 +21,7 @@
 ;!define MINGW_DIR "/usr/i686-pc-mingw32/sys-root/mingw"
 ;!define MINGW_DIR "C:\Archivos de Programa\codeblocks\MINGW"
 ;!define MINGW_DIR "C:\MINGW"
-!define PRODUCT_VERSION "1.1.7"
+!define PRODUCT_VERSION "1.1.7.1"
 ;constants
 !define PRODUCT_NAME "Agender"
 !define PRODUCT_PUBLISHER "Virtuosonic"
