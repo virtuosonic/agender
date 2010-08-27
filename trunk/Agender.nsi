@@ -21,7 +21,7 @@
 ;!define MINGW_DIR "/usr/i686-pc-mingw32/sys-root/mingw"
 ;!define MINGW_DIR "C:\Archivos de Programa\codeblocks\MINGW"
 ;!define MINGW_DIR "C:\MINGW"
-!define PRODUCT_VERSION "1.1.7.1"
+!define PRODUCT_VERSION "1.1.8"
 ;constants
 !define PRODUCT_NAME "Agender"
 !define PRODUCT_PUBLISHER "Virtuosonic"
@@ -37,13 +37,14 @@ SetCompressor lzma
 ; MUI Settings
 !define MUI_ICON "${NSISDIR}\Contrib\Graphics\Icons\modern-install.ico"
 !define MUI_UNICON "${NSISDIR}\Contrib\Graphics\Icons\modern-uninstall.ico"
-
 ; Welcome page
 !insertmacro MUI_PAGE_WELCOME
 ; License page
 !insertmacro MUI_PAGE_LICENSE "gpl-3.0.txt"
 ; Directory page
 !insertmacro MUI_PAGE_DIRECTORY
+;Components page
+!insertmacro MUI_PAGE_COMPONENTS
 ; Instfiles page
 !insertmacro MUI_PAGE_INSTFILES
 ; Finish page
@@ -78,15 +79,21 @@ ShowUnInstDetails show
 Function .onInit
 	;lang
 	!insertmacro MUI_LANGDLL_DISPLAY
+	;TODO: check lang and SectionSetInstTypes ${sec_lang} b'00000101'
+	;$LANG
+	;single instance checker
+	System::Call 'kernel32::CreateMutexA(i 0, i 0, t "myMutex") i .r1 ?e'
+	Pop $R0
+	StrCmp $R0 0 +2
+		Abort
 FunctionEnd
 
+InstType "Full"
+InstType "Minimal"
+InstType "Minimal+Detected language translation"
+
 Section "Agender" SEC01
-	;search for 1.1.6.1 and clean that mess
-	ReadRegStr $0 ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion"
-	StrCmp $0 "" +1 +2
-		Goto +2
-		ExecWait "$0 /S"
-	;installer
+	SectionIn 1 2 3 RO
 	SetOutPath "$INSTDIR"
 	SetOverwrite ifdiff
 	;executable
@@ -110,55 +117,65 @@ SectionEnd
 
 SectionGroup "Translations" SEC02
 	;translations
-	Section "Español"
-		SetOutPath "$INSTDIR\es"
-		File /oname=Agender.mo "po\es.mo"
-		File /oname=wxstd.mo "${WX_DIR}\locale\es.mo"
-	SectionEnd
-	Section "Deutch"
-		SetOutPath "$INSTDIR\de"
-		File /oname=Agender.mo "po\de.mo"
-		File /oname=wxstd.mo "${WX_DIR}\locale\de.mo"
-	SectionEnd
-	Section "japanese"
-		SetOutPath "$INSTDIR\ja"
-		File /oname=Agender.mo "po\ja.mo"
-		File /oname=wxstd.mo "${WX_DIR}\locale\ja.mo"
-	SectionEnd
-	Section "portuguese"
-		SetOutPath "$INSTDIR\pt"
-		File /oname=Agender.mo "po\pt.mo"
-		File /oname=wxstd.mo "${WX_DIR}\locale\pt.mo"
-	SectionEnd
-	Section "Français"
-		SetOutPath "$INSTDIR\fr"
-		File /oname=Agender.mo "po\fr.mo"
-		File /oname=wxstd.mo "${WX_DIR}\locale\fr.mo"
-	SectionEnd
-	Section "Greek"
-		SetOutPath "$INSTDIR\el"
-		File /oname=Agender.mo "po\el.mo"
-		File /oname=wxstd.mo "${WX_DIR}\locale\el.mo"
-	SectionEnd
-	Section "Swedish"
-		SetOutPath "$INSTDIR\sv"
-		File /oname=Agender.mo "po\sv.mo"
-		File /oname=wxstd.mo "${WX_DIR}\locale\sv.mo"
-	SectionEnd
-	Section "traditional chinese"
-		SetOutPath "$INSTDIR\zh_HK"
-		File /oname=Agender.mo "po\zh_HK.mo"
-		File /oname=wxstd.mo "${WX_DIR}\locale\zh_TW.mo"
-	SectionEnd
-	Section "simplified chinese"
+	Section "Chinese (Simplified)" sec_zh_CN
+		SectionIn 1
 		SetOutPath "$INSTDIR\zh_CN"
 		File /oname=Agender.mo "po\zh_CN.mo"
 		File /oname=wxstd.mo "${WX_DIR}\locale\zh_CN.mo"
 	SectionEnd
-	Section "Romanian"
+	Section "Chinese (Traditional)" sec_zh_HK
+		SectionIn 1
+		SetOutPath "$INSTDIR\zh_HK"
+		File /oname=Agender.mo "po\zh_HK.mo"
+		File /oname=wxstd.mo "${WX_DIR}\locale\zh_TW.mo"
+	SectionEnd
+	Section "French" sec_fr
+		SectionIn 1
+		SetOutPath "$INSTDIR\fr"
+		File /oname=Agender.mo "po\fr.mo"
+		File /oname=wxstd.mo "${WX_DIR}\locale\fr.mo"
+	SectionEnd
+	Section "German" sec_de
+		SectionIn 1
+		SetOutPath "$INSTDIR\de"
+		File /oname=Agender.mo "po\de.mo"
+		File /oname=wxstd.mo "${WX_DIR}\locale\de.mo"
+	SectionEnd
+	Section "Greek" sec_el
+		SectionIn 1
+		SetOutPath "$INSTDIR\el"
+		File /oname=Agender.mo "po\el.mo"
+		File /oname=wxstd.mo "${WX_DIR}\locale\el.mo"
+	SectionEnd
+	Section "Japanese" sec_ja
+		SectionIn 1
+		SetOutPath "$INSTDIR\ja"
+		File /oname=Agender.mo "po\ja.mo"
+		File /oname=wxstd.mo "${WX_DIR}\locale\ja.mo"
+	SectionEnd
+	Section "Portuguese" sec_pt
+		SectionIn 1
+		SetOutPath "$INSTDIR\pt"
+		File /oname=Agender.mo "po\pt.mo"
+		File /oname=wxstd.mo "${WX_DIR}\locale\pt.mo"
+	SectionEnd
+	Section "Romanian" sec_ro
+		SectionIn 1
 		SetOutPath "$INSTDIR\ro"
 		File /oname=Agender.mo "po\ro.mo"
 		;File /oname=wxstd.mo "${WX_DIR}\locale\ro.mo"
+	SectionEnd
+	Section "Spanish" sec_es
+		SectionIn 1
+		SetOutPath "$INSTDIR\es"
+		File /oname=Agender.mo "po\es.mo"
+		File /oname=wxstd.mo "${WX_DIR}\locale\es.mo"
+	SectionEnd
+	Section "Swedish" sec_sv
+		SectionIn 1
+		SetOutPath "$INSTDIR\sv"
+		File /oname=Agender.mo "po\sv.mo"
+		File /oname=wxstd.mo "${WX_DIR}\locale\sv.mo"
 	SectionEnd
 SectionGroupEnd
 
@@ -167,6 +184,7 @@ Section -AdditionalIcons
 	CreateShortCut "$SMPROGRAMS\Agender\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
 	CreateShortCut "$SMPROGRAMS\Agender\Uninstall.lnk" "$INSTDIR\uninst.exe"
 	CreateShortCut "$SMPROGRAMS\Agender\License.lnk" "$INSTDIR\gpl-3.0.txt"
+	CreateShortCut "$SMPROGRAMS\Agender\Readme.lnk" "$INSTDIR\Readme.txt"
 SectionEnd
 
 Section -Post
@@ -199,6 +217,7 @@ Section Uninstall
 	Delete "$DESKTOP\Agender.lnk"
 	Delete "$SMPROGRAMS\Agender\Agender.lnk"
 	Delete "$SMPROGRAMS\Agender\License.lnk"
+	Delete "$SMPROGRAMS\Agender\Readme.lnk"
 	;remove translations
 	;spanish
 	Delete "$INSTDIR\es\Agender.mo"
