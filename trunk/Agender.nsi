@@ -209,7 +209,7 @@ Function .onInit
 	!insertmacro SetInstType2Lang 1034 ${sec_es} finishlangset
 	!insertmacro SetInstType2Lang 1033 ${sec_en} finishlangset
 	!insertmacro SetInstType2Lang 1036 ${sec_fr} finishlangset
-	!insertmacro SetInstType2Lang 1031 ${sec_fr} finishlangset
+	!insertmacro SetInstType2Lang 1031 ${sec_de} finishlangset
 	!insertmacro SetInstType2Lang 1032 ${sec_el} finishlangset
 	!insertmacro SetInstType2Lang 1041 ${sec_ja} finishlangset
 	!insertmacro SetInstType2Lang 2070 ${sec_pt} finishlangset
