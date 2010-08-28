@@ -14,6 +14,8 @@
 !define WX_MONOLITHIC 1
 !define WX_VERSION 2.8.11
 !define WX_DIR "/home/virtuoso/C++/wxWidgets-${WX_VERSION}"
+;NSIS
+!define VS_SYSTEMDLL 1
 ;Mingw
 !define MINGW_RUNTIME 1
 !define SJLJ_EXCEPTIONS 0
@@ -75,18 +77,6 @@ InstallDir "$PROGRAMFILES\${PRODUCT_NAME}"
 InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" ""
 ShowInstDetails show
 ShowUnInstDetails show
-
-Function .onInit
-	;lang
-	!insertmacro MUI_LANGDLL_DISPLAY
-	;TODO: check lang and SectionSetInstTypes ${sec_lang} b'00000101'
-	;$LANG
-	;single instance checker
-	System::Call 'kernel32::CreateMutexA(i 0, i 0, t "myMutex") i .r1 ?e'
-	Pop $R0
-	StrCmp $R0 0 +2
-		Abort
-FunctionEnd
 
 InstType "Full"
 InstType "Minimal"
@@ -197,6 +187,93 @@ Section -Post
 	WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "URLInfoAbout" "${PRODUCT_WEB_SITE}"
 	WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"
 SectionEnd
+
+!macro SetInstType2Lang l_id sec finish
+	IntCmp $LANGUAGE ${l_id} ${l_id}detected ${l_id}ndetected
+		${l_id}detected:
+			SectionSetInstTypes ${sec} 5
+			Goto ${finish}
+		${l_id}ndetected:
+!macroend
+
+Function .onInit
+	;single instance checker
+	!if ${VS_SYSTEMDLL}
+		System::Call 'kernel32::CreateMutexA(i 0, i 0, t "AgenderInstallMutex") i .r1 ?e'
+		Pop $R0
+		StrCmp $R0 0 +2
+			Abort
+	!endif
+	;lang
+	!insertmacro MUI_LANGDLL_DISPLAY
+	;Spanish
+	IntCmp $LANGUAGE 1034 esch nesch
+		esch:
+			SectionSetInstTypes ${sec_es} 5
+			Goto finishlangset
+		nesch:
+	;English
+	IntCmp $LANGUAGE 1033 ench nench
+		ench:
+			SectionSetInstTypes ${sec_es} 5
+			Goto finishlangset
+		nench:
+	;French
+	IntCmp $LANGUAGE 1036 frch nfrch
+		frch:
+			SectionSetInstTypes ${sec_fr} 5
+			Goto finishlangset
+		nfrch:
+	;German
+	IntCmp $LANGUAGE 1031 dech ndech
+		dech:
+			SectionSetInstTypes ${sec_de} 5
+			Goto finishlangset
+		ndech:
+	;Greek
+	IntCmp $LANGUAGE 1032 elch nelch
+		elch:
+			SectionSetInstTypes ${sec_el} 5
+			Goto finishlangset
+		nelch:
+	;Japanese
+	IntCmp $LANGUAGE 1041 jach njach
+		jach:
+			SectionSetInstTypes ${sec_ja} 5
+			Goto finishlangset
+		njach:
+	;Portuguese
+	IntCmp $LANGUAGE 2070 ptch nptch
+		ptch:
+			SectionSetInstTypes ${sec_pt} 5
+			Goto finishlangset
+		nptch:
+	;Romanian
+	IntCmp $LANGUAGE 1048 roch nroch
+		roch:
+			SectionSetInstTypes ${sec_ro} 5
+			Goto finishlangset
+		nroch:
+	;SimpChinese
+	IntCmp $LANGUAGE 2052 zh_CNch nzh_CNch
+		zh_CNch:
+			SectionSetInstTypes ${sec_zh_CN} 5
+			Goto finishlangset
+		nzh_CNch:
+	;TradChinese
+	IntCmp $LANGUAGE 1023 zh_HKch nzh_HKch
+		zh_HKch:
+			SectionSetInstTypes ${sec_zh_HK} 5
+			Goto finishlangset
+		nzh_HKch:
+	;Swedish
+	IntCmp $LANGUAGE 1053 svch nsvch
+		svch:
+			SectionSetInstTypes ${sec_sv} 5
+			Goto finishlangset
+		nsvch:
+	finishlangset:
+FunctionEnd
 
 Section Uninstall
 	Delete "$INSTDIR\${PRODUCT_NAME}.url"
