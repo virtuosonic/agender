@@ -206,72 +206,17 @@ Function .onInit
 	!endif
 	;lang
 	!insertmacro MUI_LANGDLL_DISPLAY
-	;Spanish
-	IntCmp $LANGUAGE 1034 esch nesch
-		esch:
-			SectionSetInstTypes ${sec_es} 5
-			Goto finishlangset
-		nesch:
-	;English
-	IntCmp $LANGUAGE 1033 ench nench
-		ench:
-			SectionSetInstTypes ${sec_es} 5
-			Goto finishlangset
-		nench:
-	;French
-	IntCmp $LANGUAGE 1036 frch nfrch
-		frch:
-			SectionSetInstTypes ${sec_fr} 5
-			Goto finishlangset
-		nfrch:
-	;German
-	IntCmp $LANGUAGE 1031 dech ndech
-		dech:
-			SectionSetInstTypes ${sec_de} 5
-			Goto finishlangset
-		ndech:
-	;Greek
-	IntCmp $LANGUAGE 1032 elch nelch
-		elch:
-			SectionSetInstTypes ${sec_el} 5
-			Goto finishlangset
-		nelch:
-	;Japanese
-	IntCmp $LANGUAGE 1041 jach njach
-		jach:
-			SectionSetInstTypes ${sec_ja} 5
-			Goto finishlangset
-		njach:
-	;Portuguese
-	IntCmp $LANGUAGE 2070 ptch nptch
-		ptch:
-			SectionSetInstTypes ${sec_pt} 5
-			Goto finishlangset
-		nptch:
-	;Romanian
-	IntCmp $LANGUAGE 1048 roch nroch
-		roch:
-			SectionSetInstTypes ${sec_ro} 5
-			Goto finishlangset
-		nroch:
-	;SimpChinese
-	IntCmp $LANGUAGE 2052 zh_CNch nzh_CNch
-		zh_CNch:
-			SectionSetInstTypes ${sec_zh_CN} 5
-			Goto finishlangset
-		nzh_CNch:
-	;TradChinese
-	IntCmp $LANGUAGE 1023 zh_HKch nzh_HKch
-		zh_HKch:
-			SectionSetInstTypes ${sec_zh_HK} 5
-			Goto finishlangset
-		nzh_HKch:
-	;Swedish
-	IntCmp $LANGUAGE 1053 svch nsvch
-		svch:
-			SectionSetInstTypes ${sec_sv} 5
-			Goto finishlangset
-		nsvch:
+	!insertmacro SetInstType2Lang 1034 ${sec_es} finishlangset
+	!insertmacro SetInstType2Lang 1033 ${sec_en} finishlangset
+	!insertmacro SetInstType2Lang 1036 ${sec_fr} finishlangset
+	!insertmacro SetInstType2Lang 1031 ${sec_fr} finishlangset
+	!insertmacro SetInstType2Lang 1032 ${sec_el} finishlangset
+	!insertmacro SetInstType2Lang 1041 ${sec_ja} finishlangset
+	!insertmacro SetInstType2Lang 2070 ${sec_pt} finishlangset
+	!insertmacro SetInstType2Lang 1048 ${sec_ro} finishlangset
+	!insertmacro SetInstType2Lang 2052 ${sec_zh_CN} finishlangset
+	!insertmacro SetInstType2Lang 1023 ${sec_zh_HK} finishlangset
+	!insertmacro SetInstType2Lang 1053 ${sec_sv} finishlangset
 	finishlangset:
 FunctionEnd
 
