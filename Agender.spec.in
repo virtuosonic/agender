@@ -24,8 +24,8 @@ Version: @VERSION@
 Release: 1%{dist}
 License: GPLv3+
 Group: Applications/Office/Calendar
-Source: Agender-@VERSION@.tar.bz2
-Icon: Agender.xpm
+Source: %{name}-%{version}.tar.bz2
+Icon: %{name}.xpm
 URL: http://agender.sourceforge.net/
 Requires: wxGTK >= 2.8.0
 BuildRequires: wxGTK-devel >= 2.8.0,make,gcc-c++

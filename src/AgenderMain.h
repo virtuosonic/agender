@@ -1,3 +1,8 @@
+// *** ADDED BY HEADER FIXUP ***
+#include <wx/event.h>
+#include <wx/intl.h>
+#include <wx/string.h>
+// *** END ***
 /***************************************************************
  * Name:      AgenderMain.h
  * Purpose:   Defines Application Frame

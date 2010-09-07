@@ -1,3 +1,7 @@
+// *** ADDED BY HEADER FIXUP ***
+#include <wx/event.h>
+#include <wx/menu.h>
+// *** END ***
 /***************************************************************
  * Name:      AgenderTray.h
  * Purpose:   Defines TaskBarIcon Class

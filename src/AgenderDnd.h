@@ -1,3 +1,7 @@
+// *** ADDED BY HEADER FIXUP ***
+#include <wx/dataobj.h>
+#include <wx/string.h>
+// *** END ***
 /***************************************************************
  * Name:      AgenderDnd.h
  * Purpose:   Defines Classes for using Drag & Drop

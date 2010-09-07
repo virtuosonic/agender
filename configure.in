@@ -11,6 +11,7 @@ AC_BAKEFILE([m4_include(autoconf_inc.m4)])
 AC_SUBST(VERSION,AG_VERSION)
 m4_include(revision.m4)
 AC_SUBST(REVISION,SVN_REV)
+AC_SUBST(REVISION_DATE,"SVN_DATE")
 
 AC_CONFIG_FILES([Makefile
 	autopackage/default.apspec
