@@ -1,10 +1,13 @@
-
+/******************************************
+general style sheet for
+Agender's website
+******************************************/
 * {
     font-family: Georgia,sans-serif;
 }
 
 body {
-/*    margin: 0 auto;*/
+	margin: 0;
     background: url(bg.png);
     background-attachment: fixed;
 }
@@ -15,7 +18,9 @@ body {
 	padding: 10px;
 	background: #ffffff;
 	width: 60%;
-	border: 1px solid #7C7C7C;
+	height: 100%;
+	border-left: 1px solid #7C7C7C;
+	border-right: 1px solid #7C7C7C;
 }
 .lshadow {
 	float: right;
@@ -29,47 +34,6 @@ body {
 	background: url(rsha.png) repeat-y right;
 }
 
-ul#menu {
-	margin: 0px;
-	display: inline;
-	list-style: none;
-	position: fixed;
-	float: left;
-}
-
-ul#menu li {
-	margin: 0;
-	padding: 0;
-	border: 1px solid #7C7C7C;
-}
-
-ul#menu li a {
-	padding: 1em;
-	display: block;
-	text-decoration: none;
-	color: #333;
-	background: #F4F4F4;
-	font-style: normal;
-}
-
-ul {
-	padding-left: 5em;
-}
-
-/*li { margin: 3em;}*/
-/*download icons*/
-li#suse {list-style-image: url(SuSE-logo_48.png);}
-li#mdv {list-style-image: url(mandriva-logo_48.png);}
-li#fedora {list-style-image: url(Fedora-logo_48.png);}
-li#tar {list-style-image: url(package-x-generic.png);}
-li#svn {list-style-image: url(subversion.png);}
-li#apple {list-style-image: url(Apple-logo_48.png);}
-li#deb {list-style-image: url(Debian-logo_48.png);}
-li#msw {list-style-image: url(Microsoft_Windows-logo_48.png);}
-/*awards icons*/
-li#softpedia {list-style-image: url(softpedia.png);}
-li#softoxi {list-style-image: url(softoxi5of5.png);}
-
 a {
     color: #47C4FF;
     font-weight: normal;
@@ -81,11 +45,6 @@ a:hover {
     font-weight: bold;
     font-style: italic;
     text-decoration: none;
-}
-
-.menu {
-    background-color: #344444;
-    width: 200;
 }
 
 p {
@@ -108,4 +67,9 @@ img {
 	position: fixed;
 	right: 20px;
 	bottom: 20px;
+}
+
+#vs_google_search_id {
+	text-align: right;
+	display: inline;
 }

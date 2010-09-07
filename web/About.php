@@ -1,5 +1,5 @@
 Agender is developed by Gabriel Espinoza and several contributor
-which I list below:
+which are list below:
 <br/>
 <ul>
 <li>Gabriel Espinoza - Developer, spanish translator and project administrator</li>
@@ -12,5 +12,5 @@ which I list below:
 <li>Rickard Hedlund - Swedish translator</li>
 <li>Bruno Mace - French translator</li>
 <li>senoutouya <!-- revisar nombre--> - both simplified and traditional Chinese translator</li>
-<li>Greg Frayley (GrenadeGuy) <!-- revisar nombre-->- Created a deb package of Agender 1.1.5</li>
+<li>Greg Fraley (GrenadeGuy) <!-- revisar nombre-->- Created a deb package of Agender 1.1.5</li>
 </ul>

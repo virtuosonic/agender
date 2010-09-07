@@ -1,26 +1,46 @@
 <?php
-$page = "About" ;//$_GET['page'];
+$page = $_GET['page'];
 if ($page == '') {$page = 'Home';}
 
-$active = "id='active'";
+$active = 'id="active"';
 $inactive = "";
+$Home = $Downloads =$Press = $Screenshots = $About = $Links = '';
 if ($page == 'Home') {
 	$Home = $active;
 	$title="A cross-platform schedule tool!";
 }
-if ($page == 'Downloads') {
-	$Home = $active;
+else if ($page == 'Downloads') {
+	$Downloads = $active;
 	$title="Get Agender";
+}
+else if ($page == 'Press') {
+	$Press = $active;
+	$title="Press";
+}
+else if ($page == 'Screenshots') {
+	$Screenshots = $active;
+	$title="Screenshots";
+}
+else if ($page == 'About') {
+	$About = $active;
+	$title="About";
+}
+else if ($page == 'Links') {
+	$Links = $active;
+	$title="Links";
 }
 else {
 	$Home = $inactive;
 	$title = $page;
 }
 
+$vs_google_search = '<div id="vs_google_search_id"><form><input type="text"/><input type="submit" value="search"/></form></div>';
+
 // TODO (virtuoso#1#): add google search here
 
-$error404 = "<center><img src='Agender-screenshot-svn-1.png'><br><br></center>\n".
-            "<h3 class='heading'>This page cannot be found <i>try using google</i>.</h3>error 405";
+$error404 = "<center>".
+            "<h3 class='heading'>This page cannot be found, <i>try using google</i>.</h3>error 405".
+            "</center>\n";
 
 
 if ($page == 'Downloads') {$Downloads = $active;}
@@ -32,12 +52,13 @@ else {$Screenshots = $inactive;}
 if ($page == 'Links') {$Links = $active;}
 else {$Links = $inactive;}
 
-$page_name = $page.'.elf';
+$page_name = $page.'.php';
 
-$pages = glob("*.elf");
+$pages = glob("*.php");
+$page_data = '';
 
 if (in_array($page_name, $pages) and file_exists($page_name)){
-    $page_data = file_get_contents($page_name);
+    $page_data = '';
 }
 else {$page_data = $error404;}
 ?>
@@ -46,33 +67,49 @@ else {$page_data = $error404;}
 <head>
 	<title>Agender - <?php echo $title ?></title>
 	<link rel="stylesheet" type="text/css" href="agender.css" media="screen"/>
+	<link rel="stylesheet" type="text/css" href="menu.css" media="screen"/>
 	<link rel="alternate" type="application/rss+xml"
 		href="https://sourceforge.net/export/rss2_keepsake.php?group_id=271084"
 		title="Agender - a cross-platform schedule tool!"/>
 </head>
 
 <body>
+
+	<!-- shadow fx
+	<div class="lshadow"/> -->
 	<!-- menu -->
-		<ul id="menu">
-		<li><a href="index.php?page=Home">Home</a></li>
-		<li><a href="index.php?page=Downloads">Downloads</a></li>
-		<li><a href="index.php?page=Press">Press</a></li>
-		<li><a href="index.php?page=Screenshots">Screenshots</a></li>
-		<li><a href="index.php?page=About">About</a></li>
-		<li><a href="index.php?page=Links">Links</a></li>
-		</ul>
+	<div id="left_pane"><a href='http://sourceforge.net'>
+		<img src='http://sourceforge.net/sflogo.php?group_id=146403&amp;type=1' alt='SourceForge.net Logo' title="SourceForge.net">
+	</a></div>
 
-
-	<!--
-	<div class="lshadow"/>
-	<div class="rshadow">
--->
-
+	<div id="menu">
+		<center><img src="hdr.png"/></center>
+		<br/>
+		<a <?php echo $Home ?> href="index.php?page=Home">Home</a> |
+		<a <?php echo $Downloads ?> href="index.php?page=Downloads">Downloads</a> |
+		<a <?php echo $Press ?> href="index.php?page=Press">Press</a> |
+		<a <?php echo $Screenshots ?> href="index.php?page=Screenshots">Screenshots</a> |
+		<a <?php echo $About ?> href="index.php?page=About">About</a> |
+		<a <?php echo $Links ?> href="index.php?page=Links">Links</a>
+	</div>
 	<div class="container">
-		<!-- contents -->
-		<?php echo $page_data ?>
+		<?php echo $vs_google_search ?>
+		<!-- start of contents -->
+		<?php
+			if ($page_data !== '')
+			{
+				echo $page_data;
+			}
+			else
+			{
+				include $page_name;
+			}
+		?>
 		<!-- end of contents -->
 	</div>
+	<!-- shadow fx
+	<div class="rshadow"/> -->
+
 	<div id="vs_google_adsense">
 		<script type="text/javascript"><!--
 			google_ad_client = "pub-8829282890738806";
