@@ -1,3 +1,11 @@
+// *** ADDED BY HEADER FIXUP ***
+#include <wx/app.h>
+#include <wx/arrstr.h>
+#include <wx/colour.h>
+#include <wx/datetime.h>
+#include <wx/filefn.h>
+#include <wx/textfile.h>
+// *** END ***
 /***************************************************************
  * Name:      AgenderMain.cpp
  * Purpose:   Code for Application Frame
@@ -181,6 +189,8 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 	//this is a stupid hack, but gnome is a very stupid desktop environment
 #if wxCHECK_VERSION(2,9,0)
 	wxLogVerbose(_T("using dev"));
+	if (!wxTaskBarIcon::IsAvailable)
+		wxMessageBox(_T("this desktop is crap"));
 #elif defined __X__ || defined __WXGTK__
 	wxArrayString output;
 	wxExecute(_T("pidof gnome-session"),output,wxEXEC_SYNC);
@@ -192,7 +202,6 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 			if (output.IsEmpty())
 				wxSleep(5);
 		} while(output.IsEmpty());
-		wxSleep(4);
 	}
 #endif
 	trayicon = new AgenderTray(this,schdl->Read(_T("/opacity"),255));
@@ -232,7 +241,7 @@ void AgenderFrame::OnClose(wxCloseEvent& WXUNUSED(event))
 void AgenderFrame::OnButton3Click(wxCommandEvent& WXUNUSED(event))
 {
 	wxAboutDialogInfo info;
-	//developer
+	//developer a.k.a. me
 	info.AddDeveloper(_T("Gabriel Espinoza <virtuosonic@users.sourceforge.net>"));
 	//translators
 	info.AddTranslator(_T("Gabriel Espinoza : spanish"));
@@ -247,8 +256,8 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& WXUNUSED(event))
 	info.AddTranslator(_T("senoutouya <senoutouya@gmail.com> : chinese"));
 	info.AddTranslator(_T("Adi D. <nevvermind@users.sourceforge.net> : romanian"));
 	//etc
-	info.SetDescription(wxString::Format(_T("%s\n%s %s %s %s %i"),_("A cross-platform schedule tool"),
-							 _("Build:"),__TDATE__,__TTIME__,_("From: svn"),__REVISION__));
+	info.SetDescription(wxString::Format(_T("%s\n%s %s %s\n%s %i"),_("A cross-platform schedule tool"),
+							 _("Build:"),__TDATE__,__TTIME__,_("Revision:"),__REVISION__));
 	info.SetWebSite(_T("http://agender.sourceforge.net"),_("Agender Web Site"));
 	info.SetLicence(_("Agender is free software; you can redistribute it and/or modify\n"
 				"it under the terms of the GNU General Public License as published by\n"
@@ -431,8 +440,13 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& WXUNUSED(event))
 	fluxFname.AppendDir(_T(".fluxbox"));
 	fluxFname.SetName(_T("startup"));
 	wxString  fluxFile= fluxFname.GetFullPath();
+	//IceWM startup script
+	fluxFname.AssignDir(wxGetHomeDir());
+	fluxFname.AppendDir(_T(".icewm"));
+	fluxFname.SetName(_T("startup"));
+	wxString  IceFile = fluxFname.GetFullPath();
 	//existance!
-	if (!wxDirExists(desktopFname.GetPath()) && !wxFileExists(fluxFile))
+	if (!wxDirExists(desktopFname.GetPath()) && !wxFileExists(fluxFile) && !wxFileExists(IceFile))
 	{
 		wxMessageBox(_("AutoStart is only available under Windows, Fluxbox "
 				   " and Unix desktops that follow the freedesktop.org standards. "//how sadly! =(
@@ -499,6 +513,25 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& WXUNUSED(event))
 			}
 			startflux.Close();
 		}
+		//add a command to run Agender to the icewm  startup script
+		wxTextFile startice;
+		if (startice.Open(IceFile))
+		{
+			wxString command;
+			bool alreadyThere = false;
+			for (command = startice.GetLastLine(); startice.GetCurrentLine() > 0;
+					command = startice.GetPrevLine())
+			{
+				if (command.Matches(_T("Agender &")))
+					alreadyThere = true;
+			}
+			if (!alreadyThere)
+			{
+				startice.AddLine(_T("Agender &"));
+				startice.Write();
+			}
+			startice.Close();
+		}
 #elif defined __WXMSW__
 		wxString AgenderValue;
 		key.QueryValue(_T("Agender"),AgenderValue);
@@ -522,10 +555,26 @@ void AgenderFrame::OnAutoStart(wxCommandEvent& WXUNUSED(event))
 				if (command.Matches(_T("Agender &")))
 				{
 					startflux.RemoveLine(startflux.GetCurrentLine());
-					startflux.Write();
 				}
 			}
+			startflux.Write();
 			startflux.Close();
+		}
+		//clean icewm startup script
+		wxTextFile startice;
+		if (startice.Open(IceFile))
+		{
+			wxString command;
+			for (command = startice.GetLastLine(); startice.GetCurrentLine() > 0;
+					command = startice.GetPrevLine())
+			{
+				if (command.Matches(_T("Agender &")))
+				{
+					startice.RemoveLine(startflux.GetCurrentLine());
+				}
+			}
+			startice.Write();
+			startice.Close();
 		}
 	}
 #elif defined __WXMSW__

@@ -7,8 +7,8 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Release">
-				<Option output="bin/Agender" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/" />
+				<Option output="bin/Release/Agender" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
@@ -34,9 +34,9 @@
 				</Linker>
 			</Target>
 			<Target title="UNIX">
-				<Option output="bin/Agender" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/" />
-				<Option type="1" />
+				<Option output="bin/UNIX/Agender" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/UNIX/" />
+				<Option type="0" />
 				<Option compiler="gcc" />
 				<Option parameters="--verbose" />
 				<Compiler>
@@ -48,8 +48,8 @@
 				</Linker>
 			</Target>
 			<Target title="Debug">
-				<Option output="bin/Agender" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/" />
+				<Option output="bin/Debug/Agender" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option parameters="--verbose" />
@@ -87,6 +87,8 @@
 			<Option compilerVar="WINDRES" />
 			<Option target="Release" />
 		</Unit>
+		<Unit filename="wxAutoStart.cpp" />
+		<Unit filename="wxAutoStart.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

@@ -1,3 +1,6 @@
+// *** ADDED BY HEADER FIXUP ***
+#include <wx/event.h>
+// *** END ***
 /***************************************************************
  * Name:      AgenderApp.h
  * Purpose:   Defines Application Class
