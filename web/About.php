@@ -18,4 +18,5 @@ which are listed below:
 <br/>
 <br/>
 If you need to contact me you will have to decipher my email address:
+<br/>
 <img src="correo.png"/>
