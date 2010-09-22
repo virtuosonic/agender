@@ -5,22 +5,12 @@
 Web:
 ====
     http://agender.sourceforge.net
-    http://sourceforge.net/projects/agender
 
 Intro:
 ======
     Thanks for trying this software, Agender is a small tool for
     writing your schedule, it is  a cross-platform software and should
     compile and run on X, Windows, Mac OSX and someother platforms.
-
-    Its creation started on 21 november 2008, I created Agender because
-    I didn't want to use software like M$ Works or Evolution, they were
-    so big, complicated, and sometimes slow, not only talking of
-    processor usage but in usage flow.
-
-    So one I started playing with wxCalendarCtrl, and sometimes later
-    I get something that work, Agender was born...
-
 
 Licence:
 ========
@@ -40,13 +30,20 @@ Licence:
 Dependencies:
 =============
     To compile you will need a C++ compiler and wxWidgets 2.8,
-    Agender is being developed with GNU g++ 4.3.2, and I'm
-    using wxWidgets 2.8.10 maybe it works with another, not sure.
+    Agender is being developed with GNU g++ 4.3.2, and
+    wxWidgets 2.8.10 maybe it works with anothers, not sure.
     The website is www.wxwidgets.org.
-
 
 Compiling & Installing:
 =======================
+    If you are using Windows you can dowload the installer from the
+    website is named something like Agender-x.x.x.exe where x.x.x
+    is the version. If you are upgrading from version 1.1.6 please first
+    run the uninstaller and then install, the way translations are installed
+    haves changed. There also are rpm packages for some Linux
+    distros. Take a look at
+        http://agender.sf.net/index.php?page=Downloads
+
     Read the file INSTALL, if you don't wan't to read so much, here
     are some short instructions:
 
@@ -63,9 +60,12 @@ Compiling & Installing:
     makefiles and project file for several compiler using bakefile
     for example:
         bakefile -f gnu Agender.bkl
+        bakefile -f msvc Agender.bkl
+
     If you're building from svn then you need to generate your
     makefile using bakefile, you can get bakefile at:
         http://www.bakefile.org/
+
 Bugs:
 =====
     I don't call them that way, I call them "advanced user features".
@@ -90,50 +90,6 @@ Porting/Packaging:
     If you want to join the Agender project, please email me and I will
     give you access to svn and rights to upload files to the filemanager.
 
-Hacking:
-========
-    Some knogledge of C++, OOP and wxWidgets is required for
-    understanding Agender, here is a description of what every
-    file does.
-
-    src/AgenderApp.{cpp,h}
-        This files include the application class, its the equivalent
-	to the main function, it initialize some things, like the
-        locale, command line parsing, checking for other instances,
-        creating the main window, and creating the interprocess
-        communications server. It also cleans up this things.
-
-    src/AgenderMain.{cpp,h}
-        This may be the more important files of the program, they
-        contain the class for the main window it also loads and
-        saves configuration files and creates the tray icon.
-
-    src/AgenderCal.{cpp,h}
-        Here is the class that abstracts read & writing notes, once
-        AgenderFrame loads the files AgenderCal reads from wxConfig::Get
-
-    src/AgenderTray.{cpp,h}
-        Agender's tray icon lives heres it uses wxEvent's to communicate
-        with the rest of the gui, it is owned by AgenderFrame.
-
-    src/AgenderIPC.{cpp,h}
-        AgenderServer is used for some interprocess communication, when you
-        start Agender it will check for another instances of Agender, if it
-        founds one it will create a wxClient that will connect with
-        AgenderServer and AgenderServer will show the main window of the
-        instance that was already running, this should be completely
-        invisible to the user, like if it where magic ;)
-
-    src/AgenderDnd.{cpp,h}
-        All the code related to copy/paste and Drag&Drop is in this file,
-        actually its incomplete, and doesn't work, it even isn't in the makefiles.
-
-    Agender.bkl
-        Bakefile is used for generating makefile for several system
-
-    Agender.nsi
-        Windows installer, must be compiled with makensis
-
 Translating/i18n:
 =================
     The wxWidgets approach to i18n closely follows the GNU gettext
@@ -153,7 +109,7 @@ TODO:
     -new file format in xml
     -richtextctrl
     -More translations
-    -Re-structure project's tree
+    -notifications
 
 Changelog:
 ==========
@@ -202,14 +158,13 @@ Distro Makers:
     Hi distro maker, if you want to include Agender in your operating
     system, you are free to do it, just follow the license, but I request
     you to send me the instructions on how to install Agender on your
-    system, so I can add them to the website documentation.
+    system, so I can add them to the website.
 
 Author:
 =======
     Gabriel Espinoza
         <virtuosonic@users.sourceforge.net>
-	http://virtuosonicplusplus.blogspot.com
+        http://virtuosonicplusplus.blogspot.com
         http://virtuosonic.users.sourceforge.net/
-        http://sourceforge.net/users/virtuosonic/
 
 Thanks for reading :) EOF

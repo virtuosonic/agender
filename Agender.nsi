@@ -6,7 +6,6 @@
 
 ;this file needs some hacking, if you are using m$w  please help
 ;TODO: add support for multiple users
-;TODO: add support for shared version of wxWidgets
 
 ;this defines are configurable, change them when needed
 !define WX_LIBS 0
@@ -15,6 +14,7 @@
 !define WX_VERSION 2.8.11
 !define WX_DIR "/home/virtuoso/C++/wxWidgets-${WX_VERSION}"
 ;NSIS
+;do we have the system.dll plugin
 !define VS_SYSTEMDLL 1
 ;Mingw
 !define MINGW_RUNTIME 1
@@ -24,7 +24,7 @@
 ;!define MINGW_DIR "C:\Archivos de Programa\codeblocks\MINGW"
 ;!define MINGW_DIR "C:\MINGW"
 !define PRODUCT_VERSION "1.1.8"
-;constants
+;constants (don't touch)
 !define PRODUCT_NAME "Agender"
 !define PRODUCT_PUBLISHER "Virtuosonic"
 !define PRODUCT_WEB_SITE "http://agender.sourceforge.net"

@@ -8,11 +8,13 @@
 #include <wx/wxprec.h>
 
 #ifdef __BORLANDC__
-#pragma hdrstop
+	#pragma hdrstop
 #endif
+
 #ifndef WX_PRECOMP
-#include <wx/defs.h>
-#endif
+	#include <wx/defs.h>
+#endif//WX_PRECOMP
+
 #if defined wxHAS_TASK_BAR_ICON
 
 #ifndef WX_PRECOMP
@@ -25,8 +27,8 @@
 #include <wx/dataobj.h>
 #if wxUSE_RICHTEXT
 #include <wx/richtext/richtextsymboldlg.h>
-#endif
-#endif
+#endif//wxUSE_RICHTEXT
+#endif//WX_PRECOMP
 
 BEGIN_EVENT_TABLE(AgenderTray,wxTaskBarIcon)
 	EVT_TASKBAR_LEFT_UP(AgenderTray::OnLeft)
@@ -41,10 +43,10 @@ BEGIN_EVENT_TABLE(AgenderTray,wxTaskBarIcon)
 	EVT_MENU(ID_SYMBOL,AgenderTray::OnMenuSymbols)
 END_EVENT_TABLE()
 
-AgenderTray::AgenderTray(wxFrame* frame,long colalpha)
+AgenderTray::AgenderTray(wxFrame* frame)
 {
 	this->frame = frame;
-	alpha = colalpha;
+	alpha = wxConfig::Get()->Read(_T("/opacity"),255);
 	switch (alpha)
 	{
 		case 255:
@@ -63,6 +65,9 @@ AgenderTray::AgenderTray(wxFrame* frame,long colalpha)
 		default:
 			break;
 	}
+	bool autostart=false;
+	wxConfig::Get()->Read(_T("/autostart"),&autostart,false);
+	astart.Set(autostart);
 }
 
 void AgenderTray::OnLeft(wxTaskBarIconEvent& WXUNUSED(event))
@@ -100,7 +105,7 @@ wxMenu * AgenderTray::CreatePopupMenu()
 	menu->Append(ID_NOTES_COLOUR,_("Notes Colour"));
 #if wxUSE_RICHTEXT
 	menu->Append(ID_SYMBOL,_("Symbol"));
-#endif
+#endif//wxUSE_RICHTEXT
 	menu->AppendCheckItem(ID_AUTOSTART,_("Autostart"));
 	menu->AppendSeparator();
 	menu->Append(wxID_EXIT,_("Exit"));
@@ -178,7 +183,7 @@ void AgenderTray::OnYearSel(wxCommandEvent& event)
 void AgenderTray::OnMenuAutoStart(wxCommandEvent& event)
 {
 	wxConfig::Get()->Write(_T("/autostart"),event.IsChecked());
-	wxPostEvent(frame->GetEventHandler(),event);
+	astart.Set(event.IsChecked());
 }
 
 void AgenderTray::OnMenuSymbols(wxCommandEvent& WXUNUSED(event))
@@ -194,7 +199,7 @@ void AgenderTray::OnMenuSymbols(wxCommandEvent& WXUNUSED(event))
 			wxTheClipboard->Close();
 		}
 	}
-#endif
+#endif//wxUSE_RICHTEXT
 }
 
 #endif //wxHAS_TASK_BAR_ICON

@@ -8,9 +8,16 @@
  **************************************************************/
 #include "wxAutoStart.h"
 #include <wx/string.h>
-#include <wx/textfile.h>
 #include <wx/intl.h>
 #include <wx/utils.h>
+#include <wx/msgdlg.h>
+#include <wx/log.h>
+#include <wx/app.h>
+
+#if defined __UNIX__ && !defined __APPLE__
+#include <wx/textfile.h>
+#endif//__UNIX__ && !defined __APPLE__
+
 #ifdef __WXMSW__
 #include <wx/msw/registry.h>
 #endif//__WXMSW__
@@ -27,27 +34,43 @@ AutoStart::~AutoStart()
 
 void AutoStart::OutputError()
 {
-	wxString::Format(
-				_("AutoStart is only available under Windows, Fluxbox "
-				   " and Unix desktops that follow the freedesktop.org standards. "//how sadly! =(
-				   "If you add support for any other system, please send patches "
-				   "to the patch tracker in the Agender project page at "
-				   "http://sourceforge.net/projects/agender/ or you can also help "
-				   "donating hardware that runs your favorite system."));
+	wxMessageBox(wxString::Format(
+			_("AutoStart is only available under %s "
+			" and Unix desktops that follow the freedesktop.org standards. "//how sadly! =(
+			"If you add support for any other system, please send patches "
+			"to the patch tracker in the Agender project page at "
+			"http://sourceforge.net/projects/agender/ or you can also help "
+			"donating hardware that runs your favorite system."),
+			_T("Windows, Fluxbox, IceWM")),
+			_("Error setting auto start"));
 }
 
 bool AutoStart::Get()
 {
-	return false;
+	return true;
 }
 
 bool AutoStart::Set(bool on)
 {
 	#if defined __UNIX__ && !defined __APPLE__
 	if (on)
-		return SetFluxbox() || SetIceWM() || SetXDG();
+	{
+		bool return_value[3];
+		return_value[0] = SetFluxbox();
+		return_value[1] = SetIceWM();
+		return_value[2] = SetXDG();
+		if (!return_value[0] && !return_value[1] && !return_value[2])
+			OutputError();
+		return return_value[0] ||return_value[1] ||return_value[2];
+	}
 	else
-		return UnSetFluxbox() || UnSetIceWM() || UnSetXDG();
+	{
+		bool return_value[3];
+		return_value[0] = UnSetFluxbox();
+		return_value[1] = UnSetIceWM();
+		return_value[2] = UnSetXDG();
+		return return_value[0] ||return_value[1] ||return_value[2];
+	}
 	#elif defined __WXMSW__
 	if (on)
 		return SetWindows();
@@ -65,10 +88,10 @@ bool AutoStart::SetWindows()
 	//we use the windows registry
 	wxRegKey key;
 	key.SetName(_T("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"));
-	wxString AgenderValue;
-	key.QueryValue(_T("Agender"),AgenderValue);
-	if (!key.HasValue(_T("Agender")) || AgenderValue != wxStandardPaths::Get().GetExecutablePath())
-		key.SetValue(_T("Agender"),wxStandardPaths::Get().GetExecutablePath());
+	wxString AutoStartValue;
+	key.QueryValue(wxTheApp->GetAppName(),AutoStartValue);
+	if (!key.HasValue(wxTheApp->GetAppName())|| AutoStartValue != wxStandardPaths::Get().GetExecutablePath())
+		key.SetValue(wxTheApp->GetAppName(),wxStandardPaths::Get().GetExecutablePath());
 	return true;
 }
 
@@ -76,15 +99,14 @@ bool AutoStart::UnSetWindows()
 {
 	wxRegKey key;
 	key.SetName(_T("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"));
-	if (key.HasValue(_T("Agender")))
-			key.DeleteValue(_T("Agender"));
+	if (key.HasValue(wxTheApp->GetAppName()))
+			key.DeleteValue(wxTheApp->GetAppName());
 }
-#endif
-
-#if defined __UNIX__ && !defined __APPLE__
+#elif defined __UNIX__ && !defined __APPLE__
 bool AutoStart::SetFluxbox()
 {
 	wxString  fluxFile;fluxFile << wxGetHomeDir() << _T("/.fluxbox/startup");
+	wxLogVerbose(_T("Adding \"Agender &\" to %s"),fluxFile.c_str());
 	wxTextFile startflux;
 	if (startflux.Open(fluxFile))
 	{
@@ -97,7 +119,10 @@ bool AutoStart::SetFluxbox()
 			if (command.Matches(_T("exec*fluxbox*")))
 				indx = startflux.GetCurrentLine();
 			if (command.Matches(_T("Agender &")))
+			{
 				alreadyThere = true;
+				wxLogVerbose(_T("Already there at line: %i"),startflux.GetCurrentLine());
+			}
 		}
 		if (indx > -1 && !alreadyThere)
 		{
@@ -133,7 +158,11 @@ bool AutoStart::UnSetFluxbox()
 
 bool AutoStart::SetXDG()
 {
-	wxString desktopFile;desktopFile << wxGetHomeDir() << _T(".config/autostart/Agender.desktop");
+	wxString desktopFile;desktopFile << wxGetHomeDir()
+		<< _T("/.config/autostart/")
+		<< wxTheApp->GetAppName()
+		<< _T(".desktop");
+	wxLogVerbose(_T("Creating %s"),desktopFile.c_str());
 	//freedesktop.org
 	if (!wxFileExists(desktopFile))
 	{
@@ -143,17 +172,24 @@ bool AutoStart::SetXDG()
 		desktop.AddLine(_T("[Desktop Entry]"));
 		desktop.AddLine(_T("Type=Application"));
 		desktop.AddLine(_T("Name=Agender"));
-		desktop.AddLine(_T("Exec=Agender"));
+		desktop.AddLine(_T("Exec=Agender --session-start"));
 		desktop.AddLine(_T("Icon=Agender"));
 		desktop.Write(wxTextFileType_Unix);//needed?
 		desktop.Close();
+	}
+	else
+	{
+		wxLogVerbose(_T("The file exists"));
 	}
 	return true;
 }
 
 bool AutoStart::UnSetXDG()
 {
-	wxString desktopFile;desktopFile << wxGetHomeDir() << _T(".config/autostart/Agender.desktop");
+	wxString desktopFile;desktopFile << wxGetHomeDir()
+		<< _T("/.config/autostart/")
+		<< wxTheApp->GetAppName()
+		<< _T(".desktop");
 	if (wxFileExists(desktopFile))
 			wxRemoveFile(desktopFile);
 	return true;
@@ -163,6 +199,7 @@ bool AutoStart::SetIceWM()
 {
 	wxString  IceFile;IceFile << wxGetHomeDir() << _T("/.icewm/startup");
 	//add a command to run Agender to the icewm  startup script
+	wxLogVerbose(_T("Adding \"Agender &\" to %s"),IceFile.c_str());
 	wxTextFile startice;
 	if (startice.Open(IceFile))
 	{
@@ -172,7 +209,10 @@ bool AutoStart::SetIceWM()
 				command = startice.GetPrevLine())
 		{
 			if (command.Matches(_T("Agender &")))
+			{
 				alreadyThere = true;
+				wxLogVerbose(_T("Already there at line: %i"),startice.GetCurrentLine());
+			}
 		}
 		if (!alreadyThere)
 		{
@@ -192,7 +232,7 @@ bool AutoStart::UnSetIceWM()
 	if (startice.Open(IceFile))
 	{
 		wxString command;
-		for (command = startice.GetLastLine(); startice.GetCurrentLine() > 0;
+		for (command = startice.GetLastLine();startice.GetCurrentLine() > 0;
 				command = startice.GetPrevLine())
 		{
 			if (command.Matches(_T("Agender &")))
