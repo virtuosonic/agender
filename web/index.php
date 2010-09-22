@@ -81,8 +81,7 @@ else {$page_data = $error404;}
 		</a>
 		<br/>
 		<!--TODO: fix links -->
-		<a href="http://sourceforge.net/donate" >
-			<img src="http://sourceforge.net/donate" alt="Make a donation" title="Donate">
+		<a href="http://sourceforge.net/donate/index.php?group_id=271084"><img src="http://images.sourceforge.net/images/project-support.jpg" width="88" 				height="32" border="0" alt="Support This Project" /> 
 		</a>
 	</div>
 	<div class="container">
