@@ -35,7 +35,16 @@ else {
 }
 
 /* TODO (virtuoso#1#): add google search here*/
-$vs_google_search = '<div id="vs_google_search_id"><form><input type="text"/><input type="submit" value="search"/></form></div>';
+$vs_google_search = '<div id="vs_google_search_id">
+<form action="http://www.google.com/cse" id="cse-search-box" target="_blank">
+  <div>
+    <input type="hidden" name="cx" value="partner-pub-8829282890738806:o7d14avk586" />
+    <input type="hidden" name="ie" value="ISO-8859-1" />
+    <input type="text" name="q" size="31" />
+    <input type="submit" name="sa" value="Buscar" />
+  </div>
+</form>
+<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&amp;lang=es"></script></div>';
 
 $error404 = "<center>".
             "<h3>This page cannot be found, <i>try using google</i>.</h3>http error 404".
