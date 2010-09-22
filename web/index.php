@@ -34,23 +34,12 @@ else {
 	$title = $page;
 }
 
+/* TODO (virtuoso#1#): add google search here*/
 $vs_google_search = '<div id="vs_google_search_id"><form><input type="text"/><input type="submit" value="search"/></form></div>';
 
-// TODO (virtuoso#1#): add google search here
-
 $error404 = "<center>".
-            "<h3 class='heading'>This page cannot be found, <i>try using google</i>.</h3>error 405".
+            "<h3>This page cannot be found, <i>try using google</i>.</h3>http error 404".
             "</center>\n";
-
-
-if ($page == 'Downloads') {$Downloads = $active;}
-else {$Downloads = $inactive;}
-
-if ($page == 'Screenshots') {$Screenshots = $active;}
-else {$Screenshots = $inactive;}
-
-if ($page == 'Links') {$Links = $active;}
-else {$Links = $inactive;}
 
 $page_name = $page.'.php';
 
@@ -69,30 +58,34 @@ else {$page_data = $error404;}
 	<link rel="stylesheet" type="text/css" href="agender.css" media="screen"/>
 	<link rel="stylesheet" type="text/css" href="menu.css" media="screen"/>
 	<link rel="alternate" type="application/rss+xml"
-		href="https://sourceforge.net/export/rss2_keepsake.php?group_id=271084"
-		title="Agender - a cross-platform schedule tool!"/>
+		href="rss.xml" title="Agender - a cross-platform schedule tool!"/>
 </head>
 
 <body>
-
 	<!-- shadow fx
 	<div class="lshadow"/> -->
 	<!-- menu -->
 	<div id="left_pane"><a href='http://sourceforge.net'>
-		<img src='http://sourceforge.net/sflogo.php?group_id=146403&amp;type=1' alt='SourceForge.net Logo' title="SourceForge.net">
-	</a></div>
-
-	<div id="menu">
-		<center><img src="hdr.png"/></center>
+		<a href="http://sourceforge.net/projects/agender" >
+			<!--TODO: change sflogo to one that matches website style -->
+			<img src="http://sourceforge.net/sflogo.php?group_id=146403&amp;type=1" alt='SourceForge.net Logo' title="SourceForge.net">
+		</a>
 		<br/>
-		<a <?php echo $Home ?> href="index.php?page=Home">Home</a> |
-		<a <?php echo $Downloads ?> href="index.php?page=Downloads">Downloads</a> |
-		<a <?php echo $Press ?> href="index.php?page=Press">Press</a> |
-		<a <?php echo $Screenshots ?> href="index.php?page=Screenshots">Screenshots</a> |
-		<a <?php echo $About ?> href="index.php?page=About">About</a> |
-		<a <?php echo $Links ?> href="index.php?page=Links">Links</a>
+		<!--TODO: fix links -->
+		<a href="http://sourceforge.net/donate" >
+			<img src="http://sourceforge.net/donate" alt="Make a donation" title="Donate">
+		</a>
 	</div>
 	<div class="container">
+		<center><img src="hdr.png"/></center>
+		<div id="menu">
+			<a <?php echo $Home ?> href="index.php?page=Home">Home</a> |
+			<a <?php echo $Downloads ?> href="index.php?page=Downloads">Downloads</a> |
+			<a <?php echo $Press ?> href="index.php?page=Press">Press</a> |
+			<a <?php echo $Screenshots ?> href="index.php?page=Screenshots">Screenshots</a> |
+			<a <?php echo $About ?> href="index.php?page=About">About</a> |
+			<a <?php echo $Links ?> href="index.php?page=Links">Links</a>
+		</div>
 		<?php echo $vs_google_search ?>
 		<!-- start of contents -->
 		<?php
@@ -109,7 +102,6 @@ else {$page_data = $error404;}
 	</div>
 	<!-- shadow fx
 	<div class="rshadow"/> -->
-
 	<div id="vs_google_adsense">
 		<script type="text/javascript"><!--
 			google_ad_client = "pub-8829282890738806";

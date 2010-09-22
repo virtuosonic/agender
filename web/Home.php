@@ -1,6 +1,6 @@
 <p>
 Agender is a cross-plataform schedule/calendar tool.
-It was writed to be small, simple and work on any
+It was writen to be small, simple and work on any
 computer with any OS. Agender is free software, it is
 licensed under the GNU General Public License.
 </p>

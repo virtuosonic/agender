@@ -4,19 +4,7 @@ of Agender website
 ***************************************/
 
 
-#menu {
-	background: url(hd-bg.png) repeat-x left;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 0px;
-	padding: 10px;
-	background: #ffffff;
-	width: 60%;
-	height: auto;
-	border-left: 1px solid #7C7C7C;
-	border-right: 1px solid #7C7C7C;
-
-}
+#menu {}
 
 #menu a {
 	font-size: 1.1em;

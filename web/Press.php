@@ -1,7 +1,9 @@
 If you search on the www you can find several reviews,
 awards, links about Agender, etc...
 Here i try to mention the most interesting ones i have found.
-
+<br/><br/>
+Note: this reviews can be old
+<br/><br/>
 <ul>
 <li>
 	<a href="http://www.softpedia.com/progClean/Agender-Clean-146870.html">The "100% FREE" Softpedia award</a>

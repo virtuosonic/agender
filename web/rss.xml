@@ -1,0 +1,21 @@
+<rss version="2.0">
+<channel>
+	<title>Agender</title>
+	<link>http://agender.sourceforge.net/</link>
+	<description></description>
+	<!-- items -->
+	<item>
+		<title>Agender's website layout improved</title>
+		<link>http://agender.sourceforge.net/index.php</link>
+		<description>The style sheet of the website have been fixed resulting in a generally better look</description>
+	</item>
+	<item>
+		<title>Agender 1.1.7.1 released</title>
+		<link>http://agender.sourceforge.net/index.php?page=Downloads</link>
+		<description>The 1.1.7.1 release of Agender is now available to download</description>
+	</item>
+
+</channel>
+</rss>
+
+

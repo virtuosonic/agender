@@ -4,23 +4,27 @@ Agender's website
 ******************************************/
 * {
     font-family: Georgia,sans-serif;
+    margin: 0;
 }
 
 body {
-	margin: 0;
-    background: url(bg.png);
+    background: url(bg.png) repeat;
     background-attachment: fixed;
+    background-color: #ffffff;
 }
 .container {
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 0px;
+	position: absolute;
 	padding: 10px;
 	background: #ffffff;
-	width: 60%;
-	height: 100%;
+	right: 356px;
+	left: 256px;
+	display: block;
 	border-left: 1px solid #7C7C7C;
 	border-right: 1px solid #7C7C7C;
+	min-height: 100%;
+	/* IE doesn't support min-height,
+	so we hack*/
+	height: expression(this.scrollHeight < document.body.clientHeight ? "100%" : "auto");
 }
 .lshadow {
 	float: right;
@@ -54,6 +58,7 @@ p {
 
 img {
 	border: none;
+	margin: 10;
 }
 
 .citado {
@@ -64,12 +69,21 @@ img {
 }
 
 #vs_google_adsense {
-	position: fixed;
-	right: 20px;
-	bottom: 20px;
+	position: absolute;
+	right: 0px;
+	top: 20px;
+	/*width: 336px;
+	height: 280px;
+	background: #000000;*/
 }
 
 #vs_google_search_id {
 	text-align: right;
 	display: inline;
+}
+
+#left_pane {
+	position: absolute;
+	top: 25ex;
+	left: 2em;
 }
