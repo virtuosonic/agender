@@ -6,9 +6,13 @@ Note: this reviews can be old
 <br/><br/>
 <ul>
 <li>
-	<a href="http://www.softpedia.com/progClean/Agender-Clean-146870.html">The "100% FREE" Softpedia award</a>
+	<a href="http://www.softpedia.com/get/Office-tools/Diary-Organizers-Calendar/Agender.shtml">The "100% FREE" Softpedia award</a>
+	<img src="http://www.softpedia.com/base_img/softpedia_free_award_f.gif"/>
+	<div class="citado">
+		Agender is a simple and easy to use schedule / calendar utility. It was writed to be small, simple and work on any computer.
+	</div>
 </li>
-<li><a >"Agender - free, fast and easy to use note reminder tool for Windows users."</a>
+<li><a href="http://www.softoxi.com/agender.html">"Agender - free, fast and easy to use note reminder tool for Windows users."</a>
 <div class="citado">
 Agender is a light, free utility that allows you to organize all your thoughts comprehensively. Using the
 application is quite straightforward: simply select one of the dates in the calendar, click Add Note and
@@ -25,7 +29,7 @@ Main Features of Agender:<br/>
 - Multilingual, already available in english, spanish, deutsch and japanese<br/>
 </div>
 </li>
-<li>Agender Installation Video Tutorial
+<li><a href="http://www.softoxi.com/agender-video-trailer-screenshots.html">Agender Installation Video Tutorial</a>
 
 </li>
 
