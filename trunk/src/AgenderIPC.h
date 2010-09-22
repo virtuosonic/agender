@@ -1,6 +1,3 @@
-// *** ADDED BY HEADER FIXUP ***
-#include <wx/string.h>
-// *** END ***
 /***************************************************************
  * Name:      AgenderIPC.h
  * Purpose:   Defines Classes for Inter Process Communication

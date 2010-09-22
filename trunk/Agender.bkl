@@ -89,13 +89,6 @@ license GPLv3+
   		<files>$(SRCDIR)/share/*</files>
   		<dstdir>$(SRCDIR)/Agender-$(VERSION)/share/</dstdir>
   	</copy-files>
-  	<!-- wxsmith -->
-  	<copy-files id="wxsmithdist">
-  		<dependency-of>dist</dependency-of>
-  		<srcdir>$(SRCDIR)</srcdir>
-  		<files>$(SRCDIR)/src/wxsmith/*</files>
-  		<dstdir>$(SRCDIR)/Agender-$(VERSION)/src/wxsmith/</dstdir>
-  	</copy-files>
   	<!-- translations -->
   	<copy-files id="podist">
 		<dependency-of>dist</dependency-of>

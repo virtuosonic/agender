@@ -1,8 +1,3 @@
-// *** ADDED BY HEADER FIXUP ***
-#include <wx/event.h>
-#include <wx/intl.h>
-#include <wx/string.h>
-// *** END ***
 /***************************************************************
  * Name:      AgenderMain.h
  * Purpose:   Defines Application Frame
@@ -33,12 +28,9 @@ class AgenderCal;
 class AgenderFrame: public wxFrame
 {
 	public:
-
-		AgenderFrame(wxLocale& locale,wxString cfgFile);
-		virtual ~AgenderFrame();
-
+		AgenderFrame(wxLocale& locale,wxString cfgFile,bool session_start);
+		~AgenderFrame();
 	private:
-
 		//(*Handlers(AgenderFrame)
 		void OnButton3Click(wxCommandEvent& event);
 		void OnCalendarCtrl1Changed(wxCalendarEvent& event);
@@ -54,12 +46,10 @@ class AgenderFrame: public wxFrame
 		void OnSearch(wxCommandEvent& event);
 		void OnChangeNotesColour(wxCommandEvent& event);
 		void OnYearSel(wxCommandEvent& event);
-		void OnAutoStart(wxCommandEvent& event);
 		void OnMenuRename(wxCommandEvent& event);
 		void OnMenuNoteFlag(wxCommandEvent& event);
 		void OnActivate(wxActivateEvent& event);
 		void OnEscape(wxCommandEvent& event);
-
 		//(*Identifiers(AgenderFrame)
 		static const long ID_CALENDARCTRL1;
 		static const long ID_LISTBOX1;
@@ -67,7 +57,6 @@ class AgenderFrame: public wxFrame
 		static const long ID_BUTTON1;
 		static const long ID_BUTTON2;
 		//*)
-
 		//(*Declarations(AgenderFrame)
 		wxButton* BtnNuevo;
 		wxCalendarCtrl* CalendarCtrl1;

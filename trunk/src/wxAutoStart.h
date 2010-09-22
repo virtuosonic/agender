@@ -16,14 +16,15 @@ class AutoStart
 	public:
 		AutoStart();
 		~AutoStart();
-		bool Get();
+		bool Get();//not implemented
+		/*set auto start to on or off*/
 		bool Set(bool on);
 	private:
 		void OutputError();
+		#if defined __UNIX__ && !defined __APPLE__
 		//freedesktop.org
 		bool SetXDG();
 		bool UnSetXDG();
-		#if defined __UNIX__ && !defined __APPLE__
 		//Fluxbox
 		bool SetFluxbox();
 		bool UnSetFluxbox();
@@ -36,7 +37,6 @@ class AutoStart
 		bool UnSetWindows();
 		#endif
 		//members
-
 };
 
 #endif // _WXAUTOSTART_H_

@@ -1,7 +1,3 @@
-// *** ADDED BY HEADER FIXUP ***
-#include <wx/event.h>
-#include <wx/menu.h>
-// *** END ***
 /***************************************************************
  * Name:      AgenderTray.h
  * Purpose:   Defines TaskBarIcon Class
@@ -15,12 +11,12 @@
 #include <wx/taskbar.h>
 #include <wx/colour.h>
 #include <wx/frame.h>
+#include "wxAutoStart.h"
 
 class AgenderTray : public wxTaskBarIcon
 {
 	public:
-		AgenderTray(wxFrame* frame,long colalpha);
-
+		AgenderTray(wxFrame* frame);
 		wxMenu* CreatePopupMenu();
 	private:
 		enum
@@ -41,6 +37,7 @@ class AgenderTray : public wxTaskBarIcon
 		int alpha;
 		int opc;
 		wxColour notesColour;
+		AutoStart astart;
 
 		void OnLeft(wxTaskBarIconEvent& event);
 		void OnMenuShow(wxCommandEvent& event);

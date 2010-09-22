@@ -1,11 +1,3 @@
-// *** ADDED BY HEADER FIXUP ***
-#include <wx/app.h>
-#include <wx/arrstr.h>
-#include <wx/colour.h>
-#include <wx/datetime.h>
-#include <wx/filefn.h>
-#include <wx/textfile.h>
-// *** END ***
 /***************************************************************
  * Name:      AgenderMain.cpp
  * Purpose:   Code for Application Frame
@@ -36,10 +28,6 @@
 #include <wx/utils.h>
 #include <wx/log.h>
 #include <wx/filename.h>
-//escribir algunas cosas en el registro
-#ifdef __WXMSW__
-#include <wx/msw/registry.h>
-#endif//__WXMSW__
 #if defined wxHAS_TASK_BAR_ICON
 #include "AgenderTray.h"
 #endif
@@ -48,7 +36,7 @@
 #include "AgenderMain.h"
 #include "AgenderCal.h"
 
-#define __AGENDER_VERSION__ "1.1.7.1"
+#define __AGENDER_VERSION__ _("1.1.8")
 
 #ifndef __REVISION__
 #define __REVISION__ 0
@@ -71,7 +59,6 @@ BEGIN_EVENT_TABLE(AgenderFrame,wxFrame)
 	EVT_MENU(wxID_FIND,AgenderFrame::OnSearch)
 	EVT_MENU(7004,AgenderFrame::OnChangeNotesColour)
 	EVT_MENU(7003,AgenderFrame::OnYearSel)
-	EVT_MENU(7005,AgenderFrame::OnAutoStart)
 	EVT_MENU(ID_RENAME,AgenderFrame::OnMenuRename)
 	EVT_MENU_RANGE(ID_NORMAL,ID_STICKY,AgenderFrame::OnMenuNoteFlag)
 	EVT_ACTIVATE(AgenderFrame::OnActivate)
@@ -80,7 +67,7 @@ BEGIN_EVENT_TABLE(AgenderFrame,wxFrame)
 	//*)
 END_EVENT_TABLE()
 
-AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
+AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile,bool session_start):m_locale(locale)
 {
 	// TODO (virtuoso#1#): compatibilidad wx-2.9: opcion de usar wxGenericCalenderCtrl en vez de wxCalenderCtrl
 	//(*Initialize(AgenderFrame)
@@ -180,10 +167,6 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 	SetSize(schdl->Read(_T("/x"),wxDefaultPosition.x),schdl->Read(_T("/y"),wxDefaultPosition.y),
 		  schdl->Read(_T("/w"),wxDefaultSize.x),schdl->Read(_T("/h"),wxDefaultSize.y));
 	SetTransparent(schdl->Read(_T("/opacity"),255));
-	//autostart
-	wxCommandEvent event;
-	event.SetId(7005);
-	wxPostEvent(GetEventHandler(),event);
 	//taskbaricon
 #if defined wxHAS_TASK_BAR_ICON
 	//this is a stupid hack, but gnome is a very stupid desktop environment
@@ -192,19 +175,24 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 	if (!wxTaskBarIcon::IsAvailable)
 		wxMessageBox(_T("this desktop is crap"));
 #elif defined __X__ || defined __WXGTK__
-	wxArrayString output;
-	wxExecute(_T("pidof gnome-session"),output,wxEXEC_SYNC);
-	if (!output.IsEmpty()) {
-		output.Empty();
-		do
+	if (session_start)
+	{
+		wxArrayString output;
+		wxExecute(_T("pidof gnome-session"),output,wxEXEC_SYNC);
+		if (!output.IsEmpty())
 		{
-			wxExecute(_T("pidof gnome-panel"),output,wxEXEC_SYNC);
-			if (output.IsEmpty())
-				wxSleep(5);
-		} while(output.IsEmpty());
+			output.Empty();
+			do
+			{
+				wxExecute(_T("pidof gnome-panel"),output,wxEXEC_SYNC);
+				if (output.IsEmpty())
+					wxSleep(5);
+			} while(output.IsEmpty());
+			wxSleep(5);
+		}
 	}
 #endif
-	trayicon = new AgenderTray(this,schdl->Read(_T("/opacity"),255));
+	trayicon = new AgenderTray(this);
 	trayicon->SetIcon(Agender16x16_xpm,_T("Virtuosonic Agender"));
 #endif//wxHAS_TASK_BAR_ICON
 }
@@ -271,7 +259,7 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& WXUNUSED(event))
 				"\n"
 				"You should have received a copy of the GNU General Public License\n"
 				"along with Agender. If not, see <http://www.gnu.org/licenses/>."));
-	info.SetVersion(_T(__AGENDER_VERSION__));
+	info.SetVersion(__AGENDER_VERSION__);
 	info.SetCopyright(_T("Copyright (C) 2009-2010 Gabriel Espinoza"));
 	info.SetIcon(agender_xpm);
 	wxAboutBox(info);
@@ -421,168 +409,6 @@ void AgenderFrame::ChangeSelector()
 	GetSizer()->Fit(this);
 	CalendarCtrl1->SetDate(date);
 	MarkDays();
-}
-
-void AgenderFrame::OnAutoStart(wxCommandEvent& WXUNUSED(event))
-{
-#if defined __UNIX__ && !defined __APPLE__ //should i simply use __LINUX__ || __BSD__ ? and maybe __SOLARIS__
-	//we use freedestop.org standard
-	wxFileName desktopFname;
-	desktopFname.AssignDir(wxGetHomeDir());
-	desktopFname.AppendDir(_T(".config"));
-	desktopFname.AppendDir(_T("autostart"));
-	desktopFname.SetName(_T("Agender"));
-	desktopFname.SetExt(_T("desktop"));
-	wxString desktopFile = desktopFname.GetFullPath();
-	//fluxbox startup script
-	wxFileName fluxFname;
-	fluxFname.AssignDir(wxGetHomeDir());
-	fluxFname.AppendDir(_T(".fluxbox"));
-	fluxFname.SetName(_T("startup"));
-	wxString  fluxFile= fluxFname.GetFullPath();
-	//IceWM startup script
-	fluxFname.AssignDir(wxGetHomeDir());
-	fluxFname.AppendDir(_T(".icewm"));
-	fluxFname.SetName(_T("startup"));
-	wxString  IceFile = fluxFname.GetFullPath();
-	//existance!
-	if (!wxDirExists(desktopFname.GetPath()) && !wxFileExists(fluxFile) && !wxFileExists(IceFile))
-	{
-		wxMessageBox(_("AutoStart is only available under Windows, Fluxbox "
-				   " and Unix desktops that follow the freedesktop.org standards. "//how sadly! =(
-				   "If you add support for any other system, please send patches "
-				   "to the patch tracker in the Agender project page at "
-				   "http://sourceforge.net/projects/agender/ or you can also help "
-				   "donating hardware that runs your favorite system."));
-		return;
-	}
-#elif defined __WXMSW__
-	//we use the windows registry
-	wxRegKey key;
-	key.SetName(_T("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"));
-#else //__WXOSX__ || __WXMAC__
-	//we ask for help :)
-	wxMessageBox(_("AutoStart is only available under Windows, Fluxbox "
-			   " and Unix desktops that follow the freedesktop.org standards. "//how sadly! =(
-			   "If you add support for any other system, please send patches "
-			   "to the patch tracker in the Agender project page at "
-			   "http://sourceforge.net/projects/agender/ or you can also help "
-			   "donating hardware that runs your favorite system."));
-	return;
-#endif
-	//add or remove
-	bool autostart=false;
-	wxConfig::Get()->Read(_T("/autostart"),&autostart,false);
-	if (autostart)
-	{
-		///add
-#if defined __UNIX__ && !defined __APPLE__
-		//freedesktop.org
-		if (!wxFileExists(desktopFile))
-		{
-			//lets use the easyest way
-			wxTextFile desktop;
-			desktop.Create(desktopFile);
-			desktop.AddLine(_T("[Desktop Entry]"));
-			desktop.AddLine(_T("Type=Application"));
-			desktop.AddLine(_T("Name=Agender"));
-			desktop.AddLine(_T("Exec=Agender"));
-			desktop.AddLine(_T("Icon=Agender"));
-			desktop.Write(wxTextFileType_Unix);//needed?
-			desktop.Close();
-		}
-		//add a command to run Agender to the fluxbox  startup script
-		wxTextFile startflux;
-		if (startflux.Open(fluxFile))
-		{
-			wxString command;
-			int indx = -1;
-			bool alreadyThere = false;
-			for (command = startflux.GetLastLine(); startflux.GetCurrentLine() > 0;
-					command = startflux.GetPrevLine())
-			{
-				if (command.Matches(_T("exec*fluxbox*")))
-					indx = startflux.GetCurrentLine();
-				if (command.Matches(_T("Agender &")))
-					alreadyThere = true;
-			}
-			if (indx > -1 && !alreadyThere)
-			{
-				startflux.InsertLine(_T("Agender &"),indx);
-				startflux.Write();
-			}
-			startflux.Close();
-		}
-		//add a command to run Agender to the icewm  startup script
-		wxTextFile startice;
-		if (startice.Open(IceFile))
-		{
-			wxString command;
-			bool alreadyThere = false;
-			for (command = startice.GetLastLine(); startice.GetCurrentLine() > 0;
-					command = startice.GetPrevLine())
-			{
-				if (command.Matches(_T("Agender &")))
-					alreadyThere = true;
-			}
-			if (!alreadyThere)
-			{
-				startice.AddLine(_T("Agender &"));
-				startice.Write();
-			}
-			startice.Close();
-		}
-#elif defined __WXMSW__
-		wxString AgenderValue;
-		key.QueryValue(_T("Agender"),AgenderValue);
-		if (!key.HasValue(_T("Agender")) || AgenderValue != wxStandardPaths::Get().GetExecutablePath())
-			key.SetValue(_T("Agender"),wxStandardPaths::Get().GetExecutablePath());
-#endif
-	}
-	else///remove
-#if defined __UNIX__ && !defined __APPLE__
-	{
-		if (wxFileExists(desktopFile))
-			wxRemoveFile(desktopFile);
-		//clean fluxbox startup script
-		wxTextFile startflux;
-		if (startflux.Open(fluxFile))
-		{
-			wxString command;
-			for (command = startflux.GetLastLine(); startflux.GetCurrentLine() > 0;
-					command = startflux.GetPrevLine())
-			{
-				if (command.Matches(_T("Agender &")))
-				{
-					startflux.RemoveLine(startflux.GetCurrentLine());
-				}
-			}
-			startflux.Write();
-			startflux.Close();
-		}
-		//clean icewm startup script
-		wxTextFile startice;
-		if (startice.Open(IceFile))
-		{
-			wxString command;
-			for (command = startice.GetLastLine(); startice.GetCurrentLine() > 0;
-					command = startice.GetPrevLine())
-			{
-				if (command.Matches(_T("Agender &")))
-				{
-					startice.RemoveLine(startflux.GetCurrentLine());
-				}
-			}
-			startice.Write();
-			startice.Close();
-		}
-	}
-#elif defined __WXMSW__
-		if (key.HasValue(_T("Agender")))
-			key.DeleteValue(_T("Agender"));
-#elif defined __WXOSX__
-	return;
-#endif
 }
 
 void AgenderFrame::OnTextCtrl1Text(wxCommandEvent& WXUNUSED(event))

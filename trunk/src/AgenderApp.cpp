@@ -62,6 +62,7 @@ bool AgenderApp::OnInit()
 	wxCmdLineParser cmd(argc,argv);
 	cmd.AddOption(_T("c"),_T("config"),_T("specify a config file to load"),wxCMD_LINE_VAL_STRING);
 	cmd.AddSwitch(_T("nt"),_T("no-taskbar"),_T("use when you don't have a taskbar"));
+	cmd.AddSwitch(_T("ss"),_T("session-start"),_T("use with autostart in gnome"));
 	OnInitCmdLine(cmd);
 	int res = cmd.Parse(false);
 	if (res < 0)
@@ -105,14 +106,17 @@ bool AgenderApp::OnInit()
 	}
 	// please talk me in a language that i understand
 	if (m_locale.Init(wxLANGUAGE_DEFAULT,wxLOCALE_LOAD_DEFAULT)) {}
+	//this goes out because if wxstd.mo isn't found Agender.mo isn't loaded,
+	//like in romanian ( there's no locale/ro/LC_MESSAGES/wxstd.mo)
 	m_locale.AddCatalog(wxT("Agender"),wxLANGUAGE_ENGLISH,wxT("UTF-8"));
-
 	//(*AppInitialize
 	bool wxsOK = true;
 	wxInitAllImageHandlers();
 	//*)
 	//create main frame
-	wxFrame* Frame = new AgenderFrame(m_locale,cfgFile);
+	bool ss = false;
+	if (cmd.Found(_T("ss"))) ss = true;
+	wxFrame* Frame = new AgenderFrame(m_locale,cfgFile,ss);
 	SetTopWindow(Frame);
 	//lets create a server so Anothers can comunicate with this->m_server
 #ifndef __WXMSW__
@@ -120,7 +124,10 @@ bool AgenderApp::OnInit()
 	if (m_server->Create(IPC_Service))
 		wxLogVerbose(_T("server created"));
 	else
+	{
 		wxLogVerbose(_T("server creation failed"));
+		m_server = NULL;
+	}
 #else
 	m_server = NULL;
 #endif
@@ -175,4 +182,3 @@ void AgenderApp::OnEndSession(wxCloseEvent& WXUNUSED(event))
 		GetTopWindow()->Destroy();
 	}
 }
-
