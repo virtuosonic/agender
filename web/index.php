@@ -71,21 +71,18 @@ else {$page_data = $error404;}
 </head>
 
 <body>
-	<!-- shadow fx
-	<div class="lshadow"/> -->
-	<!-- menu -->
-	<div id="left_pane"><a href='http://sourceforge.net'>
+	<div id="left_pane">
 		<a href="http://sourceforge.net/projects/agender" >
-			<!--TODO: change sflogo to one that matches website style -->
-			<img src="http://sourceforge.net/sflogo.php?group_id=146403&amp;type=1" alt='SourceForge.net Logo' title="SourceForge.net">
+			<img src="http://sourceforge.net/sflogo.php?group_id=146403&amp;type=1" alt='SourceForge.net Logo' title="SourceForge.net"/>
 		</a>
 		<br/>
-		<!--TODO: fix links -->
-		<a href="http://sourceforge.net/donate/index.php?group_id=271084"><img src="http://images.sourceforge.net/images/project-support.jpg" width="88" 				height="32" border="0" alt="Support This Project" /> 
+		<a href="http://sourceforge.net/donate/index.php?group_id=271084">
+			<img src="http://images.sourceforge.net/images/project-support.jpg" width="88" height="32" border="0" alt="Support This Project"  title="Donate"/>
 		</a>
 	</div>
 	<div class="container">
 		<center><img src="hdr.png"/></center>
+		<!-- menu -->
 		<div id="menu">
 			<a <?php echo $Home ?> href="index.php?page=Home">Home</a> |
 			<a <?php echo $Downloads ?> href="index.php?page=Downloads">Downloads</a> |

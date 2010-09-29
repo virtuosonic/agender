@@ -79,7 +79,7 @@ img {
 
 #vs_google_search_id {
 	text-align: right;
-	display: inline;
+	display: block;
 }
 
 #left_pane {

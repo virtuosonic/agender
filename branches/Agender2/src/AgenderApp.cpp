@@ -22,7 +22,6 @@
 #include <wx/defs.h>
 #include <wx/stdpaths.h>
 #include <wx/cmdline.h>
-#include <wx/stopwatch.h>
 #endif
 
 #if !defined __WXMAC__ || !defined __WXOSX__
@@ -48,7 +47,6 @@ IMPLEMENT_APP(AgenderApp);
 
 bool AgenderApp::OnInit()
 {
-	wxStopWatch sw;
 	//who are we?
 	SetAppName(_T("Agender"));
 	SetVendorName(_T("Virtuosonic"));
@@ -109,7 +107,7 @@ bool AgenderApp::OnInit()
 	}
 	// please talk me in a language that i understand
 	if (m_locale.Init(wxLANGUAGE_DEFAULT,wxLOCALE_LOAD_DEFAULT)) {}
-	//this goes out because if wxstd.mo isn't found, Agender.mo isn't loaded,
+	//this goes out because if wxstd.mo isn't found Agender.mo isn't loaded,
 	//like in romanian ( there's no locale/ro/LC_MESSAGES/wxstd.mo)
 	m_locale.AddCatalog(wxT("Agender"),wxLANGUAGE_ENGLISH,wxT("UTF-8"));
 	//(*AppInitialize
@@ -122,6 +120,7 @@ bool AgenderApp::OnInit()
 	wxFrame* Frame = new AgenderFrame(m_locale,cfgFile,ss);
 	SetTopWindow(Frame);
 	//lets create a server so Anothers can comunicate with this->m_server
+#ifndef __WXMSW__
 	m_server = new AgenderServer;
 	if (m_server->Create(IPC_Service))
 		wxLogVerbose(_T("server created"));
@@ -130,6 +129,9 @@ bool AgenderApp::OnInit()
 		wxLogVerbose(_T("server creation failed"));
 		m_server = NULL;
 	}
+#else
+	m_server = NULL;
+#endif
 	//no taskbar?
 	if (cmd.Found(_T("nt")))
 		Frame->Show();
@@ -146,19 +148,18 @@ bool AgenderApp::OnInit()
 	// and accoding to its guidelines it should continue in memory
 	//but what about Familiar Linux, iPhoneOS, etc ?
 #endif//wxHAS_TASK_BAR_ICON
-	wxLogVerbose(_T("time %i ms"),sw.Time());
 	return wxsOK;
 }
 
 int AgenderApp::OnRun()
 {
-	Updater* up = new Updater(_T("agender.sourceforge.net"),_T("/agender_version"),__AGENDER_VERSION__);
+	Updater* up = new Updater(_T("127.0.0.1"),_T("/Agender/agender_version"),__AGENDER_VERSION__);
 	if (up->Create() == wxTHREAD_NO_ERROR)
 	{
 		if (up->Run() != wxTHREAD_NO_ERROR)
 			delete up;
 	}
-	//notif.Start(1000);
+	notif.Start(1000);
 	return wxApp::OnRun();
 }
 

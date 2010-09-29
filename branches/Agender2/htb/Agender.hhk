@@ -1,0 +1,12 @@
+<html>
+
+<body>
+	<ul>
+    	<li>
+        	<object type="text/sitemap">
+            	<param name="Name" value="Contents">
+	            <param name="Local" value="index.htm">
+        	</object>
+	</ul>
+</body>
+</html>

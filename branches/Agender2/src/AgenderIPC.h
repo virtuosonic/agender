@@ -11,7 +11,7 @@
 #include <wx/ipc.h>
 
 const wxString IPC_Topic(_T("Agender wakeup"));
-const wxString IPC_Service(_T("1121"));
+const wxString IPC_Service(_T(".agender-server"));
 
 class AgenderConnection : public wxConnection
 {

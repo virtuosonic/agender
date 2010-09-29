@@ -65,8 +65,8 @@ AgenderTray::AgenderTray(wxFrame* frame)
 		default:
 			break;
 	}
-	bool autostart=true;
-	wxConfig::Get()->Read(_T("/autostart"),&autostart,true);
+	bool autostart=false;
+	wxConfig::Get()->Read(_T("/autostart"),&autostart,false);
 	astart.Set(autostart);
 }
 
