@@ -13,6 +13,7 @@
 #include <wx/msgdlg.h>
 #include <wx/log.h>
 #include <wx/app.h>
+#include <wx/stdpaths.h>
 
 #if defined __UNIX__ && !defined __APPLE__
 #include <wx/textfile.h>

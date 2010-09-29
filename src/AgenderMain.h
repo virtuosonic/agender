@@ -23,6 +23,8 @@
 #include <wx/fdrepdlg.h>
 #include <wx/taskbar.h>
 
+#define __AGENDER_VERSION__ _("1.2")
+
 class AgenderCal;
 
 class AgenderFrame: public wxFrame
@@ -30,6 +32,7 @@ class AgenderFrame: public wxFrame
 	public:
 		AgenderFrame(wxLocale& locale,wxString cfgFile,bool session_start);
 		~AgenderFrame();
+		static const long ID_UPDATE_FOUND;
 	private:
 		//(*Handlers(AgenderFrame)
 		void OnButton3Click(wxCommandEvent& event);
@@ -50,6 +53,7 @@ class AgenderFrame: public wxFrame
 		void OnMenuNoteFlag(wxCommandEvent& event);
 		void OnActivate(wxActivateEvent& event);
 		void OnEscape(wxCommandEvent& event);
+		void OnUpdateFound(wxCommandEvent& event);
 		//(*Identifiers(AgenderFrame)
 		static const long ID_CALENDARCTRL1;
 		static const long ID_LISTBOX1;

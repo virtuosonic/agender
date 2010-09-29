@@ -49,6 +49,6 @@ wxConnectionBase * AgenderServer::OnAcceptConnection(const wxString& topic)
 {
 	if (topic != IPC_Topic)
 		return NULL;
-	wxLogVerbose(_T("Connection acepted"));
+	wxLogVerbose(_T("IPC Connection acepted"));
 	return new AgenderConnection;
 }

@@ -23,7 +23,7 @@
 ;!define MINGW_DIR "/usr/i686-pc-mingw32/sys-root/mingw"
 ;!define MINGW_DIR "C:\Archivos de Programa\codeblocks\MINGW"
 ;!define MINGW_DIR "C:\MINGW"
-!define PRODUCT_VERSION "1.1.8"
+!define PRODUCT_VERSION "1.2"
 ;constants (don't touch)
 !define PRODUCT_NAME "Agender"
 !define PRODUCT_PUBLISHER "Virtuosonic"
@@ -77,6 +77,7 @@ InstallDir "$PROGRAMFILES\${PRODUCT_NAME}"
 InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" ""
 ShowInstDetails show
 ShowUnInstDetails show
+RequestExecutionLevel admin
 
 InstType "Full"
 InstType "Minimal"
@@ -189,11 +190,11 @@ Section -Post
 SectionEnd
 
 !macro SetInstType2Lang l_id sec finish
-	IntCmp $LANGUAGE ${l_id} ${l_id}detected ${l_id}ndetected
-		${l_id}detected:
+	IntCmp $LANGUAGE ${l_id} detected${l_id} ndetected${l_id}
+		detected${l_id}:
 			SectionSetInstTypes ${sec} 5
 			Goto ${finish}
-		${l_id}ndetected:
+		ndetected${l_id}:
 !macroend
 
 Function .onInit
@@ -207,7 +208,6 @@ Function .onInit
 	;lang
 	!insertmacro MUI_LANGDLL_DISPLAY
 	!insertmacro SetInstType2Lang 1034 ${sec_es} finishlangset
-	!insertmacro SetInstType2Lang 1033 ${sec_en} finishlangset
 	!insertmacro SetInstType2Lang 1036 ${sec_fr} finishlangset
 	!insertmacro SetInstType2Lang 1031 ${sec_de} finishlangset
 	!insertmacro SetInstType2Lang 1032 ${sec_el} finishlangset
@@ -219,6 +219,10 @@ Function .onInit
 	!insertmacro SetInstType2Lang 1053 ${sec_sv} finishlangset
 	finishlangset:
 FunctionEnd
+
+ Function .onInstSuccess
+	ExecShell "open" ${PRODUCT_WEB_SITE}
+ FunctionEnd
 
 Section Uninstall
 	Delete "$INSTDIR\${PRODUCT_NAME}.url"

@@ -84,6 +84,10 @@
 		<Unit filename="AgenderMain.h" />
 		<Unit filename="AgenderTray.cpp" />
 		<Unit filename="AgenderTray.h" />
+		<Unit filename="Notifier.cpp" />
+		<Unit filename="Notifier.h" />
+		<Unit filename="Updater.cpp" />
+		<Unit filename="Updater.h" />
 		<Unit filename="resource.rc">
 			<Option compilerVar="WINDRES" />
 			<Option target="Release" />

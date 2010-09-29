@@ -36,8 +36,6 @@
 #include "AgenderMain.h"
 #include "AgenderCal.h"
 
-#define __AGENDER_VERSION__ _("1.1.8")
-
 #ifndef __REVISION__
 #define __REVISION__ 0
 #endif
@@ -51,6 +49,7 @@ const long AgenderFrame::ID_LISTBOX1 = wxNewId();
 const long AgenderFrame::ID_TEXTCTRL1 = wxNewId();
 const long AgenderFrame::ID_BUTTON1 = wxNewId();
 const long AgenderFrame::ID_BUTTON2 = wxNewId();
+const long AgenderFrame::ID_UPDATE_FOUND = wxNewId();
 //*)
 
 BEGIN_EVENT_TABLE(AgenderFrame,wxFrame)
@@ -63,6 +62,7 @@ BEGIN_EVENT_TABLE(AgenderFrame,wxFrame)
 	EVT_MENU_RANGE(ID_NORMAL,ID_STICKY,AgenderFrame::OnMenuNoteFlag)
 	EVT_ACTIVATE(AgenderFrame::OnActivate)
 	EVT_MENU(wxID_CLOSE,AgenderFrame::OnEscape)
+	EVT_MENU(ID_UPDATE_FOUND,AgenderFrame::OnUpdateFound)
 	//(*EventTable(AgenderFrame)
 	//*)
 END_EVENT_TABLE()
@@ -170,11 +170,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile,bool session_start)
 	//taskbaricon
 #if defined wxHAS_TASK_BAR_ICON
 	//this is a stupid hack, but gnome is a very stupid desktop environment
-#if wxCHECK_VERSION(2,9,0)
-	wxLogVerbose(_T("using dev"));
-	if (!wxTaskBarIcon::IsAvailable)
-		wxMessageBox(_T("this desktop is crap"));
-#elif defined __X__ || defined __WXGTK__
+#if defined __X__ || defined __WXGTK__
 	if (session_start)
 	{
 		wxArrayString output;
@@ -485,4 +481,17 @@ void AgenderFrame::OnActivate(wxActivateEvent& event)
 void AgenderFrame::OnEscape(wxCommandEvent& WXUNUSED(event))
 {
 	Close();
+}
+
+void AgenderFrame::OnUpdateFound(wxCommandEvent& event)
+{
+	wxLogVerbose(_T("creating dialog"));
+	wxMessageDialog dlg(wxTheApp->GetTopWindow(),
+			wxString::Format(_("The %s version of %s has been released. "
+				"Do you want to download it?"),event.GetString().c_str(),wxTheApp->GetAppName().c_str()),
+			_("Upgrade Found"),wxYES_NO|wxSTAY_ON_TOP);
+	if (dlg.ShowModal() == wxID_YES)
+	{
+		wxLaunchDefaultBrowser(_T("http://agender.sourceforge.net/index.php?page=Downloads"));
+	}
 }
