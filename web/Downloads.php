@@ -28,28 +28,28 @@ search in this list if it's available for yours.
 	</li>
 	<li id="suse">RPM packages for openSuSE
 		<br/>11.1 -
-		<a href="http://sourceforge.net/projects/agender/files/Agender-<?php ver_rel() ?>.suse111.i585.rpm/download">i586</a>
-		<a href="http://sourceforge.net/projects/agender/files/Agender-<?php ver_rel() ?>.suse111.x86_64.rpm/download">x86_64</a>
+		<a href="http://sourceforge.net/projects/agender/files/Agender-<?php ver_rel() ?>.suse111.i585.rpm">i586</a>
+		<a href="http://sourceforge.net/projects/agender/files/Agender-<?php ver_rel() ?>.suse111.x86_64.rpm">x86_64</a>
 	<br/>11.2 -
-		<a href="http://sourceforge.net/projects/agender/files/Agender-<?php ver_rel() ?>.suse112.i585.rpm/download">i586</a>
-		<a href="http://sourceforge.net/projects/agender/files/Agender-<?php ver_rel() ?>.suse112.x86_64.rpm/download">x86_64</a>
+		<a href="http://sourceforge.net/projects/agender/files/Agender-<?php ver_rel() ?>.suse112.i585.rpm">i586</a>
+		<a href="http://sourceforge.net/projects/agender/files/Agender-<?php ver_rel() ?>.suse112.x86_64.rpm">x86_64</a>
 	<br/>11.3 -
-		<a href="http://sourceforge.net/projects/agender/files/Agender-<?php ver_rel() ?>.suse113.i585.rpm/download">i586</a>
-		<a href="http://sourceforge.net/projects/agender/files/Agender-<?php ver_rel() ?>.suse113.x86_64.rpm/download">x86_64</a>
+		<a href="http://sourceforge.net/projects/agender/files/Agender-<?php ver_rel() ?>.suse113.i585.rpm">i586</a>
+		<a href="http://sourceforge.net/projects/agender/files/Agender-<?php ver_rel() ?>.suse113.x86_64.rpm">x86_64</a>
 	</li>
 	<li id="mdv">RPM packages for Mandriva
 	<br/>2009 -
-		<a href="http://sourceforge.net/projects/agender/files/Agender-<?php ver_rel() ?>.mdv2009.i585.rpm/download">i586</a>
-		<a href="http://sourceforge.net/projects/agender/files/Agender-<?php ver_rel() ?>.mdv2009.x86_64.rpm/download">x86_64</a>		<br/>2010 -
-		<a href="http://sourceforge.net/projects/agender/files/Agender-<?php ver_rel() ?>.mdv2010.i585.rpm/download">i586</a>
-		<a href="http://sourceforge.net/projects/agender/files/Agender-<?php ver_rel() ?>.mdv2010.x86_64.rpm/download">x86_64</a>
+		<a href="http://sourceforge.net/projects/agender/files/Agender-<?php ver_rel() ?>.mdv2009.i585.rpm">i586</a>
+		<a href="http://sourceforge.net/projects/agender/files/Agender-<?php ver_rel() ?>.mdv2009.x86_64.rpm">x86_64</a>		<br/>2010 -
+		<a href="http://sourceforge.net/projects/agender/files/Agender-<?php ver_rel() ?>.mdv2010.i585.rpm">i586</a>
+		<a href="http://sourceforge.net/projects/agender/files/Agender-<?php ver_rel() ?>.mdv2010.x86_64.rpm">x86_64</a>
 	</li>
 	<li id="fedora">RPM packages for Fedora
 	<br/>12 -
-		<a href="http://sourceforge.net/projects/agender/files/Agender-<?php ver_rel() ?>.fc12.i385.rpm/download">i386</a>
-		<a href="http://sourceforge.net/projects/agender/files/Agender-<?php ver_rel() ?>.fc12.x86_64.rpm/download">x86_64</a>		<br/>13 -
-		<a href="http://sourceforge.net/projects/agender/files/Agender-<?php ver_rel() ?>.fc13.i385.rpm/download">i386</a>
-		<a href="http://sourceforge.net/projects/agender/files/Agender-<?php ver_rel() ?>.fc13.x86_64.rpm/download">x86_64</a>
+		<a href="http://sourceforge.net/projects/agender/files/Agender-<?php ver_rel() ?>.fc12.i385.rpm">i386</a>
+		<a href="http://sourceforge.net/projects/agender/files/Agender-<?php ver_rel() ?>.fc12.x86_64.rpm">x86_64</a>		<br/>13 -
+		<a href="http://sourceforge.net/projects/agender/files/Agender-<?php ver_rel() ?>.fc13.i385.rpm">i386</a>
+		<a href="http://sourceforge.net/projects/agender/files/Agender-<?php ver_rel() ?>.fc13.x86_64.rpm">x86_64</a>
 	</li>
 	<li id="deb">
 	Currently we don't provide debian packages, if you would like to help comment in the
@@ -62,7 +62,7 @@ search in this list if it's available for yours.
 	<li id="tar">
 	If you use a Operating System for which we don't provide packages or simply want to know
 	how Agender works, you can download the
-	<a href="http://sourceforge.net/projects/agender/files/Agender-1.1.6.tar.bz2/download">sourcecode</a>
+	<a href="http://sourceforge.net/projects/agender/files/Agender-1.1.6.tar.bz2@">sourcecode</a>
 	</li>
 	<li id="svn">
 	Keep up with Agender development.<br/>
