@@ -1,6 +1,6 @@
 <?php
 	$Agender_Version = '1.1.7.1';
-$Agender_Release = '1';
+$Agender_Release = '5';
 
 function ver_rel()
 {
