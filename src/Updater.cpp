@@ -34,6 +34,7 @@ Updater::~Updater()
 
 wxThread::ExitCode Updater::Entry()
 {
+	Sleep(1200000);
 	wxString found = Search();
 	if (!found.IsEmpty())
 	{

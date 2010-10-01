@@ -6,8 +6,6 @@
  * Copyright: Gabriel Espinoza
  * License: GPLv3+
  **************************************************************/
-#include <wx/wxprec.h>
-
 #ifdef __BORLANDC__
 #pragma hdrstop
 #endif
@@ -17,13 +15,11 @@
 #include "AgenderIPC.h"
 #include "Updater.h"
 
-#ifndef WX_PRECOMP
 #include <wx/log.h>
 #include <wx/defs.h>
 #include <wx/stdpaths.h>
 #include <wx/cmdline.h>
 #include <wx/stopwatch.h>
-#endif
 
 #if !defined __WXMAC__ || !defined __WXOSX__
 #include <iostream>
@@ -158,7 +154,7 @@ int AgenderApp::OnRun()
 		if (up->Run() != wxTHREAD_NO_ERROR)
 			delete up;
 	}
-	//notif.Start(1000);
+	notif.Start(1000);
 	return wxApp::OnRun();
 }
 

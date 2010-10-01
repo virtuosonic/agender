@@ -5,18 +5,13 @@
  * Copyright: Gabriel Espinoza
  * License: GPLv3+
  **************************************************************/
-#include <wx/wxprec.h>
-
 #ifdef __BORLANDC__
 #pragma hdrstop
 #endif
 
 #include "AgenderCal.h"
-
-#ifndef WX_PRECOMP
 #include <wx/config.h>
 #include <wx/log.h>
-#endif
 
 //since this  software has a very bad design, now I have to use hacks because it wasn't mean to
 //be extensible, however it acomplishes it goals: small, fast & portable
