@@ -14,10 +14,19 @@
 #
 
 %if 0%{?suse_version}
-	%define dist .suse
+	%define dist .suse%{suse_version}
 %endif
 
 Summary: A cross-platform schedule tool!
+Summary(es): La agenda multiplataforma
+Summary(fr): Un outil de planification multiplate-forme
+Summary(el): Λογισμικό διαχείρισης προγράμματος που δουλεύει σε όλες τις πλατφόρμες
+Summary(de): Ein plattformunabhängiges Zeitplanungs-Werkzeug
+Summary(pt): Uma agenda multi-plataforma
+Summary(sv): Ett plattformsoberoende schema verktyg
+Summary(zh): 跨平台日程表工具
+Summary(ja): クロスプラットフォームのスケジュール管理ツール
+Summary(ro): Un utilitar multi-platformă de planificare
 Name: Agender
 Packager: Gabriel Espinoza <virtuosonic@users.sourceforge.net>
 Version: @VERSION@
@@ -76,3 +85,8 @@ that support freedesktop.org, Fluxbox and IceWM
 	#shortcut
 	%{_datadir}/applications/Agender.desktop
 	%{_datadir}/pixmaps/Agender.png
+%changelog
+* Fri Oct 01 2010 virtuosonic <virtuosonic@users.sourceforge.net>
+- added '%changelog' tag
+- added translated Summary
+
