@@ -1,0 +1,13 @@
+      1 #!/usr/bin/make -f
+      2 # -*- makefile -*-
+      3 # Sample debian/rules that uses debhelper.
+      4 # This file was originally written by Joey Hess and Craig Small.
+      5 # As a special exception, when this file is copied by dh-make into a
+      6 # dh-make output file, you may use that output file without restriction.
+      7 # This special exception was added by Craig Small in version 0.37 of dh-make.
+      8
+      9 # Uncomment this to turn on verbose mode.
+     10 #export DH_VERBOSE=1
+     11
+     12 %:
+     13        dh $@
