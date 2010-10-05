@@ -2,10 +2,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Agender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-16 20:55-0800\n"
+"POT-Creation-Date: 2010-10-04 21:58-0800\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Georgios Petsagourakis\n"
-"Language-Team: Agender project <agender-support@lists.sourceforge.net> \n"
+"Last-Translator: Gabriel Espinoza <virtuosonic@users.sourceforge.net>\n"
+"Language-Team: Agender project <agender-support@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,43 +13,47 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ../src\n"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:84
+#: ../src/AgenderMain.cpp:77
 msgid "Agender"
 msgstr "Agender"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:98
+#: ../src/AgenderMain.cpp:93
 msgid "Add &note"
 msgstr "Πρ&οσθήκη σημείωσης"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:102
+#: ../src/AgenderMain.cpp:97
 msgid "&Delete selection"
 msgstr "Διαγραφή &επιλεγμένων"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:104
+#: ../src/AgenderMain.cpp:99
 msgid "&About..."
 msgstr "Περί..."
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:144
+#: ../src/AgenderMain.cpp:139
 msgid "Agender uses this file to save your schedule, don't delete it!"
 msgstr "Το Agender χρησιμοποιεί αυτό το αρχείο για να αποθηκεύει το πρόγραμμά σας, μην το σβήσετε!"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:169
+#: ../src/AgenderMain.cpp:164
 msgid "Agender|Search Notes"
 msgstr "Agender|Αναζήτηση σημειώσεων"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:251
+#: ../src/AgenderMain.cpp:243
 msgid "A cross-platform schedule tool"
 msgstr "Λογισμικό διαχείρισης προγράμματος που δουλεύει σε όλες τις πλατφόρμες"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:252
+#: ../src/AgenderMain.cpp:244
 msgid "Build:"
 msgstr "Build:"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:253
+#: ../src/AgenderMain.cpp:244
+msgid "Revision:"
+msgstr ""
+
+#: ../src/AgenderMain.cpp:245
 msgid "Agender Web Site"
 msgstr "Ιστοτόπος του Agender"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:254
+#: ../src/AgenderMain.cpp:246
 msgid ""
 "Agender is free software; you can redistribute it and/or modify\n"
 "it under the terms of the GNU General Public License as published by\n"
@@ -77,91 +81,98 @@ msgstr ""
 "You should have received a copy of the GNU General Public License\n"
 "along with Agender. If not, see <http://www.gnu.org/licenses/>."
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:305
+#: ../src/AgenderMain.cpp:297
 msgid "To-Do Title"
 msgstr "Τίτλος To-Do"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:305
+#: ../src/AgenderMain.cpp:297
 msgid "New To-Do"
 msgstr "Νέο To-Do"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:310
+#: ../src/AgenderMain.cpp:302
 msgid "Expresion '$(' reserved for Agender, please use another name"
 msgstr "Το σύμπλεγμα χαρακτήρων  '$(' δεν μπορεί να χρησιμοποιηθεί στον Agender χρησιμοποιήστε ένα άλλο όνομα."
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:438
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:452
-msgid "AutoStart is only available under Windows, Fluxbox  and Unix desktops that follow the freedesktop.org standards. If you add support for any other system, please send patches to the patch tracker in the Agender project page at http://sourceforge.net/projects/agender/ or you can also help donating hardware that runs your favorite system."
-msgstr "Η αυτόματη εκκίνηση είναι διαθέσιμη μόνο σε Windows, Fluxbox και Unix μηχανήματα που ακολουθούν τα standards του freedesktop.org. Αν προσθέσετε υποστήριξη της λειτουργείας για κάποιο άλλο σύστημα, παρακαλούμε να στείλετε ένα patch στον tracker του Agender στην διεύθυνση http://sourceforge.net/projects/agender/ μπορείτε επίσης να κάνετε δωρεά όποιο σύστημα θα θέλατε να τρέχει το Agender."
-
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:546
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:584
+#: ../src/AgenderMain.cpp:418
+#: ../src/AgenderMain.cpp:456
 msgid "Rename"
 msgstr "Μετονομασία"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:548
+#: ../src/AgenderMain.cpp:420
 msgid "Normal"
 msgstr "Κανονικό"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:549
+#: ../src/AgenderMain.cpp:421
 msgid "Sticky"
 msgstr "Μόνιμο"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderMain.cpp:584
+#: ../src/AgenderMain.cpp:456
 msgid "New name"
 msgstr "Νέο όνομα"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:82
+#: ../src/AgenderMain.cpp:490
+#, c-format
+msgid "The %s version of %s has been released. Do you want to download it?"
+msgstr ""
+
+#: ../src/AgenderMain.cpp:492
+msgid "Upgrade Found"
+msgstr ""
+
+#: ../src/wxAutoStart.cpp:39
+#, fuzzy, c-format
+msgid "AutoStart is only available under %s  and Unix desktops that follow the freedesktop.org standards. If you add support for any other system, please send patches to the patch tracker in the Agender project page at http://sourceforge.net/projects/agender/ or you can also help donating hardware that runs your favorite system."
+msgstr "Η αυτόματη εκκίνηση είναι διαθέσιμη μόνο σε Windows, Fluxbox και Unix μηχανήματα που ακολουθούν τα standards του freedesktop.org. Αν προσθέσετε υποστήριξη της λειτουργείας για κάποιο άλλο σύστημα, παρακαλούμε να στείλετε ένα patch στον tracker του Agender στην διεύθυνση http://sourceforge.net/projects/agender/ μπορείτε επίσης να κάνετε δωρεά όποιο σύστημα θα θέλατε να τρέχει το Agender."
+
+#: ../src/wxAutoStart.cpp:46
+msgid "Error setting auto start"
+msgstr ""
+
+#: ../src/AgenderTray.cpp:91
 msgid "100%"
 msgstr "100%"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:83
+#: ../src/AgenderTray.cpp:92
 msgid "75%"
 msgstr "75%"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:84
+#: ../src/AgenderTray.cpp:93
 msgid "50%"
 msgstr "50%"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:85
+#: ../src/AgenderTray.cpp:94
 msgid "25%"
 msgstr "25%"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:90
+#: ../src/AgenderTray.cpp:99
 msgid "Show"
 msgstr "Προβολή"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:91
+#: ../src/AgenderTray.cpp:100
 msgid "Hide"
 msgstr "Απόκρυψη"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:94
+#: ../src/AgenderTray.cpp:103
 msgid "Opacity"
 msgstr "Διαφάνεια"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:95
+#: ../src/AgenderTray.cpp:104
 msgid "Year selector"
 msgstr "Επιλογέας έτους"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:96
+#: ../src/AgenderTray.cpp:105
 msgid "Notes Colour"
 msgstr "Χρώμα Σημειώσεων"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:98
+#: ../src/AgenderTray.cpp:107
 msgid "Symbol"
 msgstr "Σύμβολο"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:100
+#: ../src/AgenderTray.cpp:109
 msgid "Autostart"
 msgstr "Αυτόματη Εκκίνηση"
 
-#: /home/virtuoso/C++/Agender/trunk/src/AgenderTray.cpp:102
+#: ../src/AgenderTray.cpp:111
 msgid "Exit"
 msgstr "Έξοδος"
 
-#~ msgid ""
-#~ "AutoStart is only available under Windows and Unix desktop that follow "
-#~ "the freedesktop.org standards"
-#~ msgstr ""
-#~ "AutoStart ist nur unter Windows-und Unix-Desktop, der die Standards von "
-#~ "freedesktop.org folgen"

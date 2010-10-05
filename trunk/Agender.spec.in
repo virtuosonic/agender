@@ -10,11 +10,14 @@
 #If you're reading the file Agender.spec don't edit it
 #it will be overwrited by configure, edit Agender.spec.in
 #
-#this file was tested in the opeSUSE Build Service
+#this file was tested in the openSuSE Build Service
 #
 
 %if 0%{?suse_version}
 	%define dist .suse%{suse_version}
+%endif
+%if 0%{?mdkversion}
+	%define dist .mdk%{mdkversion}
 %endif
 
 Summary: A cross-platform schedule tool!
@@ -29,6 +32,8 @@ Summary(ja): クロスプラットフォームのスケジュール管理ツー�
 Summary(ro): Un utilitar multi-platformă de planificare
 Name: Agender
 Packager: Gabriel Espinoza <virtuosonic@users.sourceforge.net>
+Vendor: Virtuosonic
+Distro: VirtuosoniX
 Version: @VERSION@
 Release: 1%{dist}
 License: GPLv3+
@@ -48,8 +53,15 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-build
 Agender is a small cross-platform schedule tool where you associate some notes
 with a date or with no date in particular if  you mark the note as sticky, you
 simply start it  and it will create a task-bar icon and stay in the background,
-without annoying you,it can also be configured to run on login, on desktops
-that support freedesktop.org, Fluxbox and IceWM
+without annoying you, it can also be configured to run on login, on  Fluxbox,
+IceWM and desktops that support freedesktop.org
+
+%description -l es
+Agender es una agenda multi-plataforma con la que puede asociar  notas
+con una fecha o ninguna fecha en particular si la marca como fija, simplemente
+lo inicia y creara un icono en la barra de tareas y permanecera ejecutandose de fondo,
+sin molestarlo, tambien puede ser configurado para que con su sesion de usuario,
+en Fluxbox, IceWM y escritorios compatibles con freedesktop.org
 
 %prep
 %setup -q
@@ -89,4 +101,3 @@ that support freedesktop.org, Fluxbox and IceWM
 * Fri Oct 01 2010 virtuosonic <virtuosonic@users.sourceforge.net>
 - added '%changelog' tag
 - added translated Summary
-

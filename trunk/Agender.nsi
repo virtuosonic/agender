@@ -170,6 +170,15 @@ SectionGroup "Translations" SEC02
 	SectionEnd
 SectionGroupEnd
 
+;descriptions for components page
+LangString DESC_Agender ${LANG_ENGLISH} "The main application files (required)."
+LangString DESC_Translate ${LANG_ENGLISH} "Translations for other languages."
+
+!insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
+	!insertmacro MUI_DESCRIPTION_TEXT ${SEC01} $(DESC_Agender)
+	!insertmacro MUI_DESCRIPTION_TEXT ${SEC02} $(DESC_Translate)
+!insertmacro MUI_FUNCTION_DESCRIPTION_END
+
 Section -AdditionalIcons
 	WriteIniStr "$INSTDIR\${PRODUCT_NAME}.url" "InternetShortcut" "URL" "${PRODUCT_WEB_SITE}"
 	CreateShortCut "$SMPROGRAMS\Agender\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
@@ -281,6 +290,9 @@ Section Uninstall
 	Delete "$INSTDIR\zh_CN\Agender.mo"
 	Delete "$INSTDIR\zh_CN\wxstd.mo"
 	RMDir "$INSTDIR\zh_CN"
+	;romanian
+	Delete "$INSTDIR\ro\Agender.mo"
+	RMDir "$INSTDIR\ro"
 	;remove our dir
 	RMDir "$SMPROGRAMS\Agender"
 	RMDir "$INSTDIR"

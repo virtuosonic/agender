@@ -69,6 +69,7 @@
 		<Unit filename="../Agender.spec.in" />
 		<Unit filename="../autopackage/default.apspec.in" />
 		<Unit filename="../configure.in" />
+		<Unit filename="../debian/agender.dsc" />
 		<Unit filename="AgenderApp.cpp" />
 		<Unit filename="AgenderApp.h" />
 		<Unit filename="AgenderCal.cpp" />
