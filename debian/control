@@ -4,7 +4,7 @@ Priority: extra
 Maintainer: Gabriel Espinoza <virtuosonic@users.sourceforge.net>
 Build-Depends: debhelper (>= 7.0.50~), libwxgtk2.8-dev, wx-common
 Standards-Version: 3.8.4
-Homepage: http://agender.sourceforge.net
+Homepage: http://agender.sourceforge.net/
 
 Package: agender
 Architecture: any

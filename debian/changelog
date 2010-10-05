@@ -1,7 +1,6 @@
 agender (1.2-1) unstable; urgency=low
 
   * Initial Release.
-  * This is my first Debian package.
   * created debian dir.
 
- -- Josip Rodin <joy-mg@debian.org>  Mon, 22 Mar 2010 00:37:31 +0100
+ -- Gabriel Espinoza <virtuosonic@users.sourceforge.net>  Mon, 04 Oct 2010 00:37:31 +0100
