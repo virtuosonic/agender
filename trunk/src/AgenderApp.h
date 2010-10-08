@@ -14,6 +14,7 @@
 #include <wx/intl.h>
 #include <wx/ipc.h>
 #include "Notifier.h"
+#include "AgenderIPC.h"
 
 class AgenderApp : public wxApp
 {
@@ -24,7 +25,7 @@ class AgenderApp : public wxApp
 	private:
 		void OnEndSession(wxCloseEvent& event);
 		wxSingleInstanceChecker* m_checker;
-		wxServer* m_server;
+		AgenderServer* m_server;
 		wxLocale m_locale;
 		Notifier notif;
 		DECLARE_EVENT_TABLE()

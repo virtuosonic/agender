@@ -34,14 +34,19 @@ Updater::~Updater()
 
 wxThread::ExitCode Updater::Entry()
 {
-	Sleep(1200000);
-	wxString found = Search();
-	if (!found.IsEmpty())
+	//wait 5 minutes
+	Sleep(300000);
+	wxString found;
+	while (found.IsEmpty())
 	{
-		if (IsLatest(found))
+		found = Search();
+		if (!found.IsEmpty())
 		{
-			AskUser(found);
+			if (IsLatest(found))
+				AskUser(found);
 		}
+		else
+			Sleep(3600000);//1 hour
 	}
 	return (wxThread::ExitCode) 0;
 }

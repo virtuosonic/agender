@@ -8,6 +8,7 @@
  **************************************************************/
 #include "Notifier.h"
 #include <wx/log.h>
+#include <wx/config.h>
 
 Notifier::Notifier()
 {
@@ -21,5 +22,10 @@ Notifier::~Notifier()
 
 void Notifier::Notify()
 {
-	wxLogVerbose(_T("runing"));
+	bool test_bool;
+	wxConfig::Get()->Read(_T("/notify"),&test_bool,false);
+	if (test_bool)
+	{
+		wxLogVerbose(_T("runing"));
+	}
 }

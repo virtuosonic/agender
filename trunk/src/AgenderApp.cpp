@@ -121,11 +121,11 @@ bool AgenderApp::OnInit()
 	m_server = new AgenderServer;
 	if (m_server->Create(IPC_Service))
 		wxLogVerbose(_T("server created"));
-	else
+	/*else
 	{
 		wxLogVerbose(_T("server creation failed"));
 		m_server = NULL;
-	}
+	}*/
 	//no taskbar?
 	if (cmd.Found(_T("nt")))
 		Frame->Show();
@@ -154,7 +154,7 @@ int AgenderApp::OnRun()
 		if (up->Run() != wxTHREAD_NO_ERROR)
 			delete up;
 	}
-	notif.Start(1000);
+	//notif.Start(1000);
 	return wxApp::OnRun();
 }
 
@@ -162,7 +162,7 @@ int AgenderApp::OnExit()
 {
 	if (m_checker)
 		delete m_checker;
-	if (m_server)
+	if (0)m_server)
 		delete m_server;
 	wxLogVerbose(_T("Exiting: goodbye"));
 	return wxApp::OnExit();

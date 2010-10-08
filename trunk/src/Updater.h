@@ -1,7 +1,7 @@
 /***************************************************************
  * Name:      Updater.h
  * Purpose:   Defines Updater Class, connects to a http server and
- asks for the latest version
+ *		asks for the latest version
  * Author:    Gabriel Espinoza (virtuosonic@users.sourceforge.net)
  * Created:   2010-09-23
  * Copyright: Gabriel Espinoza
