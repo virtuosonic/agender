@@ -20,6 +20,7 @@
 #ifndef WX_PRECOMP
 #include "AgenderTray.h"
 #include <wx/colordlg.h>
+#include <wx/numdlg.h>
 #include <wx/menu.h>
 #include <wx/config.h>
 #include <wx/app.h>
@@ -41,6 +42,7 @@ BEGIN_EVENT_TABLE(AgenderTray,wxTaskBarIcon)
 	EVT_MENU(wxID_FIND,AgenderTray::OnMenuFind)
 	EVT_MENU(ID_AUTOSTART,AgenderTray::OnMenuAutoStart)
 	EVT_MENU(ID_SYMBOL,AgenderTray::OnMenuSymbols)
+	EVT_MENU(ID_NOTIFY,AgenderTray::OnMenuNotify)
 END_EVENT_TABLE()
 
 AgenderTray::AgenderTray(wxFrame* frame)
@@ -106,15 +108,18 @@ wxMenu * AgenderTray::CreatePopupMenu()
 #if wxUSE_RICHTEXT
 	menu->Append(ID_SYMBOL,_("Symbol"));
 #endif//wxUSE_RICHTEXT
+	menu->AppendCheckItem(ID_NOTIFY,_("Notify"));
 	menu->AppendCheckItem(ID_AUTOSTART,_("Autostart"));
 	menu->AppendSeparator();
 	menu->Append(wxID_EXIT,_("Exit"));
 	//read value from config
 	bool test_bool= false;
-	wxConfig::Get()->Read(_T("/yearselector"),&test_bool);
+	wxConfig::Get()->Read(_T("/yearselector"),&test_bool,false);
 	menu->Check(ID_YEARSEL,test_bool);
-	wxConfig::Get()->Read(_T("/autostart"),&test_bool);
+	wxConfig::Get()->Read(_T("/autostart"),&test_bool,true);
 	menu->Check(ID_AUTOSTART,test_bool);
+	wxConfig::Get()->Read(_T("/notify"),&test_bool,false);
+	menu->Check(ID_NOTIFY,test_bool);
 
 	return menu;
 }
@@ -200,6 +205,21 @@ void AgenderTray::OnMenuSymbols(wxCommandEvent& WXUNUSED(event))
 		}
 	}
 #endif//wxUSE_RICHTEXT
+}
+
+void AgenderTray::OnMenuNotify(wxCommandEvent& event)
+{
+	if (event.IsChecked())
+	{
+		wxNumberEntryDialog dlg(wxTheApp->GetTopWindow(),_("Days to notify before note"),_("Days"),
+				_("Notify"),1,0,365);
+		if (dlg.ShowModal() == wxID_OK)
+		{
+			wxConfig::Get()->Write(_T("/notify"),true);
+		}
+	}
+	else
+		wxConfig::Get()->Write(_T("/notify"),false);
 }
 
 #endif //wxHAS_TASK_BAR_ICON
