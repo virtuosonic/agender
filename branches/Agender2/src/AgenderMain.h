@@ -23,7 +23,7 @@
 #include <wx/fdrepdlg.h>
 #include <wx/taskbar.h>
 
-#define __AGENDER_VERSION__ _("1.2")
+#define __AGENDER_VERSION__ _("2.0")
 
 class AgenderCal;
 

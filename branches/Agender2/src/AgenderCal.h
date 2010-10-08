@@ -36,11 +36,26 @@ class AgenderCal
 		bool IsSticky(wxString note);
 		//pending
 		wxArrayString Find(wxString FindString);
-	private:
+	protected:
 		wxDateTime m_date;
 		wxString GetFullPath(wxString note);
 		bool RmStickySimb(wxString* note);
 		static const wxChar* stickPath;
+};
+
+class AgenderCalXml : public AgenderCal
+{
+	public:
+		wxArrayString GetNotes();
+		bool HasNote(wxString note);
+		wxString GetNoteText(wxString note);
+		void SetNoteText(wxString note,wxString text);
+		wxArrayInt GetDaysWithNotes();
+		void RmNote(wxString note);
+		bool RenameNote(wxString OldName,wxString NewName);
+		bool MakeSticky(wxString note);
+		bool UnStick(wxString note);
+		bool IsSticky(wxString note);
 };
 
 #endif // AGENDERCAL_H_INCLUDED
