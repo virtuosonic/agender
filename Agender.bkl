@@ -44,9 +44,15 @@ license GPLv3+
   	</data-files>
   	<!-- icon for the above shortcut-->
   	<data-files id="icon">
-  		<srcdir>$(SRCDIR)</srcdir>
+  		<srcdir>$(SRCDIR)/share</srcdir>
   		<install-to>$(DATADIR)/pixmaps</install-to>
-  		<files>share/Agender.png</files>
+  		<files>agender48.png</files>
+  	</data-files>
+  	<!-- icon for the about dialog-->
+  	<data-files id="icon-about">
+  		<srcdir>$(SRCDIR)/share</srcdir>
+  		<install-to>$(DATADIR)/Agender/</install-to>
+  		<files>agender48.png</files>
   	</data-files>
   	<!--translations-->
   	<gettext-catalogs>
