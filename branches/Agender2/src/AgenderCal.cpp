@@ -212,3 +212,12 @@ bool AgenderCal::RmStickySimb(wxString* note)
 	return false;
 }
 
+/** @brief GetNotes
+  *
+  * @todo: document this function
+  */
+wxArrayString AgenderCalXml::GetNotes()
+{
+
+}
+

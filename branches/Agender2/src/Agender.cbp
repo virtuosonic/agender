@@ -88,6 +88,8 @@
 		<Unit filename="Notifier.h" />
 		<Unit filename="Updater.cpp" />
 		<Unit filename="Updater.h" />
+		<Unit filename="XmlNotes.cpp" />
+		<Unit filename="XmlNotes.h" />
 		<Unit filename="resource.rc">
 			<Option compilerVar="WINDRES" />
 			<Option target="Release" />

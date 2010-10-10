@@ -5,7 +5,6 @@
  * Copyright: Gabriel Espinoza
  * License: GPLv3+
  **************************************************************/
-
 #ifndef AGENDERCAL_H_INCLUDED
 #define AGENDERCAL_H_INCLUDED
 
@@ -43,19 +42,6 @@ class AgenderCal
 		static const wxChar* stickPath;
 };
 
-class AgenderCalXml : public AgenderCal
-{
-	public:
-		wxArrayString GetNotes();
-		bool HasNote(wxString note);
-		wxString GetNoteText(wxString note);
-		void SetNoteText(wxString note,wxString text);
-		wxArrayInt GetDaysWithNotes();
-		void RmNote(wxString note);
-		bool RenameNote(wxString OldName,wxString NewName);
-		bool MakeSticky(wxString note);
-		bool UnStick(wxString note);
-		bool IsSticky(wxString note);
-};
+
 
 #endif // AGENDERCAL_H_INCLUDED
