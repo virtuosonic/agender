@@ -162,7 +162,7 @@ int AgenderApp::OnExit()
 {
 	if (m_checker)
 		delete m_checker;
-	if (0)m_server)
+	if (m_server)
 		delete m_server;
 	wxLogVerbose(_T("Exiting: goodbye"));
 	return wxApp::OnExit();

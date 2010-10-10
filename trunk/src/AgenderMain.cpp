@@ -6,14 +6,12 @@
  * Copyright: Gabriel Espinoza
  * License: GPLv3+
  **************************************************************/
- #include <wx/wxprec.h>
 
 #ifdef __BORLANDC__
     #pragma hdrstop
     //for those who can't change turboc++, like theacher Nancy
 #endif
 
-#ifndef WX_PRECOMP
 #include <wx/msgdlg.h>
 #include <wx/defs.h>
 #include <wx/settings.h>
@@ -31,7 +29,6 @@
 #if defined wxHAS_TASK_BAR_ICON
 #include "AgenderTray.h"
 #endif
-#endif
 
 #include "AgenderMain.h"
 #include "AgenderCal.h"
@@ -41,7 +38,6 @@
 #endif
 
 #include "Agender16x16.xpm"
-#include "Agender.xpm"
 
 //(*IdInit(AgenderFrame)
 const long AgenderFrame::ID_CALENDARCTRL1 = wxNewId();
@@ -257,7 +253,14 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& WXUNUSED(event))
 				"along with Agender. If not, see <http://www.gnu.org/licenses/>."));
 	info.SetVersion(__AGENDER_VERSION__);
 	info.SetCopyright(_T("Copyright (C) 2009-2010 Gabriel Espinoza"));
-	info.SetIcon(agender_xpm);
+	wxIcon ico;
+	{
+		wxFileName icoFile;
+		icoFile.AssignDir(wxStandardPaths::Get().GetResourcesDir());
+		icoFile.SetName(_T("agender48.png"));
+		ico.CopyFromBitmap(wxBitmap(icoFile.GetFullPath()));
+	}
+	info.SetIcon(ico);
 	wxAboutBox(info);
 }
 
