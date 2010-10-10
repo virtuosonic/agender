@@ -40,6 +40,7 @@
 		<Unit filename="agender.css" />
 		<Unit filename="download.css" />
 		<Unit filename="index.php" />
+		<Unit filename="js/agender.js" />
 		<Unit filename="links.css" />
 		<Unit filename="menu.css" />
 		<Unit filename="rss.xml" />

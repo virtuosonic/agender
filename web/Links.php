@@ -23,4 +23,8 @@ Here are some links that i think aren't boring.
 <br/>
 <a href="http://www.mozilla.org/">Firefox</a> if you are having trouble seeing this website you could try a more modern web browser.
 <br/>
+<a href="http://libicns.sourceforge.net/">libicns</a>  a library for manipulating Mac OS icon files
+<br/>
+<a href="http://www.inkscape.org/">Inkscape</a>  used to create the new Agender icon
+<br/>
 </div>

@@ -5,6 +5,14 @@
 	<description></description>
 	<!-- items -->
 	<item>
+		<title>Agender 1.2 released</title>
+		<link>http://agender.sourceforge.net/index.php?page=Downloads</link>
+		<description>
+			The 1.2 release of Agender is now available for download, including support for
+			notifications
+		</description>
+	</item>
+	<item>
 		<title>Agender's website layout improved</title>
 		<link>http://agender.sourceforge.net/index.php</link>
 		<description>The style sheet of the website have been fixed resulting in a generally better look</description>

@@ -17,6 +17,6 @@ which are listed below:
 </ul>
 <br/>
 <br/>
-If you need to contact me you will have to decipher my email address:
+If you need to contact here's my email address:
 <br/>
 <img src="correo.png"/>

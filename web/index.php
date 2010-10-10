@@ -60,7 +60,6 @@ if (in_array($page_name, $pages) and file_exists($page_name)){
 }
 else {$page_data = $error404;}
 ?>
-
 <html>
 <head>
 	<title>Agender - <?php echo $title ?></title>
@@ -68,9 +67,18 @@ else {$page_data = $error404;}
 	<link rel="stylesheet" type="text/css" href="menu.css" media="screen"/>
 	<link rel="alternate" type="application/rss+xml"
 		href="rss.xml" title="Agender - a cross-platform schedule tool!"/>
+	<script src="js/prototype.js" type="text/javascript"></script >
+	<script src="js/scriptaculous.js" type="text/javascript"></script >
 </head>
 
-<body>
+<?php
+	if ($page == 'Home') {
+		$loadscript = "onload=\"Effect.toggle('container','Appear'); return false;\"";
+	}
+	else
+		$loadscript = "";
+?>
+<body <?php echo $loadscript?>>
 	<div id="left_pane">
 		<a href="http://sourceforge.net/projects/agender" >
 			<img src="http://sourceforge.net/sflogo.php?group_id=146403&amp;type=1" alt='SourceForge.net Logo' title="SourceForge.net"/>
@@ -80,7 +88,7 @@ else {$page_data = $error404;}
 			<img src="http://images.sourceforge.net/images/project-support.jpg" width="88" height="32" border="0" alt="Support This Project"  title="Donate"/>
 		</a>
 	</div>
-	<div class="container">
+	<div id="container" <?php if ($page == 'Home') echo 'style="display: none"';?>>
 		<center><img src="hdr.png"/></center>
 		<!-- menu -->
 		<div id="menu">
