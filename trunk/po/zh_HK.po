@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-10-04 21:58-0800\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Gabriel Espinoza <virtuosonic@users.sourceforge.net>\n"
+"Last-Translator: senoutouya <senoutouya@gmail.com>\n"
 "Language-Team: Agender project <agender-support@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,11 +44,11 @@ msgstr "A cross-platform schedule tool"
 
 #: ../src/AgenderMain.cpp:244
 msgid "Build:"
-msgstr "構建:"
+msgstr "構建："
 
 #: ../src/AgenderMain.cpp:244
 msgid "Revision:"
-msgstr ""
+msgstr "版本："
 
 #: ../src/AgenderMain.cpp:245
 msgid "Agender Web Site"
@@ -111,20 +111,20 @@ msgstr "新名稱"
 #: ../src/AgenderMain.cpp:490
 #, c-format
 msgid "The %s version of %s has been released. Do you want to download it?"
-msgstr ""
+msgstr "版本號為%s的%s已發佈。您想下載嗎？"
 
 #: ../src/AgenderMain.cpp:492
 msgid "Upgrade Found"
-msgstr ""
+msgstr "發現新版本"
 
 #: ../src/wxAutoStart.cpp:39
 #, fuzzy, c-format
 msgid "AutoStart is only available under %s  and Unix desktops that follow the freedesktop.org standards. If you add support for any other system, please send patches to the patch tracker in the Agender project page at http://sourceforge.net/projects/agender/ or you can also help donating hardware that runs your favorite system."
-msgstr "自動啟動功能只在Windows、遵循freedesktop.org標準的Fluxbox和Unix桌面上才可用。如果您為其他系統增加此功能，請將補丁包發到Agender工程的補丁追踪頁http://sourceforge.net/projects/agender/,另外您也可以通過捐贈裝有您喜愛的系統的硬體來幫助我們。"
+msgstr "自啟動(AutoStart)功能只在%s和遵循freedesktop.org標準的Unix桌面上才可用。如果您為其他系統增加此功能，請將補丁包發到Agender工程的補丁追踪頁http://sourceforge.net/projects/agender/,另外您也可以通過捐贈裝有您喜愛的系統的硬體來幫助我們。"
 
 #: ../src/wxAutoStart.cpp:46
 msgid "Error setting auto start"
-msgstr ""
+msgstr "自啟動(AutoStart)設置失敗"
 
 #: ../src/AgenderTray.cpp:91
 msgid "100%"
