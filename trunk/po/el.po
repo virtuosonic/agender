@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Agender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-04 21:58-0800\n"
+"POT-Creation-Date: 2010-10-10 23:07-0800\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Gabriel Espinoza <virtuosonic@users.sourceforge.net>\n"
 "Language-Team: Agender project <agender-support@lists.sourceforge.net>\n"
@@ -13,47 +13,47 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ../src\n"
 
-#: ../src/AgenderMain.cpp:77
+#: ../src/AgenderMain.cpp:73
 msgid "Agender"
 msgstr "Agender"
 
-#: ../src/AgenderMain.cpp:93
+#: ../src/AgenderMain.cpp:89
 msgid "Add &note"
 msgstr "Πρ&οσθήκη σημείωσης"
 
-#: ../src/AgenderMain.cpp:97
+#: ../src/AgenderMain.cpp:93
 msgid "&Delete selection"
 msgstr "Διαγραφή &επιλεγμένων"
 
-#: ../src/AgenderMain.cpp:99
+#: ../src/AgenderMain.cpp:95
 msgid "&About..."
 msgstr "Περί..."
 
-#: ../src/AgenderMain.cpp:139
+#: ../src/AgenderMain.cpp:135
 msgid "Agender uses this file to save your schedule, don't delete it!"
 msgstr "Το Agender χρησιμοποιεί αυτό το αρχείο για να αποθηκεύει το πρόγραμμά σας, μην το σβήσετε!"
 
-#: ../src/AgenderMain.cpp:164
+#: ../src/AgenderMain.cpp:160
 msgid "Agender|Search Notes"
 msgstr "Agender|Αναζήτηση σημειώσεων"
 
-#: ../src/AgenderMain.cpp:243
+#: ../src/AgenderMain.cpp:239
 msgid "A cross-platform schedule tool"
 msgstr "Λογισμικό διαχείρισης προγράμματος που δουλεύει σε όλες τις πλατφόρμες"
 
-#: ../src/AgenderMain.cpp:244
+#: ../src/AgenderMain.cpp:240
 msgid "Build:"
 msgstr "Build:"
 
-#: ../src/AgenderMain.cpp:244
+#: ../src/AgenderMain.cpp:240
 msgid "Revision:"
 msgstr ""
 
-#: ../src/AgenderMain.cpp:245
+#: ../src/AgenderMain.cpp:241
 msgid "Agender Web Site"
 msgstr "Ιστοτόπος του Agender"
 
-#: ../src/AgenderMain.cpp:246
+#: ../src/AgenderMain.cpp:242
 msgid ""
 "Agender is free software; you can redistribute it and/or modify\n"
 "it under the terms of the GNU General Public License as published by\n"
@@ -81,41 +81,41 @@ msgstr ""
 "You should have received a copy of the GNU General Public License\n"
 "along with Agender. If not, see <http://www.gnu.org/licenses/>."
 
-#: ../src/AgenderMain.cpp:297
+#: ../src/AgenderMain.cpp:300
 msgid "To-Do Title"
 msgstr "Τίτλος To-Do"
 
-#: ../src/AgenderMain.cpp:297
+#: ../src/AgenderMain.cpp:300
 msgid "New To-Do"
 msgstr "Νέο To-Do"
 
-#: ../src/AgenderMain.cpp:302
+#: ../src/AgenderMain.cpp:305
 msgid "Expresion '$(' reserved for Agender, please use another name"
 msgstr "Το σύμπλεγμα χαρακτήρων  '$(' δεν μπορεί να χρησιμοποιηθεί στον Agender χρησιμοποιήστε ένα άλλο όνομα."
 
-#: ../src/AgenderMain.cpp:418
-#: ../src/AgenderMain.cpp:456
+#: ../src/AgenderMain.cpp:421
+#: ../src/AgenderMain.cpp:459
 msgid "Rename"
 msgstr "Μετονομασία"
 
-#: ../src/AgenderMain.cpp:420
+#: ../src/AgenderMain.cpp:423
 msgid "Normal"
 msgstr "Κανονικό"
 
-#: ../src/AgenderMain.cpp:421
+#: ../src/AgenderMain.cpp:424
 msgid "Sticky"
 msgstr "Μόνιμο"
 
-#: ../src/AgenderMain.cpp:456
+#: ../src/AgenderMain.cpp:459
 msgid "New name"
 msgstr "Νέο όνομα"
 
-#: ../src/AgenderMain.cpp:490
+#: ../src/AgenderMain.cpp:493
 #, c-format
 msgid "The %s version of %s has been released. Do you want to download it?"
 msgstr ""
 
-#: ../src/AgenderMain.cpp:492
+#: ../src/AgenderMain.cpp:495
 msgid "Upgrade Found"
 msgstr ""
 
@@ -128,51 +128,64 @@ msgstr "Η αυτόματη εκκίνηση είναι διαθέσιμη μό�
 msgid "Error setting auto start"
 msgstr ""
 
-#: ../src/AgenderTray.cpp:91
+#: ../src/AgenderTray.cpp:93
 msgid "100%"
 msgstr "100%"
 
-#: ../src/AgenderTray.cpp:92
+#: ../src/AgenderTray.cpp:94
 msgid "75%"
 msgstr "75%"
 
-#: ../src/AgenderTray.cpp:93
+#: ../src/AgenderTray.cpp:95
 msgid "50%"
 msgstr "50%"
 
-#: ../src/AgenderTray.cpp:94
+#: ../src/AgenderTray.cpp:96
 msgid "25%"
 msgstr "25%"
 
-#: ../src/AgenderTray.cpp:99
+#: ../src/AgenderTray.cpp:101
 msgid "Show"
 msgstr "Προβολή"
 
-#: ../src/AgenderTray.cpp:100
+#: ../src/AgenderTray.cpp:102
 msgid "Hide"
 msgstr "Απόκρυψη"
 
-#: ../src/AgenderTray.cpp:103
+#: ../src/AgenderTray.cpp:105
 msgid "Opacity"
 msgstr "Διαφάνεια"
 
-#: ../src/AgenderTray.cpp:104
+#: ../src/AgenderTray.cpp:106
 msgid "Year selector"
 msgstr "Επιλογέας έτους"
 
-#: ../src/AgenderTray.cpp:105
+#: ../src/AgenderTray.cpp:107
 msgid "Notes Colour"
 msgstr "Χρώμα Σημειώσεων"
 
-#: ../src/AgenderTray.cpp:107
+#: ../src/AgenderTray.cpp:109
 msgid "Symbol"
 msgstr "Σύμβολο"
 
-#: ../src/AgenderTray.cpp:109
+#: ../src/AgenderTray.cpp:111
+#: ../src/AgenderTray.cpp:215
+msgid "Notify"
+msgstr ""
+
+#: ../src/AgenderTray.cpp:112
 msgid "Autostart"
 msgstr "Αυτόματη Εκκίνηση"
 
-#: ../src/AgenderTray.cpp:111
+#: ../src/AgenderTray.cpp:114
 msgid "Exit"
 msgstr "Έξοδος"
+
+#: ../src/AgenderTray.cpp:214
+msgid "Days to notify before note"
+msgstr ""
+
+#: ../src/AgenderTray.cpp:214
+msgid "Days"
+msgstr ""
 
