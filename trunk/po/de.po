@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-10-10 23:07-0800\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Gabriel Espinoza <virtuosonic@users.sourceforge.net>\n"
+"Last-Translator: Florian Haag <fhaag@users.sourceforge.net>\n"
 "Language-Team: Agender project <agender-support@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,7 +47,7 @@ msgstr "Build:"
 
 #: ../src/AgenderMain.cpp:240
 msgid "Revision:"
-msgstr ""
+msgstr "Revision:"
 
 #: ../src/AgenderMain.cpp:241
 msgid "Agender Web Site"
@@ -114,20 +114,20 @@ msgstr "Neuer Name"
 #: ../src/AgenderMain.cpp:493
 #, c-format
 msgid "The %s version of %s has been released. Do you want to download it?"
-msgstr ""
+msgstr "Version %s von %s wurde veröffentlicht. Möchten Sie sie herunterladen?"
 
 #: ../src/AgenderMain.cpp:495
 msgid "Upgrade Found"
-msgstr ""
+msgstr "Upgrade gefunden"
 
 #: ../src/wxAutoStart.cpp:39
-#, fuzzy, c-format
+#, c-format
 msgid "AutoStart is only available under %s  and Unix desktops that follow the freedesktop.org standards. If you add support for any other system, please send patches to the patch tracker in the Agender project page at http://sourceforge.net/projects/agender/ or you can also help donating hardware that runs your favorite system."
-msgstr "AutoStart ist nur unter Windows, Fluxbox und Unix-Desktops verfügbar, welche die freedesktop.org-Standards einhalten. Wenn Sie Unterstützung für ein anderes System hinzufügen, senden Sie bitte Patches an den Patch-Tracker auf der Agender-Projektwebseite unter http://sourceforge.net/projects/agender/. Sie können auch helfen, indem Sie Hardware für Ihr Lieblingssystem zur Verfügung stellen."
+msgstr "AutoStart ist nur unter Windows, %s  und Unix-Desktops verfügbar, welche die freedesktop.org-Standards einhalten. Wenn Sie Unterstützung für ein anderes System hinzufügen, senden Sie bitte Patches an den Patch-Tracker auf der Agender-Projektwebseite unter http://sourceforge.net/projects/agender/. Sie können auch helfen, indem Sie Hardware für Ihr Lieblingssystem zur Verfügung stellen."
 
 #: ../src/wxAutoStart.cpp:46
 msgid "Error setting auto start"
-msgstr ""
+msgstr "Konnte keinen AutoStart-Eintrag erzeugen"
 
 #: ../src/AgenderTray.cpp:93
 msgid "100%"
@@ -172,7 +172,7 @@ msgstr "Symbol"
 #: ../src/AgenderTray.cpp:111
 #: ../src/AgenderTray.cpp:215
 msgid "Notify"
-msgstr ""
+msgstr "Benachrichtigen"
 
 #: ../src/AgenderTray.cpp:112
 msgid "Autostart"
@@ -184,9 +184,9 @@ msgstr "Beenden"
 
 #: ../src/AgenderTray.cpp:214
 msgid "Days to notify before note"
-msgstr ""
+msgstr "Anzahl der Tage vor dem Hinweis, vor denen eine Benachrichtigung gewünscht wird"
 
 #: ../src/AgenderTray.cpp:214
 msgid "Days"
-msgstr ""
+msgstr "Tage"
 
