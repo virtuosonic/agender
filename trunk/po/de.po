@@ -184,7 +184,7 @@ msgstr "Beenden"
 
 #: ../src/AgenderTray.cpp:214
 msgid "Days to notify before note"
-msgstr "Anzahl der Tage vor dem Hinweis, vor denen eine Benachrichtigung gewünscht wird"
+msgstr "Ereignis X Tage im Voraus ankündigen"
 
 #: ../src/AgenderTray.cpp:214
 msgid "Days"
