@@ -119,7 +119,7 @@ bool AgenderApp::OnInit()
 	SetTopWindow(Frame);
 	//lets create a server so Anothers can comunicate with this->m_server
 	m_server = new AgenderServer;
-	if (m_server->Create(IPC_Service))
+	if (m_server && m_server->Create(IPC_Service))
 		wxLogVerbose(_T("server created"));
 	/*else
 	{
@@ -148,7 +148,8 @@ bool AgenderApp::OnInit()
 
 int AgenderApp::OnRun()
 {
-	Updater* up = new Updater(_T("agender.sourceforge.net"),_T("/agender_version"),__AGENDER_VERSION__);
+	Updater* up = new Updater(_T("agender.sourceforge.net"),
+			_T("/agender_version"),__AGENDER_VERSION__);
 	if (up->Create() == wxTHREAD_NO_ERROR)
 	{
 		if (up->Run() != wxTHREAD_NO_ERROR)
