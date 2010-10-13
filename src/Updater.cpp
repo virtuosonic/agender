@@ -58,16 +58,23 @@ wxString Updater::Search()
 	wxLogVerbose(_T("connecting to %s"),m_host.c_str());
 	if (updateClient.Connect(m_host))
 	{
+		updateClient.SetHeader(_T("If-Modified-Since"),
+			wxConfig::Get()->Read(_T("http-modified-time"),wxEmptyString));
 		wxInputStream* ver_data = (wxInputStream*)updateClient.GetInputStream(m_file);
 		wxLogVerbose(_T("http response: %i"),updateClient.GetResponse());
-		if (ver_data)
+		if (ver_data && updateClient.GetResponse() == 200)
 		{
+			wxConfig::Get()->Write(_T("http-modified-time"),
+					updateClient.GetHeader(_T("Date")));
+			wxLogVerbose(_T("Date = %s"),updateClient.GetHeader(_T("Date")).c_str());
 			wxString last_ver;
 			wxTextInputStream strm(*ver_data);
 			last_ver = strm.ReadLine();
 			delete ver_data;
 			return last_ver;
 		}
+		else if (updateClient.GetResponse() == 304)
+			wxLogVerbose(_T("no changes in version info"));
 		else
 			wxLogVerbose(_T("failed opening http stream"));
 	}
@@ -87,6 +94,11 @@ bool Updater::IsLatest(wxString latest)
 			wxLogVerbose(_T("found new version"));
 			return true;
 		}
+	}
+	if (i_latest.GetCount() > i_cur.GetCount())
+	{
+		wxLogVerbose(_T("found new version"));
+		return true;
 	}
 	wxLogVerbose(_T("this is the latest version"));
 	return false;
