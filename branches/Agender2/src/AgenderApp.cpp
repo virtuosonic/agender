@@ -23,6 +23,7 @@
 #include <wx/stdpaths.h>
 #include <wx/cmdline.h>
 #endif
+#endif
 
 #if !defined __WXMAC__ || !defined __WXOSX__
 #include <iostream>
@@ -128,10 +129,14 @@ bool AgenderApp::OnInit()
 	{
 		wxLogVerbose(_T("server creation failed"));
 		m_server = NULL;
+<<<<<<< .copia-de-trabajo
 	}
 #else
 	m_server = NULL;
 #endif
+=======
+	}
+>>>>>>> .derecha-fusion.r175
 	//no taskbar?
 	if (cmd.Found(_T("nt")))
 		Frame->Show();
