@@ -8,7 +8,7 @@ license GPLv3+
 	<using module="datafiles"/>
 	<using module="gettext"/>
 	<set var="VERSION">1.2</set>
-	<set var="TRANSLATIONS">es de ja pt fr el sv zh_HK zh_CN ro</set>
+	<set var="TRANSLATIONS">es de ja pt fr el sv zh_HK zh_CN ro he</set>
 	<!--build binary -->
 	<exe id="Agender" template="wx-lib">
 		<app-type>gui</app-type>
