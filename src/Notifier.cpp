@@ -9,15 +9,25 @@
 #include "Notifier.h"
 #include <wx/log.h>
 #include <wx/config.h>
+#include <wx/sound.h>
+
+class Alarm : public wxTimer
+{
+	void Notify()
+	{
+		wxLogVerbose(_T("ringing"));
+		wxSound::Play(_T("../share/14262_xyzr_kx_alarm_clock.wav"));
+	}
+};
 
 Notifier::Notifier()
 {
-
+	m_alarm = new Alarm;
 }
 
 Notifier::~Notifier()
 {
-
+	delete m_alarm;
 }
 
 void Notifier::Notify()
@@ -27,5 +37,6 @@ void Notifier::Notify()
 	if (test_bool)
 	{
 		wxLogVerbose(_T("runing"));
+		m_alarm->Start(5000);
 	}
 }

@@ -23,6 +23,7 @@ class Notifier : public wxTimer
 		void Notify();
 	private:
 		void GetNext();
+		wxTimer* m_alarm;
 };
 
 #endif // _NOTIFIER_H_

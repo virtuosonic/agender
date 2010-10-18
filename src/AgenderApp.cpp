@@ -155,7 +155,8 @@ int AgenderApp::OnRun()
 		if (up->Run() != wxTHREAD_NO_ERROR)
 			delete up;
 	}
-	//notif.Start(1000);
+	wxLogVerbose(wxGetCwd());
+	notif.Start(20000);
 	return wxApp::OnRun();
 }
 

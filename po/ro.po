@@ -19,11 +19,11 @@ msgstr "Agender"
 
 #: ../src/AgenderMain.cpp:89
 msgid "Add &note"
-msgstr "Adaugã o notişã"
+msgstr "AdaugÃ£ o notiÃ¾Ã£"
 
 #: ../src/AgenderMain.cpp:93
 msgid "&Delete selection"
-msgstr "&ªterge selecşia"
+msgstr "&Âªterge selecÃ¾ia"
 
 #: ../src/AgenderMain.cpp:95
 msgid "&About..."
@@ -31,15 +31,15 @@ msgstr "&Despre..."
 
 #: ../src/AgenderMain.cpp:135
 msgid "Agender uses this file to save your schedule, don't delete it!"
-msgstr "Agender utilizeazã acest fiºier pentru a vã salva programul. Nu-l ºtergeşi!"
+msgstr "Agender utilizeazÃ£ acest fiÂºier pentru a vÃ£ salva programul. Nu-l ÂºtergeÃ¾i!"
 
 #: ../src/AgenderMain.cpp:160
 msgid "Agender|Search Notes"
-msgstr "Agender|Cautã notişe"
+msgstr "Agender|CautÃ£ notiÃ¾e"
 
 #: ../src/AgenderMain.cpp:239
 msgid "A cross-platform schedule tool"
-msgstr "Un utilitar multi-platformã de planificare"
+msgstr "Un utilitar multi-platformÃ£ de planificare"
 
 #: ../src/AgenderMain.cpp:240
 msgid "Build:"
@@ -68,35 +68,35 @@ msgid ""
 "You should have received a copy of the GNU General Public License\n"
 "along with Agender. If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
-"Agender este o aplicaşie gratuitã; o puteşi redistribui ºi/sau modifica\n"
-"sub termenii Licenşei Publice Generale GNU ca publicatã de\n"
-"Free Software Foundation, fie versiunea 3 a licenşei sau\n"
-"(la alegerea Dvs.)oricare altã versiune ulterioarã.\n"
+"Agender este o aplicaÃ¾ie gratuitÃ£; o puteÃ¾i redistribui Âºi/sau modifica\n"
+"sub termenii LicenÃ¾ei Publice Generale GNU ca publicatÃ£ de\n"
+"Free Software Foundation, fie versiunea 3 a licenÃ¾ei sau\n"
+"(la alegerea Dvs.)oricare altÃ£ versiune ulterioarÃ£.\n"
 "\n"
-"Agender este distribut cu speranşa cã va fi util,\n"
-"dar DAR FÃRÃ NICIO GARANŞIE; chiar fãrã garanşia implicatã de\n"
-"MERCANTIBILITATE sau CALITATEA SATISFÃCÃTOARE A UNUI ANUMIT SCOP. Vezi\n"
-"Licenşa Publicã Generalã GNU pentru mai multe detalii.\n"
+"Agender este distribut cu speranÃ¾a cÃ£ va fi util,\n"
+"dar DAR FÃƒRÃƒ NICIO GARANÃIE; chiar fÃ£rÃ£ garanÃ¾ia implicatÃ£ de\n"
+"MERCANTIBILITATE sau CALITATEA SATISFÃƒCÃƒTOARE A UNUI ANUMIT SCOP. Vezi\n"
+"LicenÃ¾a PublicÃ£ GeneralÃ£ GNU pentru mai multe detalii.\n"
 "\n"
-"Ar fi trebuit sã primişi o copie a Licenşei Publice Generale GNU împreunã cu Agender.\n"
-"În caz contrar, consultaşi <http://www.gnu.org/licenses/>."
+"Ar fi trebuit sÃ£ primiÃ¾i o copie a LicenÃ¾ei Publice Generale GNU Ã®mpreunÃ£ cu Agender.\n"
+"Ãn caz contrar, consultaÃ¾i <http://www.gnu.org/licenses/>."
 
 #: ../src/AgenderMain.cpp:300
 msgid "To-Do Title"
-msgstr "Titlul activitãşii"
+msgstr "Titlul activitÃ£Ã¾ii"
 
 #: ../src/AgenderMain.cpp:300
 msgid "New To-Do"
-msgstr "Activitate nouã"
+msgstr "Activitate nouÃ£"
 
 #: ../src/AgenderMain.cpp:305
 msgid "Expresion '$(' reserved for Agender, please use another name"
-msgstr "Expresia '$(' este rezervatã pentru Agender. Vã rugãm alegeşi alt nume."
+msgstr "Expresia '$(' este rezervatÃ£ pentru Agender. VÃ£ rugÃ£m alegeÃ¾i alt nume."
 
 #: ../src/AgenderMain.cpp:421
 #: ../src/AgenderMain.cpp:459
 msgid "Rename"
-msgstr "Redenumeºte"
+msgstr "RedenumeÂºte"
 
 #: ../src/AgenderMain.cpp:423
 msgid "Normal"
@@ -113,16 +113,16 @@ msgstr "Nume nou"
 #: ../src/AgenderMain.cpp:493
 #, c-format
 msgid "The %s version of %s has been released. Do you want to download it?"
-msgstr "Versiunea %s din %s a fost lansatã. Dorişi sã o descãrcaşi?"
+msgstr "Versiunea %s din %s a fost lansatÃ£. DoriÃ¾i sÃ£ o descÃ£rcaÃ¾i?"
 
 #: ../src/AgenderMain.cpp:495
 msgid "Upgrade Found"
-msgstr "Upgrade gãsit"
+msgstr "Upgrade gÃ£sit"
 
 #: ../src/wxAutoStart.cpp:39
 #, fuzzy, c-format
 msgid "AutoStart is only available under %s  and Unix desktops that follow the freedesktop.org standards. If you add support for any other system, please send patches to the patch tracker in the Agender project page at http://sourceforge.net/projects/agender/ or you can also help donating hardware that runs your favorite system."
-msgstr "Startul automat este disponibil doar sub Windows, Fluxbox ºi Unix, care urmãresc standardele freedesktop.org. Dacã adãugaşi suport pentru oricare alt sistem, vã rugãm trimiteşi patch-uri cãtre tracker-ul de patch din pagina de proiect a Agender la http://sourceforge.net/projects/agender/ sau, puteşi ajuta prin donaşii de hardware care ruleazã sistemele Dvs. preferate."
+msgstr "Startul automat este disponibil doar sub Windows, Fluxbox Âºi Unix, care urmÃ£resc standardele freedesktop.org. DacÃ£ adÃ£ugaÃ¾i suport pentru oricare alt sistem, vÃ£ rugÃ£m trimiteÃ¾i patch-uri cÃ£tre tracker-ul de patch din pagina de proiect a Agender la http://sourceforge.net/projects/agender/ sau, puteÃ¾i ajuta prin donaÃ¾ii de hardware care ruleazÃ£ sistemele Dvs. preferate."
 
 #: ../src/wxAutoStart.cpp:46
 msgid "Error setting auto start"
@@ -146,7 +146,7 @@ msgstr "25%"
 
 #: ../src/AgenderTray.cpp:101
 msgid "Show"
-msgstr "Afiºeazã"
+msgstr "AfiÂºeazÃ£"
 
 #: ../src/AgenderTray.cpp:102
 msgid "Hide"
@@ -162,7 +162,7 @@ msgstr "Selector de an"
 
 #: ../src/AgenderTray.cpp:107
 msgid "Notes Colour"
-msgstr "Culoare notişe"
+msgstr "Culoare notiÃ¾e"
 
 #: ../src/AgenderTray.cpp:109
 msgid "Symbol"
@@ -171,7 +171,7 @@ msgstr "Simbol"
 #: ../src/AgenderTray.cpp:111
 #: ../src/AgenderTray.cpp:215
 msgid "Notify"
-msgstr "Notificã"
+msgstr "NotificÃ£"
 
 #: ../src/AgenderTray.cpp:112
 msgid "Autostart"
@@ -179,11 +179,11 @@ msgstr "Start automat"
 
 #: ../src/AgenderTray.cpp:114
 msgid "Exit"
-msgstr "Ieºire"
+msgstr "IeÂºire"
 
 #: ../src/AgenderTray.cpp:214
 msgid "Days to notify before note"
-msgstr "Zile pentru a notifica înainte de noti?ã"
+msgstr "Zile pentru a notifica Ã®nainte de noti?Ã£"
 
 #: ../src/AgenderTray.cpp:214
 msgid "Days"
