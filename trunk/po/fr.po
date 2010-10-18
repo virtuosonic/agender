@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Agender\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-10-10 23:07-0800\n"
-"PO-Revision-Date: 2010-10-18 09:38+0100\n"
+"PO-Revision-Date: 2010-10-18 10:07+0100\n"
 "Last-Translator: ianaré sévi <ianare.sevi@c4mprod.com>\n"
 "Language-Team: Agender project <agender-support@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -184,7 +184,7 @@ msgstr "Quitter"
 
 #: ../src/AgenderTray.cpp:214
 msgid "Days to notify before note"
-msgstr ""
+msgstr "Nombre de jours de préavis d'une note"
 
 #: ../src/AgenderTray.cpp:214
 msgid "Days"
