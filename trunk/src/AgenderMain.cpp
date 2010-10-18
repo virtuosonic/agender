@@ -236,6 +236,8 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& WXUNUSED(event))
 	info.AddTranslator(_T("senoutouya <senoutouya@gmail.com> : chinese"));
 	info.AddTranslator(_T("Adi D. <nevvermind@users.sourceforge.net> : romanian"));
 	info.AddTranslator(_T("Itamar Shoham <itsho@users.sourceforge.net> : hebrew"));
+	//sound
+	info.AddArtist(_T("xyzr_kx from Freesound Project: alarm_clock.wav"));
 	//etc
 	info.SetDescription(wxString::Format(_T("%s\n%s %s %s\n%s %i"),_("A cross-platform schedule tool"),
 							 _("Build:"),__TDATE__,__TTIME__,_("Revision:"),__REVISION__));
