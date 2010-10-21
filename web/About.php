@@ -13,6 +13,7 @@ which are listed below:
 <li>Bruno Mace - French translator</li>
 <li>senoutouya <!-- revisar nombre--> - both simplified and traditional Chinese translator</li>
 <li>Adi D. - Romanian translator</li>
+<li>Itamar Shoham - hebrew</li>
 <li>Greg Fraley (GrenadeGuy) - Created a deb package of Agender 1.1.5</li>
 </ul>
 <br/>

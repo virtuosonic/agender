@@ -9,13 +9,13 @@
 		<link>http://agender.sourceforge.net/index.php?page=Downloads</link>
 		<description>
 			The 1.2 release of Agender is now available for download, including support for
-			notifications
+			notifications and a new translation to Hebrew
 		</description>
 	</item>
 	<item>
 		<title>Agender's website layout improved</title>
 		<link>http://agender.sourceforge.net/index.php</link>
-		<description>The style sheet of the website have been fixed resulting in a generally better look</description>
+		<description>The style sheets of the website have been fixed resulting in a generally better look</description>
 	</item>
 	<item>
 		<title>Agender 1.1.7.1 released</title>

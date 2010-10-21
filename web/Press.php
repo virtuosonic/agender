@@ -30,6 +30,15 @@ Main Features of Agender:<br/>
 - Multilingual, already available in english, spanish, deutsch and japanese<br/>
 </div>
 </li>
+<!-- corregir link a cd-libre -->
+<li><a href="http://www.cd-libre.org">Calendarios/Agender</a>
+<div class="citado">
+	review
+</div>
+</li>
+<!-- agregar link a softsea-->
+
+
 <li><a href="http://www.softoxi.com/agender-video-trailer-screenshots.html">Agender Installation Video Tutorial</a>
 
 </li>

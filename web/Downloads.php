@@ -18,7 +18,9 @@ function ver()
 <p>
 <link rel="stylesheet" type="text/css" href="download.css" media="screen"/>
 Congratulations you have reached the downloads page, if you like Agender consider making
-a donation that way you will help the development of Agender, you can also help reporting
+a <a href="http://sourceforge.net/donate/index.php?group_id=271084">
+donation</a>, that way you will help the development of Agender, we will also add you to the
+Hall of Fame and link to your website if you like so, you can also help reporting
 <a href="http://sourceforge.net/tracker/?group_id=271084&atid=1152801">bugs</a>
 or translating it to more languages
 </p>
