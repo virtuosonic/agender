@@ -148,12 +148,13 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile,bool session_start)
 	ChangeSelector();
 	MarkDays();
 	//shortcuts
-	wxAcceleratorEntry entries[3];
+	wxAcceleratorEntry entries[4];
 	entries[0].Set(wxACCEL_CTRL,(int)'f',wxID_FIND);
 	entries[1].Set(wxACCEL_NORMAL,WXK_ESCAPE,wxID_CLOSE);
 	// TODO (virtuoso#1#): use for cut
 	entries[2].Set(wxACCEL_CTRL,(int)'x',wxID_ANY);
-	wxAcceleratorTable accel(3, entries);
+	entries[3].Set(wxACCEL_CTRL,(int)'q',wxID_ANY);
+	wxAcceleratorTable accel(4, entries);
 	this->SetAcceleratorTable(accel);
 	//find dialog
 	fndData = new wxFindReplaceData;
