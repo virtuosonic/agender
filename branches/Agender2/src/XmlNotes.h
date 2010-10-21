@@ -21,6 +21,8 @@ class XmlNotes
 		void SetDate(wxDateTime date);
 		wxDateTime GetDate();
 		//
+		bool Flush();
+		//
 		wxArrayString GetNotes();
 		bool HasNote(wxString note);
 		wxString GetNoteText(wxString note);
@@ -33,9 +35,15 @@ class XmlNotes
 		bool IsSticky(wxString note);
 	private:
 		wxXmlDocument m_doc;
+		wxXmlNode* noteNode;
+		wxString m_file;
+		//private methods
 		void InitXml();
 		void Import();
-		wxXmlNode* noteNode;
+		wxXmlNode* GetDateNode();
+		wxXmlNode* GetNoteNode(wxString note);
+		wxXmlNode* GetStickyNoteNode(wxString note);
+
 };
 
 #endif // _XMLNOTES_H_

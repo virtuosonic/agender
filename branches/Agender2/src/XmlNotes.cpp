@@ -12,18 +12,31 @@
 
 XmlNotes::XmlNotes()
 {
+	noteNode = NULL;
 	wxFileName fname;
-	fname.AsignDir(wxStandardPaths::GetUserConfigDir());
+	fname.AsignDir(wxStandardPaths::GetUserDataDir());
 	fname.SetName(_T("agender.xml"))
-	if (wxFileExists(fname.GetFullPath()))
-		m_doc.Load(fname.GetFullPath());
+	m_file = fname.GetFullPath()
+	if (wxFileExists(m_file))
+		m_doc.Load(m_file);
 	else
 		InitXml();
+	if (!noteNode)
+	{
+		wxXmlNode* node = m_doc.GetRoot()->GetChildren();
+		while (node)
+		{
+			if (node->GetName() == _T("notes"))
+				noteNode = node;
+			else
+				node = node->GetNext();
+		}
+	}
 }
 
 XmlNotes::~XmlNotes()
 {
-
+	Flush();
 }
 
 bool XmlNotes::IsSticky(wxString note)
@@ -82,7 +95,12 @@ void XmlNotes::InitXml()
 	m_doc.SetRoot(new wxXmlNode(NULL,wxXML_ELEMENT_NODE,
 			_T("Agender")));
 	m_doc.GetRoot().AddAttribute(_T("version"),&attr);
-	m_doc.GetRoot().AddChild(new wxXmlNode(m_doc.GetRoot(),
-			wxXML_ELEMENT_NODE,_T("notes")));
+	noteNode = new wxXmlNode(m_doc.GetRoot(),
+			wxXML_ELEMENT_NODE,_T("notes"));
 }
 
+bool XmlNotes::Flush()
+{
+	m_doc.Save(m_file);
+	return true;
+}
