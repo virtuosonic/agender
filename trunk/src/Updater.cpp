@@ -46,7 +46,11 @@ wxThread::ExitCode Updater::Entry()
 				AskUser(found);
 		}
 		else
+		{
+			//unsigned long
+			//while ()
 			Sleep(3600000);//1 hour
+		}
 	}
 	return (wxThread::ExitCode) 0;
 }
