@@ -54,6 +54,7 @@ msgid "Agender Web Site"
 msgstr "האתר של אג'נדר"
 
 #: ../src/AgenderMain.cpp:242
+#, fuzzy
 msgid ""
 "Agender is free software; you can redistribute it and/or modify\n"
 "it under the terms of the GNU General Public License as published by\n"
@@ -68,7 +69,7 @@ msgid ""
 "You should have received a copy of the GNU General Public License\n"
 "along with Agender. If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
-"אג'נדר היא תוכנה חופשית; באפשרותך להפיץ אותה ו\או לשנות אותה\n"
+"אג'נדר היא תוכנה חופשית; באפשרותך להפיץ אותה ו או לשנות אותה\n"
 "לפי הכללים המופיעים ברשיון GNU General Public License המופיע בפרסומים של\n"
 "Free Software Foundation, מגירסה 3 של הרשיון, ומעלה.\n"
 "\n"

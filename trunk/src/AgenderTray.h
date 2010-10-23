@@ -32,7 +32,19 @@ class AgenderTray : public wxTaskBarIcon
 			ID_YEARSEL=7003,
 			ID_NOTES_COLOUR=7004,
 			ID_AUTOSTART = 7005,
-			ID_NOTIFY
+			ID_NOTIFY,
+			ID_LANG_DEF,
+			ID_LANG_ES,
+			ID_LANG_DE,
+			ID_LANG_JA,
+			ID_LANG_SV,
+			ID_LANG_FR,
+			ID_LANG_PT,
+			ID_LANG_EL,
+			ID_LANG_ZH_HK,
+			ID_LANG_ZH_CN,
+			ID_LANG_HE,
+			ID_LANG_RO,
 		};
 		wxFrame* frame;
 		int alpha;
@@ -51,6 +63,7 @@ class AgenderTray : public wxTaskBarIcon
 		void OnMenuAutoStart(wxCommandEvent& event);
 		void OnMenuSymbols(wxCommandEvent& event);
 		void OnMenuNotify(wxCommandEvent& event);
+		void OnMenuLang(wxCommandEvent& event);
 
 		DECLARE_EVENT_TABLE()
 };
