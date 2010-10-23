@@ -1,0 +1,20 @@
+m4_define([AG_VERSION], 1.1.8)
+
+AC_PREREQ(2.53)
+AC_INIT(Agender,AG_VERSION)
+AC_CANONICAL_SYSTEM
+AC_PROG_CXX
+AM_OPTIONS_WXCONFIG
+AM_PATH_WXCONFIG(2.8.0)
+AC_BAKEFILE([m4_include(autoconf_inc.m4)])
+
+AC_SUBST(VERSION,AG_VERSION)
+m4_include(revision.m4)
+AC_SUBST(REVISION,SVN_REV)
+AC_SUBST(REVISION_DATE,"SVN_DATE")
+
+AC_CONFIG_FILES([Makefile
+	autopackage/default.apspec
+	Agender.spec
+])
+AC_OUTPUT
