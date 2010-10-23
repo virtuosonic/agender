@@ -23,7 +23,7 @@
 ;!define MINGW_DIR "/usr/i686-pc-mingw32/sys-root/mingw"
 ;!define MINGW_DIR "C:\Archivos de Programa\codeblocks\MINGW"
 ;!define MINGW_DIR "C:\MINGW"
-!define PRODUCT_VERSION "1.2"
+!define PRODUCT_VERSION "1.1.8"
 ;constants (don't touch)
 !define PRODUCT_NAME "Agender"
 !define PRODUCT_PUBLISHER "Virtuosonic"
@@ -68,6 +68,7 @@ SetCompressor lzma
 !insertmacro MUI_LANGUAGE "TradChinese"
 !insertmacro MUI_LANGUAGE "SimpChinese"
 !insertmacro MUI_LANGUAGE "Romanian"
+!insertmacro MUI_LANGUAGE "Hebrew"
 ; ReserveFiles
 !insertmacro MUI_RESERVEFILE_INSTALLOPTIONS
 ; MUI end ------
@@ -119,6 +120,11 @@ SectionGroup "Translations" SEC02
 		SetOutPath "$INSTDIR\zh_HK"
 		File /oname=Agender.mo "po\zh_HK.mo"
 		File /oname=wxstd.mo "${WX_DIR}\locale\zh_TW.mo"
+	SectionEnd
+	Section "Hebrew" sec_he
+		SectionIn 1
+		SetOutPath "$INSTDIR\he"
+		File /oname=Agender.mo "po\he.mo"
 	SectionEnd
 	Section "French" sec_fr
 		SectionIn 1
@@ -226,6 +232,7 @@ Function .onInit
 	!insertmacro SetInstType2Lang 2052 ${sec_zh_CN} finishlangset
 	!insertmacro SetInstType2Lang 1023 ${sec_zh_HK} finishlangset
 	!insertmacro SetInstType2Lang 1053 ${sec_sv} finishlangset
+	!insertmacro SetInstType2Lang 1037 ${sec_he} finishlangset
 	finishlangset:
 FunctionEnd
 
@@ -293,6 +300,9 @@ Section Uninstall
 	;romanian
 	Delete "$INSTDIR\ro\Agender.mo"
 	RMDir "$INSTDIR\ro"
+	;hebrew
+	Delete "$INSTDIR\he\Agender.mo"
+	RMDir "$INSTDIR\he"
 	;remove our dir
 	RMDir "$SMPROGRAMS\Agender"
 	RMDir "$INSTDIR"

@@ -2,7 +2,7 @@ Format: 1.0
 Source: agender
 Binary: agender
 Architecture: any
-Version: 1.2
+Version: 1.1.8
 Maintainer: Gabriel Espinoza <virtuosonic@users.sourceforge.net>
 Homepage: http://agender.sourceforge.net/
 Standards-Version: 3.8.4
