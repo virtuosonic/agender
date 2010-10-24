@@ -78,9 +78,6 @@ else {$page_data = $error404;}
 
 <body <?php echo $loadscript?>>
 	<div id="left_pane">
-		<script type="text/javascript"
-			src="http://www.ohloh.net/p/363772/widgets/project_partner_badge.js">
-		</script>
 		<a href="http://sourceforge.net/projects/agender" >
 			<img src="http://sourceforge.net/sflogo.php?group_id=146403&amp;type=1" alt='SourceForge.net Logo' title="SourceForge.net"/>
 		</a>
@@ -88,6 +85,10 @@ else {$page_data = $error404;}
 		<a href="http://sourceforge.net/donate/index.php?group_id=271084">
 			<img src="http://images.sourceforge.net/images/project-support.jpg" width="88" height="32" border="0" alt="Support This Project"  title="Donate"/>
 		</a>
+		<br/>
+		<script type="text/javascript"
+			src="http://www.ohloh.net/p/363772/widgets/project_partner_badge.js">
+		</script>
 		<!-- google adsense vertical -->
 	<div id="vs_google_adsense_vert"><script type="text/javascript"><!--
 		google_ad_client = "pub-8829282890738806";
