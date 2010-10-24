@@ -5,12 +5,21 @@
 Web:
 ====
     http://agender.sourceforge.net
+    http://sourceforge.net/projects/agender
+    agender-announce@lists.sourceforge.net
+    agender-support@lists.sourceforge.net
 
 Intro:
 ======
     Thanks for trying this software, Agender is a small tool for
     writing your schedule, it is  a cross-platform software and should
-    compile and run on X, Windows, Mac OSX and someother platforms.
+    compile and run on Unix, Windows, Mac OSX and someother platforms.
+
+    If you like Agender consider making a donation, that way you will
+    help the development of Agender, we will also add you to the
+    Hall of Fame and link to your website if you like so, you can send
+    a donation via paypal by clicking in the Support this project button
+    that can be found on the left of Agender's website.
 
 Licence:
 ========
@@ -30,8 +39,8 @@ Licence:
 Dependencies:
 =============
     To compile you will need a C++ compiler and wxWidgets 2.8,
-    Agender is being developed with GNU g++ 4.3.2, and
-    wxWidgets 2.8.10 maybe it works with anothers, not sure.
+    Agender is being developed with GNU g++ 4.4.1, and
+    wxWidgets 2.8.11 maybe it works with anothers, not sure.
     The website is www.wxwidgets.org.
 
 Compiling & Installing:
@@ -40,9 +49,7 @@ Compiling & Installing:
     website is named something like Agender-x.x.x.exe where x.x.x
     is the version. If you are upgrading from version 1.1.6 please first
     run the uninstaller and then install, the way translations are installed
-    haves changed. There also are rpm packages for some Linux
-    distros. Take a look at
-        http://agender.sf.net/index.php?page=Downloads
+    haves changed.
 
     Read the file INSTALL, if you don't wan't to read so much, here
     are some short instructions:
@@ -71,6 +78,8 @@ Bugs:
     I don't call them that way, I call them "advanced user features".
     If you find one report it at the project bug tracker, patches are
     welcome, thank you.
+
+    http://sourceforge.net/tracker/?group_id=271084&atid=1152801
 
     You can also send a mail to agender-support@lists.sourceforge.net
 
@@ -102,14 +111,16 @@ Translating/i18n:
 
 TODO:
 =====
+    -notifications
+    -new file format in xml
+    -Trash bin
     -Undo/Redo!!!!!!!!!
     -Clipboard/Drag & Drop support
     -Search
     -Sticky weekday notes
-    -new file format in xml
     -richtextctrl
     -More translations
-    -notifications
+    -Multi User support on installer
 
 Changelog:
 ==========

@@ -20,6 +20,7 @@
 #include <wx/stdpaths.h>
 #include <wx/cmdline.h>
 #include <wx/stopwatch.h>
+#include <wx/wfstream.h>
 
 #if !defined __WXMAC__ || !defined __WXOSX__
 #include <iostream>
@@ -69,7 +70,7 @@ bool AgenderApp::OnInit()
 		cmd.Usage();
 		exit(EXIT_SUCCESS);
 	}
-	wxString cfgFile;
+	wxString cfgFile(wxGetHomeDir()+_T("/.Agender-current user.txt"));
 	cmd.Found(_T("c"),&cfgFile);
 	if(cmd.Found(_T("verbose")))
 	{
@@ -104,10 +105,15 @@ bool AgenderApp::OnInit()
 		exit(EXIT_FAILURE);
 	}
 	// please talk me in a language that i understand
-	if (m_locale.Init(wxLANGUAGE_DEFAULT,wxLOCALE_LOAD_DEFAULT)) {}
+	wxFileInputStream infile(cfgFile);
+	wxFileConfig* cfg = new wxFileConfig(infile);
+	if (m_locale.Init(cfg->Read(_T("/lang"),wxLANGUAGE_DEFAULT),wxLOCALE_LOAD_DEFAULT)) {}
 	//this goes out because if wxstd.mo isn't found, Agender.mo isn't loaded,
 	//like in romanian ( there's no locale/ro/LC_MESSAGES/wxstd.mo)
 	m_locale.AddCatalog(wxT("Agender"),wxLANGUAGE_ENGLISH,wxT("UTF-8"));
+	wxFileOutputStream ofile(cfgFile);
+	cfg->Save(ofile);
+	delete cfg;
 	//(*AppInitialize
 	bool wxsOK = true;
 	wxInitAllImageHandlers();
@@ -118,14 +124,16 @@ bool AgenderApp::OnInit()
 	wxFrame* Frame = new AgenderFrame(m_locale,cfgFile,ss);
 	SetTopWindow(Frame);
 	//lets create a server so Anothers can comunicate with this->m_server
+	#ifndef __WXMSW__
 	m_server = new AgenderServer;
 	if (m_server && m_server->Create(IPC_Service))
 		wxLogVerbose(_T("server created"));
-	/*else
+	else
+	#endif
 	{
 		wxLogVerbose(_T("server creation failed"));
 		m_server = NULL;
-	}*/
+	}
 	//no taskbar?
 	if (cmd.Found(_T("nt")))
 		Frame->Show();

@@ -91,7 +91,7 @@ bool AutoStart::SetWindows()
 	key.SetName(_T("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"));
 	wxString AutoStartValue;
 	key.QueryValue(wxTheApp->GetAppName(),AutoStartValue);
-	if (!key.HasValue(wxTheApp->GetAppName())|| AutoStartValue != wxStandardPaths::Get().GetExecutablePath())
+	if (!key.HasValue(wxTheApp->GetAppName()) || AutoStartValue != wxStandardPaths::Get().GetExecutablePath())
 		key.SetValue(wxTheApp->GetAppName(),wxStandardPaths::Get().GetExecutablePath());
 	return true;
 }
