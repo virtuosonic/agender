@@ -45,9 +45,9 @@ Main Features of Agender:<br/>
 </li>
 <!-- agregar link a softsea-->
 <li><a href="http://agender-linux.programas.com/linux/">Agender - Linux </a>
-<a href="http://agender-linux.programas.com/" target="_blank">
+<br/><a href="http://agender-linux.programas.com/" target="_blank">
 <img src="http://agender-linux.programas.com/linux/badge"/>
-</a>
+</a><br/>
 <div class="citado">
 &iquest;Se te olvidan las tareas que debes realizar, y las reuniones a las que tienes que acudir? &iquest;Y por qu&eacute; no pruebas a instalar en tu ordenador Agender? Este sencillo programa dispone de un sencillo calendario en el que se le pueden ir a&ntilde;adiendo tareas con facilidad.
 Cada vez que se a&ntilde;ada una nueva nota a alguno de los d&iacute;as del calendario, Agender resaltar&aacute; en color verde dicho d&iacute;a en la interfaz, para que de este modo se distingan los d&iacute;as libres de aquellos que est&aacute;n ocupados.
@@ -55,7 +55,5 @@ Su interfaz multiling&uuml;e, junto su f&aacute;cil accesibilidad (un peque&ntil
 </div>
 </li>
 <li><a href="http://www.softoxi.com/agender-video-trailer-screenshots.html">Agender Installation Video Tutorial</a>
-
 </li>
-
 </ul>
