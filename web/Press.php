@@ -7,7 +7,8 @@ Note: this reviews can be old
 <ul>
 <li>
 	<a href="http://www.softpedia.com/get/Office-tools/Diary-Organizers-Calendar/Agender.shtml">The "100% FREE" Softpedia award</a>
-	<br/><img src="softpedia_free_award_f.gif"/><br/>
+	<br/><a href="http://www.softpedia.com/get/Office-tools/Diary-Organizers-Calendar/Agender.shtml">
+		<img src="softpedia_free_award_f.gif"/><br/></a><br/>
 	<div class="citado">
 		Agender is a simple and easy to use schedule / calendar utility. It was writed to be small, simple and work on any computer.
 	</div>
