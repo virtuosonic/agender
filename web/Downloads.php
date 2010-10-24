@@ -1,19 +1,5 @@
 <?php
-	$Agender_Version = '1.1.7.1';
-$Agender_Release = '5';
-
-function ver_rel()
-{
-	global $Agender_Version,$Agender_Release;
-	echo $Agender_Version.'-'.$Agender_Release;
-}
-
-function ver()
-{
-	global $Agender_Version;
-	echo $Agender_Version;
-}
-
+$Agender_Version = '1.1.8.1';
 ?>
 <p>
 <link rel="stylesheet" type="text/css" href="download.css" media="screen"/>
@@ -25,7 +11,7 @@ Hall of Fame and link to your website if you like so, you can also help reportin
 or translating it to more languages
 </p>
 <ul id="download">
-	<li id="msw"><a href="http://sourceforge.net/projects/agender/files/Agender-<?php ver() ?>.exe">Windows Installer</a>
+	<li id="msw"><a href="http://sourceforge.net/projects/agender/files/Agender-<?php echo $Agender_Version?>.exe/download">Windows Installer</a>
 		- 2000, XP, Vista & Se7en<br/>
 		Windows 95, 98 & me - currently we aren't building for this versions of windows, but if you need one
 		you can make a <a href="http://sourceforge.net/tracker/?group_id=271084&atid=1152801">request</a>
@@ -37,7 +23,7 @@ or translating it to more languages
 	<li id="tar">
 	If you use a Operating System for which we don't provide packages or simply want to know
 	how Agender works, you can download the
-	<a href="http://sourceforge.net/projects/agender/files/Agender-1.1.6.tar.bz2@">sourcecode</a>
+	<a href="http://sourceforge.net/projects/agender/files/Agender-<?php echo $Agender_Version?>.tar.bz2/download">sourcecode</a>
 	</li>
 	<li id="svn">
 	Keep up with Agender development.<br/>

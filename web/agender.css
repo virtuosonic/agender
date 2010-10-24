@@ -1,7 +1,7 @@
-/******************************************
+/*****************
 general style sheet for
 Agender's website
-******************************************/
+*****************/
 * {
     font-family: Georgia,sans-serif;
     margin: 0;
@@ -12,6 +12,7 @@ body {
     background-attachment: fixed;
     background-color: #ffffff;
 }
+
 #container {
 	position: absolute;
 	padding: 10px;
@@ -21,21 +22,12 @@ body {
 	display: block;
 	border-left: 1px solid #7C7C7C;
 	border-right: 1px solid #7C7C7C;
+	z-index: 10;
+	min-width: 500px;
 	min-height: 100%;
 	/* IE doesn't support min-height,
 	so we hack*/
 	height: expression(this.scrollHeight < document.body.clientHeight ? "100%" : "auto");
-}
-.lshadow {
-	float: right;
-	display: inline;
-/*	clear: right;*/
-	background: url(sha.png) repeat-y left;
-}
-.rshadow {
-	float: left;
-/*	clear: left;*/
-	background: url(rsha.png) repeat-y right;
 }
 
 a {
@@ -72,9 +64,16 @@ img {
 	position: absolute;
 	right: 0px;
 	top: 20px;
-	/*width: 336px;
+	width: 336px;
 	height: 280px;
-	background: #000000;*/
+	background: #000000;
+}
+
+#vs_google_adsense_vert {
+	margin:20px;
+/*	width: 120px;*/
+/*	height: 224px;*/
+/*	background: #000000;*/
 }
 
 #vs_google_search_id {

@@ -1,15 +1,31 @@
+<?xml version="1.0" ?>
 <rss version="2.0">
 <channel>
 	<title>Agender</title>
 	<link>http://agender.sourceforge.net/</link>
-	<description></description>
+	<description>
+		This are the rss feeds for project Agender, if you like
+		Agender you should agregate this feeds.
+	</description>
+	<image>
+		<url>ico16x16.png</url>
+		<link>http://agender.sourceforge.net/</link>
+	</image>
 	<!-- items -->
 	<item>
-		<title>Agender 1.2 released</title>
+		<title>Agender 1.1.8.1 bug fix</title>
 		<link>http://agender.sourceforge.net/index.php?page=Downloads</link>
 		<description>
-			The 1.2 release of Agender is now available for download, including support for
-			notifications and a new translation to Hebrew
+			The 1.1.8.1 subrelease of Agender is available to fix the bug that caused Agender
+			to crash at start under Windows
+		</description>
+	</item>
+	<item>
+		<title>Agender 1.1.8 released</title>
+		<link>http://agender.sourceforge.net/index.php?page=Downloads</link>
+		<description>
+			The 1.18 release of Agender is now available for download, including
+			a new translation to Hebrew and an improved installer
 		</description>
 	</item>
 	<item>
@@ -22,7 +38,6 @@
 		<link>http://agender.sourceforge.net/index.php?page=Downloads</link>
 		<description>The 1.1.7.1 release of Agender is now available to download</description>
 	</item>
-
 </channel>
 </rss>
 

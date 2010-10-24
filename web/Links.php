@@ -5,7 +5,7 @@ Here are some links that i think aren't boring.
 <br/>
 <a href="http://file-folder-ren.sourceforge.net/">M&eacute;tamorphose</a> a useful renamer for files & folders
 <br/>
-<a href="http://www.wxwidgets.org/">wxWidgets</a> Agender woldn't exist without it
+<a href="http://www.wxwidgets.org/">wxWidgets</a> Agender wouldn't exist without it
 <br/>
 <a href="http://virtuosonicplusplus.blogspot.com/">VIRTUOSONIC++</a> my personal blog
 <br/>

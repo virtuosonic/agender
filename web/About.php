@@ -1,6 +1,6 @@
-Agender is developed by Gabriel Espinoza and several contributor from all the world
+<p>Agender is developed by Gabriel Espinoza and several contributor from all the world
 which are listed below:
-<br/>
+</p>
 <ul>
 <li><a href="http://virtuosonic.users.sourceforge.net">Gabriel Espinoza</a> - Developer, spanish translator and project administrator</li>
 <li>Ester Espinoza - wrote the first deutsch translation</li>
@@ -15,9 +15,10 @@ which are listed below:
 <li>Adi D. - Romanian translator</li>
 <li>Itamar Shoham - hebrew</li>
 <li>Greg Fraley (GrenadeGuy) - Created a deb package of Agender 1.1.5</li>
+<li>Ianaré Sévi - updated the french translation</li>
 </ul>
 <br/>
 <br/>
-If you need to contact here's my email address:
+If you need to contact me here's my email address:
 <br/>
 <img src="correo.png"/>

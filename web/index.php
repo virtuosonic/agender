@@ -1,10 +1,16 @@
 <?php
+$loadscript = '';
+$Appear='';
 $page = $_GET['page'];
-if ($page == '') {$page = 'Home';}
+if ($page == '') {
+$page = 'Home';
+$Appear='style="display: none"';
+$loadscript = "onload=\"Effect.toggle('container','Appear'); return false;\"";
+}
 
 $active = 'id="active"';
 $inactive = "";
-$Home = $Downloads =$Press = $Screenshots = $About = $Links = '';
+$Home = $Downloads =$Press = $Screenshots = $About = $Links = $inactive;
 if ($page == 'Home') {
 	$Home = $active;
 	$title="A cross-platform schedule tool!";
@@ -34,7 +40,6 @@ else {
 	$title = $page;
 }
 
-/* TODO (virtuoso#1#): add google search here*/
 $vs_google_search = '<div id="vs_google_search_id">
 <form action="http://www.google.com/cse" id="cse-search-box" target="_blank">
   <div>
@@ -71,13 +76,6 @@ else {$page_data = $error404;}
 	<script src="js/scriptaculous.js" type="text/javascript"></script >
 </head>
 
-<?php
-	if ($page == 'Home') {
-		$loadscript = "onload=\"Effect.toggle('container','Appear'); return false;\"";
-	}
-	else
-		$loadscript = "";
-?>
 <body <?php echo $loadscript?>>
 	<div id="left_pane">
 		<a href="http://sourceforge.net/projects/agender" >
@@ -87,8 +85,22 @@ else {$page_data = $error404;}
 		<a href="http://sourceforge.net/donate/index.php?group_id=271084">
 			<img src="http://images.sourceforge.net/images/project-support.jpg" width="88" height="32" border="0" alt="Support This Project"  title="Donate"/>
 		</a>
+		<!-- google adsense vertical -->
+	<div id="vs_google_adsense_vert"><script type="text/javascript"><!--
+		google_ad_client = "pub-8829282890738806";
+		/* agender vertical 120x600 */
+		google_ad_slot = "7717246864";
+		google_ad_width = 120;
+		google_ad_height = 600;
+		//-->
+	</script>
+	<script type="text/javascript"
+		src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+	</script></div>
 	</div>
-	<div id="container" <?php if ($page == 'Home') echo 'style="display: none"';?>>
+
+	<!-- center container -->
+	<div id="container" <?php echo $Appear ?>>
 		<center><img src="hdr.png"/></center>
 		<!-- menu -->
 		<div id="menu">
@@ -113,8 +125,7 @@ else {$page_data = $error404;}
 		?>
 		<!-- end of contents -->
 	</div>
-	<!-- shadow fx
-	<div class="rshadow"/> -->
+	<!-- adsense -->
 	<div id="vs_google_adsense">
 		<script type="text/javascript"><!--
 			google_ad_client = "pub-8829282890738806";
