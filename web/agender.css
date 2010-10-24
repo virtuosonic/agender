@@ -64,13 +64,13 @@ img {
 	position: absolute;
 	right: 0px;
 	top: 20px;
-	width: 336px;
-	height: 280px;
-	background: #000000;
+/*	width: 336px;*/
+/*	height: 280px;*/
+/*	background: #000000;*/
 }
 
 #vs_google_adsense_vert {
-	margin:20px;
+	margin-top: 20px;
 /*	width: 120px;*/
 /*	height: 224px;*/
 /*	background: #000000;*/
