@@ -1,0 +1,19 @@
+Source: Agender
+Section: x11
+Priority: extra
+Maintainer: Gabriel Espinoza <virtuosonic@users.sourceforge.net>
+Build-Depends: debhelper (>= 7.0.50~), libwxgtk2.8-dev, wx-common
+Standards-Version: 3.8.4
+Homepage: http://agender.sourceforge.net/
+
+Package: agender
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libwxgtk2.8-0
+Description: A cross-platform schedule tool!
+ Agender is a small cross-platform schedule tool where you
+ associate some notes with a date or with no date in particular
+ if  you mark the note as sticky, you simply start it  and it
+ will create a task-bar icon and stay in the background,
+ without annoying you,it can also be configured to run on
+ login, on desktops that support freedesktop.org, Fluxbox
+ and IceWM
