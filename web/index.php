@@ -87,7 +87,7 @@ else {$page_data = $error404;}
 		</a>
 		<br/>
 		<script type="text/javascript"
-			src="http://www.ohloh.net/p/363772/widgets/project_partner_badge.js">
+			src="http://www.ohloh.net/p/363772/widgets/project_thin_badge.js">
 		</script>
 		<!-- google adsense vertical -->
 	<div id="vs_google_adsense_vert"><script type="text/javascript"><!--
