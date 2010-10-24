@@ -23,7 +23,7 @@
 ;!define MINGW_DIR "/usr/i686-pc-mingw32/sys-root/mingw"
 ;!define MINGW_DIR "C:\Archivos de Programa\codeblocks\MINGW"
 ;!define MINGW_DIR "C:\MINGW"
-!define PRODUCT_VERSION "1.1.8"
+!define PRODUCT_VERSION "1.1.8.1"
 ;constants (don't touch)
 !define PRODUCT_NAME "Agender"
 !define PRODUCT_PUBLISHER "Virtuosonic"
@@ -101,6 +101,8 @@ Section "Agender" SEC01
 	!if ${SJLJ_EXCEPTIONS}
 		File "${MINGW_DIR}\bin\libgcc_s_sjlj-1.dll"
 	!endif
+	;Icon
+	File "share\agender48.png"
 	;please read it
 	File "Readme.txt"
 	File "gpl-3.0.txt"
@@ -253,6 +255,7 @@ Section Uninstall
 	Delete "$INSTDIR\Agender.exe"
 	Delete "$INSTDIR\Readme.txt"
 	Delete "$INSTDIR\gpl-3.0.txt"
+	Delete "$INSTDIR\agender48.png"
 	;remove shortcuts
 	Delete "$SMPROGRAMS\Agender\Uninstall.lnk"
 	Delete "$SMPROGRAMS\Agender\Website.lnk"

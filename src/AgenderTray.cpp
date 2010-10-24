@@ -44,7 +44,7 @@ BEGIN_EVENT_TABLE(AgenderTray,wxTaskBarIcon)
 	EVT_MENU(ID_AUTOSTART,AgenderTray::OnMenuAutoStart)
 	EVT_MENU(ID_SYMBOL,AgenderTray::OnMenuSymbols)
 	EVT_MENU(ID_NOTIFY,AgenderTray::OnMenuNotify)
-	EVT_MENU_RANGE(ID_LANG_DEF,ID_LANG_RO,AgenderTray::OnMenuLang)
+	EVT_MENU_RANGE(ID_LANG_DEF,ID_LANG_LAST-1,AgenderTray::OnMenuLang)
 END_EVENT_TABLE()
 
 AgenderTray::AgenderTray(wxFrame* frame)
@@ -99,22 +99,20 @@ wxMenu * AgenderTray::CreatePopupMenu()
 	opcMenu->AppendRadioItem(ID_OPC25,_("25%"));
 	opcMenu->Check(opc,true);
 	//lang submenu
-	/**
 	wxMenu* lmenu;
 	lmenu = new wxMenu;
 	lmenu->AppendRadioItem(ID_LANG_DEF,_("default"));
-	lmenu->AppendRadioItem(ID_LANG_ES,_("es"));
-	lmenu->AppendRadioItem(ID_LANG_DE,_("de"));
-	lmenu->AppendRadioItem(ID_LANG_JA,_("ja"));
-	lmenu->AppendRadioItem(ID_LANG_PT,_("pt"));
-	lmenu->AppendRadioItem(ID_LANG_FR,_("fr"));
-	lmenu->AppendRadioItem(ID_LANG_EL,_("el"));
-	lmenu->AppendRadioItem(ID_LANG_SV,_("sv"));
-	lmenu->AppendRadioItem(ID_LANG_ZH_HK,_("zh_HK"));
-	lmenu->AppendRadioItem(ID_LANG_ZH_CN,_("zh_CN"));
-	lmenu->AppendRadioItem(ID_LANG_RO,_("ro"));
-	lmenu->AppendRadioItem(ID_LANG_HE,_("he"));
-	**/
+	lmenu->AppendRadioItem(ID_LANG_ES,_("Spanish"));
+	lmenu->AppendRadioItem(ID_LANG_DE,_("Deutch"));
+	lmenu->AppendRadioItem(ID_LANG_JA,_("Japanese"));
+	lmenu->AppendRadioItem(ID_LANG_PT,_("Portuguese"));
+	lmenu->AppendRadioItem(ID_LANG_FR,_("French"));
+	lmenu->AppendRadioItem(ID_LANG_EL,_("Greek"));
+	lmenu->AppendRadioItem(ID_LANG_SV,_("Swedish"));
+	lmenu->AppendRadioItem(ID_LANG_ZH_HK,_("Traditional Chinese"));
+	lmenu->AppendRadioItem(ID_LANG_ZH_CN,_("Simplified Chinese"));
+	lmenu->AppendRadioItem(ID_LANG_RO,_("Romanian"));
+	lmenu->AppendRadioItem(ID_LANG_HE,_("Hebrew"));
 	//main menu
 	wxMenu* menu;
 	menu = new wxMenu;
@@ -246,9 +244,51 @@ void AgenderTray::OnMenuNotify(wxCommandEvent& event)
 
 void AgenderTray::OnMenuLang(wxCommandEvent& event)
 {
-	wxMessageBox(event.GetString());
-	wxLanguage l = wxLANGUAGE_DEFAULT;
+	wxLanguage l = wxLANGUAGE_UNKNOWN;
+	switch (event.GetId())
+	{
+		case ID_LANG_DEF:
+			l = wxLANGUAGE_DEFAULT;
+			break;
+		case ID_LANG_ES:
+			l = wxLANGUAGE_SPANISH;
+			break;
+		case ID_LANG_DE:
+			l = wxLANGUAGE_GERMAN;
+			break;
+		case ID_LANG_JA:
+			l = wxLANGUAGE_JAPANESE;
+			break;
+		case ID_LANG_SV:
+			l = wxLANGUAGE_SWEDISH;
+			break;
+		case ID_LANG_FR:
+			l = wxLANGUAGE_FRENCH;
+			break;
+		case ID_LANG_PT:
+			l = wxLANGUAGE_PORTUGUESE;
+			break;
+		case ID_LANG_EL:
+			l = wxLANGUAGE_GREEK;
+			break;
+		case ID_LANG_ZH_HK:
+			l = wxLANGUAGE_CHINESE_HONGKONG;
+			break;
+		case ID_LANG_ZH_CN:
+			l = wxLANGUAGE_CHINESE_SIMPLIFIED;
+			break;
+		case ID_LANG_HE:
+			l = wxLANGUAGE_HEBREW;
+			break;
+		case ID_LANG_RO:
+			l = wxLANGUAGE_ROMANIAN;
+			break;
+		default:
+			l = wxLANGUAGE_DEFAULT;
+			break;
+	}
 	wxConfig::Get()->Write(_T("/lang"),l);
+	wxMessageBox(_T("To apply changes you must restart Agender"));
 }
 
 #endif //wxHAS_TASK_BAR_ICON

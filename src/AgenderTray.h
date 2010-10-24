@@ -45,6 +45,7 @@ class AgenderTray : public wxTaskBarIcon
 			ID_LANG_ZH_CN,
 			ID_LANG_HE,
 			ID_LANG_RO,
+			ID_LANG_LAST
 		};
 		wxFrame* frame;
 		int alpha;
