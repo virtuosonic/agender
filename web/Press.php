@@ -33,13 +33,13 @@ Main Features of Agender:<br/>
 </div>
 </li>
 <!-- corregir link a cd-libre -->
-<li><a href="http://www.cdlibre.org/consultar/catalogo/Ofimatica_Agendas-y-calendarios.html">Catálogo > Ofimática > Agendas y calendarios</a>
+<li><a href="http://www.cdlibre.org/consultar/catalogo/Ofimatica_Agendas-y-calendarios.html">Cat&aacute;logo > Ofim&aacute;tica > Agendas y calendarios</a>
 <br/><a href="http://www.cdlibre.org/consultar/catalogo/Ofimatica_Agendas-y-calendarios.html">
   <img src="cdlibre_incluidoen.png" width="100" height="30"
 	title="Visita cdlibre.org" />
 </a><br/>
 <div class="citado">
-	Agender es un pequeño calendario que permite asociar tareas a fechas determinadas.
+	Agender es un peque&ntilde;o calendario que permite asociar tareas a fechas determinadas.
 </div>
 </li>
 <!-- agregar link a softsea-->
