@@ -13,7 +13,7 @@ Note: this reviews can be old
 	</div>
 </li>
 <li><a href="http://www.softoxi.com/agender.html">"Agender - free, fast and easy to use note reminder tool for Windows users."</a>
-<br/><a target="_blank" href="http://www.softoxi.com/agender.html"><img src="http://www.softoxi.com/images/public/awards/award.png" border="0" alt="Agender antivirus scan report at softoxi.com"></a><br/>
+<br/><a target="_blank" href="http://www.softoxi.com/agender.html"><img src="http://www.softoxi.com/images/public/awards/award.png"/></a><br/>
 <div class="citado">
 Agender is a light, free utility that allows you to organize all your thoughts comprehensively. Using the
 application is quite straightforward: simply select one of the dates in the calendar, click Add Note and
@@ -32,6 +32,10 @@ Main Features of Agender:<br/>
 </li>
 <!-- corregir link a cd-libre -->
 <li><a href="http://www.cdlibre.org/consultar/catalogo/Ofimatica_Agendas-y-calendarios.html">Catálogo > Ofimática > Agendas y calendarios</a>
+<br/><a href="http://www.cdlibre.org/consultar/catalogo/Ofimatica_Agendas-y-calendarios.html">
+  <img src="cdlibre_incluidoen.png" width="100" height="30"
+	title="Visita cdlibre.org" />
+</a><br/>
 <div class="citado">
 	Agender es un pequeño calendario que permite asociar tareas a fechas determinadas.
 </div>
