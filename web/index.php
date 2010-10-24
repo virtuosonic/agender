@@ -78,6 +78,9 @@ else {$page_data = $error404;}
 
 <body <?php echo $loadscript?>>
 	<div id="left_pane">
+		<script type="text/javascript"
+			src="http://www.ohloh.net/p/363772/widgets/project_partner_badge.js">
+		</script>
 		<a href="http://sourceforge.net/projects/agender" >
 			<img src="http://sourceforge.net/sflogo.php?group_id=146403&amp;type=1" alt='SourceForge.net Logo' title="SourceForge.net"/>
 		</a>
