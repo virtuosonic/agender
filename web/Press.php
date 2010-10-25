@@ -1,6 +1,7 @@
+<p>This probably is the biggest page in the web site.
 If you search on the www you can find several reviews,
 awards, links about Agender, etc...
-Here i try to mention the most interesting ones i have found.
+Here i try to mention the most interesting ones i have found.</p>
 <br/><br/>
 Note: this reviews can be old
 <br/><br/>
