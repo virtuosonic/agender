@@ -1,4 +1,4 @@
-m4_define([AG_VERSION], 1.1.8.1)
+m4_define([AG_VERSION], 1.1.9)
 
 AC_PREREQ(2.53)
 AC_INIT(Agender,AG_VERSION)
