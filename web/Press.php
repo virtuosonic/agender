@@ -43,7 +43,12 @@ Main Features of Agender:<br/>
 	Agender es un peque&ntilde;o calendario que permite asociar tareas a fechas determinadas.
 </div>
 </li>
-<!-- agregar link a softsea-->
+<li>
+<div class="citado"><a href="http://www.softsea.com/review/Agender.html">Agender Review and Download, Calendar Software</a>
+<a href="http://www.softsea.com/review/Agender.html"><img src="http://www.softsea.com/images/pro-logo-5stars-1.gif"/></a>
+Agender 1.1.8 is a Calendar Software product from agender.sourceforge.net, get 5 Stars SoftSea Rating, Agender is a cross-plataform schedule/calendar tool. It was writed to be small, simple and work on any computer with any OS. Agender is free software, it is licensed under the GNU General Public License.
+</div>
+</li>
 <li><a href="http://agender-linux.programas.com/linux/">Agender - Linux </a>
 <br/><a href="http://agender-linux.programas.com/" target="_blank">
 <img src="http://agender-linux.programas.com/linux/badge"/>
