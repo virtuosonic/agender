@@ -29,4 +29,9 @@ or translating it to more languages
 	Keep up with Agender development.<br/>
 	svn co https://agender.svn.sourceforge.net/svnroot/agender/trunk Agender
 	</li>
+	<br/>
+	<li><a href="http://www.salixos.org">Salix OS</a><br/>
+	Agender is in the Salix repo you can install it with<br/>
+	<code>slapt-get -i Agender<code>
+	</li>
 </ul>
