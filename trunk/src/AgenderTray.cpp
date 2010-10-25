@@ -123,7 +123,7 @@ wxMenu * AgenderTray::CreatePopupMenu()
 		menu->AppendSubMenu(opcMenu,_("Opacity"));
 	menu->AppendCheckItem(ID_YEARSEL,_("Year selector"));
 	menu->Append(ID_NOTES_COLOUR,_("Notes Colour"));
-	//menu->AppendSubMenu(lmenu,_("Language"));
+	menu->AppendSubMenu(lmenu,_("Language"));
 #if wxUSE_RICHTEXT
 	menu->Append(ID_SYMBOL,_("Symbol"));
 #endif//wxUSE_RICHTEXT
