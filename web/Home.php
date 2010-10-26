@@ -23,7 +23,8 @@ Its features includes:
 	<li>Sticky notes(showed all time)</li>
 	<li>Multilingual, already available in english, spanish,
 		deutsch, japanese, swedish, portuguese, greek, romanian,
-		chinese(simplified),
-		chinese(traditional) and french</li>
+		chinese(simplified), chinese(traditional), hebrew and french</li>
+	<li>Hilights days with notes using a user selected color</li>
+	<li>Variable window transparency</li>
 </ul>
 

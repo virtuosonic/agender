@@ -57,6 +57,13 @@ Cada vez que se a&ntilde;ada una nueva nota a alguno de los d&iacute;as del cale
 Su interfaz multiling&uuml;e, junto su f&aacute;cil accesibilidad (un peque&ntilde;o icono en la barra del sistema, en la zona inferior), lo convierten en una herramienta sencilla que cualquiera puede usar.
 </div>
 </li>
+<li><a href="http://www.scenebeta.com/noticia/agender-virtuosonic">Agender Virtuosonic</a>
+<br/><a href="http://www.scenebeta.com/noticia/agender-virtuosonic">
+<img src="http://www.scenebeta.com/archivos/www/ICON0VirtuosonicAgender.PNG"/></a>
+<div class="citado">
+Agender Virtuosonic es una herramienta que toda persona debe tener, más si eres una persona con muchos compromisos todo el tiempo y peor aún si eres de las personas a las que se les olvidan los compromisos...
+</div>
+</li>
 <li><a href="http://www.softoxi.com/agender-video-trailer-screenshots.html">Agender Installation Video Tutorial</a>
 </li>
 </ul>

@@ -83,7 +83,7 @@ else {$page_data = $error404;}
 		</a>
 		<br/>
 		<a href="http://sourceforge.net/donate/index.php?group_id=271084">
-			<img src="http://images.sourceforge.net/images/project-support.jpg" width="88" height="32" border="0" alt="Support This Project"  title="Donate"/>
+			<img src="http://images.sourceforge.net/images/project-support.jpg" alt="Support This Project"  title="Donate"/>
 		</a>
 		<br/>
 		<script type="text/javascript"
@@ -144,6 +144,4 @@ else {$page_data = $error404;}
 		</script>
 	</div>
 </body>
-
 </html>
-
