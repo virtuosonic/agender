@@ -113,6 +113,45 @@ wxMenu * AgenderTray::CreatePopupMenu()
 	lmenu->AppendRadioItem(ID_LANG_ZH_CN,_("Simplified Chinese"));
 	lmenu->AppendRadioItem(ID_LANG_RO,_("Romanian"));
 	lmenu->AppendRadioItem(ID_LANG_HE,_("Hebrew"));
+	long lang = wxConfig::Get()->Read(_T("/lang"),wxLANGUAGE_UNKNOWN);
+	switch (lang)
+	{
+		case wxLANGUAGE_SPANISH:
+			lmenu->Check(ID_LANG_ES,true);
+			break;
+		case wxLANGUAGE_GERMAN:
+			lmenu->Check(ID_LANG_DE,true);
+			break;
+		case wxLANGUAGE_JAPANESE:
+			lmenu->Check(ID_LANG_JA,true);
+			break;
+		case wxLANGUAGE_SWEDISH:
+			lmenu->Check(ID_LANG_SV,true);
+			break;
+		case wxLANGUAGE_FRENCH:
+			lmenu->Check(ID_LANG_FR,true);
+			break;
+		case wxLANGUAGE_PORTUGUESE:
+			lmenu->Check(ID_LANG_PT,true);
+			break;
+		case wxLANGUAGE_GREEK:
+			lmenu->Check(ID_LANG_EL,true);
+			break;
+		case wxLANGUAGE_CHINESE_TRADITIONAL:
+			lmenu->Check(ID_LANG_ZH_HK,true);
+			break;
+		case wxLANGUAGE_CHINESE_SIMPLIFIED:
+			lmenu->Check(ID_LANG_ZH_CN,true);
+			break;
+		case wxLANGUAGE_HEBREW:
+			lmenu->Check(ID_LANG_HE,true);
+			break;
+		case wxLANGUAGE_ROMANIAN:
+			lmenu->Check(ID_LANG_RO,true);
+			break;
+		default:
+			break;
+	}
 	//main menu
 	wxMenu* menu;
 	menu = new wxMenu;
@@ -288,7 +327,8 @@ void AgenderTray::OnMenuLang(wxCommandEvent& event)
 			break;
 	}
 	wxConfig::Get()->Write(_T("/lang"),l);
-	wxMessageBox(_T("To apply changes you must restart Agender"));
+	wxMessageBox(_T("To apply changes you must restart Agender"),
+		_("Agender Language changed"),wxOK,frame);
 }
 
 #endif //wxHAS_TASK_BAR_ICON
