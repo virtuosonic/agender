@@ -62,7 +62,6 @@ bool AgenderApp::OnInit()
 	wxCmdLineParser cmd(argc,argv);
 	cmd.AddOption(_T("c"),_T("config"),_T("specify a config file to load"),wxCMD_LINE_VAL_STRING);
 	cmd.AddSwitch(_T("nt"),_T("no-taskbar"),_T("use when you don't have a taskbar"));
-	cmd.AddSwitch(_T("ss"),_T("session-start"),_T("use with autostart in gnome"));
 	OnInitCmdLine(cmd);
 	int res = cmd.Parse(false);
 	if (res < 0)
@@ -119,9 +118,7 @@ bool AgenderApp::OnInit()
 	wxInitAllImageHandlers();
 	//*)
 	//create main frame
-	bool ss = false;
-	if (cmd.Found(_T("ss"))) ss = true;
-	wxFrame* Frame = new AgenderFrame(m_locale,cfgFile,ss);
+	wxFrame* Frame = new AgenderFrame(m_locale,cfgFile);
 	SetTopWindow(Frame);
 	//lets create a server so Anothers can comunicate with this->m_server
 	#ifndef __WXMSW__

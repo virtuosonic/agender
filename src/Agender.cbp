@@ -39,7 +39,7 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option use_console_runner="0" />
-				<Option parameters="--verbose" />
+				<Option parameters="--verbose -ss" />
 				<Compiler>
 					<Add option="-Wall" />
 					<Add option="-g" />

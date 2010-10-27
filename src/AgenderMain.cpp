@@ -6,7 +6,6 @@
  * Copyright: Gabriel Espinoza
  * License: GPLv3+
  **************************************************************/
-
 #ifdef __BORLANDC__
     #pragma hdrstop
     //for those who can't change turboc++, like theacher Nancy
@@ -63,7 +62,7 @@ BEGIN_EVENT_TABLE(AgenderFrame,wxFrame)
 	//*)
 END_EVENT_TABLE()
 
-AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile,bool session_start):m_locale(locale)
+AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 {
 	// TODO (virtuoso#1#): compatibilidad wx-2.9: opcion de usar wxGenericCalenderCtrl en vez de wxCalenderCtrl
 	//(*Initialize(AgenderFrame)
@@ -162,29 +161,10 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile,bool session_start)
 	SearchMode = false;
 	//size
 	SetSize(schdl->Read(_T("/x"),wxDefaultPosition.x),schdl->Read(_T("/y"),wxDefaultPosition.y),
-		  schdl->Read(_T("/w"),wxDefaultSize.x),schdl->Read(_T("/h"),wxDefaultSize.y));
+		schdl->Read(_T("/w"),wxDefaultSize.x),schdl->Read(_T("/h"),wxDefaultSize.y));
 	SetTransparent(schdl->Read(_T("/opacity"),255));
 	//taskbaricon
 #if defined wxHAS_TASK_BAR_ICON
-	//this is a stupid hack, but gnome is a very stupid desktop environment
-#if defined __X__ || defined __WXGTK__
-	if (session_start)
-	{
-		wxArrayString output;
-		wxExecute(_T("pidof gnome-session"),output,wxEXEC_SYNC);
-		if (!output.IsEmpty())
-		{
-			output.Empty();
-			do
-			{
-				wxExecute(_T("pidof gnome-panel"),output,wxEXEC_SYNC);
-				if (output.IsEmpty())
-					wxSleep(5);
-			} while(output.IsEmpty());
-			wxSleep(5);
-		}
-	}
-#endif
 	trayicon = new AgenderTray(this);
 	trayicon->SetIcon(Agender16x16_xpm,_T("Virtuosonic Agender"));
 #endif//wxHAS_TASK_BAR_ICON
