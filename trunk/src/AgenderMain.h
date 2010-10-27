@@ -30,7 +30,7 @@ class AgenderCal;
 class AgenderFrame: public wxFrame
 {
 	public:
-		AgenderFrame(wxLocale& locale,wxString cfgFile,bool session_start);
+		AgenderFrame(wxLocale& locale,wxString cfgFile);
 		~AgenderFrame();
 		static const long ID_UPDATE_FOUND;
 	private:
