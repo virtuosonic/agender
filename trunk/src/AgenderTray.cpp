@@ -326,7 +326,7 @@ void AgenderTray::OnMenuLang(wxCommandEvent& event)
 			l = wxLANGUAGE_DEFAULT;
 			break;
 	}
-	wxConfig::Get()->Write(_T("/lang"),l);
+	wxConfig::Get()->Write(_T("/lang"),(long)l);
 	wxMessageBox(_T("To apply changes you must restart Agender"),
 		_("Agender Language changed"),wxOK,frame);
 }
