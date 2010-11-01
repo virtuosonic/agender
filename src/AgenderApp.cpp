@@ -121,12 +121,10 @@ bool AgenderApp::OnInit()
 	wxFrame* Frame = new AgenderFrame(m_locale,cfgFile);
 	SetTopWindow(Frame);
 	//lets create a server so Anothers can comunicate with this->m_server
-	#ifndef __WXMSW__
 	m_server = new AgenderServer;
 	if (m_server && m_server->Create(IPC_Service))
 		wxLogVerbose(_T("server created"));
 	else
-	#endif
 	{
 		wxLogVerbose(_T("server creation failed"));
 		m_server = NULL;
