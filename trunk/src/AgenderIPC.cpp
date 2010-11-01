@@ -9,13 +9,16 @@
     #pragma hdrstop
 #endif
 
-#include "AgenderIPC.h"
 #include <wx/log.h>
-#include <wx/defs.h>
 #include <wx/window.h>
 #include <wx/app.h>
-
-
+/**
+the next file must be the last we include
+else the others will overide wxUSE_DDE_FOR_IPC
+and cause Agender to crash when calling
+AgenderServer->Create()
+*/
+#include "AgenderIPC.h"
 
 #if defined __WXMSW__ && wxUSE_DDE_FOR_IPC == 0
 #warning not using dde under msw
@@ -25,7 +28,6 @@
 //and doesn't work! help needed here
 //tested on Windows se7en and XP, linux works fine :P
 //Windows 98 & 2000 don't show any warning
-// TODO (virtuoso#1#): since this code has changed, need to do some testing under msw
 #endif
 
 
