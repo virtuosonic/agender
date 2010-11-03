@@ -35,7 +35,6 @@
 SetCompressor /SOLID lzma
 
 !include "MUI.nsh"
-!include "MultiUser.nsh"
 
 ; MUI Settings
 !define MUI_ICON "${NSISDIR}\Contrib\Graphics\Icons\modern-install.ico"
