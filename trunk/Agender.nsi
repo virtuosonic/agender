@@ -47,6 +47,8 @@ SetCompressor /SOLID lzma
 !insertmacro MUI_PAGE_DIRECTORY
 ;Components page
 !insertmacro MUI_PAGE_COMPONENTS
+;MultiUserPage
+!insertmacro MULTIUSER_PAGE_INSTALLMODE
 ; Instfiles page
 !insertmacro MUI_PAGE_INSTFILES
 ; Finish page
