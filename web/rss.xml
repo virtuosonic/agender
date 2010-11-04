@@ -13,6 +13,16 @@
 	</image>
 	<!-- items -->
 	<item>
+		<title>Agender 1.1.9 released</title>
+		<link>http://agender.sourceforge.net/index.php?page=Downloads</link>
+		<description>
+			The 1.1.9 release of Agender is available for download right now
+			including a new submenu to change the language, a bug fix in the
+			interprocess communication for windows and the option to install
+			system wide or per user (thanks Jason!)
+		</description>
+	</item>
+	<item>
 		<title>Agender 1.1.8.1 bug fix</title>
 		<link>http://agender.sourceforge.net/index.php?page=Downloads</link>
 		<description>
