@@ -18,9 +18,9 @@
 !define VS_SYSTEMDLL 1
 ;Mingw
 !define MINGW_RUNTIME 1
-!define SJLJ_EXCEPTIONS 0
-;!define MINGW_DIR "/home/virtuoso/mingw32"
+!define SJLJ_EXCEPTIONS 1
 !define MINGW_DIR "/usr/i686-pc-mingw32/sys-root/mingw"
+;!define MINGW_DIR "/home/virtuoso/mingw32"
 ;!define MINGW_DIR "C:\Archivos de Programa\codeblocks\MINGW"
 ;!define MINGW_DIR "C:\MINGW"
 !define PRODUCT_VERSION "1.1.9"
