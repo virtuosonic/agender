@@ -34,6 +34,9 @@
 
 SetCompressor /SOLID lzma
 
+!define MULTIUSER_EXECUTIONLEVEL Highest
+!define MULTIUSER_MUI
+!define MULTIUSER_INSTALLMODE_COMMANDLINE
 !include "MultiUser.nsh"
 !include "MUI2.nsh"
 
@@ -182,13 +185,13 @@ SectionGroup "Translations" SEC02
 SectionGroupEnd
 
 ;descriptions for components page
-LangString DESC_Agender ${LANG_ENGLISH} "The main application files (required)."
-LangString DESC_Translate ${LANG_ENGLISH} "Translations for other languages."
+;LangString DESC_Agender ${LANG_ENGLISH} "The main application files (required)."
+;LangString DESC_Translate ${LANG_ENGLISH} "Translations for other languages."
 
-!insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
-	!insertmacro MUI_DESCRIPTION_TEXT ${SEC01} $(DESC_Agender)
-	!insertmacro MUI_DESCRIPTION_TEXT ${SEC02} $(DESC_Translate)
-!insertmacro MUI_FUNCTION_DESCRIPTION_END
+;!insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
+;	!insertmacro MUI_DESCRIPTION_TEXT ${SEC01} $(DESC_Agender)
+;	!insertmacro MUI_DESCRIPTION_TEXT ${SEC02} $(DESC_Translate)
+;!insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 Section -AdditionalIcons
 	WriteIniStr "$INSTDIR\${PRODUCT_NAME}.url" "InternetShortcut" "URL" "${PRODUCT_WEB_SITE}"
@@ -225,6 +228,7 @@ Function .onInit
 		StrCmp $R0 0 +2
 			Abort
 	!endif
+	!insertmacro MULTIUSER_INIT
 	;lang
 	!insertmacro MUI_LANGDLL_DISPLAY
 	!insertmacro SetInstType2Lang 1034 ${sec_es} finishlangset
@@ -241,9 +245,14 @@ Function .onInit
 	finishlangset:
 FunctionEnd
 
- Function .onInstSuccess
+Function un.onInit
+	!insertmacro MULTIUSER_UNINIT
+FunctionEnd
+
+
+Function .onInstSuccess
 	ExecShell "open" ${PRODUCT_WEB_SITE}
- FunctionEnd
+FunctionEnd
 
 Section Uninstall
 	Delete "$INSTDIR\${PRODUCT_NAME}.url"
