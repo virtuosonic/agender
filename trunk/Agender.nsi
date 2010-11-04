@@ -34,7 +34,8 @@
 
 SetCompressor /SOLID lzma
 
-!include "MUI.nsh"
+!include "MultiUser.nsh"
+!include "MUI2.nsh"
 
 ; MUI Settings
 !define MUI_ICON "${NSISDIR}\Contrib\Graphics\Icons\modern-install.ico"
@@ -48,7 +49,7 @@ SetCompressor /SOLID lzma
 ;Components page
 !insertmacro MUI_PAGE_COMPONENTS
 ;MultiUserPage
-;!insertmacro MULTIUSER_PAGE_INSTALLMODE
+!insertmacro MULTIUSER_PAGE_INSTALLMODE
 ; Instfiles page
 !insertmacro MUI_PAGE_INSTFILES
 ; Finish page
@@ -72,7 +73,7 @@ SetCompressor /SOLID lzma
 !insertmacro MUI_LANGUAGE "Romanian"
 !insertmacro MUI_LANGUAGE "Hebrew"
 ; ReserveFiles
-!insertmacro MUI_RESERVEFILE_INSTALLOPTIONS
+!insertmacro MUI_RESERVEFILE_LANGDLL
 ; MUI end ------
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
 OutFile "${PRODUCT_NAME}-${PRODUCT_VERSION}.exe"
