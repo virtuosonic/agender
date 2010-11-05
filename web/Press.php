@@ -7,13 +7,13 @@ Note: this reviews can be old
 <br/><br/>
 <ul>
 <li>
-	<a href="http://www.softpedia.com/get/Office-tools/Diary-Organizers-Calendar/Agender.shtml">The "100% FREE" Softpedia award</a>
-	<br/><a href="http://www.softpedia.com/get/Office-tools/Diary-Organizers-Calendar/Agender.shtml"><img src="softpedia_free_award_f.gif"/><br/></a>
+	<a target="_blank" href="http://www.softpedia.com/get/Office-tools/Diary-Organizers-Calendar/Agender.shtml">The "100% FREE" Softpedia award</a>
+	<br/><a target="_blank" href="http://www.softpedia.com/get/Office-tools/Diary-Organizers-Calendar/Agender.shtml"><img src="softpedia_free_award_f.gif"/><br/></a>
 	<div class="citado">
 		Agender is a simple and easy to use schedule / calendar utility. It was writed to be small, simple and work on any computer.
 	</div>
 </li>
-<li><a href="http://www.softoxi.com/agender.html">"Agender - free, fast and easy to use note reminder tool for Windows users."</a>
+<li><a target="_blank" href="http://www.softoxi.com/agender.html">"Agender - free, fast and easy to use note reminder tool for Windows users."</a>
 <br/><a target="_blank" href="http://www.softoxi.com/agender.html"><img src="award.png"/></a>
 <div class="citado">
 Agender is a light, free utility that allows you to organize all your thoughts comprehensively. Using the
@@ -32,8 +32,8 @@ Main Features of Agender:<br/>
 </div>
 </li>
 <!-- corregir link a cd-libre -->
-<li><a href="http://www.cdlibre.org/consultar/catalogo/Ofimatica_Agendas-y-calendarios.html">Cat&aacute;logo > Ofim&aacute;tica > Agendas y calendarios</a>
-<br/><a href="http://www.cdlibre.org/consultar/catalogo/Ofimatica_Agendas-y-calendarios.html">
+<li><a target="_blank" href="http://www.cdlibre.org/consultar/catalogo/Ofimatica_Agendas-y-calendarios.html">Cat&aacute;logo > Ofim&aacute;tica > Agendas y calendarios</a>
+<br/><a target="_blank" href="http://www.cdlibre.org/consultar/catalogo/Ofimatica_Agendas-y-calendarios.html">
   <img src="cdlibre_incluidoen.png" width="100" height="30"
 	title="Visita cdlibre.org" />
 </a>
@@ -41,14 +41,14 @@ Main Features of Agender:<br/>
 	Agender es un peque&ntilde;o calendario que permite asociar tareas a fechas determinadas.
 </div>
 </li>
-<li><a href="http://www.softsea.com/review/Agender.html">Agender Review and Download, Calendar Software</a>
-<br/><a href="http://www.softsea.com/review/Agender.html"><img src="http://www.softsea.com/images/pro-logo-5stars-1.gif"/></a>
+<li><a target="_blank" href="http://www.softsea.com/review/Agender.html">Agender Review and Download, Calendar Software</a>
+<br/><a target="_blank" href="http://www.softsea.com/review/Agender.html"><img src="http://www.softsea.com/images/pro-logo-5stars-1.gif"/></a>
 <div class="citado">
 	Agender 1.1.8 is a Calendar Software product from agender.sourceforge.net, get 5 Stars SoftSea Rating, Agender is a cross-plataform schedule/calendar tool. It was writed to be small, simple and work on any computer with any OS. Agender is free software, it is licensed under the GNU General Public License.
 </div>
 </li>
-<li><a href="http://agender-linux.programas.com/linux/">Agender - Linux </a>
-<br/><a href="http://agender-linux.programas.com/" target="_blank">
+<li><a target="_blank" href="http://agender-linux.programas.com/linux/">Agender - Linux </a>
+<br/><a target="_blank" href="http://agender-linux.programas.com/" target="_blank">
 <img src="http://agender-linux.programas.com/linux/badge"/>
 </a>
 <div class="citado">
@@ -57,13 +57,13 @@ Cada vez que se a&ntilde;ada una nueva nota a alguno de los d&iacute;as del cale
 Su interfaz multiling&uuml;e, junto su f&aacute;cil accesibilidad (un peque&ntilde;o icono en la barra del sistema, en la zona inferior), lo convierten en una herramienta sencilla que cualquiera puede usar.
 </div>
 </li>
-<li><a href="http://www.scenebeta.com/noticia/agender-virtuosonic">Agender Virtuosonic</a>
-<br/><a href="http://www.scenebeta.com/noticia/agender-virtuosonic">
+<li><a target="_blank" href="http://www.scenebeta.com/noticia/agender-virtuosonic">Agender Virtuosonic</a>
+<br/><a target="_blank" href="http://www.scenebeta.com/noticia/agender-virtuosonic">
 <img src="http://www.scenebeta.com/archivos/www/ICON0VirtuosonicAgender.PNG"/></a>
 <div class="citado">
 Agender Virtuosonic es una herramienta que toda persona debe tener, más si eres una persona con muchos compromisos todo el tiempo y peor aún si eres de las personas a las que se les olvidan los compromisos...
 </div>
 </li>
-<li><a href="http://www.softoxi.com/agender-video-trailer-screenshots.html">Agender Installation Video Tutorial</a>
+<li><a target="_blank" href="http://www.softoxi.com/agender-video-trailer-screenshots.html">Agender Installation Video Tutorial</a>
 </li>
 </ul>
