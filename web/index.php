@@ -5,7 +5,7 @@ $page = $_GET['page'];
 if ($page == '') {
 $page = 'Home';
 $Appear='style="display: none"';
-$loadscript = "onload=\"Effect.toggle('container','Appear'); return false;\"";
+$loadscript = "onload=\"Effect.toggle('container','Appear');Effect.toggle('left_pane','Appear');Effect.toggle('mail','Appear'); return false;\"";
 }
 
 $active = 'id="active"';
@@ -77,7 +77,7 @@ else {$page_data = $error404;}
 </head>
 
 <body <?php echo $loadscript?>>
-	<div id="left_pane">
+	<div id="left_pane" <?php echo $Appear ?>>
 		<a href="http://sourceforge.net/projects/agender" >
 			<img src="http://sourceforge.net/sflogo.php?group_id=146403&amp;type=1" alt='SourceForge.net Logo' title="SourceForge.net"/>
 		</a>
@@ -143,6 +143,13 @@ else {$page_data = $error404;}
 			src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 		</script>
 	</div>
+	<!-- mailing list -->
+	<div id="mail"<?php echo $Appear ?>>
+	<form method="POST" action="https://lists.sourceforge.net/lists/subscribe/agender-announce">
+		<p>Want to know about new Agender Releases? subscribe to the agender-announce mailing list</p>
+		email:<input type="Text" name="email" size="30" value=""/>
+   </form>
+   </div>
 	<!-- Piwik -->
 <script type="text/javascript">
 var pkBaseURL = (("https:" == document.location.protocol) ? "https://sourceforge.net/apps/piwik/agender/" : "http://sourceforge.net/apps/piwik/agender/");

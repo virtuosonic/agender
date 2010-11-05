@@ -86,3 +86,17 @@ img {
 	top: 25ex;
 	left: 2em;
 }
+
+#mail {
+	width: 316px;
+	background: #ffffff;
+	border: 1px solid;
+	position: absolute;
+	right: 0px;
+	top: 300px;
+	padding:10px;
+}
+
+#mail p{
+	margin-bottom: 10px;
+}
