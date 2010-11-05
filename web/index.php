@@ -148,6 +148,7 @@ else {$page_data = $error404;}
 	<form method="POST" action="https://lists.sourceforge.net/lists/subscribe/agender-announce">
 		<p>Want to know about new Agender Releases? subscribe to the agender-announce mailing list</p>
 		email:<input type="Text" name="email" size="30" value=""/>
+		<input type="Submit" name="email-button" value="Subscribe"/>
    </form>
    </div>
 	<!-- Piwik -->
