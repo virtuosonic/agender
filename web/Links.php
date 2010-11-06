@@ -21,6 +21,8 @@ Here are some links that i think aren't boring.
 <br/>
 <a target="_blank" href="http://www.cdlibre.org/">cdlibre</a> here you can find more free software.
 <br/>
+<a href="http://www.x64bitdownload.com/">X 64-bit Download</a> - 64-bit software, freeware and shareware downloads
+<br/>
 <a target="_blank" href="http://www.mozilla.org/">Firefox</a> if you are having trouble seeing this website you could try a more modern web browser.
 <br/>
 <a target="_blank" href="http://libicns.sourceforge.net/">libicns</a>  a library for manipulating Mac OS icon files

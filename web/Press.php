@@ -58,10 +58,16 @@ Su interfaz multiling&uuml;e, junto su f&aacute;cil accesibilidad (un peque&ntil
 </div>
 </li>
 <li><a target="_blank" href="http://www.scenebeta.com/noticia/agender-virtuosonic">Agender Virtuosonic</a>
-<br/><a target="_blank" href="http://www.scenebeta.com/noticia/agender-virtuosonic">
-<img src="http://www.scenebeta.com/archivos/www/ICON0VirtuosonicAgender.PNG"/></a>
 <div class="citado">
 Agender Virtuosonic es una herramienta que toda persona debe tener, más si eres una persona con muchos compromisos todo el tiempo y peor aún si eres de las personas a las que se les olvidan los compromisos...
+</div>
+</li>
+<li>
+<a href="http://www.x64bitdownload.com/downloads/t-64-bit-agender-download-jkszuzsm.html/" target="_blank">Agender 64-bit download - A simple schedule tool</a>
+<br/><a href="http://www.x64bitdownload.com/downloads/t-64-bit-agender-download-jkszuzsm.html/" target="_blank">
+<img src="http://www.x64bitdownload.com/templates/X64/images/award_120x60_5.gif" alt="X 64-bit Download"/></a>
+<div class="citado">
+Agender is a cross-plataform schedule/calendar tool
 </div>
 </li>
 <li><a target="_blank" href="http://www.softoxi.com/agender-video-trailer-screenshots.html">Agender Installation Video Tutorial</a>
