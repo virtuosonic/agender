@@ -67,7 +67,8 @@ else {$page_data = $error404;}
 ?>
 <html>
 <head>
-	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+	<meta name="google-site-verification" content="iUBg-Nc16oi8DZuLt_3KwE8exy7fstuQjP7nMNeTSU4" />
 	<title>Agender - <?php echo $title ?></title>
 	<link rel="stylesheet" type="text/css" href="agender.css" media="screen"/>
 	<link rel="stylesheet" type="text/css" href="menu.css" media="screen"/>
