@@ -73,7 +73,7 @@ else {$page_data = $error404;}
 	<link rel="stylesheet" type="text/css" href="agender.css" media="screen"/>
 	<link rel="stylesheet" type="text/css" href="menu.css" media="screen"/>
 	<link rel="alternate" type="application/rss+xml"
-		href="rss.xml" title="Agender - a cross-platform schedule tool!"/>
+	<link rel="icon" href="agender32.png"/>
 	<script src="js/prototype.js" type="text/javascript"></script >
 	<script src="js/scriptaculous.js" type="text/javascript"></script >
 </head>
