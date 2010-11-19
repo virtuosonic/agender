@@ -69,7 +69,7 @@ bool AgenderApp::OnInit()
 		cmd.Usage();
 		exit(EXIT_SUCCESS);
 	}
-	wxString cfgFile(wxGetHomeDir()+_T("/.Agender-current user.txt"));
+	wxString cfgFile(wxStandardPaths::Get().GetUserConfigDir()+wxFILE_SEP_PATH+_T(".Agender-current user.txt"));
 	cmd.Found(_T("c"),&cfgFile);
 	if(cmd.Found(_T("verbose")))
 	{
@@ -153,6 +153,7 @@ int AgenderApp::OnRun()
 {
 	Updater* up = new Updater(_T("agender.sourceforge.net"),
 			_T("/agender_version"),__AGENDER_VERSION__);
+	httpUp = up;
 	if (up->Create() == wxTHREAD_NO_ERROR)
 	{
 		if (up->Run() != wxTHREAD_NO_ERROR)

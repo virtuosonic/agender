@@ -25,10 +25,13 @@ class AgenderApp : public wxApp
 	private:
 		void OnEndSession(wxCloseEvent& event);
 		wxSingleInstanceChecker* m_checker;
+		wxThread* httpUp;
 		wxServer* m_server;
 		wxLocale m_locale;
 		Notifier notif;
 		DECLARE_EVENT_TABLE()
 };
+
+DECLARE_APP(AgenderApp)
 
 #endif // AGENDERAPP_H_INCLUDED

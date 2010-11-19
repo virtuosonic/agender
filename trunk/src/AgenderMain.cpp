@@ -201,6 +201,7 @@ void AgenderFrame::OnClose(wxCloseEvent& WXUNUSED(event))
 
 void AgenderFrame::OnButton3Click(wxCommandEvent& WXUNUSED(event))
 {
+	//about dialog!
 	wxAboutDialogInfo info;
 	//developer a.k.a. me
 	info.AddDeveloper(_T("Gabriel Espinoza <virtuosonic@users.sourceforge.net>"));
@@ -281,6 +282,7 @@ void AgenderFrame::OnListBox1Select(wxCommandEvent& WXUNUSED(event))
 
 void AgenderFrame::OnBtnNuevoClick(wxCommandEvent& WXUNUSED(event))
 {
+	//ask for note title, if empty ignore else create
 	wxTextEntryDialog dlg(this,_("To-Do Title"),_("New To-Do"));
 	if (dlg.ShowModal() == wxID_OK  && dlg.GetValue() != wxEmptyString)
 	{
@@ -290,13 +292,16 @@ void AgenderFrame::OnBtnNuevoClick(wxCommandEvent& WXUNUSED(event))
 					 _T("Error"),wxICON_ERROR,this);
 			return;
 		}
+		//if this name is in use ignore
 		else if (a_cal->HasNote(dlg.GetValue()))
 			return;
+		//add
 		ListBox1->Append(dlg.GetValue());
 		ListBox1->SetSelection(ListBox1->GetCount()-1);
 		TextCtrl1->Enable();
 		TextCtrl1->ChangeValue(wxEmptyString);
 		a_cal->SetNoteText(dlg.GetValue(),wxEmptyString);
+		//save
 		wxFileOutputStream ofile(schFile);
 		schdl->Save(ofile);
 		MarkDays();
@@ -305,6 +310,7 @@ void AgenderFrame::OnBtnNuevoClick(wxCommandEvent& WXUNUSED(event))
 
 void AgenderFrame::OnBtnElimClick(wxCommandEvent& WXUNUSED(event))
 {
+	//remove selection
 	if (ListBox1->GetSelection() != wxNOT_FOUND)
 	{
 		a_cal->RmNote(ListBox1->GetStringSelection());
@@ -317,6 +323,7 @@ void AgenderFrame::OnBtnElimClick(wxCommandEvent& WXUNUSED(event))
 
 void AgenderFrame::OnChangeNotesColour(wxCommandEvent& event)
 {
+	//called by tray icon
 	schdl->Write(_T("/notescolour"),event.GetString());
 	MarkDays();
 	Refresh();
@@ -360,11 +367,13 @@ void AgenderFrame::MarkDays()
 
 void AgenderFrame::OnFind(wxFindDialogEvent& event)
 {
+	//missing!
 	event.GetFindString();
 }
 
 void AgenderFrame::OnSearch(wxCommandEvent& WXUNUSED(event))
 {
+	//missing!
 	if (!fndDlg->IsShown())
 		fndDlg->Show();
 }
@@ -401,6 +410,7 @@ void AgenderFrame::OnTextCtrl1Text(wxCommandEvent& WXUNUSED(event))
 
 void AgenderFrame::OnListBox1DClick(wxCommandEvent& WXUNUSED(event))
 {
+	//double click on a listbox item pops a menu
 	wxMenu* noteMenu = new wxMenu;
 	noteMenu->Append(ID_RENAME,_("Rename"));
 	noteMenu->AppendSeparator();
