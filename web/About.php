@@ -15,7 +15,7 @@ which are listed below:
 <li>Adi D. - Romanian translator</li>
 <li>Itamar Shoham - Hebrew translator</li>
 <li>Greg Fraley (GrenadeGuy) - Created a deb package of Agender 1.1.5</li>
-<li>Ianaré Sévi - updated the french translation</li>
+<li>IanarÃ© SÃ©vi - updated the french translation</li>
 <li>Jason Cervantes - helped with multiuser in the windows installer</li>
 </ul>
 <br/>

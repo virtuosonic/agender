@@ -50,7 +50,7 @@ p {
 
 img {
 	border: none;
-	margin: 10;
+	margin: 10px;
 }
 
 .citado {
@@ -90,7 +90,7 @@ img {
 #mail {
 	width: 316px;
 	background: #ffffff;
-	border: 1px solid;
+	border: 1px solid #7C7C7C;
 	position: absolute;
 	right: 0px;
 	top: 310px;
