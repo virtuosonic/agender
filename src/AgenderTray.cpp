@@ -5,15 +5,11 @@
  * Copyright: Gabriel Espinoza
  * License: GPLv3+
  **************************************************************/
-#include <wx/wxprec.h>
-
 #ifdef __BORLANDC__
 	#pragma hdrstop
 #endif
 
-#ifndef WX_PRECOMP
-	#include <wx/defs.h>
-#endif//WX_PRECOMP
+#include <wx/defs.h>
 
 #if defined wxHAS_TASK_BAR_ICON
 
@@ -28,9 +24,9 @@
 #include <wx/msgdlg.h>
 #include <wx/intl.h>
 
-#if wxUSE_RICHTEXT
+//#if wxUSE_RICHTEXT
 #include <wx/richtext/richtextsymboldlg.h>
-#endif//wxUSE_RICHTEXT
+//#endif//wxUSE_RICHTEXT
 
 BEGIN_EVENT_TABLE(AgenderTray,wxTaskBarIcon)
 	EVT_TASKBAR_LEFT_UP(AgenderTray::OnLeft)
@@ -177,8 +173,8 @@ wxMenu * AgenderTray::CreatePopupMenu()
 	menu->Check(ID_YEARSEL,test_bool);
 	wxConfig::Get()->Read(_T("/autostart"),&test_bool,true);
 	menu->Check(ID_AUTOSTART,test_bool);
-	wxConfig::Get()->Read(_T("/notify"),&test_bool,false);
-	menu->Check(ID_NOTIFY,test_bool);
+	//wxConfig::Get()->Read(_T("/notify"),&test_bool,false);
+	//menu->Check(ID_NOTIFY,test_bool);
 
 	return menu;
 }

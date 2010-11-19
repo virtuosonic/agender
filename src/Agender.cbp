@@ -19,9 +19,9 @@
 					<Add option='[[if (PLATFORM == PLATFORM_MSW &amp;&amp; (GetCompilerFactory().GetCompilerVersionString(_T(&quot;gcc&quot;)) &gt;= _T(&quot;4.0.0&quot;))) print(_T(&quot;-Wno-attributes&quot;));]]' />
 					<Add option="-Winvalid-pch" />
 					<Add option="-include wx_pch.h" />
-					<Add directory="$(#wx)/lib/gcc_dll/mswu" />
-					<Add directory="$(#wx)/include" />
-					<Add directory="$(#wx)/contrib/include" />
+					<Add directory="/home/virtuoso/C++/wxWidgets-2.8.11/lib/gcc_dll/mswu" />
+					<Add directory="/home/virtuoso/C++/wxWidgets-2.8.11/include" />
+					<Add directory="/home/virtuoso/C++/wxWidgets-2.8.11/contrib/include" />
 				</Compiler>
 				<ResourceCompiler>
 					<Add directory="$(#wx)/lib/gcc_dll/mswu" />
@@ -90,6 +90,8 @@
 		<Unit filename="Notifier.h" />
 		<Unit filename="Updater.cpp" />
 		<Unit filename="Updater.h" />
+		<Unit filename="XmlNotes.cpp" />
+		<Unit filename="XmlNotes.h" />
 		<Unit filename="resource.rc">
 			<Option compilerVar="WINDRES" />
 			<Option target="Release" />

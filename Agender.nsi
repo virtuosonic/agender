@@ -4,8 +4,11 @@
 ;Author: Gabriel Espinoza
 ;License: GPLv3+
 
-;this file needs some hacking, if you are using m$w  please help
-;TODO: add support for multiple users
+;compress with upx, reduces size by around 200 kb!
+!tempfile PACKHDRTEMP
+!define UPX "/usr/bin/upx"
+;!define UPX "C:\Program Files\UPX\upx.exe"
+!packhdr "${PACKHDRTEMP}" '${UPX} -9 "${PACKHDRTEMP}"'
 
 ;this defines are configurable, change them when needed
 !define WX_LIBS 0
@@ -23,23 +26,23 @@
 ;!define MINGW_DIR "/home/virtuoso/mingw32"
 ;!define MINGW_DIR "C:\Archivos de Programa\codeblocks\MINGW"
 ;!define MINGW_DIR "C:\MINGW"
-!define PRODUCT_VERSION "1.1.9"
+!define PRODUCT_VERSION "2.0"
 ;constants (don't touch)
 !define PRODUCT_NAME "Agender"
 !define PRODUCT_PUBLISHER "Virtuosonic"
 !define PRODUCT_WEB_SITE "http://agender.sourceforge.net"
+!define PRODUCT_EMAIL "agender-support@lists.sourceforge.net"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\Agender.exe"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
-!define PRODUCT_UNINST_ROOT_KEY "HKLM"
 
 SetCompressor /SOLID lzma
-
+;MultiUser
 !define MULTIUSER_EXECUTIONLEVEL Highest
 !define MULTIUSER_MUI
 !define MULTIUSER_INSTALLMODE_COMMANDLINE
-!include "MultiUser.nsh"
+!define MULTIUSER_INSTALLMODE_INSTDIR ${PRODUCT_NAME}
 !include "MUI2.nsh"
-
+!include "MultiUser.nsh"
 ; MUI Settings
 !define MUI_ICON "${NSISDIR}\Contrib\Graphics\Icons\modern-install.ico"
 !define MUI_UNICON "${NSISDIR}\Contrib\Graphics\Icons\modern-uninstall.ico"
@@ -47,17 +50,19 @@ SetCompressor /SOLID lzma
 !insertmacro MUI_PAGE_WELCOME
 ; License page
 !insertmacro MUI_PAGE_LICENSE "gpl-3.0.txt"
+;MultiUserPage
+!insertmacro MULTIUSER_PAGE_INSTALLMODE
 ; Directory page
 !insertmacro MUI_PAGE_DIRECTORY
 ;Components page
 !insertmacro MUI_PAGE_COMPONENTS
-;MultiUserPage
-!insertmacro MULTIUSER_PAGE_INSTALLMODE
 ; Instfiles page
 !insertmacro MUI_PAGE_INSTFILES
 ; Finish page
 !define MUI_FINISHPAGE_RUN "$INSTDIR\Agender.exe"
 !define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\Readme.txt"
+!define MUI_FINISHPAGE_LINK "${PRODUCT_NAME} Website"
+!define MUI_FINISHPAGE_LINK_LOCATION "${PRODUCT_WEB_SITE}"
 !insertmacro MUI_PAGE_FINISH
 ; Uninstaller pages
 !insertmacro MUI_UNPAGE_WELCOME
@@ -80,18 +85,16 @@ SetCompressor /SOLID lzma
 ; MUI end ------
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
 OutFile "${PRODUCT_NAME}-${PRODUCT_VERSION}.exe"
-InstallDir "$PROGRAMFILES\${PRODUCT_NAME}"
-InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" ""
+InstallDir  ${MULTIUSER_INSTALLMODE_INSTDIR}
 ShowInstDetails show
 ShowUnInstDetails show
-RequestExecutionLevel admin
 
 InstType "Full"
 InstType "Minimal"
 InstType "Minimal+Detected language translation"
 
 Section "Agender" SEC01
-	SectionIn 1 2 3 RO
+	SectionIn RO
 	SetOutPath "$INSTDIR"
 	SetOverwrite ifdiff
 	;executable
@@ -99,7 +102,6 @@ Section "Agender" SEC01
 	;shortcuts
 	CreateDirectory "$SMPROGRAMS\Agender"
 	CreateShortCut "$SMPROGRAMS\Agender\Agender.lnk" "$INSTDIR\Agender.exe"
-	CreateShortCut "$DESKTOP\Agender.lnk" "$INSTDIR\Agender.exe"
 	;compiler runtime
 	!if ${MINGW_RUNTIME}
 		File "${MINGW_DIR}\bin\mingwm10.dll"
@@ -113,6 +115,11 @@ Section "Agender" SEC01
 	File "Readme.txt"
 	File "gpl-3.0.txt"
 	SetAutoClose false
+SectionEnd
+
+Section "Desktop shortcut" SEC03
+	SectionIn 1
+	CreateShortCut "$DESKTOP\Agender.lnk" "$INSTDIR\Agender.exe"
 SectionEnd
 
 SectionGroup "Translations" SEC02
@@ -184,15 +191,6 @@ SectionGroup "Translations" SEC02
 	SectionEnd
 SectionGroupEnd
 
-;descriptions for components page
-;LangString DESC_Agender ${LANG_ENGLISH} "The main application files (required)."
-;LangString DESC_Translate ${LANG_ENGLISH} "Translations for other languages."
-
-;!insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
-;	!insertmacro MUI_DESCRIPTION_TEXT ${SEC01} $(DESC_Agender)
-;	!insertmacro MUI_DESCRIPTION_TEXT ${SEC02} $(DESC_Translate)
-;!insertmacro MUI_FUNCTION_DESCRIPTION_END
-
 Section -AdditionalIcons
 	WriteIniStr "$INSTDIR\${PRODUCT_NAME}.url" "InternetShortcut" "URL" "${PRODUCT_WEB_SITE}"
 	CreateShortCut "$SMPROGRAMS\Agender\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
@@ -203,13 +201,15 @@ SectionEnd
 
 Section -Post
 	WriteUninstaller "$INSTDIR\uninst.exe"
-	WriteRegStr HKLM "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\Agender.exe"
-	WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayName" "$(^Name)"
-	WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "UninstallString" "$INSTDIR\uninst.exe"
-	WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\Agender.exe"
-	WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
-	WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "URLInfoAbout" "${PRODUCT_WEB_SITE}"
-	WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"
+	WriteRegStr "SHCTX" "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\Agender.exe"
+	WriteRegStr "SHCTX" "${PRODUCT_UNINST_KEY}" "DisplayName" "$(^Name)"
+	WriteRegStr "SHCTX" "${PRODUCT_UNINST_KEY}" "UninstallString" "$INSTDIR\uninst.exe"
+	WriteRegStr "SHCTX" "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\Agender.exe"
+	WriteRegStr "SHCTX" "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
+	WriteRegStr "SHCTX" "${PRODUCT_UNINST_KEY}" "URLInfoAbout" "${PRODUCT_WEB_SITE}"
+	WriteRegStr "SHCTX" "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"
+	WriteRegStr "SHCTX" "${PRODUCT_UNINST_KEY}" "Contact" "${PRODUCT_EMAIL}"
+	WriteRegStr "SHCTX" "${PRODUCT_UNINST_KEY}" "Readme" "$INSTDIR\Readme.txt"
 SectionEnd
 
 !macro SetInstType2Lang l_id sec finish
@@ -251,7 +251,8 @@ FunctionEnd
 
 
 Function .onInstSuccess
-	ExecShell "open" ${PRODUCT_WEB_SITE}
+	IfSilent +2 0
+		ExecShell "open" ${PRODUCT_WEB_SITE}
 FunctionEnd
 
 Section Uninstall
@@ -262,7 +263,7 @@ Section Uninstall
 		Delete "$INSTDIR\mingwm10.dll"
 	!endif
 	!if ${SJLJ_EXCEPTIONS}
-		Delete "$INSTDIR\bin\libgcc_s_sjlj-1.dll"
+		Delete "$INSTDIR\libgcc_s_sjlj-1.dll"
 	!endif
 	Delete "$INSTDIR\Agender.exe"
 	Delete "$INSTDIR\Readme.txt"
@@ -322,7 +323,7 @@ Section Uninstall
 	RMDir "$SMPROGRAMS\Agender"
 	RMDir "$INSTDIR"
 	;remove registry entries
-	DeleteRegKey "${PRODUCT_UNINST_ROOT_KEY}"  "${PRODUCT_UNINST_KEY}"
-	DeleteRegKey HKLM "${PRODUCT_DIR_REGKEY}"
+	DeleteRegKey "SHCTX"  "${PRODUCT_UNINST_KEY}"
+	DeleteRegKey "SHCTX" "${PRODUCT_DIR_REGKEY}"
 	SetAutoClose false
 SectionEnd
