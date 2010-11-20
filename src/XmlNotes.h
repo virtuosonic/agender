@@ -15,22 +15,21 @@
 #include <wx/datetime.h>
 #include <wx/utils.h>
 
+#define stickSymb _T("$(sticky)")
+
 class  AgCal;
 class AgNote
 {
 	public:
-		AgNote();
 		AgNote(wxXmlNode* node);
 		~AgNote();
-		wxString GetName();
-		wxString GetText();
-		void SetName(wxString);
-		void SetText(wxString);
+		const wxString GetName();
+		const wxString GetText();
+		void SetName(wxString name);
+		void SetText(wxString text);
 		bool Stick(bool stick);
-		bool IsSticky(wxString note);
+		bool IsSticky(){return false;}
 	private:
-		wxString m_name;
-		wxString m_text;
 		wxXmlNode* m_node;
 		bool m_sticky;
 };
@@ -45,7 +44,7 @@ class AgDate
 		bool HasNote(wxString note);
 		bool AddNote(wxString note);
 		bool DeleteNote(wxString note);
-		AgNote* GetNote(wxString);
+		AgNote* GetNote(wxString note);
 		wxDateTime GetDate() {return m_date;}
 	private:
 		wxXmlNode* GetNode();
@@ -64,15 +63,16 @@ class AgCal
 		~AgCal();
 		//get unique instance
 		static AgCal* Get();
+		//static void Set(AgCal* cal);
 		//write changes
 		void Flush();
 		bool SetDate(wxDateTime date);
-		const AgDate* GetDate();
+		/*const*/ AgDate* GetDate();
 		wxArrayInt GetDaysWithNotes();
 	private:
 		wxXmlDocument m_doc;
 		AgDate* m_date;
-		static const wxString m_file;
+		/*const*/ wxString m_file;
 		static AgCal* g_Cal;
 		void CreateXml();
 		void LoadXml();

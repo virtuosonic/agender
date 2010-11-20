@@ -17,7 +17,7 @@ license GPLv3+
 		<sources>src/AgenderApp.cpp</sources>
 		<sources>src/AgenderMain.cpp</sources>
 		<sources>src/AgenderTray.cpp</sources>
-		<sources>src/AgenderCal.cpp</sources>
+		<sources>src/XmlNotes.cpp</sources>
 		<sources>src/wxAutoStart.cpp</sources>
 		<sources>src/Updater.cpp</sources>
 		<sources>src/Notifier.cpp</sources>

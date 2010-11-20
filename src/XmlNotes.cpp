@@ -6,17 +6,29 @@
  * Copyright: Gabriel Espinoza
  * License: GPLv3+
  **************************************************************/
+#ifdef __BORLANDC__
+#pragma hdrstop
+#endif
 
-#include "XmlNotes.h"
-#include "AgenderMain.h"
+#include <wx/app.h>
 #include <wx/filefn.h>
+#include <wx/filename.h>
+#include <wx/utils.h>
+#include <wx/defs.h>
 #include <wx/stdpaths.h>
 
-const wxString AgCal::m_file = wxStandardPaths::Get().GetUserDataDir() + wxFILE_SEP_PATH + _T("agender.xml");
+#include "AgenderMain.h"
+#include "XmlNotes.h"
+
 AgCal* AgCal::g_Cal = NULL;
 
 AgCal::AgCal()
 {
+//	wxFileName fname;
+//	fname.AssignDir(wxStandardPaths::Get().GetUserConfigDir());
+//	fname.SetName(_T("agender"));
+//	fname.SetExt(_T("xml"));
+	m_file <<  _T("/home/virtuoso/.Agender/agender.xml");       //fname.GetFullPath();
 	if (wxFileExists(m_file))
 		LoadXml();
 	else
@@ -35,6 +47,12 @@ AgCal* AgCal::Get()
 		g_Cal = new AgCal;
 	return g_Cal;
 }
+
+//void AgCal::Set(AgCal* cal)
+//{
+//	g_Cal = cal;
+//}
+
 
 void AgCal::Flush()
 {
@@ -69,7 +87,7 @@ bool AgCal::SetDate(wxDateTime date)
 	return true;
 }
 
-const AgDate* AgCal::GetDate()
+/*const*/ AgDate* AgCal::GetDate()
 {
 	return m_date;
 }
@@ -99,7 +117,8 @@ wxArrayInt AgCal::GetDaysWithNotes()
 			}
 		}
 		child = child->GetNext();
-	}	return days;
+	}
+	return days;
 }
 
 void Import(wxString file)
@@ -183,8 +202,9 @@ bool AgDate::AddNote(wxString note)
 	wxXmlNode* notenode = new wxXmlNode(m_node,
 			wxXML_ELEMENT_NODE,_T("note"));
 	notenode->AddProperty(_T("name"),note);
-	AgNote* a_note = new AgNote(notenode)
-	notes.Add(a_note)	return true
+	AgNote* a_note = new AgNote(notenode);
+	notes.Add(a_note);
+	return true;
 }
 
 bool AgDate::DeleteNote(wxString note)
@@ -194,14 +214,92 @@ bool AgDate::DeleteNote(wxString note)
 	wxXmlNode* child  = m_node->GetChildren();
 	while (child )
 	{
-		child
 		if (child->GetName() == _T("note") &&
 			child->GetPropVal(_T("name"),wxEmptyString) == note)
 		{
-
-// TODO (virtuoso#1#): eliminar child		}
+			for (unsigned int i = 0;i < notes.GetCount();i++)
+			{
+				if (notes[i]->GetName() == note)
+				{
+					m_node->RemoveChild(child);
+					AgNote* ag_note = notes[i];
+					notes.RemoveAt(i);
+					delete child;
+					delete ag_note;
+					return true;
+				}
+			}
+		}
 		child  = child ->GetNext();
 	}
+	//check if m_node is empty
+	child  = m_node->GetChildren();
+	if (child)
+	{
+		AgCal::Get()->m_dates->RemoveChild(m_node);
+		delete m_node;
+	}
+	return false;
 }
+
+AgNote* AgDate::GetNote(wxString note)
+{
+	for (unsigned int i = 0;i < notes.GetCount();i++)
+	{
+		if (notes[i]->GetName() == note)
+			return notes[i];
+	}
+	return NULL;
+}
+
+AgNote::AgNote(wxXmlNode* node)
+{
+	m_node = node;
+}
+
+AgNote::~AgNote()
+{
+
+}
+
+const wxString AgNote::GetName()
+{
+	return m_node->GetPropVal(_T("name"),wxEmptyString);
+}
+
+const wxString AgNote::GetText()
+{
+	wxXmlNode* child = m_node->GetChildren();
+	while (child)
+	{
+		if (child->GetName() == _T("message"))
+			return child->GetContent();
+		child =child->GetNext();
+	}
+	return wxEmptyString;
+}
+
+void AgNote::SetName(wxString name)
+{
+	m_node->AddProperty(_T("name"),name);
+}
+
+void AgNote::SetText(wxString text)
+{
+	wxXmlNode* child = m_node->GetChildren();
+	wxXmlNode* message = NULL;
+	while (child !=NULL && message == NULL)
+	{
+		if (child->GetName() == _T("message"))
+			message = child;
+		child =child->GetNext();
+	}
+	if (!child)
+		message = new wxXmlNode(m_node,wxXML_ELEMENT_NODE,_T("message"));
+	message->SetContent(text);
+}
+
+
+
 
 
