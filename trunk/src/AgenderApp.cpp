@@ -14,13 +14,14 @@
 #include "AgenderMain.h"
 #include "AgenderIPC.h"
 #include "Updater.h"
+#include "XmlNotes.h"
 
 #include <wx/log.h>
 #include <wx/defs.h>
 #include <wx/stdpaths.h>
 #include <wx/cmdline.h>
 #include <wx/stopwatch.h>
-#include <wx/wfstream.h>
+#include <wx/config.h>
 
 #if !defined __WXMAC__ || !defined __WXOSX__
 #include <iostream>
@@ -69,8 +70,6 @@ bool AgenderApp::OnInit()
 		cmd.Usage();
 		exit(EXIT_SUCCESS);
 	}
-	wxString cfgFile(wxStandardPaths::Get().GetUserConfigDir()+wxFILE_SEP_PATH+_T(".Agender-current user.txt"));
-	cmd.Found(_T("c"),&cfgFile);
 	if(cmd.Found(_T("verbose")))
 	{
 		wxLog::SetVerbose(true);
@@ -103,22 +102,21 @@ bool AgenderApp::OnInit()
 		//second ending, like on videogames it sucks even more!
 		exit(EXIT_FAILURE);
 	}
+	//configuration
+	wxConfig::Set(new wxConfig(wxEmptyString,wxEmptyString,wxEmptyString,wxEmptyString,wxCONFIG_USE_SUBDIR ));
 	// please talk me in a language that i understand
-	wxFileInputStream infile(cfgFile);
-	wxFileConfig* cfg = new wxFileConfig(infile);
-	if (m_locale.Init(cfg->Read(_T("/lang"),wxLANGUAGE_DEFAULT),wxLOCALE_LOAD_DEFAULT)) {}
+	m_locale.Init(wxConfig::Get()->Read(_T("/lang"),wxLANGUAGE_DEFAULT),wxLOCALE_LOAD_DEFAULT);
 	//this goes out because if wxstd.mo isn't found, Agender.mo isn't loaded,
 	//like in romanian ( there's no locale/ro/LC_MESSAGES/wxstd.mo)
 	m_locale.AddCatalog(wxT("Agender"),wxLANGUAGE_ENGLISH,wxT("UTF-8"));
-	wxFileOutputStream ofile(cfgFile);
-	cfg->Save(ofile);
-	delete cfg;
 	//(*AppInitialize
 	bool wxsOK = true;
 	wxInitAllImageHandlers();
 	//*)
+	//AgCal::Get();
+	//AgCal::Set(new AgCal);
 	//create main frame
-	wxFrame* Frame = new AgenderFrame(m_locale,cfgFile);
+	wxFrame* Frame = new AgenderFrame(m_locale);
 	SetTopWindow(Frame);
 	//lets create a server so Anothers can comunicate with this->m_server
 	m_server = new AgenderServer;
@@ -153,7 +151,7 @@ int AgenderApp::OnRun()
 {
 	Updater* up = new Updater(_T("agender.sourceforge.net"),
 			_T("/agender_version"),__AGENDER_VERSION__);
-	httpUp = up;
+	//httpUp = up;
 	if (up->Create() == wxTHREAD_NO_ERROR)
 	{
 		if (up->Run() != wxTHREAD_NO_ERROR)
@@ -169,6 +167,7 @@ int AgenderApp::OnExit()
 		delete m_checker;
 	if (m_server)
 		delete m_server;
+	delete AgCal::Get();
 	wxLogVerbose(_T("Exiting: goodbye"));
 	return wxApp::OnExit();
 }

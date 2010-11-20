@@ -14,6 +14,7 @@
 #include <wx/tokenzr.h>
 #include <wx/log.h>
 #include <wx/msgdlg.h>
+#include <wx/config.h>
 #include <wx/app.h>
 
 #ifdef __BORLANDC__

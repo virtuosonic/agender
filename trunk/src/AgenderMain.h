@@ -18,19 +18,15 @@
 #include <wx/button.h>
 #include <wx/frame.h>
 //*)
-#include <wx/fileconf.h>
-#include <wx/config.h>
 #include <wx/fdrepdlg.h>
 #include <wx/taskbar.h>
 
 #define __AGENDER_VERSION__ _T("2.0")
 
-class AgenderCal;
-
 class AgenderFrame: public wxFrame
 {
 	public:
-		AgenderFrame(wxLocale& locale,wxString cfgFile);
+		AgenderFrame(wxLocale& locale);
 		~AgenderFrame();
 		static const long ID_UPDATE_FOUND;
 	private:
@@ -71,12 +67,9 @@ class AgenderFrame: public wxFrame
 		//*)
 		wxFindReplaceDialog* fndDlg;
 		wxFindReplaceData* fndData;
-		wxFileConfig* schdl;
-		wxString schFile;
 		wxTaskBarIcon* trayicon;
 		bool SearchMode;
 		wxLocale& m_locale;
-		AgenderCal* a_cal;
 
 		void MarkDays();
 		void ChangeSelector();
