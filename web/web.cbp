@@ -31,13 +31,14 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="About.php" />
-		<Unit filename="Downloads.php" />
-		<Unit filename="Home.php" />
-		<Unit filename="Links.php" />
-		<Unit filename="Press.php" />
-		<Unit filename="Screenshots.php" />
+		<Unit filename="About.htm" />
+		<Unit filename="Downloads.htm" />
+		<Unit filename="Home.htm" />
+		<Unit filename="Links.htm" />
+		<Unit filename="Press.htm" />
+		<Unit filename="Screenshots.htm" />
 		<Unit filename="agender.css" />
+		<Unit filename="agender_version" />
 		<Unit filename="download.css" />
 		<Unit filename="index.php" />
 		<Unit filename="links.css" />
