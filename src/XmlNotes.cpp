@@ -10,30 +10,26 @@
 #pragma hdrstop
 #endif
 
-#include <wx/app.h>
-#include <wx/filefn.h>
-#include <wx/filename.h>
-#include <wx/utils.h>
-#include <wx/defs.h>
-#include <wx/stdpaths.h>
-
 #include "AgenderMain.h"
 #include "XmlNotes.h"
+
+#include <wx/filename.h>
+#include <wx/stdpaths.h>
 
 AgCal* AgCal::g_Cal = NULL;
 
 AgCal::AgCal()
 {
-//	wxFileName fname;
-//	fname.AssignDir(wxStandardPaths::Get().GetUserConfigDir());
-//	fname.SetName(_T("agender"));
-//	fname.SetExt(_T("xml"));
-	m_file <<  _T("/home/virtuoso/.Agender/agender.xml");       //fname.GetFullPath();
-	if (wxFileExists(m_file))
+	wxFileName fname;
+	fname.AssignDir(wxStandardPaths::Get().GetUserDataDir());
+	fname.SetName(_T("agender"));
+	fname.SetExt(_T("xml"));
+	m_file = fname.GetFullPath();
+	if (fname.FileExists())
 		LoadXml();
 	else
 		CreateXml();
-	m_date = new AgDate(wxDateTime::Now());
+	m_date = new AgDate(wxDateTime::Now(),this);
 }
 
 AgCal::~AgCal()
@@ -48,10 +44,10 @@ AgCal* AgCal::Get()
 	return g_Cal;
 }
 
-//void AgCal::Set(AgCal* cal)
-//{
-//	g_Cal = cal;
-//}
+void AgCal::Set(AgCal* cal)
+{
+	g_Cal = cal;
+}
 
 
 void AgCal::Flush()
@@ -83,7 +79,7 @@ bool AgCal::SetDate(wxDateTime date)
 {
 	if (m_date)
 		delete m_date;
-	m_date = new AgDate(date);
+	m_date = new AgDate(date,this);
 	return true;
 }
 
@@ -126,11 +122,12 @@ void Import(wxString file)
 	// TODO (virtuoso#1#): implement
 }
 
-AgDate::AgDate(wxDateTime date)
+AgDate::AgDate(wxDateTime date,AgCal* cal)
 {
 	m_date = date;
+	m_cal = cal;
 	m_node = GetNode();
-}
+// TODO (virtuoso#1#): load notes here!}
 
 AgDate::~AgDate()
 {
@@ -139,7 +136,7 @@ AgDate::~AgDate()
 
 wxXmlNode* AgDate::GetNode()
 {
-	wxXmlNode* child = AgCal::Get()->m_dates->GetChildren();
+	wxXmlNode* child = m_cal->m_dates->GetChildren();
 	while (child)
 	{
 		if (child->GetName() == _T("date"))
@@ -166,7 +163,7 @@ wxXmlNode* AgDate::GetNode()
 
 wxXmlNode* AgDate::CreateNode()
 {
-	wxXmlNode* datenode = new wxXmlNode(AgCal::Get()->m_dates,
+	wxXmlNode* datenode = new wxXmlNode(m_cal->m_dates,
 			wxXML_ELEMENT_NODE,_T("date"));
 	datenode->AddProperty(_T("year"),wxString::Format(_T("%i"),m_date.GetYear()));
 	datenode->AddProperty(_T("month"),wxString::Format(_T("%i"),m_date.GetMonth()));
@@ -236,7 +233,7 @@ bool AgDate::DeleteNote(wxString note)
 	child  = m_node->GetChildren();
 	if (child)
 	{
-		AgCal::Get()->m_dates->RemoveChild(m_node);
+		m_cal->m_dates->RemoveChild(m_node);
 		delete m_node;
 	}
 	return false;

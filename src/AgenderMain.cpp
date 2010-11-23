@@ -110,7 +110,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 	Connect(wxID_ABOUT,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AgenderFrame::OnButton3Click);
 	Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&AgenderFrame::OnClose);
 	//*)
-	AgNotesArray notes = AgCal::Get()->GetDate()->GetNotes();
+// TODO (virtuoso#1#): send this to a method	AgNotesArray notes = AgCal::Get()->GetDate()->GetNotes();
 	for (unsigned int i = 0; i < notes.GetCount(); i++)
 		ListBox1->Append(notes[i]->GetName());
 	if (notes.GetCount() > 0)
@@ -121,6 +121,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 	}
 	else
 		TextCtrl1->Disable();
+	//update
 	ChangeSelector();
 	MarkDays();
 	//shortcuts
