@@ -13,7 +13,6 @@
 #include <wx/dynarray.h>
 #include <wx/xml/xml.h>
 #include <wx/datetime.h>
-#include <wx/utils.h>
 
 #define stickSymb _T("$(sticky)")
 
@@ -38,7 +37,7 @@ WX_DEFINE_ARRAY(AgNote*,AgNotesArray);
 class AgDate
 {
 	public:
-		AgDate(wxDateTime date);
+		AgDate(wxDateTime date,AgCal* cal);
 		~AgDate();
 		const AgNotesArray GetNotes();
 		bool HasNote(wxString note);
@@ -50,6 +49,7 @@ class AgDate
 		wxXmlNode* GetNode();
 		wxXmlNode* CreateNode();
 		wxXmlNode* m_node;
+		AgCal* m_cal;
 		wxDateTime m_date;
 		AgNotesArray notes;
 	friend class AgCal;
@@ -63,7 +63,7 @@ class AgCal
 		~AgCal();
 		//get unique instance
 		static AgCal* Get();
-		//static void Set(AgCal* cal);
+		static void Set(AgCal* cal);
 		//write changes
 		void Flush();
 		bool SetDate(wxDateTime date);

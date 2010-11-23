@@ -50,6 +50,8 @@ bool AgenderApp::OnInit()
 	//who are we?
 	SetAppName(_T("Agender"));
 	SetVendorName(_T("Virtuosonic"));
+	if (!wxDirExists(wxStandardPaths::Get().GetUserDataDir()))
+		wxMkdir(wxStandardPaths::Get().GetUserDataDir());
 #if defined __WXMAC__ || defined __WXOSX__
 	//under OSX the next block gives a compilation error
 	//so we use this instead
@@ -113,7 +115,7 @@ bool AgenderApp::OnInit()
 	bool wxsOK = true;
 	wxInitAllImageHandlers();
 	//*)
-	//AgCal::Get();
+	AgCal::Get();
 	//AgCal::Set(new AgCal);
 	//create main frame
 	wxFrame* Frame = new AgenderFrame(m_locale);
