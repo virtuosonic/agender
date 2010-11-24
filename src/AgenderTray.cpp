@@ -23,10 +23,8 @@
 #include <wx/dataobj.h>
 #include <wx/msgdlg.h>
 #include <wx/intl.h>
-
-//#if wxUSE_RICHTEXT
 #include <wx/richtext/richtextsymboldlg.h>
-//#endif//wxUSE_RICHTEXT
+
 
 BEGIN_EVENT_TABLE(AgenderTray,wxTaskBarIcon)
 	EVT_TASKBAR_LEFT_UP(AgenderTray::OnLeft)
@@ -72,6 +70,7 @@ AgenderTray::AgenderTray(wxFrame* frame)
 
 void AgenderTray::OnLeft(wxTaskBarIconEvent& WXUNUSED(event))
 {
+	//show the main window
 	if (frame->IsShownOnScreen())
 	{
 		frame->Hide();

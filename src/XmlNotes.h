@@ -17,6 +17,7 @@
 #define stickSymb _T("$(sticky)")
 
 class  AgCal;
+
 class AgNote
 {
 	public:
@@ -63,7 +64,6 @@ class AgCal
 		~AgCal();
 		//get unique instance
 		static AgCal* Get();
-		static void Set(AgCal* cal);
 		//write changes
 		void Flush();
 		bool SetDate(wxDateTime date);
