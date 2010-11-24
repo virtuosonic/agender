@@ -30,12 +30,16 @@ Updater::Updater(wxString host,wxString file,wxString ver) : wxThread(wxTHREAD_D
 
 Updater::~Updater()
 {
+	//nothing todo here
 	wxLogVerbose(_T("destroying updater"));
 }
 
 wxThread::ExitCode Updater::Entry()
 {
 	//wait 5 minutes
+	//to give oportunity
+	//to the user to
+	//connect to internet
 	Sleep(300000);
 	wxString found;
 	while (found.IsEmpty())
@@ -48,9 +52,8 @@ wxThread::ExitCode Updater::Entry()
 		}
 		else
 		{
-			//unsigned long
-			//while ()
-			Sleep(3600000);//1 hour
+			//sleep 1 hour
+			Sleep(3600000);
 		}
 	}
 	return (wxThread::ExitCode) 0;
@@ -63,6 +66,7 @@ wxString Updater::Search()
 	wxLogVerbose(_T("connecting to %s"),m_host.c_str());
 	if (updateClient.Connect(m_host))
 	{
+		//this saves a little band width
 		updateClient.SetHeader(_T("If-Modified-Since"),
 			wxConfig::Get()->Read(_T("http-modified-time"),wxEmptyString));
 		wxInputStream* ver_data = (wxInputStream*)updateClient.GetInputStream(m_file);
@@ -76,6 +80,10 @@ wxString Updater::Search()
 			wxTextInputStream strm(*ver_data);
 			last_ver = strm.ReadLine();
 			delete ver_data;
+			//here we return the
+			//contents of the file
+			//it should be something like
+			//9.9.9
 			return last_ver;
 		}
 		else if (updateClient.GetResponse() == 304)
@@ -85,12 +93,15 @@ wxString Updater::Search()
 	}
 	else
 		wxLogVerbose(_T("failed connecting to %s"),m_host.c_str());
+	//we return nothing
 	return wxEmptyString;
 }
 
 bool Updater::IsLatest(wxString latest)
 {
+	//current
 	wxArrayInt i_cur = ToInt(m_ver);
+	//retrieved from inet
 	wxArrayInt i_latest = ToInt(latest);
 	for (unsigned int i = 0;i < i_cur.GetCount()  && i < i_latest.GetCount();i++)
 	{
@@ -111,6 +122,8 @@ bool Updater::IsLatest(wxString latest)
 
 void Updater::AskUser(wxString ver)
 {
+	//this sends an event to the
+	//main window
 	wxLogVerbose(_T("sending event to frame"));
 	wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED,AgenderFrame::ID_UPDATE_FOUND);
 	event.SetString(ver);

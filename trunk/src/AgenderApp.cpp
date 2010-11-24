@@ -63,7 +63,7 @@ bool AgenderApp::OnInit()
 #endif
 	//parse arguments
 	wxCmdLineParser cmd(argc,argv);
-	cmd.AddOption(_T("c"),_T("config"),_T("specify a config file to load"),wxCMD_LINE_VAL_STRING);
+	//cmd.AddOption(_T("c"),_T("config"),_T("specify a config file to load"),wxCMD_LINE_VAL_STRING);
 	cmd.AddSwitch(_T("nt"),_T("no-taskbar"),_T("use when you don't have a taskbar"));
 	OnInitCmdLine(cmd);
 	int res = cmd.Parse(false);
@@ -115,8 +115,6 @@ bool AgenderApp::OnInit()
 	bool wxsOK = true;
 	wxInitAllImageHandlers();
 	//*)
-	AgCal::Get();
-	//AgCal::Set(new AgCal);
 	//create main frame
 	wxFrame* Frame = new AgenderFrame(m_locale);
 	SetTopWindow(Frame);
@@ -151,9 +149,9 @@ bool AgenderApp::OnInit()
 
 int AgenderApp::OnRun()
 {
+	//here we create the updater & let it search for updates
 	Updater* up = new Updater(_T("agender.sourceforge.net"),
 			_T("/agender_version"),__AGENDER_VERSION__);
-	//httpUp = up;
 	if (up->Create() == wxTHREAD_NO_ERROR)
 	{
 		if (up->Run() != wxTHREAD_NO_ERROR)
@@ -169,6 +167,7 @@ int AgenderApp::OnExit()
 		delete m_checker;
 	if (m_server)
 		delete m_server;
+	//delete global pointer
 	delete AgCal::Get();
 	wxLogVerbose(_T("Exiting: goodbye"));
 	return wxApp::OnExit();

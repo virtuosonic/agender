@@ -44,11 +44,6 @@ AgCal* AgCal::Get()
 	return g_Cal;
 }
 
-void AgCal::Set(AgCal* cal)
-{
-	g_Cal = cal;
-}
-
 
 void AgCal::Flush()
 {
@@ -59,6 +54,8 @@ void AgCal::CreateXml()
 {
 	wxXmlNode* root = new wxXmlNode(wxXML_ELEMENT_NODE,_T("Agender"));
 	m_dates = new wxXmlNode(root,wxXML_ELEMENT_NODE,_T("dates"));
+	new wxXmlNode(root,wxXML_COMMENT_NODE,wxEmptyString,
+		_T("in this file Agender saves your notes, so be careful with it"));
 	root->AddProperty(_T("version"),__AGENDER_VERSION__);
 	m_doc.SetRoot(root);
 }
@@ -127,7 +124,20 @@ AgDate::AgDate(wxDateTime date,AgCal* cal)
 	m_date = date;
 	m_cal = cal;
 	m_node = GetNode();
-// TODO (virtuoso#1#): load notes here!}
+// TODO (virtuoso#1#): load notes here!
+	if (m_node)
+	{
+		wxXmlNode* child = m_node->GetChildren();
+		while (child)
+		{
+			if (child->GetName() == _T("note") )
+			{
+				AgNote* a_note = new AgNote(child);
+				notes.Add(a_note);
+			}
+			child = child->GetNext();
+		}
+	}}
 
 AgDate::~AgDate()
 {
@@ -178,12 +188,13 @@ const AgNotesArray AgDate::GetNotes()
 
 bool AgDate::HasNote(wxString note)
 {
-	if (!m_node)
+	if (!m_node || note.IsEmpty())
 		return false;
 	wxXmlNode* child = m_node->GetChildren();
 	while (child)
 	{
-		if (child->GetName() == note)
+		if (child->GetName() == _T("note") &&
+			child->GetPropVal(_T("name"),wxEmptyString) == note)
 			return true;
 		child = child->GetNext();
 	}
@@ -270,7 +281,13 @@ const wxString AgNote::GetText()
 	while (child)
 	{
 		if (child->GetName() == _T("message"))
-			return child->GetContent();
+		{
+			child = child->GetChildren();
+			if (child)
+				return child->GetContent();
+			else
+				return wxEmptyString;
+		}
 		child =child->GetNext();
 	}
 	return wxEmptyString;
@@ -278,7 +295,24 @@ const wxString AgNote::GetText()
 
 void AgNote::SetName(wxString name)
 {
-	m_node->AddProperty(_T("name"),name);
+	//if exists
+	if (m_node->HasProp(_T("name")))
+	{
+		wxXmlProperty* prop = m_node->GetProperties();
+		while (prop)
+		{
+			if (prop->GetName() == _T("name"))
+			{
+				prop->SetValue(name);
+				return;
+			}
+			prop =prop->GetNext();
+		}
+
+	}
+	//if doesn't exists
+	else
+		m_node->AddProperty(_T("name"),name);
 }
 
 void AgNote::SetText(wxString text)
@@ -291,12 +325,10 @@ void AgNote::SetText(wxString text)
 			message = child;
 		child =child->GetNext();
 	}
-	if (!child)
+	if (!message)
 		message = new wxXmlNode(m_node,wxXML_ELEMENT_NODE,_T("message"));
-	message->SetContent(text);
+	wxXmlNode* content = message->GetChildren();
+	if (!content)
+		content = new wxXmlNode(message,wxXML_TEXT_NODE,wxEmptyString);
+	content->SetContent(text);
 }
-
-
-
-
-
