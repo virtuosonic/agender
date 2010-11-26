@@ -72,7 +72,7 @@ class AgCal
 	private:
 		wxXmlDocument m_doc;
 		AgDate* m_date;
-		/*const*/ wxString m_file;
+		wxString m_file;
 		static AgCal* g_Cal;
 		void CreateXml();
 		void LoadXml();

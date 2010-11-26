@@ -17,6 +17,8 @@
 #include <wx/stdpaths.h>
 
 AgCal* AgCal::g_Cal = NULL;
+#define Ag_1_0 wxStandardPaths::Get().GetConfigDataDir() + _T(".Agender-current user.txt")
+#define Ag_1_1_9 wxGetHomeDir() + _T(".Agender-current user.txt")
 
 AgCal::AgCal()
 {
@@ -25,7 +27,7 @@ AgCal::AgCal()
 	fname.SetName(_T("agender"));
 	fname.SetExt(_T("xml"));
 	m_file = fname.GetFullPath();
-	if (fname.FileExists())
+	if (wxFileExists(m_file))
 		LoadXml();
 	else
 		CreateXml();
@@ -80,7 +82,7 @@ bool AgCal::SetDate(wxDateTime date)
 	return true;
 }
 
-/*const*/ AgDate* AgCal::GetDate()
+AgDate* AgCal::GetDate()
 {
 	return m_date;
 }
@@ -114,7 +116,7 @@ wxArrayInt AgCal::GetDaysWithNotes()
 	return days;
 }
 
-void Import(wxString file)
+void AgCal::Import(wxString file)
 {
 	// TODO (virtuoso#1#): implement
 }
