@@ -10,8 +10,8 @@
 #endif
 
 #include "AgenderCal.h"
-#include <wx/config.h>
 #include <wx/log.h>
+#include <wx/wfstream.h>
 
 //since this  software has a very bad design, now I have to use hacks because it wasn't mean to
 //be extensible, however it acomplishes it goals: small, fast & portable
@@ -19,14 +19,17 @@
 
 const wxChar* AgenderCal::stickPath = _T("/sticky");
 
-AgenderCal::AgenderCal(wxDateTime date)
+AgenderCal::AgenderCal(wxDateTime date,wxString file)
 {
+	wxFileInputStream stream(file);
+	cfg = new wxFileConfig(stream);
 	SetDate(date);
 }
 
 AgenderCal::~AgenderCal()
 {
 	wxLogVerbose(_T("destroying AgenderCal"));
+	delete cfg;
 }
 
 void AgenderCal::SetDate(wxDateTime date)
@@ -43,46 +46,46 @@ wxArrayString AgenderCal::GetNotes()
 {
 	wxArrayString notes;
 	wxString dateStr(m_date.Format(_T("%Y-%m-%d")));
-	if (wxConfig::Get()->HasGroup(m_date.Format(_T("%Y-%m-%d"))))
+	if (cfg->HasGroup(m_date.Format(_T("%Y-%m-%d"))))
 	{
-		wxConfig::Get()->SetPath(dateStr);
+		cfg->SetPath(dateStr);
 		wxString noteName;
 		long indx = 0;
-		if (wxConfig::Get()->GetFirstEntry(noteName,indx))
+		if (cfg->GetFirstEntry(noteName,indx))
 		{
 			notes.Add(noteName);
-			while (wxConfig::Get()->GetNextEntry(noteName,indx))
+			while (cfg->GetNextEntry(noteName,indx))
 				notes.Add(noteName);
 		}
-		wxConfig::Get()->SetPath(_T("/"));
+		cfg->SetPath(_T("/"));
 		// TODO (virtuoso#1#): is this needed?
 		if (notes.GetCount() == 0)
-			wxConfig::Get()->DeleteGroup(dateStr);
+			cfg->DeleteGroup(dateStr);
 	}
-	if (wxConfig::Get()->HasGroup(stickPath))
+	if (cfg->HasGroup(stickPath))
 	{
-		wxConfig::Get()->SetPath(stickPath);
+		cfg->SetPath(stickPath);
 		wxString noteName;
 		long indx = 0;
-		if (wxConfig::Get()->GetFirstEntry(noteName,indx))
+		if (cfg->GetFirstEntry(noteName,indx))
 		{
 			notes.Add(noteName+ stickSymb);
-			while (wxConfig::Get()->GetNextEntry(noteName,indx))
+			while (cfg->GetNextEntry(noteName,indx))
 				notes.Add(noteName+ stickSymb);
 		}
-		wxConfig::Get()->SetPath(_T("/"));
+		cfg->SetPath(_T("/"));
 	}
 	return notes;
 }
 
 wxString AgenderCal::GetNoteText(wxString note)
 {
-	return wxConfig::Get()->Read(GetFullPath(note),wxEmptyString);
+	return cfg->Read(GetFullPath(note),wxEmptyString);
 }
 
 void AgenderCal::SetNoteText(wxString note,wxString text)
 {
-	wxConfig::Get()->Write(GetFullPath(note),text);
+	cfg->Write(GetFullPath(note),text);
 }
 
 wxArrayString AgenderCal::Find(wxString WXUNUSED(FindString))
@@ -98,11 +101,11 @@ wxArrayInt AgenderCal::GetDaysWithNotes()
 	wxArrayInt days;
 	//the first looks if the existing notes
 	//belong to the current month
-	if (wxConfig::Get()->GetNumberOfGroups() < 30)
+	if (cfg->GetNumberOfGroups() < 30)
 	{
 		wxString group;
 		long indx=0;
-		if (wxConfig::Get()->GetFirstGroup(group,indx))
+		if (cfg->GetFirstGroup(group,indx))
 		{
 			// TODO (virtuoso#1#): send this to a method?
 			if (m_date.Format(_T("%m")) == group.BeforeLast('-').AfterFirst('-'))
@@ -111,7 +114,7 @@ wxArrayInt AgenderCal::GetDaysWithNotes()
 				group.AfterLast('-').ToLong(&i);
 				days.Add(i);
 			}
-			while(wxConfig::Get()->GetNextGroup(group,indx))
+			while(cfg->GetNextGroup(group,indx))
 			{
 				if (m_date.Format(_T("%m")) == group.BeforeLast('-').AfterFirst('-'))
 				{
@@ -138,7 +141,7 @@ wxArrayInt AgenderCal::GetDaysWithNotes()
 			dateStr = m_date.Format(_T("%Y-%m-")) +
 					  wxString::Format(_T("%i"),i);
 		}
-		if (wxConfig::Get()->HasGroup(dateStr))
+		if (cfg->HasGroup(dateStr))
 			days.Add(i);
 	}
 	return days;
@@ -146,28 +149,28 @@ wxArrayInt AgenderCal::GetDaysWithNotes()
 
 void AgenderCal::RmNote(wxString note)
 {
-	wxConfig::Get()->DeleteEntry(GetFullPath(note),true);
+	cfg->DeleteEntry(GetFullPath(note),true);
 }
 
 bool AgenderCal::RenameNote(wxString OldName,wxString NewName)
 {
 	wxString noteVal;
-	if (!wxConfig::Get()->Read(GetFullPath(OldName),&noteVal))
+	if (!cfg->Read(GetFullPath(OldName),&noteVal))
 		return false;
-	wxConfig::Get()->DeleteEntry(GetFullPath(OldName),true);
-	wxConfig::Get()->Write(GetFullPath(NewName),noteVal);
+	cfg->DeleteEntry(GetFullPath(OldName),true);
+	cfg->Write(GetFullPath(NewName),noteVal);
 	return true;
 }
 
 bool AgenderCal::HasNote(wxString note)
 {
-	return wxConfig::Get()->HasEntry(GetFullPath(note));
+	return cfg->HasEntry(GetFullPath(note));
 }
 
 bool AgenderCal::MakeSticky(wxString note)
 {
 	wxString stickyNote(wxString::Format(_T("%s/%s"),stickPath,note.c_str()));
-	wxConfig::Get()->Write(stickyNote,GetNoteText(note));
+	cfg->Write(stickyNote,GetNoteText(note));
 	RmNote(note);
 	return true;
 }
@@ -184,7 +187,7 @@ wxString AgenderCal::GetFullPath(wxString note)
 bool AgenderCal::IsSticky(wxString note)
 {
 	if (RmStickySimb(&note))
-		return wxConfig::Get()->HasEntry(wxString::Format(_T("%s/%s"),stickPath,note.c_str()));
+		return cfg->HasEntry(wxString::Format(_T("%s/%s"),stickPath,note.c_str()));
 	return false;
 
 }
@@ -192,7 +195,7 @@ bool AgenderCal::IsSticky(wxString note)
 bool AgenderCal::UnStick(wxString note)
 {
 	wxString NormalNote(GetFullPath(note.BeforeLast('$')));
-	wxConfig::Get()->Write(NormalNote,GetNoteText(note));
+	cfg->Write(NormalNote,GetNoteText(note));
 	RmNote(note);
 	return true;
 }

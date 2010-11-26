@@ -105,7 +105,7 @@ bool AgenderApp::OnInit()
 		exit(EXIT_FAILURE);
 	}
 	//configuration
-	wxConfig::Set(new wxConfig(wxEmptyString,wxEmptyString,wxEmptyString,wxEmptyString,wxCONFIG_USE_SUBDIR ));
+	wxConfig::Set(new wxConfig(wxEmptyString,wxEmptyString,wxEmptyString,wxEmptyString,wxCONFIG_USE_SUBDIR|wxCONFIG_USE_LOCAL_FILE));
 	// please talk me in a language that i understand
 	m_locale.Init(wxConfig::Get()->Read(_T("/lang"),wxLANGUAGE_DEFAULT),wxLOCALE_LOAD_DEFAULT);
 	//this goes out because if wxstd.mo isn't found, Agender.mo isn't loaded,
@@ -169,6 +169,9 @@ int AgenderApp::OnExit()
 		delete m_server;
 	//delete global pointer
 	delete AgCal::Get();
+//	wxConfig::Get()->Flush();
+//	delete wxConfig::Get();
+//	wxConfig::Set(NULL);
 	wxLogVerbose(_T("Exiting: goodbye"));
 	return wxApp::OnExit();
 }

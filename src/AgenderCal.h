@@ -13,6 +13,7 @@
 #include <wx/string.h>
 #include <wx/arrstr.h>
 #include <wx/dynarray.h>
+#include <wx/fileconf.h>
 
 //i hate globals
 static const wxChar* stickSymb = _T("$(sticky)");
@@ -20,7 +21,7 @@ static const wxChar* stickSymb = _T("$(sticky)");
 class AgenderCal
 {
 	public:
-		AgenderCal(wxDateTime date);
+		AgenderCal(wxDateTime date,wxString file);
 		~AgenderCal();
 		void SetDate(wxDateTime date);
 		wxDateTime GetDate();
@@ -41,6 +42,7 @@ class AgenderCal
 		wxString GetFullPath(wxString note);
 		bool RmStickySimb(wxString* note);
 		static const wxChar* stickPath;
+		wxFileConfig* cfg;
 };
 
 #endif // AGENDERCAL_H_INCLUDED
