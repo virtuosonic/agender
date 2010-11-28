@@ -81,7 +81,7 @@ else {$page_data = $error404;}
 <head>
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 	<meta name="author" content="Gabriel Espinoza"/>
-	<meta name="keywords" content="Agender,agender,agenda,schedule,calendar,calendario,wxWidgets,cross platform,free software,windows,linux,opensource"/>
+	<meta name="keywords" content="Agender,agender,agenda,schedule,calendar,calendario,wxWidgets,cross platform,free software,windows,linux,opensource,XP,se7en,osx,mac"/>
 	<meta name="description" content="the cross platform schedule tool"/>
 	<meta name="google-site-verification" content="iUBg-Nc16oi8DZuLt_3KwE8exy7fstuQjP7nMNeTSU4" />
 	<title>Agender - <?php echo $title ?></title>
