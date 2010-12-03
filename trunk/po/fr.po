@@ -2,10 +2,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Agender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-10 23:07-0800\n"
-"PO-Revision-Date: 2010-10-18 10:07+0100\n"
+"POT-Creation-Date: 2010-12-03 11:05+0100\n"
+"PO-Revision-Date: 2010-12-03 11:12+0100\n"
 "Last-Translator: ianaré sévi <ianare.sevi@c4mprod.com>\n"
 "Language-Team: Agender project <agender-support@lists.sourceforge.net>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,47 +14,52 @@ msgstr ""
 "X-Poedit-Language: French\n"
 "X-Poedit-SearchPath-0: ../src\n"
 
-#: ../src/AgenderMain.cpp:73
+#: ../src/wxAutoStart.cpp:39
+#, c-format
+msgid "AutoStart is only available under %s  and Unix desktops that follow the freedesktop.org standards. If you add support for any other system, please send patches to the patch tracker in the Agender project page at http://sourceforge.net/projects/agender/ or you can also help donating hardware that runs your favorite system."
+msgstr "Le démarrage automatique est disponible uniquement sur %s et les ordinateurs UNIX conformes aux standards freedesktop.org. Si vous développez une prise en charge pour tout autre système, envoyez vos patchs au dispositif de suivi des patchs d'Agender, à http://sourceforge.net/projects/agender/ ou aidez-nous en faisant don de votre matériel exécutant votre système favori."
+
+#: ../src/wxAutoStart.cpp:46
+msgid "Error setting auto start"
+msgstr "Erreur de configuration du démarrage automatique"
+
+#: ../src/AgenderMain.cpp:72
 msgid "Agender"
 msgstr "Agender"
 
-#: ../src/AgenderMain.cpp:89
+#: ../src/AgenderMain.cpp:88
 msgid "Add &note"
 msgstr "Ajouter une &note"
 
-#: ../src/AgenderMain.cpp:93
+#: ../src/AgenderMain.cpp:92
 msgid "&Delete selection"
 msgstr "&Supprimer la sélection"
 
-#: ../src/AgenderMain.cpp:95
+#: ../src/AgenderMain.cpp:94
 msgid "&About..."
 msgstr "&A propos ..."
 
-#: ../src/AgenderMain.cpp:135
-msgid "Agender uses this file to save your schedule, don't delete it!"
-msgstr "Ne supprimez pas ce fichier, car il est utilisé par Agender pour enregistrer votre agenda."
-
-#: ../src/AgenderMain.cpp:160
+#: ../src/AgenderMain.cpp:139
 msgid "Agender|Search Notes"
 msgstr "Agender|Rechercher des notes"
 
-#: ../src/AgenderMain.cpp:239
+#: ../src/AgenderMain.cpp:198
 msgid "A cross-platform schedule tool"
 msgstr "Un outil de planification multiplate-forme"
 
-#: ../src/AgenderMain.cpp:240
+#: ../src/AgenderMain.cpp:199
 msgid "Build:"
 msgstr "Version :"
 
-#: ../src/AgenderMain.cpp:240
+#: ../src/AgenderMain.cpp:199
 msgid "Revision:"
 msgstr "Révision :"
 
-#: ../src/AgenderMain.cpp:241
+#: ../src/AgenderMain.cpp:200
 msgid "Agender Web Site"
 msgstr "Site Web d'Agender"
 
-#: ../src/AgenderMain.cpp:242
+#: ../src/AgenderMain.cpp:201
 msgid ""
 "Agender is free software; you can redistribute it and/or modify\n"
 "it under the terms of the GNU General Public License as published by\n"
@@ -82,111 +88,162 @@ msgstr ""
 "Dans le cas contraire, consultez la licence à l'adresse\n"
 "<http://www.gnu.org/licenses/>."
 
-#: ../src/AgenderMain.cpp:300
+#: ../src/AgenderMain.cpp:258
 msgid "To-Do Title"
 msgstr "Titre de la tâche"
 
-#: ../src/AgenderMain.cpp:300
+#: ../src/AgenderMain.cpp:258
 msgid "New To-Do"
 msgstr "Créer une tâche"
 
-#: ../src/AgenderMain.cpp:305
+#: ../src/AgenderMain.cpp:263
 msgid "Expresion '$(' reserved for Agender, please use another name"
 msgstr "L'expression $( est réservée à Agender. Utilisez un autre nom."
 
-#: ../src/AgenderMain.cpp:421
-#: ../src/AgenderMain.cpp:459
+#: ../src/AgenderMain.cpp:386
+#: ../src/AgenderMain.cpp:425
 msgid "Rename"
 msgstr "Renommer"
 
-#: ../src/AgenderMain.cpp:423
+#: ../src/AgenderMain.cpp:388
 msgid "Normal"
 msgstr "Normal"
 
-#: ../src/AgenderMain.cpp:424
+#: ../src/AgenderMain.cpp:389
 msgid "Sticky"
 msgstr "Pense-bête"
 
-#: ../src/AgenderMain.cpp:459
+#: ../src/AgenderMain.cpp:425
 msgid "New name"
 msgstr "Nouveau nom"
 
-#: ../src/AgenderMain.cpp:493
+#: ../src/AgenderMain.cpp:458
 #, c-format
 msgid "The %s version of %s has been released. Do you want to download it?"
 msgstr "La %s version de %s a été publiée. Voulez-vous la télécharger ?"
 
-#: ../src/AgenderMain.cpp:495
+#: ../src/AgenderMain.cpp:460
 msgid "Upgrade Found"
 msgstr "Mise à jour disponible"
 
-#: ../src/wxAutoStart.cpp:39
-#, c-format
-msgid "AutoStart is only available under %s  and Unix desktops that follow the freedesktop.org standards. If you add support for any other system, please send patches to the patch tracker in the Agender project page at http://sourceforge.net/projects/agender/ or you can also help donating hardware that runs your favorite system."
-msgstr "Le démarrage automatique est disponible uniquement sur %s et les ordinateurs UNIX conformes aux standards freedesktop.org. Si vous développez une prise en charge pour tout autre système, envoyez vos patchs au dispositif de suivi des patchs d'Agender, à http://sourceforge.net/projects/agender/ ou aidez-nous en faisant don de votre matériel exécutant votre système favori."
-
-#: ../src/wxAutoStart.cpp:46
-msgid "Error setting auto start"
-msgstr "Erreur de configuration du démarrage automatique"
-
-#: ../src/AgenderTray.cpp:93
+#: ../src/AgenderTray.cpp:91
 msgid "100%"
 msgstr "100%"
 
-#: ../src/AgenderTray.cpp:94
+#: ../src/AgenderTray.cpp:92
 msgid "75%"
 msgstr "75%"
 
-#: ../src/AgenderTray.cpp:95
+#: ../src/AgenderTray.cpp:93
 msgid "50%"
 msgstr "50%"
 
-#: ../src/AgenderTray.cpp:96
+#: ../src/AgenderTray.cpp:94
 msgid "25%"
 msgstr "25%"
 
+#: ../src/AgenderTray.cpp:99
+msgid "default"
+msgstr "par défaut"
+
+#: ../src/AgenderTray.cpp:100
+msgid "Spanish"
+msgstr "Espagnol"
+
 #: ../src/AgenderTray.cpp:101
+msgid "Deutch"
+msgstr ""
+
+#: ../src/AgenderTray.cpp:102
+msgid "Japanese"
+msgstr "Japonais"
+
+#: ../src/AgenderTray.cpp:103
+msgid "Portuguese"
+msgstr "Portugais"
+
+#: ../src/AgenderTray.cpp:104
+msgid "French"
+msgstr "Français"
+
+#: ../src/AgenderTray.cpp:105
+msgid "Greek"
+msgstr "Grec"
+
+#: ../src/AgenderTray.cpp:106
+msgid "Swedish"
+msgstr "Suédois"
+
+#: ../src/AgenderTray.cpp:107
+msgid "Traditional Chinese"
+msgstr "Chinois traditionnel"
+
+#: ../src/AgenderTray.cpp:108
+msgid "Simplified Chinese"
+msgstr "Chinois simplifié"
+
+#: ../src/AgenderTray.cpp:109
+msgid "Romanian"
+msgstr "Roumain"
+
+#: ../src/AgenderTray.cpp:110
+msgid "Hebrew"
+msgstr "Hébreu"
+
+#: ../src/AgenderTray.cpp:153
 msgid "Show"
 msgstr "Afficher"
 
-#: ../src/AgenderTray.cpp:102
+#: ../src/AgenderTray.cpp:154
 msgid "Hide"
 msgstr "Masquer"
 
-#: ../src/AgenderTray.cpp:105
+#: ../src/AgenderTray.cpp:157
 msgid "Opacity"
 msgstr "Opacité"
 
-#: ../src/AgenderTray.cpp:106
+#: ../src/AgenderTray.cpp:158
 msgid "Year selector"
 msgstr "Sélecteur d'année"
 
-#: ../src/AgenderTray.cpp:107
+#: ../src/AgenderTray.cpp:159
 msgid "Notes Colour"
 msgstr "Couleur des notes"
 
-#: ../src/AgenderTray.cpp:109
+#: ../src/AgenderTray.cpp:160
+msgid "Language"
+msgstr "Langue"
+
+#: ../src/AgenderTray.cpp:162
 msgid "Symbol"
 msgstr "Symbole"
 
-#: ../src/AgenderTray.cpp:111
-#: ../src/AgenderTray.cpp:215
-msgid "Notify"
-msgstr "Avertir"
-
-#: ../src/AgenderTray.cpp:112
+#: ../src/AgenderTray.cpp:166
 msgid "Autostart"
 msgstr "Démarrage automatique"
 
-#: ../src/AgenderTray.cpp:114
+#: ../src/AgenderTray.cpp:168
 msgid "Exit"
 msgstr "Quitter"
 
-#: ../src/AgenderTray.cpp:214
+#: ../src/AgenderTray.cpp:268
 msgid "Days to notify before note"
 msgstr "Nombre de jours de préavis d'une note"
 
-#: ../src/AgenderTray.cpp:214
+#: ../src/AgenderTray.cpp:268
 msgid "Days"
 msgstr "Jours"
+
+#: ../src/AgenderTray.cpp:269
+msgid "Notify"
+msgstr "Avertir"
+
+#: ../src/AgenderTray.cpp:326
+msgid "Agender Language changed"
+msgstr "Langue d'Agender changée"
+
+#~ msgid "Agender uses this file to save your schedule, don't delete it!"
+#~ msgstr ""
+#~ "Ne supprimez pas ce fichier, car il est utilisé par Agender pour "
+#~ "enregistrer votre agenda."
 
