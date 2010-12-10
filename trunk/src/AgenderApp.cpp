@@ -136,12 +136,6 @@ bool AgenderApp::OnInit()
 #endif
 #if !defined wxHAS_TASK_BAR_ICON
 	Frame->Show();
-	// TODO (virtuoso#1#): think in another way to exit agender
-	//without having to kill it
-	//this is intended for some mobile platform, is it needed?
-	//i remember that windows CE had a function to finish apps
-	// and accoding to its guidelines it should continue in memory
-	//but what about Familiar Linux, iPhoneOS, etc ?
 #endif//wxHAS_TASK_BAR_ICON
 	wxLogVerbose(_T("time %i ms"),sw.Time());
 	return wxsOK;
@@ -157,7 +151,7 @@ int AgenderApp::OnRun()
 		if (up->Run() != wxTHREAD_NO_ERROR)
 			delete up;
 	}
-	//notif.Start(20000);
+	notif.Start(20000);
 	return wxApp::OnRun();
 }
 

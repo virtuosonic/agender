@@ -20,6 +20,8 @@ AgCal* AgCal::g_Cal = NULL;
 #define Ag_1_0 wxStandardPaths::Get().GetConfigDataDir() + _T(".Agender-current user.txt")
 #define Ag_1_1_9 wxGetHomeDir() + _T(".Agender-current user.txt")
 
+// TODO (virtuoso#1#): implement sticky notes
+
 AgCal::AgCal()
 {
 	wxFileName fname;
@@ -90,7 +92,6 @@ AgDate* AgCal::GetDate()
 wxArrayInt AgCal::GetDaysWithNotes()
 {
 	wxArrayInt days;
-	// TODO (virtuoso#1#): implement
 	wxXmlNode* child = m_dates->GetChildren();
 	while (child)
 	{
@@ -118,7 +119,7 @@ wxArrayInt AgCal::GetDaysWithNotes()
 
 void AgCal::Import(wxString file)
 {
-	// TODO (virtuoso#1#): implement
+	// TODO (virtuoso#1#): implement import
 }
 
 AgDate::AgDate(wxDateTime date,AgCal* cal)
@@ -126,7 +127,6 @@ AgDate::AgDate(wxDateTime date,AgCal* cal)
 	m_date = date;
 	m_cal = cal;
 	m_node = GetNode();
-// TODO (virtuoso#1#): load notes here!
 	if (m_node)
 	{
 		wxXmlNode* child = m_node->GetChildren();
@@ -143,7 +143,15 @@ AgDate::AgDate(wxDateTime date,AgCal* cal)
 
 AgDate::~AgDate()
 {
-
+	if (m_node)
+	{
+		wxXmlNode* child  = m_node->GetChildren();
+		if (!child)
+		{
+			m_cal->m_dates->RemoveChild(m_node);
+			delete m_node;
+		}
+	}
 }
 
 wxXmlNode* AgDate::GetNode()
@@ -244,7 +252,7 @@ bool AgDate::DeleteNote(wxString note)
 	}
 	//check if m_node is empty
 	child  = m_node->GetChildren();
-	if (child)
+	if (!child)
 	{
 		m_cal->m_dates->RemoveChild(m_node);
 		delete m_node;

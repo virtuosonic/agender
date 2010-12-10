@@ -58,7 +58,6 @@ wxArrayString AgenderCal::GetNotes()
 				notes.Add(noteName);
 		}
 		cfg->SetPath(_T("/"));
-		// TODO (virtuoso#1#): is this needed?
 		if (notes.GetCount() == 0)
 			cfg->DeleteGroup(dateStr);
 	}
@@ -91,7 +90,6 @@ void AgenderCal::SetNoteText(wxString note,wxString text)
 wxArrayString AgenderCal::Find(wxString WXUNUSED(FindString))
 {
 	wxArrayString found;
-	// TODO (virtuoso#1#): implement!!!
 	return found;
 }
 
@@ -107,7 +105,6 @@ wxArrayInt AgenderCal::GetDaysWithNotes()
 		long indx=0;
 		if (cfg->GetFirstGroup(group,indx))
 		{
-			// TODO (virtuoso#1#): send this to a method?
 			if (m_date.Format(_T("%m")) == group.BeforeLast('-').AfterFirst('-'))
 			{
 				long i;

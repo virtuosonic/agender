@@ -161,8 +161,7 @@ wxMenu * AgenderTray::CreatePopupMenu()
 #if wxUSE_RICHTEXT
 	menu->Append(ID_SYMBOL,_("Symbol"));
 #endif//wxUSE_RICHTEXT
-	// TODO (virtuoso#1#): uncoment when implemented in v1.2
-	//menu->AppendCheckItem(ID_NOTIFY,_("Notify"));
+	menu->AppendCheckItem(ID_NOTIFY,_("Notify"));
 	menu->AppendCheckItem(ID_AUTOSTART,_("Autostart"));
 	menu->AppendSeparator();
 	menu->Append(wxID_EXIT,_("Exit"));

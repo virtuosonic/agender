@@ -11,12 +11,14 @@
 #include <wx/config.h>
 #include <wx/sound.h>
 
+// TODO (virtuoso#1#): implement notifications
+
 class Alarm : public wxTimer
 {
 	void Notify()
 	{
 		wxLogVerbose(_T("ringing"));
-		//wxSound::Play(_T("../share/14262_xyzr_kx_alarm_clock.wav"));
+		wxSound::Play(wxString(_T("../share/14262_xyzr_kx_alarm_clock.wav")));
 	}
 };
 

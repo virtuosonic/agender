@@ -8,7 +8,6 @@
  **************************************************************/
 #include "wxAutoStart.h"
 #include <wx/string.h>
-#include <wx/intl.h>
 #include <wx/utils.h>
 #include <wx/msgdlg.h>
 #include <wx/log.h>
