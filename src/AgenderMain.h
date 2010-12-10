@@ -73,6 +73,7 @@ class AgenderFrame: public wxFrame
 
 		void MarkDays();
 		void ChangeSelector();
+		void UpdateNotesList();
 
 		enum
 		{

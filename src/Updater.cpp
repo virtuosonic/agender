@@ -6,6 +6,10 @@
  * Copyright: Gabriel Espinoza
  * License: GPLv3+
  **************************************************************/
+#ifdef __BORLANDC__
+#pragma hdrstop
+#endif
+
 #include "Updater.h"
 #include "AgenderMain.h"
 
@@ -13,13 +17,8 @@
 #include <wx/txtstrm.h>
 #include <wx/tokenzr.h>
 #include <wx/log.h>
-#include <wx/msgdlg.h>
 #include <wx/config.h>
 #include <wx/app.h>
-
-#ifdef __BORLANDC__
-#pragma hdrstop
-#endif
 
 Updater::Updater(wxString host,wxString file,wxString ver) : wxThread(wxTHREAD_DETACHED)
 {

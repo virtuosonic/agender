@@ -14,6 +14,17 @@
 #include <wx/string.h>
 #include <wx/dynarray.h>
 
+//this is a detached thread
+//it creates a http client
+//searchs the lastest version
+//in the file hosted in host
+//and compares it with
+//ver, which is a string of
+//the style 1.1.9, if the one
+//found in host is newer
+//it sends a message to
+//the topwindow
+
 class Updater : public wxThread
 {
 	public:

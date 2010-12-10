@@ -7,8 +7,8 @@
  * License: GPLv3+
  **************************************************************/
 #ifdef __BORLANDC__
-    #pragma hdrstop
     //for those who can't change turboc++, like theacher Nancy
+    #pragma hdrstop
 #endif
 
 #include <wx/msgdlg.h>
@@ -23,6 +23,8 @@
 #include <wx/stdpaths.h>
 #include <wx/filename.h>
 #include <wx/log.h>
+
+#include <wx/stopwatch.h>
 
 #include <wx/config.h>
 #if defined wxHAS_TASK_BAR_ICON
@@ -64,6 +66,7 @@ END_EVENT_TABLE()
 
 AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 {
+	wxStopWatch sw;
 	// TODO (virtuoso#1#): compatibilidad wx-2.9: opcion de usar wxGenericCalenderCtrl en vez de wxCalenderCtrl
 	//(*Initialize(AgenderFrame)
 	wxBoxSizer* BoxSizer1;
@@ -110,18 +113,8 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 	Connect(wxID_ABOUT,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AgenderFrame::OnButton3Click);
 	Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&AgenderFrame::OnClose);
 	//*)
-// TODO (virtuoso#1#): send this to a method	AgNotesArray notes = AgCal::Get()->GetDate()->GetNotes();
-	for (unsigned int i = 0; i < notes.GetCount(); i++)
-		ListBox1->Append(notes[i]->GetName());
-	if (notes.GetCount() > 0)
-	{
-		ListBox1->SetSelection(0);
-		TextCtrl1->Enable();
-		TextCtrl1->ChangeValue(AgCal::Get()->GetDate()->GetNote(ListBox1->GetStringSelection())->GetText());
-	}
-	else
-		TextCtrl1->Disable();
 	//update
+	UpdateNotesList();
 	ChangeSelector();
 	MarkDays();
 	//shortcuts
@@ -192,7 +185,7 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& WXUNUSED(event))
 	info.AddTranslator(_T("Adi D. <nevvermind@users.sourceforge.net> : romanian"));
 	info.AddTranslator(_T("Itamar Shoham <itsho@users.sourceforge.net> : hebrew"));
 	//sound
-	//info.AddArtist(_T("xyzr_kx from Freesound Project: alarm_clock.wav"));
+	info.AddArtist(_T("xyzr_kx from Freesound Project: alarm_clock.wav"));
 	//etc
 	info.SetDescription(wxString::Format(_T("%s\n%s %s %s\n%s %i"),_("A cross-platform schedule tool"),
 							 _("Build:"),__TDATE__,__TTIME__,_("Revision:"),__REVISION__));
@@ -225,19 +218,8 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& WXUNUSED(event))
 void AgenderFrame::OnCalendarCtrl1Changed(wxCalendarEvent& WXUNUSED(event))
 {
 	ListBox1->Clear();
-	TextCtrl1->ChangeValue(wxEmptyString);
 	AgCal::Get()->SetDate(CalendarCtrl1->GetDate());
-	AgNotesArray notes = AgCal::Get()->GetDate()->GetNotes();
-	for (unsigned int i = 0; i < notes.GetCount(); i++)
-		ListBox1->Append(notes[i]->GetName());
-	if (notes.GetCount() > 0)
-	{
-		ListBox1->SetSelection(0);
-		TextCtrl1->Enable();
-		TextCtrl1->ChangeValue(AgCal::Get()->GetDate()->GetNote(ListBox1->GetStringSelection())->GetText());
-	}
-	else
-		TextCtrl1->Disable();
+	UpdateNotesList();
 	AgCal::Get()->Flush();
 }
 
@@ -322,6 +304,7 @@ void AgenderFrame::MarkDays()
 		note_attr->SetTextColour(wxColour(wxConfig::Get()->Read(_T("/notescolour"),_T("#00FF00"))));
 		CalendarCtrl1->SetAttr(days[i],note_attr);
 	}
+	///mark today
 	if (wxDateTime::Now().GetMonth() == CalendarCtrl1->GetDate().GetMonth())
 	{
 		wxCalendarDateAttr* today_attr = CalendarCtrl1->GetAttr(wxDateTime::Now().GetDay());
@@ -385,8 +368,7 @@ void AgenderFrame::OnListBox1DClick(wxCommandEvent& WXUNUSED(event))
 	noteMenu->Append(ID_RENAME,_("Rename"));
 	noteMenu->AppendSeparator();
 	noteMenu->AppendRadioItem(ID_NORMAL,_("Normal"));
-	noteMenu->AppendRadioItem(ID_STICKY,_("Sticky"));
-// TODO (virtuoso#1#): //update code	if (AgCal::Get()->GetDate()->GetNote(ListBox1->GetStringSelection())->IsSticky())
+	noteMenu->AppendRadioItem(ID_STICKY,_("Sticky"));	if (AgCal::Get()->GetDate()->GetNote(ListBox1->GetStringSelection())->IsSticky())
 		noteMenu->Check(ID_STICKY,true);
 	ListBox1->PopupMenu(noteMenu);
 }
@@ -454,10 +436,30 @@ void AgenderFrame::OnUpdateFound(wxCommandEvent& event)
 	wxLogVerbose(_T("creating dialog"));
 	wxMessageDialog dlg(wxTheApp->GetTopWindow(),
 			wxString::Format(_("The %s version of %s has been released. "
-				"Do you want to download it?"),event.GetString().c_str(),wxTheApp->GetAppName().c_str()),
+				"Do you want to download it?"),event.GetString().c_str(),
+				wxTheApp->GetAppName().c_str()),
 			_("Upgrade Found"),wxYES_NO|wxSTAY_ON_TOP);
 	if (dlg.ShowModal() == wxID_YES)
 	{
 		wxLaunchDefaultBrowser(_T("http://agender.sourceforge.net/index.php?page=Downloads"));
+	}
+}
+
+void AgenderFrame::UpdateNotesList()
+{
+	AgNotesArray notes = AgCal::Get()->GetDate()->GetNotes();
+	for (unsigned int i = 0; i < notes.GetCount(); i++)
+		ListBox1->Append(notes[i]->GetName());
+	if (notes.GetCount() > 0)
+	{
+		ListBox1->SetSelection(0);
+		TextCtrl1->Enable();
+		TextCtrl1->ChangeValue(AgCal::Get()->GetDate()->GetNote(ListBox1->GetStringSelection())->GetText());
+	}
+	else
+	{
+		TextCtrl1->ChangeValue(wxEmptyString);
+		ListBox1->Clear();
+		TextCtrl1->Disable();
 	}
 }
