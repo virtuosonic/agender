@@ -141,7 +141,8 @@ else {$page_data = $error404;}
 		<a <?php echo $Press ?> href="?page=Press">Press</a> |
 		<a <?php echo $Screenshots ?> href="?page=Screenshots">Screenshots</a> |
 		<a <?php echo $About ?> href="?page=About">About</a> |
-		<a <?php echo $Links ?> href="?page=Links">Links</a>
+		<a <?php echo $Links ?> href="?page=Links">Links</a> |
+		<a href="https://sourceforge.net/apps/mediawiki/agender/">Wiki</a>
 	</div>
 	<!-- google search -->
 	<div id="vs_google_search_id">

@@ -13,6 +13,13 @@
 	</image>
 	<!-- items -->
 	<item>
+		<title>Agender wiki</title>
+		<link>https://sourceforge.net/apps/mediawiki/agender/</link>
+		<description>
+			Now Agender has its own wiki  were users can collaborate to create the
+			documentation for this marvellous software
+		</description>
+	<item>
 		<title>Agender 1.1.9 released</title>
 		<link>http://agender.sourceforge.net/index.php?page=Downloads</link>
 		<description>
