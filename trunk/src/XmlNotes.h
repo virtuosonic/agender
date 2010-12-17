@@ -41,14 +41,15 @@ class AgDate
 		AgDate(wxDateTime date,AgCal* cal);
 		~AgDate();
 		const AgNotesArray GetNotes();
-		bool HasNote(wxString note);
-		bool AddNote(wxString note);
-		bool DeleteNote(wxString note);
-		AgNote* GetNote(wxString note);
+		bool HasNote(const wxString& note);
+		bool AddNote(const wxString& note);
+		bool DeleteNote(const wxString& note);
+		AgNote* GetNote(const wxString& note);
 		wxDateTime GetDate() {return m_date;}
 	private:
 		wxXmlNode* GetNode();
 		wxXmlNode* CreateNode();
+		wxXmlNode* DetachNote(const wxString& note);
 		wxXmlNode* m_node;
 		AgCal* m_cal;
 		wxDateTime m_date;
@@ -69,10 +70,15 @@ class AgCal
 		bool SetDate(wxDateTime date);
 		/*const*/ AgDate* GetDate();
 		wxArrayInt GetDaysWithNotes();
+		//StickyNotes
+		const AgNotesArray GetStickyNotes();
+		bool MakeSticky(wxString note);
+		bool UnStick(wxString note);
 	private:
 		wxXmlDocument m_doc;
 		AgDate* m_date;
 		wxString m_file;
+		AgNotesArray snotes;
 		static AgCal* g_Cal;
 		void CreateXml();
 		void LoadXml();
