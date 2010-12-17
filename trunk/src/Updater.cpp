@@ -46,7 +46,7 @@ wxThread::ExitCode Updater::Entry()
 		found = Search();
 		if (!found.IsEmpty())
 		{
-			if (IsLatest(found))
+			if (!IsLatest(found))
 				AskUser(found);
 		}
 		else
@@ -98,6 +98,8 @@ wxString Updater::Search()
 
 bool Updater::IsLatest(wxString latest)
 {
+	if (m_ver == latest)
+		return true;
 	//current
 	wxArrayInt i_cur = ToInt(m_ver);
 	//retrieved from inet
@@ -107,16 +109,16 @@ bool Updater::IsLatest(wxString latest)
 		if (i_latest[i] > i_cur[i])
 		{
 			wxLogVerbose(_T("found new version"));
-			return true;
+			return false;
 		}
 	}
 	if (i_latest.GetCount() > i_cur.GetCount())
 	{
 		wxLogVerbose(_T("found new version"));
-		return true;
+		return false;
 	}
 	wxLogVerbose(_T("this is the latest version"));
-	return false;
+	return true;
 }
 
 void Updater::AskUser(wxString ver)
