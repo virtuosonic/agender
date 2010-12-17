@@ -64,6 +64,20 @@ void AgCal::CreateXml()
 	m_doc.SetRoot(root);
 }
 
+const AgNotesArray AgCal::GetStickyNotes()
+{
+	return snotes;
+}
+
+bool AgCal::MakeSticky(wxString note)
+{
+	GetDate()->DetachNote(note);
+}
+
+bool AgCal::UnStick(wxString note)
+{
+}
+
 void AgCal::LoadXml()
 {
 	m_doc.Load(m_file);
@@ -191,12 +205,16 @@ wxXmlNode* AgDate::CreateNode()
 	return datenode;
 }
 
+wxXmlNode* AgDate::DetachNote(const wxString& note)
+{
+
+}
 const AgNotesArray AgDate::GetNotes()
 {
 	return notes;
 }
 
-bool AgDate::HasNote(wxString note)
+bool AgDate::HasNote(const wxString& note)
 {
 	if (!m_node || note.IsEmpty())
 		return false;
@@ -211,7 +229,7 @@ bool AgDate::HasNote(wxString note)
 	return false;
 }
 
-bool AgDate::AddNote(wxString note)
+bool AgDate::AddNote(const wxString& note)
 {
 	if (HasNote(note))
 		return false;
@@ -225,7 +243,7 @@ bool AgDate::AddNote(wxString note)
 	return true;
 }
 
-bool AgDate::DeleteNote(wxString note)
+bool AgDate::DeleteNote(const wxString& note)
 {
 	if (!m_node)
 		return false;
@@ -260,7 +278,7 @@ bool AgDate::DeleteNote(wxString note)
 	return false;
 }
 
-AgNote* AgDate::GetNote(wxString note)
+AgNote* AgDate::GetNote(const wxString& note)
 {
 	for (unsigned int i = 0;i < notes.GetCount();i++)
 	{
