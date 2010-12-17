@@ -97,17 +97,17 @@ wxMenu * AgenderTray::CreatePopupMenu()
 	wxMenu* lmenu;
 	lmenu = new wxMenu;
 	lmenu->AppendRadioItem(ID_LANG_DEF,_("default"));
-	lmenu->AppendRadioItem(ID_LANG_ES,_("Spanish"));
-	lmenu->AppendRadioItem(ID_LANG_DE,_("Deutch"));
-	lmenu->AppendRadioItem(ID_LANG_JA,_("Japanese"));
-	lmenu->AppendRadioItem(ID_LANG_PT,_("Portuguese"));
-	lmenu->AppendRadioItem(ID_LANG_FR,_("French"));
-	lmenu->AppendRadioItem(ID_LANG_EL,_("Greek"));
-	lmenu->AppendRadioItem(ID_LANG_SV,_("Swedish"));
-	lmenu->AppendRadioItem(ID_LANG_ZH_HK,_("Traditional Chinese"));
-	lmenu->AppendRadioItem(ID_LANG_ZH_CN,_("Simplified Chinese"));
-	lmenu->AppendRadioItem(ID_LANG_RO,_("Romanian"));
-	lmenu->AppendRadioItem(ID_LANG_HE,_("Hebrew"));
+	lmenu->AppendRadioItem(ID_LANG_ES,_T("Español"));
+	lmenu->AppendRadioItem(ID_LANG_DE,_T("Deutch"));
+	lmenu->AppendRadioItem(ID_LANG_JA,_T("日本語"));
+	lmenu->AppendRadioItem(ID_LANG_PT,_T("Português"));
+	lmenu->AppendRadioItem(ID_LANG_FR,_T("Français"));
+	lmenu->AppendRadioItem(ID_LANG_EL,_T("Ελληνικά"));
+	lmenu->AppendRadioItem(ID_LANG_SV,_T("Svenska"));
+	lmenu->AppendRadioItem(ID_LANG_ZH_HK,_T("Traditional Chinese"));
+	lmenu->AppendRadioItem(ID_LANG_ZH_CN,_T("中文"));
+	lmenu->AppendRadioItem(ID_LANG_RO,_T("Romanian"));
+	lmenu->AppendRadioItem(ID_LANG_HE,_T("Hebrew"));
 	long lang = wxConfig::Get()->Read(_T("/lang"),wxLANGUAGE_UNKNOWN);
 	switch (lang)
 	{
