@@ -7,36 +7,64 @@ $page = 'Home';
 $Appear='style="display: none"';
 $loadscript = "onload=\"Effect.toggle('container','Appear');Effect.toggle('left_pane','Appear');Effect.toggle('vs_google_adsense','Appear');Effect.toggle('mail','Appear'); return false;\"";
 }
+//langs
+function DetectLang($langs)
+{
+	$tok = strtok($_SERVER['HTTP_ACCEPT_LANGUAGE'],",;");
+	while($tok !== false) {
+		if (in_array($tok,$langs))
+			return $tok;
+		$tok = strtok(",;");
+	}
+	return '';
+}
+//read language
+$language = $_GET['language'];
+$langs=scandir('htm');
+//probe language
+if ($language == '' || !in_array($language, $langs)) {
+	$language=DetectLang($langs);
+	if ($language == '')
+		$language='en';
+}
+include 'htm/'.$language.'/messages.php';
+//selected option from lang form
+$selected = 'selected="selected"';
+$en = $es = '';
+if ($language == 'en')
+	$en = $selected;
+else if ($language == 'es')
+	$es = $selected;
+//active link
 $active = 'id="active"';
 $inactive = "";
 $Home = $Downloads =$Press = $Screenshots = $About = $Links = $inactive;
+//page title
 if ($page == 'Home') {
 	$Home = $active;
-	$title="A cross-platform schedule tool!";
+	$title=$Home_title;
 }
 else if ($page == 'Downloads') {
 	$Downloads = $active;
-	$title="Get Agender";
+	$title=$Downloads_title;
 }
 else if ($page == 'Press') {
 	$Press = $active;
-	$title="Press";
+	$title=$Press_title;
 }
 else if ($page == 'Screenshots') {
 	$Screenshots = $active;
-	$title="Screenshots";
+	$title=$Screenshots_title;
 }
 else if ($page == 'About') {
 	$About = $active;
-	$title="About";
+	$title=$About_title;
 }
 else if ($page == 'Links') {
 	$Links = $active;
-	$title="Links";
+	$title=$Links_title;
 }
-
-///blablabla
-
+//time function
 function setLastModified($pagetime)
 {
     $last_modified=getlastmod();
@@ -61,38 +89,33 @@ function exitIfNotModifiedSince($last_modified)
         }
     }
 }
-$error404 = "<center>".
-            "<h3>This page cannot be found, <i>try using google</i>.</h3>http error 404".
-            "</center>\n";
-$page_name = $page.'.htm';
+//page
+$page_name = 'htm'.'/'.$language.'/'.$page.'.htm';
 
 exitIfNotModifiedSince(setLastModified($page_name));
-
-$pages = glob("*.htm");
+//page exists?
+$pages = glob('htm'.'/'.$language.'/'."*.htm");
 $page_data = '';
-
 if (in_array($page_name, $pages) and file_exists($page_name)){
     $page_data = file_get_contents($page_name);
 }
 else {$page_data = $error404;}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<?php echo $language ?>" xml:lang="<?php echo $language ?>">
 <head>
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 	<meta name="author" content="Gabriel Espinoza"/>
-	<meta name="keywords" content="Agender,agender,agenda,schedule,calendar,calendario,wxWidgets,cross platform,free software,windows,linux,opensource,XP,se7en,osx,mac"/>
-	<meta name="description" content="the cross platform schedule tool"/>
+	<meta name="keywords" content="Agender,agender,agenda,schedule,calendar,calendario,wxWidgets,cross platform,free software,windows,linux,opensource,XP,se7en,osx,mac,MacPorts,freebsd"/>
+	<meta name="description" content=<?php  echo $Description ?>/>
 	<meta name="google-site-verification" content="iUBg-Nc16oi8DZuLt_3KwE8exy7fstuQjP7nMNeTSU4" />
 	<title>Agender - <?php echo $title ?></title>
 	<link rel="stylesheet" type="text/css" href="agender.css" media="screen"/>
-	<link rel="stylesheet" type="text/css" href="menu.css" media="screen"/>
 	<link rel="alternate" type="application/rss+xml" href="rss.xml"
 		title="Agender - a cross-platform schedule tool!"/>
 	<link rel="icon" href="agender32.png"/>
 	<script src="js/prototype.js" type="text/javascript"></script >
 	<script src="js/scriptaculous.js" type="text/javascript"></script >
-	<!--eliminar si google no empieza a funcionar-->
 	<!--google analytics-->
 	<script type="text/javascript">
 	var _gaq = _gaq || [];
@@ -106,18 +129,31 @@ else {$page_data = $error404;}
 	</script>
 </head>
 <body <?php echo $loadscript ?>>
+
+<form id="lang-form" method="GET" action="index.php">
+	<input type="hidden" name="page" value="<?php echo $page ?>"/>
+	<label for="language"><?php echo $lang_label ?></label>
+	<select id="language" name="language" onchange="this.form.submit()">
+		<option value="en" <?php echo $en ?>>English</option>
+		<option value="es" <?php echo $es ?>>Español</option>
+	</select>
+	<br/>
+	<noscript><input type="submit" value="Change language"/></noscript>
+</form>
+
 <div id="left_pane" <?php echo $Appear ?>>
 	<a href="http://sourceforge.net/projects/agender" >
 		<img src="http://sourceforge.net/sflogo.php?group_id=146403&amp;type=1" alt='SourceForge.net Logo' title="SourceForge.net"/>
 	</a>
 	<br/>
 	<a href="http://sourceforge.net/donate/index.php?group_id=271084">
-		<img src="http://images.sourceforge.net/images/project-support.jpg" alt="Support This Project"  title="Donate"/>
+		<img src="http://images.sourceforge.net/images/project-support.jpg" alt="Support This Project"  title=<?php echo $Donate ?>/>
 	</a>
 	<br/>
+<!-- ohloh statistics START-->
 <script type="text/javascript"
 	src="http://www.ohloh.net/p/363772/widgets/project_thin_badge.js">
-</script>
+</script><!-- ohloh statistics END-->
 <!-- google adsense vertical -->
 <div id="vs_google_adsense_vert"><script type="text/javascript"><!--
 	google_ad_client = "pub-8829282890738806";
@@ -129,20 +165,20 @@ else {$page_data = $error404;}
 </script>
 	<script type="text/javascript"
 		src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-	</script></div>
-</div>
+	</script></div><!-- google adsense vertical END-->
+</div><!-- left_pane END-->
 <!-- center container -->
 <div id="container" <?php echo $Appear ?>>
 	<center><img src="hdr.png"/></center>
 	<!-- menu -->
 	<div id="menu">
-		<a <?php echo $Home ?> href="?page=Home">Home</a> |
-		<a <?php echo $Downloads ?> href="?page=Downloads">Downloads</a> |
-		<a <?php echo $Press ?> href="?page=Press">Press</a> |
-		<a <?php echo $Screenshots ?> href="?page=Screenshots">Screenshots</a> |
-		<a <?php echo $About ?> href="?page=About">About</a> |
-		<a <?php echo $Links ?> href="?page=Links">Links</a> |
-		<a href="https://sourceforge.net/apps/mediawiki/agender/">Wiki</a>
+		<a <?php echo $Home ?> href="?page=Home&language=<?php echo $language ?>"><?php echo $Home_menu ?></a> |
+		<a <?php echo $Downloads ?> href="?page=Downloads&language=<?php echo $language ?>"><?php echo $Downloads_menu ?></a> |
+		<a <?php echo $Press ?> href="?page=Press&language=<?php echo $language ?>"><?php echo $Press_menu ?></a> |
+		<a <?php echo $Screenshots ?> href="?page=Screenshots&language=<?php echo $language ?>"><?php echo $Screenshots_menu ?></a> |
+		<a <?php echo $About ?> href="?page=About&language=<?php echo $language ?>"><?php echo $About_menu ?></a> |
+		<a <?php echo $Links ?> href="?page=Links&language=<?php echo $language ?>"><?php echo $Links_menu ?></a> |
+		<a href="http://sourceforge.net/apps/mediawiki/agender/">Wiki</a>
 	</div>
 	<!-- google search -->
 	<div id="vs_google_search_id">
@@ -176,9 +212,9 @@ else {$page_data = $error404;}
 <!-- mailing list -->
 <div id="mail"<?php echo $Appear ?>>
 <form method="POST" action="https://lists.sourceforge.net/lists/subscribe/agender-announce">
-	<p>Want to know about new Agender Releases? subscribe to the agender-announce mailing list</p>
-	<div style="display: inline">email:<input type="Text" name="email" size="30" value=""/></div>
-	<input type="Submit" name="email-button" value="Subscribe"/>
+	<p><?php echo $mailmessage ?></p>
+	<label for="email">email:</label><input id="email" type="Text" name="email" size="30" value=""/>
+	<input type="Submit" name="email-button" value=<?php echo $Subscribe?>/>
 </form>
 </div>
 <!-- Piwik -->

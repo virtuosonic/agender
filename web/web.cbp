@@ -31,18 +31,23 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="About.htm" />
-		<Unit filename="Downloads.htm" />
-		<Unit filename="Home.htm" />
-		<Unit filename="Links.htm" />
-		<Unit filename="Press.htm" />
-		<Unit filename="Screenshots.htm" />
 		<Unit filename="agender.css" />
 		<Unit filename="agender_version" />
-		<Unit filename="download.css" />
+		<Unit filename="htm/en/About.htm" />
+		<Unit filename="htm/en/Downloads.htm" />
+		<Unit filename="htm/en/Home.htm" />
+		<Unit filename="htm/en/Links.htm" />
+		<Unit filename="htm/en/Press.htm" />
+		<Unit filename="htm/en/Screenshots.htm" />
+		<Unit filename="htm/en/messages.php" />
+		<Unit filename="htm/es/About.htm" />
+		<Unit filename="htm/es/Downloads.htm" />
+		<Unit filename="htm/es/Home.htm" />
+		<Unit filename="htm/es/Links.htm" />
+		<Unit filename="htm/es/Press.htm" />
+		<Unit filename="htm/es/Screenshots.htm" />
+		<Unit filename="htm/es/messages.php" />
 		<Unit filename="index.php" />
-		<Unit filename="links.css" />
-		<Unit filename="menu.css" />
 		<Unit filename="rss.xml" />
 		<Extensions>
 			<envvars />

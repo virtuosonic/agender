@@ -3,19 +3,56 @@ general style sheet for
 Agender's website
 *****************/
 * {
-    font-family: Georgia,sans-serif;
+    font-family: Georgia,serif;
     margin: 0;
+    color: #000000;
 }
-
 body {
     background: url(bg.png) repeat;
     background-attachment: fixed;
     background-color: #ffffff;
 }
+li {
+	margin: 10px;
+}
+a {
+    color: #47C4FF;
+    font-weight: normal;
+    text-decoration: none;
+}
+a:hover {
+    color: #47C4FF;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+}
+p {
+	text-indent: 2em;
+	text-align: justify;
+	margin-bottom: 10px;
+}
+img {
+	border: none;
+	margin: 10px;
+}
+/*used on Downloads page*/
+code {
+	font-size: .8em;
+	color: #7C7C7C;
+}
+/* used on press page*/
+.citado {
+	font-size: .9em;
+	font-family: sans,serif;
+	font-style: italic;
+	padding: 2em;
+	color: #7C7C7C;
+}
 
 #container {
 	position: absolute;
 	padding: 10px;
+	padding-bottom: 40px;
 	background: #ffffff;
 	right: 356px;
 	left: 256px;
@@ -28,36 +65,6 @@ body {
 	/* IE doesn't support min-height,
 	so we hack*/
 	height: expression(this.scrollHeight < document.body.clientHeight ? "100%" : "auto");
-}
-
-a {
-    color: #47C4FF;
-    font-weight: normal;
-    text-decoration: none;
-}
-
-a:hover {
-    color: #47C4FF;
-    font-weight: bold;
-    font-style: italic;
-    text-decoration: none;
-}
-
-p {
-	text-indent: 2em;
-	text-align: justify;
-}
-
-img {
-	border: none;
-	margin: 10px;
-}
-
-.citado {
-	font-size: .9em;
-	font-family: serif;
-	font-style: italic;
-	padding: 2em;
 }
 
 #vs_google_adsense {
@@ -88,15 +95,42 @@ img {
 }
 
 #mail {
-	width: 316px;
+	width: 306px;
 	background: #ffffff;
 	border: 1px solid #7C7C7C;
 	position: absolute;
-	right: 0px;
+	right: 10px;
 	top: 310px;
 	padding:10px;
 }
 
-#mail p{
-	margin-bottom: 10px;
+#lang-form {
+	position: absolute;
+	margin: 10px;
+}
+/* links page */
+#links {
+	padding: 2em;
+	line-height: 2;
+}
+/*download icons*/
+ul#download {padding-left: 5em;}
+/*TODO: find an adecuate icon for li#salix */
+li#salix {list-style-image: url(Salix-logo_48.png);}
+li#tar {list-style-image: url(package-x-generic.png);}
+li#linux {list-style-image: url(Tux-logo_48.png);}
+li#svn {list-style-image: url(subversion.png);}
+li#apple {list-style-image: url(Apple-logo_48.png);}
+li#msw {list-style-image: url(Microsoft_Windows-logo_48.png);}
+/*awards icons*/
+li#softpedia {list-style-image: url(softpedia.png);}
+li#softoxi {list-style-image: url(softoxi5of5.png);}
+/*navigation menu*/
+#menu {}
+#menu a {font-size: 1.1em;}
+#menu a#active {font-weight: bold;}
+#menu a:hover {
+	font-weight: normal;
+    font-style: normal;
+    text-decoration: underline;
 }
