@@ -100,7 +100,7 @@ license GPLv3+
   	<copy-files id="podist">
 		<dependency-of>dist</dependency-of>
   		<srcdir>$(SRCDIR)/po</srcdir>
-  		<files>*.po</files>
+  		<files>*.po *.mo</files>
   		<dstdir>$(SRCDIR)/Agender-$(VERSION)/po</dstdir>
   	</copy-files>
   	<!-- autopackage -->
@@ -112,31 +112,16 @@ license GPLv3+
   	</copy-files>
   	<!-- compile po-->
   	<action id="mo">
-  		<dependency-of>all</dependency-of>
+  		<dependency-of>dist</dependency-of>
   		<set var="iter">$(DOLLAR)$(DOLLAR)l</set>
   		<set var="linguas">$(TRANSLATIONS)</set>
   		<command>for l in $(linguas);do \
-			msgfmt po/$(iter).po -o po/$(iter).mo; \
+			msgfmt po/$(iter).po -o $(SRCDIR)/Agender-$(VERSION)/po/$(iter).mo; \
 			done
   		</command>
   	</action>
   	<action id="clean-mo">
-  		<dependency-of>clean</dependency-of>
+  		<!-- <dependency-of>clean</dependency-of> -->
   		<command>rm -f po/*.mo</command>
-  	</action>
-  	<!-- rpm build -->
-	<set var="rpmbuilddir">/usr/src/packages</set>
-	<!-- <set var="rpmbuilddir">~/rpmbuild</set> -->
-  	<action id="rpm">
-  		<depends>dist</depends>
-		<command>mkdir -p $(rpmbuilddir)/SOURCES/</command>
-		<command>mkdir -p $(rpmbuilddir)/SPECS/</command>
-  		<command>mv Agender-$(VERSION).tar.bz2 $(rpmbuilddir)/SOURCES/</command>
-  		<command>cd $(rpmbuilddir)/SOURCES/;tar -xf Agender-$(VERSION).tar.bz2</command>
-  		<command>cd $(rpmbuilddir)/SOURCES/Agender-$(VERSION);./configure</command>
-  		<command>cp $(rpmbuilddir)/SOURCES/Agender-$(VERSION)/Agender.spec $(rpmbuilddir)/SPECS/</command>
-  		<command>cp $(rpmbuilddir)/SOURCES/Agender-$(VERSION)/src/Agender.xpm $(rpmbuilddir)/SOURCES/</command>
-  		<command>rm -rf $(rpmbuilddir)/SOURCES/Agender-$(VERSION)</command>
-  		<command>rpmbuild -ba $(rpmbuilddir)/SPECS/Agender.spec</command>
   	</action>
 </makefile>
