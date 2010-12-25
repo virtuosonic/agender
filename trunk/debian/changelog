@@ -1,4 +1,4 @@
-agender (1.2-1) unstable; urgency=low
+agender (1.1.9-1)  stable; urgency=extra
 
   * Initial Release.
   * created debian dir.

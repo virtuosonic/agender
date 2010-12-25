@@ -6,6 +6,8 @@ Web:
 ====
     http://agender.sourceforge.net
     http://sourceforge.net/projects/agender
+    http://sourceforge.net/apps/mediawiki/agender
+    http://sourceforge.net/apps/gallery/agender
     agender-announce@lists.sourceforge.net
     agender-support@lists.sourceforge.net
 
@@ -169,7 +171,7 @@ Distro Makers:
     Hi distro maker, if you want to include Agender in your operating
     system, you are free to do it, just follow the license, but I request
     you to send me the instructions on how to install Agender on your
-    system, so I can add them to the website.
+    system, so I can add them to the website, screenshot are also cool.
 
 Author:
 =======

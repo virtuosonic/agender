@@ -68,6 +68,7 @@
 		<Unit filename="../Agender.nsi" />
 		<Unit filename="../Agender.spec.in" />
 		<Unit filename="../PortFile" />
+		<Unit filename="../Readme.txt" />
 		<Unit filename="../autopackage/default.apspec.in" />
 		<Unit filename="../configure.in" />
 		<Unit filename="../debian/agender.dsc" />
