@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Agender\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-12-18 20:19-0800\n"
-"PO-Revision-Date: 2010-12-18 20:19-0800\n"
+"PO-Revision-Date: 2010-12-30 11:17+0100\n"
 "Last-Translator: ianaré sévi <ianare.sevi@c4mprod.com>\n"
 "Language-Team: Agender project <agender-support@lists.sourceforge.net>\n"
 "Language: \n"
@@ -162,7 +162,7 @@ msgstr "Créer une tâche"
 
 #: ../src/AgenderMain.cpp:244
 msgid "Expresion '$(' reserved for Agender, please use another name"
-msgstr "L'expression $( est réservée à Agender. Utilisez un autre nom."
+msgstr "L'expression « $( » est réservée à Agender. Utilisez un autre nom."
 
 #: ../src/AgenderMain.cpp:368
 #: ../src/AgenderMain.cpp:406
@@ -201,35 +201,26 @@ msgstr "Erreur de configuration du démarrage automatique"
 
 #~ msgid "Spanish"
 #~ msgstr "Espagnol"
-
 #~ msgid "Japanese"
 #~ msgstr "Japonais"
-
 #~ msgid "Portuguese"
 #~ msgstr "Portugais"
-
 #~ msgid "French"
 #~ msgstr "Français"
-
 #~ msgid "Greek"
 #~ msgstr "Grec"
-
 #~ msgid "Swedish"
 #~ msgstr "Suédois"
-
 #~ msgid "Traditional Chinese"
 #~ msgstr "Chinois traditionnel"
-
 #~ msgid "Simplified Chinese"
 #~ msgstr "Chinois simplifié"
-
 #~ msgid "Romanian"
 #~ msgstr "Roumain"
-
 #~ msgid "Hebrew"
 #~ msgstr "Hébreu"
-
 #~ msgid "Agender uses this file to save your schedule, don't delete it!"
 #~ msgstr ""
 #~ "Ne supprimez pas ce fichier, car il est utilisé par Agender pour "
 #~ "enregistrer votre agenda."
+
