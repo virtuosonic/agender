@@ -210,7 +210,7 @@ else {$page_data = $error404;}
 	</script>
 </div>
 <!-- mailing list -->
-<div id="mail"<?php echo $Appear ?>>
+<div id="mail" <?php echo $Appear ?>>
 <form method="POST" action="https://lists.sourceforge.net/lists/subscribe/agender-announce">
 	<p><?php echo $mailmessage ?></p>
 	<label for="email">email:</label><input id="email" type="Text" name="email" size="30" value=""/>
