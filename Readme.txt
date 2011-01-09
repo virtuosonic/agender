@@ -1,4 +1,4 @@
-/******************************************************************************
+﻿/******************************************************************************
 *                   Agender, a cross-platform schedule tool
 ******************************************************************************/
 
@@ -41,7 +41,7 @@ Licence:
 Dependencies:
 =============
     To compile you will need a C++ compiler and wxWidgets 2.8,
-    Agender is being developed with GNU g++ 4.4.1, and
+    Agender is being developed with the Microsoft C/C++ 15.00, and
     wxWidgets 2.8.11 maybe it works with anothers, not sure.
     The website is www.wxwidgets.org.
 
@@ -49,9 +49,7 @@ Compiling & Installing:
 =======================
     If you are using Windows you can dowload the installer from the
     website is named something like Agender-x.x.x.exe where x.x.x
-    is the version. If you are upgrading from version 1.1.6 please first
-    run the uninstaller and then install, the way translations are installed
-    haves changed.
+    is the version.
 
     Read the file INSTALL, if you don't wan't to read so much, here
     are some short instructions:
@@ -62,8 +60,8 @@ Compiling & Installing:
             $make
             $su -c 'make install'
 
-    $(Agender) is the directory where this file is (unless you have
-    move it:), don't type the $ at the start of every line.
+    $(Agender) is the directory where this file is , don't type
+    the $ at the start of every line.
 
     If you aren't using a un*x operating system, you can generate
     makefiles and project file for several compiler using bakefile
