@@ -15,6 +15,7 @@ license GPLv3+
 		<!-- source files-->
 		<sources>src/AgenderIPC.cpp</sources>
 		<sources>src/AgenderApp.cpp</sources>
+		<sources>src/AboutDialog.cpp</sources>
 		<sources>src/AgenderMain.cpp</sources>
 		<sources>src/AgenderTray.cpp</sources>
 		<sources>src/XmlNotes.cpp</sources>
@@ -46,13 +47,13 @@ license GPLv3+
   	<data-files id="icon">
   		<srcdir>$(SRCDIR)/share</srcdir>
   		<install-to>$(DATADIR)/pixmaps</install-to>
-  		<files>agender48.png</files>
+  		<files>Agender.png</files>
   	</data-files>
   	<!-- icon for the about dialog-->
   	<data-files id="icon-about">
   		<srcdir>$(SRCDIR)/share</srcdir>
   		<install-to>$(DATADIR)/Agender/</install-to>
-  		<files>agender48.png</files>
+  		<files>Agender.png</files>
   	</data-files>
   	<!--translations-->
   	<gettext-catalogs>

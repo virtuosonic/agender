@@ -10,7 +10,8 @@
 
 #include <wx/ipc.h>
 
-const wxString IPC_Topic(_T("Agender wakeup"));
+const wxString IPC_Topic(_T("Agender-wakeup"));
+const wxString IPC_Open(_T("Agender-open"));
 const wxString IPC_Service(_T("891121"));//miriam's birthday!
 
 class AgenderConnection : public wxConnection

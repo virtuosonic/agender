@@ -35,14 +35,15 @@ AutoStart::~AutoStart()
 void AutoStart::OutputError()
 {
 	wxMessageBox(wxString::Format(
-			_("AutoStart is only available under %s "
-			" and Unix desktops that follow the freedesktop.org standards. "//how sadly! =(
-			"If you add support for any other system, please send patches "
-			"to the patch tracker in the Agender project page at "
-			"http://sourceforge.net/projects/agender/ or you can also help "
-			"donating hardware that runs your favorite system."),
+			_("AutoStart is only available under %s \
+			and Unix desktops that follow the freedesktop.org standards. \
+			If you add support for any other system, please send patches \
+			to the patch tracker in the Agender project page at \
+			http://sourceforge.net/projects/agender/ or you can also help \
+			donating hardware that runs your favorite system."),
 			_T("Windows, Fluxbox, IceWM")),
 			_("Error setting auto start"));
+			/*how sadly! =(*/
 }
 
 bool AutoStart::Get()
@@ -101,7 +102,9 @@ bool AutoStart::UnSetWindows()
 	key.SetName(_T("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"));
 	if (key.HasValue(wxTheApp->GetAppName()))
 			key.DeleteValue(wxTheApp->GetAppName());
+	return true;
 }
+
 #elif defined __UNIX__ && !defined __APPLE__
 bool AutoStart::SetFluxbox()
 {

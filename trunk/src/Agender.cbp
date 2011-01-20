@@ -6,9 +6,9 @@
 		<Option pch_mode="0" />
 		<Option compiler="gcc" />
 		<Build>
-			<Target title="Release">
-				<Option output="bin/Release/Agender" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Release/" />
+			<Target title="mingw32">
+				<Option output="bin\mingw32\Agender" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\mingw32\" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
@@ -19,59 +19,182 @@
 					<Add option='[[if (PLATFORM == PLATFORM_MSW &amp;&amp; (GetCompilerFactory().GetCompilerVersionString(_T(&quot;gcc&quot;)) &gt;= _T(&quot;4.0.0&quot;))) print(_T(&quot;-Wno-attributes&quot;));]]' />
 					<Add option="-Winvalid-pch" />
 					<Add option="-include wx_pch.h" />
-					<Add directory="/home/virtuoso/C++/wxWidgets-2.8.11/lib/gcc_dll/mswu" />
-					<Add directory="/home/virtuoso/C++/wxWidgets-2.8.11/include" />
-					<Add directory="/home/virtuoso/C++/wxWidgets-2.8.11/contrib/include" />
+					<Add directory="\home\virtuoso\C++\wxWidgets-2.8.11\lib\gcc_dll\mswu" />
+					<Add directory="\home\virtuoso\C++\wxWidgets-2.8.11\include" />
+					<Add directory="\home\virtuoso\C++\wxWidgets-2.8.11\contrib\include" />
 				</Compiler>
 				<ResourceCompiler>
-					<Add directory="$(#wx)/lib/gcc_dll/mswu" />
-					<Add directory="$(#wx)/include" />
+					<Add directory="$(#wx)\lib\gcc_dll\mswu" />
+					<Add directory="$(#wx)\include" />
 				</ResourceCompiler>
 				<Linker>
 					<Add option="-s" />
 					<Add library="libwxmsw28u.a" />
-					<Add directory="$(#wx)/lib/gcc_dll" />
+					<Add directory="$(#wx)\lib\gcc_dll" />
 				</Linker>
 			</Target>
 			<Target title="UNIX">
-				<Option output="bin/UNIX/Agender" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/UNIX/" />
-				<Option type="1" />
+				<Option platforms="Unix;Mac;" />
+				<Option output="bin\UNIX\Agender" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\UNIX\" />
+				<Option type="0" />
 				<Option compiler="gcc" />
 				<Option parameters="--verbose" />
 				<Compiler>
 					<Add option="-Wall" />
-					<Add option="-g" />
 					<Add option="`wx-config --cflags`" />
 				</Compiler>
 				<Linker>
 					<Add option="`wx-config --libs`" />
 				</Linker>
 			</Target>
-			<Target title="Debug">
-				<Option output="bin/Debug/Agender" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Debug/" />
-				<Option type="1" />
-				<Option compiler="gcc" />
-				<Option parameters="--verbose" />
+			<Target title="vs2008">
+				<Option output="bin\vs2008\Agender" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="..\share\" />
+				<Option object_output="obj\vs2008\" />
+				<Option type="0" />
+				<Option compiler="msvc8" />
+				<Option projectLinkerOptionsRelation="1" />
 				<Compiler>
-					<Add option="-Wall" />
-					<Add option="-g" />
-					<Add option="`/home/virtuoso/C++/wxWidgets-2.9.1/wx-config --cflags`" />
+					<Add option="/MD" />
+					<Add option="/GA" />
+					<Add option="/EHs" />
+					<Add option="/Os" />
+					<Add option="/O2" />
+					<Add option="/Ox" />
+					<Add option="/W4" />
+					<Add option="/Ob1" />
+					<Add option="/DNDEBUG" />
+					<Add option="/DNOPHC" />
+					<Add option="/DWIN32" />
+					<Add option="/D__WIN32__" />
+					<Add option="/D__WXMSW__" />
+					<Add option="/D_UNICODE" />
+					<Add option="/D_WINDOWS" />
+					<Add option="/D_CRT_SECURE_DEPRECATE" />
+					<Add option="/D_CRT_NONSTDC_NO_DEPRECATE" />
+					<Add option="/D_VC80_UPGRADE=0x0600" />
+					<Add directory="$(#wx)\include" />
+					<Add directory="$(#wx)\lib\vc_lib\mswu" />
 				</Compiler>
+				<ResourceCompiler>
+					<Add directory="$(#wx)\include" />
+					<Add directory="$(#wx)\lib\vc_lib\mswu" />
+				</ResourceCompiler>
 				<Linker>
-					<Add option="`/home/virtuoso/C++/wxWidgets-2.9.1/wx-config --libs`" />
+					<Add option="/NODEFAULTLIB:libcmt.lib" />
+					<Add option="/INCREMENTAL:NO" />
+					<Add library="wxbase28u.lib" />
+					<Add library="wxmsw28u_core.lib" />
+					<Add library="wxbase28u_net.lib" />
+					<Add library="wxbase28u_xml.lib" />
+					<Add library="wxexpat.lib" />
+					<Add library="wxmsw28u_adv.lib" />
+					<Add library="wxmsw28u_html.lib" />
+					<Add library="wxmsw28u_richtext.lib" />
+					<Add library="wxpng.lib" />
+					<Add library="wxtiff.lib" />
+					<Add library="wxjpeg.lib" />
+					<Add library="wxregexu.lib" />
+					<Add library="msvcrt.lib" />
+					<Add library="winmm.lib" />
+					<Add library="kernel32.lib" />
+					<Add library="user32.lib" />
+					<Add library="comdlg32.lib" />
+					<Add library="advapi32.lib" />
+					<Add library="shell32.lib" />
+					<Add library="comctl32.lib" />
+					<Add library="wsock32.lib" />
+					<Add library="ole32.lib" />
+					<Add library="gdi32.lib" />
+					<Add library="uuid.lib" />
+					<Add library="winspool.lib" />
+					<Add library="rpcrt4.lib" />
+					<Add library="oleaut32.lib" />
+					<Add library="odbc32.lib" />
+					<Add library="wxzlib.lib" />
+					<Add directory="$(#wx)\lib\vc_lib" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='mt.exe /nologo /manifest &quot;bin\vs2008\Agender.exe.manifest&quot; /outputresource:&quot;bin\vs2008\Agender.exe&quot;;1' />
+				</ExtraCommands>
+			</Target>
+			<Target title="vc6">
+				<Option output="bin\vc6\Agender" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="..\share\" />
+				<Option object_output="obj\vc6\" />
+				<Option type="0" />
+				<Option compiler="microsoft_visual_c_60" />
+				<Option projectLinkerOptionsRelation="1" />
+				<Compiler>
+					<Add option="/MD" />
+					<Add option="/O2" />
+					<Add option="/Ox" />
+					<Add option="/W4" />
+					<Add option="/EHs" />
+					<Add option="/DNDEBUG" />
+					<Add option="/DNOPHC" />
+					<Add option="/DWIN32" />
+					<Add option="/D__WIN32__" />
+					<Add option="/D__WXMSW__" />
+					<Add option="/D_UNICODE" />
+					<Add option="/D_WINDOWS" />
+					<Add option="/D_CRT_SECURE_DEPRECATE" />
+					<Add option="/D_CRT_NONSTDC_NO_DEPRECATE" />
+					<Add option="/D_VC80_UPGRADE=0x0600" />
+					<Add directory="$(#wx)\include" />
+					<Add directory="$(#wx)\lib\vc_lib\mswu" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="$(#wx)\include" />
+					<Add directory="$(#wx)\lib\vc_lib\mswu" />
+				</ResourceCompiler>
+				<Linker>
+					<Add option="/NODEFAULTLIB:libcmt.lib" />
+					<Add option="/INCREMENTAL:NO" />
+					<Add library="wxbase28u.lib" />
+					<Add library="wxmsw28u_core.lib" />
+					<Add library="wxbase28u_net.lib" />
+					<Add library="wxbase28u_xml.lib" />
+					<Add library="wxexpat.lib" />
+					<Add library="wxmsw28u_adv.lib" />
+					<Add library="wxmsw28u_html.lib" />
+					<Add library="wxmsw28u_richtext.lib" />
+					<Add library="wxpng.lib" />
+					<Add library="wxjpeg.lib" />
+					<Add library="wxregexu.lib" />
+					<Add library="msvcrt.lib" />
+					<Add library="winmm.lib" />
+					<Add library="kernel32.lib" />
+					<Add library="user32.lib" />
+					<Add library="comdlg32.lib" />
+					<Add library="advapi32.lib" />
+					<Add library="shell32.lib" />
+					<Add library="comctl32.lib" />
+					<Add library="wsock32.lib" />
+					<Add library="ole32.lib" />
+					<Add library="gdi32.lib" />
+					<Add library="uuid.lib" />
+					<Add library="winspool.lib" />
+					<Add library="rpcrt4.lib" />
+					<Add library="oleaut32.lib" />
+					<Add library="odbc32.lib" />
+					<Add library="wxzlib.lib" />
+					<Add library="wxtiff.lib" />
+					<Add directory="$(#wx)\lib\vc_lib" />
 				</Linker>
 			</Target>
 		</Build>
-		<Unit filename="../Agender.bkl" />
-		<Unit filename="../Agender.nsi" />
-		<Unit filename="../Agender.spec.in" />
-		<Unit filename="../PortFile" />
-		<Unit filename="../Readme.txt" />
-		<Unit filename="../autopackage/default.apspec.in" />
-		<Unit filename="../configure.in" />
-		<Unit filename="../debian/agender.dsc" />
+		<Unit filename="..\Agender.bkl" />
+		<Unit filename="..\Agender.nsi" />
+		<Unit filename="..\Agender.spec.in" />
+		<Unit filename="..\Info.plist" />
+		<Unit filename="..\PortFile" />
+		<Unit filename="..\Readme.txt" />
+		<Unit filename="..\autopackage\default.apspec.in" />
+		<Unit filename="..\configure.in" />
+		<Unit filename="AboutDialog.cpp" />
+		<Unit filename="AboutDialog.h" />
 		<Unit filename="AgenderApp.cpp" />
 		<Unit filename="AgenderApp.h" />
 		<Unit filename="AgenderCal.cpp" />
@@ -95,16 +218,24 @@
 		<Unit filename="XmlNotes.h" />
 		<Unit filename="resource.rc">
 			<Option compilerVar="WINDRES" />
-			<Option target="Release" />
+			<Option target="mingw32" />
+			<Option target="vs2008" />
+			<Option target="vc6" />
 		</Unit>
 		<Unit filename="wxAutoStart.cpp" />
 		<Unit filename="wxAutoStart.h" />
+		<Unit filename="wxsmith\AboutDialog.wxs">
+			<Option compilerVar="WXS" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<envvars />
 			<debugger />
 			<wxsmith version="1">
 				<gui name="wxWidgets" src="AgenderApp.cpp" main="-- None --" init_handlers="never" language="CPP" />
+				<resources>
+					<wxDialog wxs="wxsmith/AboutDialog.wxs" src="AboutDialog.cpp" hdr="AboutDialog.h" name="AboutDialog" language="CPP" />
+				</resources>
 			</wxsmith>
 			<DoxyBlocks>
 				<comment_style block="0" line="0" />
