@@ -4,7 +4,12 @@ $Appear='';
 $page = $_GET['page'];
 if ($page == '') {
 $page = 'Home';
-$Appear='style="display: none"';
+$Appear='<script type="text/javascript">
+$(\'container\').style.display = "none";
+$(\'left_pane\').style.display = "none";
+$(\'vs_google_adsense\').style.display = "none";
+$(\'mail\').style.display = "none";
+</script>';
 $loadscript = "onload=\"Effect.toggle('container','Appear');Effect.toggle('left_pane','Appear');Effect.toggle('vs_google_adsense','Appear');Effect.toggle('mail','Appear'); return false;\"";
 }
 //langs
@@ -38,7 +43,7 @@ else if ($language == 'es')
 //active link
 $active = 'id="active"';
 $inactive = "";
-$Home = $Downloads =$Press = $Screenshots = $About = $Links = $inactive;
+$Home = $Downloads =$Press = $Screenshots = $About = $Links = $Help = $inactive;
 //page title
 if ($page == 'Home') {
 	$Home = $active;
@@ -63,6 +68,10 @@ else if ($page == 'About') {
 else if ($page == 'Links') {
 	$Links = $active;
 	$title=$Links_title;
+}
+else if ($page == 'Help') {
+	$Help = $active;
+	$title=$Help_title;
 }
 //time function
 function setLastModified($pagetime)
@@ -130,7 +139,9 @@ else {$page_data = $error404;}
 </head>
 <body <?php echo $loadscript ?>>
 
-<form id="lang-form" method="GET" action="index.php">
+<div id="left_pane">
+	<!-- lang-form -->
+	<form id="lang-form" method="GET" action="index.php">
 	<input type="hidden" name="page" value="<?php echo $page ?>"/>
 	<label for="language"><?php echo $lang_label ?></label>
 	<select id="language" name="language" onchange="this.form.submit()">
@@ -139,9 +150,8 @@ else {$page_data = $error404;}
 	</select>
 	<br/>
 	<noscript><input type="submit" value="Change language"/></noscript>
-</form>
-
-<div id="left_pane" <?php echo $Appear ?>>
+	</form>
+	<!-- sf_net -->
 	<a href="http://sourceforge.net/projects/agender" >
 		<img src="http://sourceforge.net/sflogo.php?group_id=146403&amp;type=1" alt='SourceForge.net Logo' title="SourceForge.net"/>
 	</a>
@@ -153,7 +163,7 @@ else {$page_data = $error404;}
 <!-- ohloh statistics START-->
 <script type="text/javascript"
 	src="http://www.ohloh.net/p/363772/widgets/project_thin_badge.js">
-</script><!-- ohloh statistics END-->
+</script>
 <!-- google adsense vertical -->
 <div id="vs_google_adsense_vert"><script type="text/javascript"><!--
 	google_ad_client = "pub-8829282890738806";
@@ -162,13 +172,13 @@ else {$page_data = $error404;}
 	google_ad_width = 120;
 	google_ad_height = 240;
 	//-->
-</script>
+	</script>
 	<script type="text/javascript"
 		src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-	</script></div><!-- google adsense vertical END-->
-</div><!-- left_pane END-->
+	</script></div>
+</div>
 <!-- center container -->
-<div id="container" <?php echo $Appear ?>>
+<div id="container">
 	<center><img src="hdr.png"/></center>
 	<!-- menu -->
 	<div id="menu">
@@ -178,7 +188,7 @@ else {$page_data = $error404;}
 		<a <?php echo $Screenshots ?> href="?page=Screenshots&language=<?php echo $language ?>"><?php echo $Screenshots_menu ?></a> |
 		<a <?php echo $About ?> href="?page=About&language=<?php echo $language ?>"><?php echo $About_menu ?></a> |
 		<a <?php echo $Links ?> href="?page=Links&language=<?php echo $language ?>"><?php echo $Links_menu ?></a> |
-		<a href="http://sourceforge.net/apps/mediawiki/agender/">Wiki</a>
+		<a <?php echo $Help ?> href="?page=Help&language=<?php echo $language ?>"><?php echo $Help_menu ?></a>
 	</div>
 	<!-- google search -->
 	<div id="vs_google_search_id">
@@ -196,7 +206,7 @@ else {$page_data = $error404;}
 	<!-- end of contents -->
 </div>
 <!-- adsense -->
-<div id="vs_google_adsense" <?php echo $Appear ?>>
+<div id="vs_google_adsense">
 	<script type="text/javascript"><!--
 		google_ad_client = "pub-8829282890738806";
 		/* agender website */
@@ -210,8 +220,8 @@ else {$page_data = $error404;}
 	</script>
 </div>
 <!-- mailing list -->
-<div id="mail" <?php echo $Appear ?>>
-<form method="POST" action="https://lists.sourceforge.net/lists/subscribe/agender-announce">
+<div id="mail">
+<form method="POST" action="http://lists.sourceforge.net/lists/subscribe/agender-announce">
 	<p><?php echo $mailmessage ?></p>
 	<label for="email">email:</label><input id="email" type="Text" name="email" size="30" value=""/>
 	<input type="Submit" name="email-button" value=<?php echo $Subscribe?>/>
@@ -233,5 +243,6 @@ else {$page_data = $error404;}
 	<p><img src="http://sourceforge.net/apps/piwik/agender/piwik.php?idsite=1" style="border:0" alt=""/></p>
 </noscript>
 <!-- End Piwik Tag -->
+<?php echo $Appear ?>
 </body>
 </html>

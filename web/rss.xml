@@ -13,6 +13,16 @@
 	</image>
 	<!-- items -->
 	<item>
+		<title>visual c++</title>
+		<link>http://agender.sourceforge.net/</link>
+		<description>
+			The next release of Agender will be build using
+			visual c++ 6.0, this will result in a smaller executable,
+			it also is beeing build with the windows version of
+			NSIS this makes a smaller installer.
+		</description>
+	</item>
+	<item>
 		<title>Agender wiki</title>
 		<link>http://sourceforge.net/apps/mediawiki/agender/</link>
 		<description>

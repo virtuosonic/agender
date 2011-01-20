@@ -11,6 +11,7 @@ $Press_title="Prensa";
 $Screenshots_title="Screenshots";
 $About_title="Acerca de";
 $Links_title="Links";
+$Help_title="Ayuda";
 //etc
 $lang_label='Idioma:';
 $Donate='"Hacer una donacion"';
@@ -21,6 +22,7 @@ $Press_menu="Prensa";
 $Screenshots_menu="Screenshots";
 $About_menu="Acerca de";
 $Links_menu="Links";
+$Help_menu="Ayuda";
 //maling list
 $mailmessage="¿Quieres enterarte cuando se publican nuevas versiones de Agender? subscribete a la lista de correos agender-announce";
 $Subscribe='"Subscribirse"';

@@ -22,9 +22,8 @@ a {
 }
 a:hover {
     color: #47C4FF;
-    font-weight: bold;
-    font-style: italic;
-    text-decoration: none;
+/*    font-weight: bold;*/
+    text-decoration: underline;
 }
 p {
 	text-indent: 2em;
@@ -50,20 +49,22 @@ code {
 }
 
 #container {
-	position: absolute;
+/*	position: absolute;*/
 	padding: 10px;
 	padding-bottom: 40px;
 	background: #ffffff;
+	position: absolute;
 	right: 356px;
 	left: 256px;
+/*	float: left;*/
 	display: block;
 	border-left: 1px solid #7C7C7C;
 	border-right: 1px solid #7C7C7C;
 	z-index: 10;
 	min-width: 500px;
+	max-width: 700px;
 	min-height: 100%;
-	/* IE doesn't support min-height,
-	so we hack*/
+	/* IE doesn't support min-height, so we hack*/
 	height: expression(this.scrollHeight < document.body.clientHeight ? "100%" : "auto");
 }
 
@@ -92,6 +93,10 @@ code {
 	position: absolute;
 	top: 25ex;
 	left: 2em;
+	text-align: center;
+/*	float: left;*/
+/*	margin-top: 20%;*/
+	margin: 10px;
 }
 
 #mail {
@@ -102,12 +107,9 @@ code {
 	right: 10px;
 	top: 310px;
 	padding:10px;
-}
-
-#lang-form {
-	position: absolute;
 	margin: 10px;
 }
+
 /* links page */
 #links {
 	padding: 2em;
@@ -129,8 +131,12 @@ li#softoxi {list-style-image: url(softoxi5of5.png);}
 #menu {}
 #menu a {font-size: 1.1em;}
 #menu a#active {font-weight: bold;}
-#menu a:hover {
-	font-weight: normal;
-    font-style: normal;
-    text-decoration: underline;
+/*#menu a:hover {*/
+/*	font-weight: normal;*/
+/*    font-style: normal;*/
+/*    text-decoration: underline;*/
+/*}*/
+#foot {
+/*	clear:both;*/
+/*	overflow: scroll;*/
 }

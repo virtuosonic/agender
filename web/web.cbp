@@ -44,6 +44,7 @@
 		<Unit filename="htm\en\messages.php" />
 		<Unit filename="htm\es\About.htm" />
 		<Unit filename="htm\es\Downloads.htm" />
+		<Unit filename="htm\es\Help.htm" />
 		<Unit filename="htm\es\Home.htm" />
 		<Unit filename="htm\es\Links.htm" />
 		<Unit filename="htm\es\Press.htm" />
