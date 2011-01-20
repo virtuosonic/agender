@@ -23,16 +23,15 @@
 #include <wx/stdpaths.h>
 #include <wx/filename.h>
 #include <wx/log.h>
-
-#include <wx/stopwatch.h>
-
 #include <wx/config.h>
+
 #if defined wxHAS_TASK_BAR_ICON
 #include "AgenderTray.h"
 #endif
 
 #include "AgenderMain.h"
 #include "XmlNotes.h"
+#include "AboutDialog.h"
 
 #ifndef __REVISION__
 #define __REVISION__ 0
@@ -66,13 +65,12 @@ END_EVENT_TABLE()
 
 AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 {
-	wxStopWatch sw;
 	// TODO (virtuoso#1#): compatibilidad wx-2.9: opcion de usar wxGenericCalenderCtrl en vez de wxCalenderCtrl
 	//(*Initialize(AgenderFrame)
 	wxBoxSizer* BoxSizer1;
 	wxFlexGridSizer* FlexGridSizer1;
 
-	Create(0, wxID_ANY, _("Agender"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxFRAME_TOOL_WINDOW|wxTAB_TRAVERSAL|wxWANTS_CHARS, _T("wxID_ANY"));
+	Create(0, wxID_ANY, _("Agender"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxFRAME_TOOL_WINDOW|wxTAB_TRAVERSAL, _T("wxID_ANY"));
 	#ifdef __WXMSW__
 	SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUBAR));
 	#endif
@@ -170,49 +168,28 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& WXUNUSED(event))
 	//about dialog!
 	wxAboutDialogInfo info;
 	//developer a.k.a. me
-	info.AddDeveloper(_T("Gabriel Espinoza <virtuosonic@users.sourceforge.net>"));
-	//translators
-	info.AddTranslator(_T("Gabriel Espinoza : spanish"));
-	info.AddTranslator(_T("Ester Espinoza : deutsch"));
-	info.AddTranslator(_T("Florian Haag <fhaag@users.sourceforge.net> : deutsch"));
-	info.AddTranslator(_T("Daniel Daows : japanese"));
-	info.AddTranslator(_T("Miguel Haruki Yamaguchi <mhy@users.sourceforge.net> : japanese"));
-	info.AddTranslator(_T("Pedro Silva <pbsilva@users.sourceforge.net> : portuguese"));
-	info.AddTranslator(_T("George Petsagourakis : greek"));
-	info.AddTranslator(_T("Rickard Hedlund <bigricke@hotmail.com> : swedish"));
-	info.AddTranslator(_T("Bruno Mace : french"));
-	info.AddTranslator(_T("senoutouya <senoutouya@gmail.com> : chinese"));
-	info.AddTranslator(_T("Adi D. <nevvermind@users.sourceforge.net> : romanian"));
-	info.AddTranslator(_T("Itamar Shoham <itsho@users.sourceforge.net> : hebrew"));
 	//sound
 	info.AddArtist(_T("xyzr_kx from Freesound Project: alarm_clock.wav"));
 	//etc
 	info.SetDescription(wxString::Format(_T("%s\n%s %s %s\n%s %i"),_("A cross-platform schedule tool"),
 							 _("Build:"),__TDATE__,__TTIME__,_("Revision:"),__REVISION__));
 	info.SetWebSite(_T("http://agender.sourceforge.net"),_("Agender Web Site"));
-	info.SetLicence(_("Agender is free software; you can redistribute it and/or modify\n"
-				"it under the terms of the GNU General Public License as published by\n"
-				"the Free Software Foundation, either version 3 of the License, or\n"
-				"(at your option) any later version.\n"
-				"\n"
-				"Agender is distributed in the hope that it will be useful,\n"
-				"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
-				"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
-				"GNU General Public License for more details.\n"
-				"\n"
-				"You should have received a copy of the GNU General Public License\n"
-				"along with Agender. If not, see <http://www.gnu.org/licenses/>."));
+	info.SetLicence(_("Agender is free software; you can redistribute it and/or modify\n\
+it under the terms of the GNU General Public License as published by\n\
+the Free Software Foundation, either version 3 of the License, or\n\
+(at your option) any later version.\n\
+\n\
+Agender is distributed in the hope that it will be useful,\n\
+but WITHOUT ANY WARRANTY; without even the implied warranty of\n\
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n\
+GNU General Public License for more details.\n\
+\n\
+You should have received a copy of the GNU General Public License\n\
+along with Agender. If not, see <http://www.gnu.org/licenses/>."));
 	info.SetVersion(__AGENDER_VERSION__);
-	info.SetCopyright(_T("Copyright (C) 2009-2010 Gabriel Espinoza"));
-	wxIcon ico;
-	{
-		wxFileName icoFile;
-		icoFile.AssignDir(wxStandardPaths::Get().GetResourcesDir());
-		icoFile.SetName(_T("agender48.png"));
-		ico.CopyFromBitmap(wxBitmap(icoFile.GetFullPath()));
-	}
-	info.SetIcon(ico);
-	wxAboutBox(info);
+	info.SetCopyright(_T("Copyright (C) 2009-2011 Gabriel Espinoza"));
+	AboutDialog dlg(info,this);
+	dlg.ShowModal();
 }
 
 void AgenderFrame::OnCalendarCtrl1Changed(wxCalendarEvent& WXUNUSED(event))
@@ -291,14 +268,15 @@ void AgenderFrame::OnCalendarCtrl1MonthChanged(wxCalendarEvent& WXUNUSED(event))
 void AgenderFrame::MarkDays()
 {
 	///reset all days attributes
-	for (unsigned int i = 0;
+	unsigned int i;
+	for (i = 0;
 			i < wxDateTime::GetNumberOfDays(CalendarCtrl1->GetDate().GetMonth());
 			i++)
 		CalendarCtrl1->ResetAttr(i+1);
 	///get day with notes
 	wxArrayInt days =  AgCal::Get()->GetDaysWithNotes();
 	///mark that days
-	for (unsigned int i = 0; i < days.GetCount(); i++)
+	for (i = 0; i < days.GetCount(); i++)
 	{
 		wxCalendarDateAttr* note_attr = new wxCalendarDateAttr;
 		note_attr->SetTextColour(wxColour(wxConfig::Get()->Read(_T("/notescolour"),_T("#00FF00"))));
@@ -368,12 +346,13 @@ void AgenderFrame::OnListBox1DClick(wxCommandEvent& WXUNUSED(event))
 	noteMenu->Append(ID_RENAME,_("Rename"));
 	noteMenu->AppendSeparator();
 	noteMenu->AppendRadioItem(ID_NORMAL,_("Normal"));
-	noteMenu->AppendRadioItem(ID_STICKY,_("Sticky"));	if (AgCal::Get()->GetDate()->GetNote(ListBox1->GetStringSelection())->IsSticky())
+	noteMenu->AppendRadioItem(ID_STICKY,_("Sticky"));
+	if (AgCal::Get()->GetDate()->GetNote(ListBox1->GetStringSelection())->IsSticky())
 		noteMenu->Check(ID_STICKY,true);
 	ListBox1->PopupMenu(noteMenu);
 }
 
-void AgenderFrame::OnMenuNoteFlag(wxCommandEvent& event)
+void AgenderFrame::OnMenuNoteFlag(wxCommandEvent& WXUNUSED(event))
 {
 //	switch (event.GetId())
 //	{
@@ -435,8 +414,8 @@ void AgenderFrame::OnUpdateFound(wxCommandEvent& event)
 {
 	wxLogVerbose(_T("creating dialog"));
 	wxMessageDialog dlg(wxTheApp->GetTopWindow(),
-			wxString::Format(_("The %s version of %s has been released. "
-				"Do you want to download it?"),event.GetString().c_str(),
+			wxString::Format(_("The %s version of %s has been released. \
+				Do you want to download it?"),event.GetString().c_str(),
 				wxTheApp->GetAppName().c_str()),
 			_("Upgrade Found"),wxYES_NO|wxSTAY_ON_TOP);
 	if (dlg.ShowModal() == wxID_YES)

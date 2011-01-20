@@ -15,6 +15,10 @@
 
 #include <wx/filename.h>
 #include <wx/stdpaths.h>
+#include <wx/log.h>
+
+#include <wx/arrimpl.cpp>
+WX_DEFINE_OBJARRAY(wxDatesArray);
 
 AgCal* AgCal::g_Cal = NULL;
 #define Ag_1_0 wxStandardPaths::Get().GetConfigDataDir() + _T(".Agender-current user.txt")
@@ -22,17 +26,38 @@ AgCal* AgCal::g_Cal = NULL;
 
 // TODO (virtuoso#1#): implement sticky notes
 
-AgCal::AgCal()
+AgCal::AgCal(const wxString& file)
 {
-	wxFileName fname;
-	fname.AssignDir(wxStandardPaths::Get().GetUserDataDir());
-	fname.SetName(_T("agender"));
-	fname.SetExt(_T("xml"));
-	m_file = fname.GetFullPath();
+	if (file.IsEmpty())
+	{
+		wxFileName fname;
+		fname.AssignDir(wxStandardPaths::Get().GetUserDataDir());
+		fname.SetName(_T("agender"));
+		fname.SetExt(_T("xml"));
+		m_file = fname.GetFullPath();
+	}
+	else
+	{
+		m_file = file;
+	}
 	if (wxFileExists(m_file))
 		LoadXml();
 	else
 		CreateXml();
+	m_date = new AgDate(wxDateTime::Now(),this);
+}
+
+AgCal::AgCal(wxXmlDocument& doc)
+{
+	m_doc = doc;
+	// TODO (gabriel#1#): move to a fuction!
+	wxXmlNode* child = m_doc.GetRoot()->GetChildren();
+	while (child)
+	{
+		if (child->GetName() == _T("dates"))
+			m_dates = child;
+		child = child->GetNext();
+	}
 	m_date = new AgDate(wxDateTime::Now(),this);
 }
 
@@ -72,10 +97,12 @@ const AgNotesArray AgCal::GetStickyNotes()
 bool AgCal::MakeSticky(wxString note)
 {
 	GetDate()->DetachNote(note);
+	return false;
 }
 
 bool AgCal::UnStick(wxString note)
 {
+	return false;
 }
 
 void AgCal::LoadXml()
@@ -131,9 +158,70 @@ wxArrayInt AgCal::GetDaysWithNotes()
 	return days;
 }
 
+wxDatesArray AgCal::GetDatesWithNotes()
+{
+	wxDatesArray dates;
+	wxXmlNode* child = m_dates->GetChildren();
+	while (child)
+	{
+		if (child->GetName() == _T("date"))
+		{
+			//set
+			long datemonth = wxDateTime::Inv_Month;
+			long dateyear = wxDateTime::Inv_Year;
+			long dateday = -1;
+			wxString str;
+			//read
+			str = child->GetPropVal(_T("year"),wxEmptyString);
+			str.ToLong(&dateyear);
+			str = child->GetPropVal(_T("month"),wxEmptyString);
+			str.ToLong(&datemonth);
+			str = child->GetPropVal(_T("day"),wxEmptyString);
+			str.ToLong(&dateday);
+			//date
+			wxDateTime date;
+			date.SetYear(dateyear);
+			date.SetMonth((wxDateTime::Month)datemonth);
+			date.SetDay(dateday);
+			//add
+			dates.Add(date);
+		}
+	}
+	return dates;
+}
+
+
+/** @brief Import1x
+  *
+  * @todo: document this function
+  */
+bool AgCal::Import1x(wxString file)
+{
+	// TODO (virtuoso#1#): implement import1x
+	return false;
+}
+
+bool AgCal::ImportXml(wxString file)
+{
+	// TODO (virtuoso#1#): implement importXml
+	wxXmlDocument import_doc;
+	if (import_doc.Load(file))
+	{
+		AgCal import_cal(import_doc);
+	}
+	return false;
+}
+
 void AgCal::Import(wxString file)
 {
 	// TODO (virtuoso#1#): implement import
+	ImportXml(file);
+	wxLogError(_T("not a valid Agender file"));
+}
+
+void AgCal::Export(wxString file)
+{
+	m_doc.Save(file);
 }
 
 AgDate::AgDate(wxDateTime date,AgCal* cal)
@@ -153,7 +241,8 @@ AgDate::AgDate(wxDateTime date,AgCal* cal)
 			}
 			child = child->GetNext();
 		}
-	}}
+	}
+}
 
 AgDate::~AgDate()
 {
@@ -205,10 +294,11 @@ wxXmlNode* AgDate::CreateNode()
 	return datenode;
 }
 
-wxXmlNode* AgDate::DetachNote(const wxString& note)
+wxXmlNode* AgDate::DetachNote(const wxString& WXUNUSED(note))
 {
-
+	return 0;
 }
+
 const AgNotesArray AgDate::GetNotes()
 {
 	return notes;

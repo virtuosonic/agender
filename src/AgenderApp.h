@@ -2,7 +2,7 @@
  * Name:      AgenderApp.h
  * Purpose:   Defines Application Class
  * Author:    Gabriel Espinoza (virtuosonic@users.sourceforge.net)
- * Created:   2008-11-21
+unrecognized  * Created:   2008-11-21
  * Copyright: Gabriel Espinoza
  * License: GPLv3+
  **************************************************************/
@@ -23,6 +23,8 @@ class AgenderApp : public wxApp
 		int OnExit();
 	private:
 		void OnEndSession(wxCloseEvent& event);
+		inline void SingleInstance();
+		inline wxString gud();
 		wxSingleInstanceChecker* m_checker;
 		wxServer* m_server;
 		wxLocale m_locale;

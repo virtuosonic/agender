@@ -58,10 +58,12 @@ class AgDate
 };
 
 WX_DEFINE_ARRAY(AgDate*,AgDatesArray);
+WX_DECLARE_OBJARRAY(wxDateTime,wxDatesArray);
 class AgCal
 {
 	public:
-		AgCal();
+		AgCal(const wxString& file=wxEmptyString);
+		AgCal(wxXmlDocument& doc);
 		~AgCal();
 		//get unique instance
 		static AgCal* Get();
@@ -70,10 +72,13 @@ class AgCal
 		bool SetDate(wxDateTime date);
 		/*const*/ AgDate* GetDate();
 		wxArrayInt GetDaysWithNotes();
+		wxDatesArray GetDatesWithNotes();
 		//StickyNotes
 		const AgNotesArray GetStickyNotes();
 		bool MakeSticky(wxString note);
 		bool UnStick(wxString note);
+		void Import(wxString file);
+		void Export(wxString file);
 	private:
 		wxXmlDocument m_doc;
 		AgDate* m_date;
@@ -82,7 +87,8 @@ class AgCal
 		static AgCal* g_Cal;
 		void CreateXml();
 		void LoadXml();
-		void Import(wxString file);
+		bool ImportXml(wxString file);
+		bool Import1x(wxString file);
 		wxXmlNode* m_dates;
 	friend class AgDate;
 };
