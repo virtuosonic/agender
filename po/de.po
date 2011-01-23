@@ -32,7 +32,7 @@ msgstr "25%"
 
 #: ../src/AgenderTray.cpp:99
 msgid "default"
-msgstr ""
+msgstr "Standard"
 
 #: ../src/AgenderTray.cpp:153
 msgid "Show"
@@ -56,7 +56,7 @@ msgstr "Farbe von Notizen"
 
 #: ../src/AgenderTray.cpp:160
 msgid "Language"
-msgstr ""
+msgstr "Sprache"
 
 #: ../src/AgenderTray.cpp:162
 msgid "Symbol"
@@ -85,7 +85,7 @@ msgstr "Tage"
 
 #: ../src/AgenderTray.cpp:325
 msgid "Agender Language changed"
-msgstr ""
+msgstr "Agender-Sprache geändert"
 
 #: ../src/AgenderMain.cpp:75
 msgid "Agender"
