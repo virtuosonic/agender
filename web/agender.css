@@ -6,6 +6,8 @@ Agender's website
     font-family: Georgia,serif;
     margin: 0;
     color: #000000;
+    /*for debuging*/
+/*    border: 1px solid #ff0000;*/
 }
 body {
     background: url(bg.png) repeat;
@@ -46,6 +48,10 @@ code {
 	font-style: italic;
 	padding: 2em;
 	color: #7C7C7C;
+}
+
+.fadein {
+	display: none;
 }
 
 #container {
@@ -117,26 +123,16 @@ code {
 }
 /*download icons*/
 ul#download {padding-left: 5em;}
-/*TODO: find an adecuate icon for li#salix */
 li#salix {list-style-image: url(Salix-logo_48.png);}
 li#tar {list-style-image: url(package-x-generic.png);}
 li#linux {list-style-image: url(Tux-logo_48.png);}
 li#svn {list-style-image: url(subversion.png);}
 li#apple {list-style-image: url(Apple-logo_48.png);}
 li#msw {list-style-image: url(Microsoft_Windows-logo_48.png);}
+li#rpm {list-style-image: url(RPM-logo_48.png);}
 /*awards icons*/
 li#softpedia {list-style-image: url(softpedia.png);}
 li#softoxi {list-style-image: url(softoxi5of5.png);}
 /*navigation menu*/
-#menu {}
 #menu a {font-size: 1.1em;}
 #menu a#active {font-weight: bold;}
-/*#menu a:hover {*/
-/*	font-weight: normal;*/
-/*    font-style: normal;*/
-/*    text-decoration: underline;*/
-/*}*/
-#foot {
-/*	clear:both;*/
-/*	overflow: scroll;*/
-}

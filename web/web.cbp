@@ -33,7 +33,6 @@
 		</Compiler>
 		<Unit filename="agender.css" />
 		<Unit filename="agender_version" />
-		<Unit filename="agender_version.php" />
 		<Unit filename="htm\en\About.htm" />
 		<Unit filename="htm\en\Downloads.htm" />
 		<Unit filename="htm\en\Help.htm" />

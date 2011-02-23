@@ -1,16 +1,7 @@
 <?php
-$loadscript = '';
-$Appear='';
 $page = $_GET['page'];
 if ($page == '') {
 $page = 'Home';
-$Appear='<script type="text/javascript">
-$(\'container\').style.display = "none";
-$(\'left_pane\').style.display = "none";
-$(\'vs_google_adsense\').style.display = "none";
-$(\'mail\').style.display = "none";
-</script>';
-$loadscript = "onload=\"Effect.toggle('container','Appear');Effect.toggle('left_pane','Appear');Effect.toggle('vs_google_adsense','Appear');Effect.toggle('mail','Appear'); return false;\"";
 }
 //langs
 function DetectLang($langs)
@@ -136,9 +127,9 @@ else {$page_data = $error404;}
 	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 	})();
 	</script>
-</head>
-<body <?php echo $loadscript ?>>
 
+</head>
+<body>
 <div id="left_pane">
 	<!-- lang-form -->
 	<form id="lang-form" method="GET" action="index.php">
@@ -176,7 +167,7 @@ else {$page_data = $error404;}
 	<script type="text/javascript"
 		src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 	</script></div>
-</div>
+</div><!-- end of left_pane -->
 <!-- center container -->
 <div id="container">
 	<center><img src="hdr.png"/></center>
@@ -200,7 +191,8 @@ else {$page_data = $error404;}
 			<input type="submit" name="sa" value="Buscar" />
 		</div>
 	</form>
-	<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&amp;lang=es"></script></div>
+	<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&amp;lang=es"></script>
+	</div>
 	<!-- start of contents -->
 	<?php echo $page_data;?>
 	<!-- end of contents -->
@@ -243,6 +235,5 @@ else {$page_data = $error404;}
 	<p><img src="http://sourceforge.net/apps/piwik/agender/piwik.php?idsite=1" style="border:0" alt=""/></p>
 </noscript>
 <!-- End Piwik Tag -->
-<?php echo $Appear ?>
 </body>
 </html>
