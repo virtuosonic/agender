@@ -14,7 +14,5 @@ AC_SUBST(REVISION,SVN_REV)
 AC_SUBST(REVISION_DATE,"SVN_DATE")
 
 AC_CONFIG_FILES([Makefile
-	autopackage/default.apspec
-	Agender.spec
 ])
 AC_OUTPUT

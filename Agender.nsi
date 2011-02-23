@@ -4,11 +4,11 @@
 ;Author: Gabriel Espinoza
 ;License: GPLv3+
 
-;compress with upx, reduces size by around 200 kb!
+;compress with upx
 !tempfile PACKHDRTEMP
 !define UPX "C:\Archivos de programa\upx307w\upx.exe"
-!packhdr "${PACKHDRTEMP}" '${UPX} -9 "${PACKHDRTEMP}"'
-!execute '${UPX} -9 src\bin\vc6\Agender.exe'
+!packhdr "${PACKHDRTEMP}" '"${UPX}" -9 "${PACKHDRTEMP}"'
+!execute '"${UPX}" -9 src\bin\vc6\Agender.exe'
 
 ;this defines are configurable, change them when needed
 !define WX_VERSION 2.8.11
@@ -18,7 +18,9 @@
 !define PRODUCT_NAME "Agender"
 !define PRODUCT_PUBLISHER "Virtuosonic"
 !define PRODUCT_WEB_SITE "http://agender.sourceforge.net"
+!define DONATE_LINK "http://sourceforge.net/donate/index.php?group_id=271084"
 !define PRODUCT_EMAIL "agender-support@lists.sourceforge.net"
+!define PRODUCT_CFG_REGKEY "Software\Virtuosonic\Agender"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\Agender.exe"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 
@@ -31,26 +33,37 @@ SetCompressor /SOLID lzma
 !include "MUI2.nsh"
 !include "MultiUser.nsh"
 !include "FileFunc.nsh"
+!include "Memento.nsh"
 !insertmacro GetParent
+;Memento
+!define MEMENTO_REGISTRY_ROOT "SHCTX"
+!define MEMENTO_REGISTRY_KEY "${PRODUCT_CFG_REGKEY}"
 ; MUI Settings
-!define MUI_ICON "${NSISDIR}\Contrib\Graphics\Icons\modern-install.ico"
-!define MUI_UNICON "${NSISDIR}\Contrib\Graphics\Icons\modern-uninstall.ico"
+!define MUI_ICON "${NSISDIR}\Contrib\Graphics\Icons\orange-install.ico"
+!define MUI_UNICON "${NSISDIR}\Contrib\Graphics\Icons\orange-uninstall.ico"
+!define MUI_HEADERIMAGE
+!define MUI_HEADERIMAGE_BITMAP "${NSISDIR}\Contrib\Graphics\Header\orange.bmp"
+!define MUI_HEADERIMAGE_UNBITMAP "${NSISDIR}\Contrib\Graphics\Header\orange-uninstall.bmp"
+!define MUI_WELCOMEFINISHPAGE_BITMAP "${NSISDIR}\Contrib\Graphics\Wizard\orange.bmp"
+!define MUI_UNWELCOMEFINISHPAGE_BITMAP  "${NSISDIR}\Contrib\Graphics\Wizard\orange-uninstall.bmp"
 ;pages
-!define MUI_WELCOMEPAGE_TEXT "This wizard will install Agender ${PRODUCT_VERSION}, if you're updating, before continuing close Agender."
 !insertmacro MUI_PAGE_WELCOME
 !insertmacro MUI_PAGE_LICENSE "gpl-3.0.txt"
 !insertmacro MULTIUSER_PAGE_INSTALLMODE
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_COMPONENTS
+Page custom DonateDialog DonateLeave
 !insertmacro MUI_PAGE_INSTFILES
 ; Finish page
 !define MUI_FINISHPAGE_RUN "$INSTDIR\Agender.exe"
+!define MUI_FINISHPAGE_RUN_PARAMETERS "/nt"
 !define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\Readme.txt"
 !define MUI_FINISHPAGE_LINK "Visit our website and support the development of Agender"
 !define MUI_FINISHPAGE_LINK_LOCATION "${PRODUCT_WEB_SITE}"
 !insertmacro MUI_PAGE_FINISH
 ; Uninstaller pages
 !insertmacro MUI_UNPAGE_WELCOME
+!insertmacro MUI_UNPAGE_COMPONENTS
 !insertmacro MUI_UNPAGE_INSTFILES
 ; Language files
 !insertmacro MUI_LANGUAGE "English"
@@ -73,45 +86,85 @@ OutFile "${PRODUCT_NAME}-${PRODUCT_VERSION}.exe"
 InstallDir  ${MULTIUSER_INSTALLMODE_INSTDIR}
 ShowInstDetails show
 ShowUnInstDetails show
+AllowSkipFiles off
 
 InstType "Full"
 InstType "Minimal"
 InstType "Minimal+Detected language translation"
 ;version information
 VIProductVersion "1.0.0.0"
-VIAddVersionKey /LANG=${LANG_ENGLISH} "ProductName" ${PRODUCT_NAME}
-VIAddVersionKey /LANG=${LANG_ENGLISH} "Comments" "A cross-platform schedule tool"
-VIAddVersionKey /LANG=${LANG_ENGLISH} "CompanyName" ${PRODUCT_PUBLISHER}
-VIAddVersionKey /LANG=${LANG_ENGLISH} "LegalCopyright" "Copyright © 2009-2011 Gabriel Espinoza"
-VIAddVersionKey /LANG=${LANG_ENGLISH} "FileDescription" "The Agender installer"
-VIAddVersionKey /LANG=${LANG_ENGLISH} "FileVersion" ${PRODUCT_VERSION}
-VIAddVersionKey /LANG=${LANG_ENGLISH} "ProductVersion" ${PRODUCT_VERSION}
+VIAddVersionKey "ProductName" ${PRODUCT_NAME}
+VIAddVersionKey "Comments" "A cross-platform schedule tool"
+VIAddVersionKey "CompanyName" ${PRODUCT_PUBLISHER}
+VIAddVersionKey "LegalCopyright" "Copyright © 2009-2011 Gabriel Espinoza"
+VIAddVersionKey "FileDescription" "The ${PRODUCT_NAME} installer"
+VIAddVersionKey "FileVersion" ${PRODUCT_VERSION}
+VIAddVersionKey "ProductVersion" ${PRODUCT_VERSION}
+
+Var customDialog
+Var Label
+Var Button
+Var Check
+Var Checkbox_State
+
+Function DonateDialog
+	;title
+	!insertmacro MUI_HEADER_TEXT "Make a donation" "Put some coffee in this hacker veins."
+	;create
+	nsDialogs::Create 1018
+	Pop $customDialog
+	${If} $customDialog == error
+		Abort
+	${EndIf}
+	;label
+	${NSD_CreateLabel} 0 0 100% 40u "Agender is free of charge, \
+	but if you want you can invite me a coffee via paypal, \
+	to tell me how much you like it."
+	Pop $Label
+	;button
+	${NSD_CreateButton} 120u 50u 70u 18u "Donate now!"
+	Pop $Button
+	${NSD_OnClick} $Button OnDonateButton
+	;checkboxxxxxxxxxxx
+	${NSD_CreateCheckBox} 0 90% 100% 12u "Maybe later(check this to continue with the install)"
+	Pop $Check
+	${If} $Checkbox_State == ${BST_CHECKED}
+		${NSD_Check} $Check
+	${Else}
+		GetDlgItem $0 $HWNDPARENT 1
+		EnableWindow $0 0
+	${EndIf}
+	${NSD_OnClick} $Check OnCheck
+
+	nsDialogs::Show
+
+FunctionEnd
+
+Function OnCheck
+	${NSD_GetState} $Check $Checkbox_State
+	${If} $Checkbox_State == ${BST_CHECKED}
+		GetDlgItem $0 $HWNDPARENT 1
+		EnableWindow $0 1
+	${EndIf}
+FunctionEnd
+
+Function DonateLeave
+	${NSD_GetState} $Check $Checkbox_State
+FunctionEnd
+
+Function OnDonateButton
+	ExecShell "open" ${DONATE_LINK}
+	GetDlgItem $0 $HWNDPARENT 1
+	EnableWindow $0 1
+FunctionEnd
 
 Section "Agender" SEC01
 	SectionIn RO
-	;clean garbage from old versions
-	Delete "$INSTDIR\*.mo"
-	Delete "$INSTDIR\zh_CN\wxstd.mo"
-	Delete "$INSTDIR\zh_HK\wxstd.mo"
-	Delete "$INSTDIR\fr\wxstd.mo"
-	Delete "$INSTDIR\he\wxstd.mo"
-	Delete "$INSTDIR\de\wxstd.mo"
-	Delete "$INSTDIR\el\wxstd.mo"
-	Delete "$INSTDIR\ja\wxstd.mo"
-	Delete "$INSTDIR\ja\wxstd.mo"
-	Delete "$INSTDIR\pt\wxstd.mo"
-	Delete "$INSTDIR\es\wxstd.mo"
-	Delete "$INSTDIR\sv\wxstd.mo"
-	Delete "$INSTDIR\mingwm10.dll"
-	Delete "$INSTDIR\agender48.png"
-	Delete "$INSTDIR\bin\libgcc_s_sjlj-1.dll"
 	;install
 	SetOutPath "$INSTDIR"
 	SetOverwrite ifdiff
 	;executable
 	File "src\bin\vc6\Agender.exe"
-	;c runtime
-	;File "C:\Archivos de programa\Microsoft Visual Studio 9.0\VC\redist\x86\Microsoft.VC90.CRT\msvcr90.dll"
 	;shortcuts
 	CreateDirectory "$SMPROGRAMS\Agender"
 	CreateShortCut "$SMPROGRAMS\Agender\Agender.lnk" "$INSTDIR\Agender.exe"
@@ -121,25 +174,26 @@ Section "Agender" SEC01
 	;please read it
 	File "Readme.txt"
 	File "gpl-3.0.txt"
+	File "ChangeLog.txt"
 	SetAutoClose false
 SectionEnd
 
-Section "Desktop shortcut" SEC03
+${MementoSection} "Desktop shortcut" SEC03
 	SectionIn 1
 	CreateShortCut "$DESKTOP\Agender.lnk" "$INSTDIR\Agender.exe"
-SectionEnd
+${MementoSectionEnd}
 
-Section "AutoStart" SEC04
+${MementoSection} "AutoStart" SEC04
     SectionIn 1 2 3
     WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Run" "Agender" "$INSTDIR\Agender.exe"
-SectionEnd
+${MementoSectionEnd}
 
 !macro langSection l_iso l_name
-	Section "${l_name}" sec_${l_iso}
+	${MementoSection} "${l_name}" sec_${l_iso}
 		SectionIn 1
 		SetOutPath "$INSTDIR\${l_iso}"
 		File /oname=Agender.mo "po\${l_iso}.mo"
-	SectionEnd
+	${MementoSectionEnd}
 !macroend
 
 SectionGroup "Translations" SEC02
@@ -157,12 +211,40 @@ SectionGroup "Translations" SEC02
 	!insertmacro langSection sv "Swedish"
 SectionGroupEnd
 
+${MementoSectionDone}
+
+;hidden Sections
+Section -CleanGarbage
+	;clean garbage from old versions
+	Delete "$INSTDIR\*.mo"
+	Delete "$INSTDIR\zh_CN\wxstd.mo"
+	Delete "$INSTDIR\zh_HK\wxstd.mo"
+	Delete "$INSTDIR\fr\wxstd.mo"
+	Delete "$INSTDIR\he\wxstd.mo"
+	Delete "$INSTDIR\de\wxstd.mo"
+	Delete "$INSTDIR\el\wxstd.mo"
+	Delete "$INSTDIR\ja\wxstd.mo"
+	Delete "$INSTDIR\ja\wxstd.mo"
+	Delete "$INSTDIR\pt\wxstd.mo"
+	Delete "$INSTDIR\es\wxstd.mo"
+	Delete "$INSTDIR\sv\wxstd.mo"
+	Delete "$INSTDIR\mingwm10.dll"
+	Delete "$INSTDIR\agender48.png"
+	Delete "$INSTDIR\bin\libgcc_s_sjlj-1.dll"
+SectionEnd
+
 Section -AdditionalIcons
+	;website link
 	WriteIniStr "$INSTDIR\${PRODUCT_NAME}.url" "InternetShortcut" "URL" "${PRODUCT_WEB_SITE}"
 	CreateShortCut "$SMPROGRAMS\Agender\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
+	;donate link
+	WriteIniStr "$INSTDIR\donate.url" "InternetShortcut" "URL" ${DONATE_LINK}
+	CreateShortCut "$SMPROGRAMS\Agender\Donate.lnk" "$INSTDIR\donate.url"
+	;etc
 	CreateShortCut "$SMPROGRAMS\Agender\Uninstall.lnk" "$INSTDIR\uninst.exe"
 	CreateShortCut "$SMPROGRAMS\Agender\License.lnk" "$INSTDIR\gpl-3.0.txt"
 	CreateShortCut "$SMPROGRAMS\Agender\Readme.lnk" "$INSTDIR\Readme.txt"
+	CreateShortCut "$SMPROGRAMS\Agender\ChangeLog.lnk" "$INSTDIR\ChangeLog.txt"
 	;se7en
 	Push $R0
 	ReadRegStr $R0 HKLM "SOFTWARE\Microsoft\Windows NT\CurrentVersion" CurrentVersion
@@ -191,7 +273,7 @@ Section -Post
 SectionEnd
 
 !macro SetInstType2Lang l_id sec finish
-	IntCmp $LANGUAGE ${l_id} detected${l_id} ndetected${l_id}
+	StrCmp $LANGUAGE ${l_id} detected${l_id} ndetected${l_id}
 		detected${l_id}:
 			SectionSetInstTypes ${sec} 5
 			Goto ${finish}
@@ -206,6 +288,7 @@ Function .onInit
 		Abort
 	;mandatory
 	!insertmacro MULTIUSER_INIT
+	${MementoSectionRestore}
 	;InstallDir
 	Push $0
 	ReadRegStr $0 "SHCTX" "${PRODUCT_DIR_REGKEY}" ""
@@ -215,17 +298,17 @@ Function .onInit
 	Pop $0
 	;lang
 	!insertmacro MUI_LANGDLL_DISPLAY
-	!insertmacro SetInstType2Lang 1034 ${sec_es} finishlangset
-	!insertmacro SetInstType2Lang 1036 ${sec_fr} finishlangset
-	!insertmacro SetInstType2Lang 1031 ${sec_de} finishlangset
-	!insertmacro SetInstType2Lang 1032 ${sec_el} finishlangset
-	!insertmacro SetInstType2Lang 1041 ${sec_ja} finishlangset
-	!insertmacro SetInstType2Lang 2070 ${sec_pt} finishlangset
-	!insertmacro SetInstType2Lang 1048 ${sec_ro} finishlangset
-	!insertmacro SetInstType2Lang 2052 ${sec_zh_CN} finishlangset
-	!insertmacro SetInstType2Lang 1023 ${sec_zh_HK} finishlangset
-	!insertmacro SetInstType2Lang 1053 ${sec_sv} finishlangset
-	!insertmacro SetInstType2Lang 1037 ${sec_he} finishlangset
+	!insertmacro SetInstType2Lang ${LANG_SPANISH} ${sec_es} finishlangset
+	!insertmacro SetInstType2Lang ${LANG_FRENCH} ${sec_fr} finishlangset
+	!insertmacro SetInstType2Lang ${LANG_GERMAN} ${sec_de} finishlangset
+	!insertmacro SetInstType2Lang ${LANG_GREEK} ${sec_el} finishlangset
+	!insertmacro SetInstType2Lang ${LANG_JAPANESE} ${sec_ja} finishlangset
+	!insertmacro SetInstType2Lang ${LANG_PORTUGUESE} ${sec_pt} finishlangset
+	!insertmacro SetInstType2Lang ${LANG_ROMANIAN} ${sec_ro} finishlangset
+	!insertmacro SetInstType2Lang ${LANG_TRADCHINESE} ${sec_zh_CN} finishlangset
+	!insertmacro SetInstType2Lang ${LANG_SIMPCHINESE} ${sec_zh_HK} finishlangset
+	!insertmacro SetInstType2Lang ${LANG_SWEDISH} ${sec_sv} finishlangset
+	!insertmacro SetInstType2Lang ${LANG_HEBREW} ${sec_he} finishlangset
 	finishlangset:
 FunctionEnd
 
@@ -235,79 +318,47 @@ FunctionEnd
 
 
 Function .onInstSuccess
-	IfSilent +2 0
+	;check for connection
+	Dialer::GetConnectedState
+	Pop $R0
+	StrCmp $R0 "offline" nowebsite ;if offline jump out
+    ;if silent do nothing, else open website
+	IfSilent nowebsite
 		ExecShell "open" ${PRODUCT_WEB_SITE}
+	nowebsite:
+	${MementoSectionSave}
 FunctionEnd
-
-;Language strings
-LangString DESC_Required ${LANG_ENGLISH} "Agender (required)."
-LangString DESC_Po ${LANG_ENGLISH} "Translation files, only the ones you install now will be available."
-LangString DESC_DShortCut ${LANG_ENGLISH} "Create a Desktop shortcut."
-LangString DESC_startup ${LANG_ENGLISH} "Run on login."
-;spanish
-LangString DESC_Required ${LANG_SPANISH} "Agender (requerido)."
-LangString DESC_Po ${LANG_SPANISH} "Traducciones, solo las que instales ahora estaran disponibles."
-LangString DESC_DShortCut ${LANG_SPANISH} "Crear acceso directo en el Escritorio."
-LangString DESC_startup ${LANG_SPANISH} "Ejecutar al inicio de sesion."
 
 ;Assign language strings to sections
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
-    !insertmacro MUI_DESCRIPTION_TEXT ${SEC01} $(DESC_Required)
-    !insertmacro MUI_DESCRIPTION_TEXT ${SEC02} $(DESC_Po)
-    !insertmacro MUI_DESCRIPTION_TEXT ${SECO3} $(DESC_DShortCut)
-    !insertmacro MUI_DESCRIPTION_TEXT ${SEC04} $(DESC_startup)
+    !insertmacro MUI_DESCRIPTION_TEXT ${SEC01} "Agender (required)."
+    !insertmacro MUI_DESCRIPTION_TEXT ${SEC02} "Translation files; only the ones you install now will be available."
+    !insertmacro MUI_DESCRIPTION_TEXT ${SEC03} "Create a Desktop shortcut."
+    !insertmacro MUI_DESCRIPTION_TEXT ${SEC04} "Run on login."
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 ;Uninstaller a.k.a. ...
 ;I HATE UR SOFTWARE!!!
 
-!macro DeleteLang l_id
-	Delete "$INSTDIR\${l_id}\Agender.mo"
-	RMDir "$INSTDIR\${l_id}"
-!macroend
-
-Section Uninstall
-	Delete "$INSTDIR\${PRODUCT_NAME}.url"
-	Delete "$INSTDIR\uninst.exe"
-	;c runtime
-	Delete "$INSTDIR\Agender.exe"
-	Delete "$INSTDIR\Readme.txt"
-	Delete "$INSTDIR\gpl-3.0.txt"
-	Delete "$INSTDIR\project-support.jpg"
-	Delete "$INSTDIR\hdr.jpg"
-	;remove shortcuts
-	Delete "$SMPROGRAMS\Agender\Uninstall.lnk"
-	Delete "$SMPROGRAMS\Agender\Website.lnk"
+Section Uninstall unSEC01
+	RMDir /r "$INSTDIR"
 	Delete "$DESKTOP\Agender.lnk"
-	Delete "$SMPROGRAMS\Agender\Agender.lnk"
-	Delete "$SMPROGRAMS\Agender\License.lnk"
-	Delete "$SMPROGRAMS\Agender\Readme.lnk"
-	;remove translations
-	!insertmacro DeleteLang es
-	!insertmacro DeleteLang de
-	!insertmacro DeleteLang ja
-	!insertmacro DeleteLang pt
-	!insertmacro DeleteLang fr
-	!insertmacro DeleteLang el
-	!insertmacro DeleteLang sv
-	!insertmacro DeleteLang zh_HK
-	!insertmacro DeleteLang zh_CN
-	!insertmacro DeleteLang ro
-	!insertmacro DeleteLang he
-	;remove our dir
-	RMDir "$SMPROGRAMS\Agender"
-	RMDir "$INSTDIR"
+	RMDir /r "$SMPROGRAMS\Agender"
 	;remove registry entries
 	DeleteRegKey "SHCTX"  "${PRODUCT_UNINST_KEY}"
 	DeleteRegKey "SHCTX" "${PRODUCT_DIR_REGKEY}"
+	DeleteRegKey HKLM "${PRODUCT_CFG_REGKEY}"
 	SetAutoClose false
 SectionEnd
 
-
-;Language strings
-LangString DESC_Uninstall ${LANG_ENGLISH} "Uninstall this crapware :P"
+Section /o "un.User Data" unSEC02
+	DeleteRegKey HKCU "${PRODUCT_CFG_REGKEY}"
+	SetShellVarContext current
+	RMDir /r "$APPDATA\Agender"
+SectionEnd
 
 ;Assign language strings to sections
 !insertmacro MUI_UNFUNCTION_DESCRIPTION_BEGIN
-    !insertmacro MUI_DESCRIPTION_TEXT ${Uninstall} $(DESC_Uninstall)
+    !insertmacro MUI_DESCRIPTION_TEXT ${unSEC01} "Uninstall this crapware :P"
+    !insertmacro MUI_DESCRIPTION_TEXT ${unSEC02} "Delete your notes and configuration"
 !insertmacro MUI_UNFUNCTION_DESCRIPTION_END

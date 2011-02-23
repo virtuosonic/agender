@@ -8,7 +8,7 @@ license GPLv3+
 	<using module="datafiles"/>
 	<using module="gettext"/>
 	<set var="VERSION">2.0</set>
-	<set var="TRANSLATIONS">es de ja pt fr el sv zh_HK zh_CN ro he</set>
+	<set var="TRANSLATIONS">de el es  fr he ja pt ro sv zh_CN zh_HK</set>
 	<!--build binary -->
 	<exe id="Agender" template="wx-lib">
 		<app-type>gui</app-type>
@@ -39,9 +39,9 @@ license GPLv3+
   	</exe>
   	<!-- freedesktop.org shortcut, for gnome, kde and some other desktops-->
   	<data-files id="shortcut">
-  		<srcdir>$(SRCDIR)</srcdir>
+  		<srcdir>$(SRCDIR)/share/</srcdir>
   		<install-to>$(DATADIR)/applications</install-to>
-  		<files>share/Agender.desktop</files>
+  		<files>Agender.desktop</files>
   	</data-files>
   	<!-- icon for the above shortcut-->
   	<data-files id="icon">
@@ -53,7 +53,7 @@ license GPLv3+
   	<data-files id="icon-about">
   		<srcdir>$(SRCDIR)/share</srcdir>
   		<install-to>$(DATADIR)/Agender/</install-to>
-  		<files>Agender.png</files>
+  		<files>hdr.png project-support.jpg</files>
   	</data-files>
   	<!--translations-->
   	<gettext-catalogs>
@@ -62,67 +62,4 @@ license GPLv3+
 		<srcdir>$(SRCDIR)/po</srcdir>
   		<install-to>$(DATADIR)/locale</install-to>
   	</gettext-catalogs>
-  	<!-- lets build a package -->
-  	<action id="dist">
-  		<depends>clean</depends>
-  		<!-- dependencies should create $(SRCDIR)/Agender-$(VERSION)-->
-  		<!--then we create all the build scripts-->
-  		<command>cd $(SRCDIR)/Agender-$(VERSION);bakefile -f autoconf Agender.bkl</command>
-  		<command>cd $(SRCDIR)/Agender-$(VERSION);bakefilize --copy</command>
-  		<command>cd $(SRCDIR)/Agender-$(VERSION);aclocal</command>
-  		<command>cd $(SRCDIR)/Agender-$(VERSION);autoconf</command>
-  		<!--tarball -->
-		<command>tar -jcf Agender-$(VERSION).tar.bz2 Agender-$(VERSION)</command>
-		<command>tar -zcf Agender-$(VERSION).tar.gz Agender-$(VERSION)</command>
-  		<!-- cleanup -->
-  		<command>rm -rf $(SRCDIR)/Agender-$(VERSION)</command>
-  	</action>
-  	<!-- TODO instead of all this chaos use something like copy-files-tree -->
-	<!-- copy src files-->
-	<copy-files id="topdist">
-  		<dependency-of>dist</dependency-of>
-  		<srcdir>$(SRCDIR)/</srcdir>
-  		<files>*.spec.in *.bkl *.nsi configure.in gpl-3.0.txt Readme.txt revision.m4 update_revision.sh</files>
-  		<dstdir>$(SRCDIR)/Agender-$(VERSION)/</dstdir>
-  	</copy-files>
-  	<copy-files id="srcdist">
-  		<dependency-of>dist</dependency-of>
-  		<srcdir>$(SRCDIR)/src/</srcdir>
-  		<files>*.h *.cpp *.rc *.xpm *.ico *.cbp</files>
-  		<dstdir>$(SRCDIR)/Agender-$(VERSION)/src</dstdir>
-  	</copy-files>
-  	<copy-files id="sharedist">
-		<dependency-of>dist</dependency-of>
-		<srcdir>$(SRCDIR)/</srcdir>
-  		<files>$(SRCDIR)/share/*</files>
-  		<dstdir>$(SRCDIR)/Agender-$(VERSION)/share/</dstdir>
-  	</copy-files>
-  	<!-- translations -->
-  	<copy-files id="podist">
-		<dependency-of>dist</dependency-of>
-  		<srcdir>$(SRCDIR)/po</srcdir>
-  		<files>*.po *.mo</files>
-  		<dstdir>$(SRCDIR)/Agender-$(VERSION)/po</dstdir>
-  	</copy-files>
-  	<!-- autopackage -->
-  	<copy-files id="apspecdist">
-  		<dependency-of>dist</dependency-of>
-  		<srcdir>$(SRCDIR)</srcdir>
-  		<files>autopackage/*.apspec.in</files>
-  		<dstdir>$(SRCDIR)/Agender-$(VERSION)/autopackage/</dstdir>
-  	</copy-files>
-  	<!-- compile po-->
-  	<action id="mo">
-  		<dependency-of>dist</dependency-of>
-  		<set var="iter">$(DOLLAR)$(DOLLAR)l</set>
-  		<set var="linguas">$(TRANSLATIONS)</set>
-  		<command>for l in $(linguas);do \
-			msgfmt po/$(iter).po -o $(SRCDIR)/Agender-$(VERSION)/po/$(iter).mo; \
-			done
-  		</command>
-  	</action>
-  	<action id="clean-mo">
-  		<!-- <dependency-of>clean</dependency-of> -->
-  		<command>rm -f po/*.mo</command>
-  	</action>
 </makefile>

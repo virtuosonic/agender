@@ -24,6 +24,8 @@
 #include <wx/filename.h>
 #include <wx/log.h>
 #include <wx/config.h>
+#include <wx/dirdlg.h>
+#include <wx/file.h>
 
 #if defined wxHAS_TASK_BAR_ICON
 #include "AgenderTray.h"
@@ -55,10 +57,12 @@ BEGIN_EVENT_TABLE(AgenderFrame,wxFrame)
 	EVT_MENU(7004,AgenderFrame::OnChangeNotesColour)
 	EVT_MENU(7003,AgenderFrame::OnYearSel)
 	EVT_MENU(ID_RENAME,AgenderFrame::OnMenuRename)
+	EVT_MENU(ID_EXPORT_NOTE,AgenderFrame::OnMenuExportNote)
 	EVT_MENU_RANGE(ID_NORMAL,ID_STICKY,AgenderFrame::OnMenuNoteFlag)
 	EVT_ACTIVATE(AgenderFrame::OnActivate)
 	EVT_MENU(wxID_CLOSE,AgenderFrame::OnEscape)
 	EVT_MENU(ID_UPDATE_FOUND,AgenderFrame::OnUpdateFound)
+	EVT_MENU(wxID_EXIT,AgenderFrame::OnQuit)
 	//(*EventTable(AgenderFrame)
 	//*)
 END_EVENT_TABLE()
@@ -116,13 +120,14 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 	ChangeSelector();
 	MarkDays();
 	//shortcuts
-	wxAcceleratorEntry entries[4];
+	wxAcceleratorEntry entries[5];
 	entries[0].Set(wxACCEL_CTRL,(int)'f',wxID_FIND);
 	entries[1].Set(wxACCEL_NORMAL,WXK_ESCAPE,wxID_CLOSE);
 	// TODO (virtuoso#1#): use for cut
 	entries[2].Set(wxACCEL_CTRL,(int)'x',wxID_ANY);
-	entries[3].Set(wxACCEL_CTRL,(int)'q',wxID_ANY);
-	wxAcceleratorTable accel(4, entries);
+	entries[3].Set(wxACCEL_CTRL,(int)'q',wxID_EXIT);
+	entries[4].Set(wxACCEL_CTRL,(int)'n',ID_BUTTON1);
+	wxAcceleratorTable accel(5, entries);
 	this->SetAcceleratorTable(accel);
 	//find dialog
 	fndData = new wxFindReplaceData;
@@ -344,6 +349,7 @@ void AgenderFrame::OnListBox1DClick(wxCommandEvent& WXUNUSED(event))
 	//double click on a listbox item pops a menu
 	wxMenu* noteMenu = new wxMenu;
 	noteMenu->Append(ID_RENAME,_("Rename"));
+	noteMenu->Append(ID_EXPORT_NOTE,_("Export selected note"));
 	noteMenu->AppendSeparator();
 	noteMenu->AppendRadioItem(ID_NORMAL,_("Normal"));
 	noteMenu->AppendRadioItem(ID_STICKY,_("Sticky"));
@@ -397,6 +403,19 @@ void AgenderFrame::OnMenuRename(wxCommandEvent& WXUNUSED(event))
 	}
 }
 
+void AgenderFrame::OnMenuExportNote(wxCommandEvent& WXUNUSED(event))
+{
+	wxDirDialog dlg(this);
+	if (dlg.ShowModal() == wxID_OK)
+	{
+		wxFile exportFile;
+		exportFile.Create(dlg.GetPath()+wxFILE_SEP_PATH+ListBox1->GetStringSelection()+
+				wxT(".txt"),true,wxFile::write);
+		exportFile.Write(TextCtrl1->GetValue());
+		exportFile.Close();
+	}
+}
+
 void AgenderFrame::OnActivate(wxActivateEvent& event)
 {
 	if (!event.GetActive())
@@ -441,4 +460,9 @@ void AgenderFrame::UpdateNotesList()
 		ListBox1->Clear();
 		TextCtrl1->Disable();
 	}
+}
+
+void AgenderFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
+{
+	Destroy();
 }

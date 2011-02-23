@@ -46,10 +46,12 @@ class AgenderFrame: public wxFrame
 		void OnChangeNotesColour(wxCommandEvent& event);
 		void OnYearSel(wxCommandEvent& event);
 		void OnMenuRename(wxCommandEvent& event);
+		void OnMenuExportNote(wxCommandEvent& event);
 		void OnMenuNoteFlag(wxCommandEvent& event);
 		void OnActivate(wxActivateEvent& event);
 		void OnEscape(wxCommandEvent& event);
 		void OnUpdateFound(wxCommandEvent& event);
+		void OnQuit(wxCommandEvent& event);
 		//(*Identifiers(AgenderFrame)
 		static const long ID_CALENDARCTRL1;
 		static const long ID_LISTBOX1;
@@ -79,7 +81,8 @@ class AgenderFrame: public wxFrame
 		{
 			ID_RENAME,
 			ID_NORMAL,
-			ID_STICKY
+			ID_STICKY,
+			ID_EXPORT_NOTE
 		};
 
 		DECLARE_EVENT_TABLE()

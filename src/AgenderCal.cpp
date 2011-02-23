@@ -12,6 +12,8 @@
 #include "AgenderCal.h"
 #include <wx/log.h>
 #include <wx/wfstream.h>
+#include <wx/regex.h>
+#include <wx/arrstr.h>
 
 //since this  software has a very bad design, now I have to use hacks because it wasn't mean to
 //be extensible, however it acomplishes it goals: small, fast & portable
@@ -207,3 +209,35 @@ bool AgenderCal::RmStickySimb(wxString* note)
 	return false;
 }
 
+wxDatesArray AgenderCal::GetDatesWithNotes()
+{
+	wxDatesArray dates;
+	//set
+	wxString group_str;
+	long indx;
+	bool test_bool = cfg->GetFirstGroup(group_str,indx);
+	while (test_bool)
+	{
+		wxArrayString ddd = wxSplit(group_str,'-',0);
+		if (ddd.GetCount() == 3)
+		{
+			wxString date_str;
+			long datemonth = wxDateTime::Inv_Month;
+			long dateyear = wxDateTime::Inv_Year;
+			long dateday = -1;
+			//year
+			ddd[0].ToLong(&dateyear);
+			//month
+			ddd[1].ToLong(&datemonth);
+			//day
+			ddd[2].ToLong(&dateday);
+			//date
+			wxDateTime date(dateday,(wxDateTime::Month)datemonth,dateyear);
+			//add
+			if (date.IsValid())
+				dates.Add(date);
+		}
+		test_bool = cfg->GetNextGroup(group_str, indx);
+	}
+	return dates;
+}

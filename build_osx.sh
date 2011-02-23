@@ -1,12 +1,21 @@
 #!/bin/sh
 #
-#this script build a bundle and creates
-#a dmg disk image
+#this script builds a bundle and creates
+#a dmg disk image (i hope)
 #
 
-linguas="de en es el he ja pt ro sv zh_CN zh_HK"
+linguas="de es el he ja pt ro sv zh_CN zh_HK"
 APPNAME="Agender"
 VERSION="2.0"
+
+bakefile -f autoconf Agender.bkl
+bakefilize
+aclocal
+autoconf
+
+#./configure --with-wx-config=wx-config
+./configure $@
+make
 
 #copy exe
 mkdir -p "$APPNAME.app/Contents/MacOS"

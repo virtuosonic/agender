@@ -3,7 +3,7 @@
 "file://localhost/System/Library/DTDsPropertyList.dtd">
 <plist version="0.9">
 <dict>
-	<key>CFBundleInfiDictionaryVersion</key>
+	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleIdentifier</key>
 	<string>net.sourceforge.agender</string>
