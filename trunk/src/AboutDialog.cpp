@@ -10,6 +10,8 @@
 #include <wx/build.h>
 #include <wx/stdpaths.h>
 #include <wx/filename.h>
+#include <wx/fs_mem.h>
+#include <wx/image.h>
 
 #ifndef __REVISION__
 #define __REVISION__ 274
@@ -87,27 +89,35 @@ AboutDialog::AboutDialog(wxAboutDialogInfo& info,wxWindow* parent)
 		<< _("A cross-platform schedule tool!")
 		<< _T("</h6>")
 		<< _T("<p align=justify>")
-		<< _("Agender is a small cross-platform schedule tool where you asociate some notes with a date or with no date in particular if  you mark the note as sticky, you simply start it  and it will create a taskbar icon and stay in the background, without anoying you, it can also be configured to run on login. ")
+		<< _("Agender is a small cross-platform schedule tool where you asociate some notes with a date or with no date in particular if  you mark the note as sticky, you simply start it  and it will create a taskbar icon and stay in the background, without anoying you, it can also be configured to run on login.")
 		<< _T("</p>")
 		<< _T("<br><br>")
+		<< _T("<strong>")
+		<< _T("Licensed to: ")
+		<< _T("</strong>")
+		<< wxGetUserName()
+		<< _T("<br><br>")
+		<< _T("<strong>")
 		<< _("Build: ")
+		<< _T("</strong>")
 		<< __TDATE__
 		<< _T(" ")
 		<< __TTIME__
 		<< _T("<br>")
+		<< _T("<strong>")
 		<< _("Revision: ")
+		<< _T("</strong>")
 		<< __REVISION__
+		<< _T("<br>")
+		<< _T("<strong>")
+		<< _T("Runing on: ")
+		<< _T("</strong>")
+		<< wxGetOsDescription()
 		<< _T("<br>")
 		<< wxVERSION_STRING
 		<< _T(" ")
 		<< _T(__WX_BO_UNICODE)
 		<< _T(__WX_BO_COMPILER)
-		<< _T("<br>")
-		<< _T("Licensed to: ")
-		<< wxGetUserName()
-		<< _T("<br>")
-		<< _T("Runing on: ")
-		<< wxGetOsDescription()
 		<< _T("</body></html>");
 		HtmlWindow1->SetPage(infoStr);
 	}
@@ -132,7 +142,7 @@ AboutDialog::AboutDialog(wxAboutDialogInfo& info,wxWindow* parent)
 		<< _T("<li>George Petsagourakis : greek")
 		<< _T("<li>Rickard Hedlund <bigricke@hotmail.com> : swedish")
 		<< _T("<li>Bruno Mace : french")
-		<< _T("<li>Ianaré Sévi : french")
+		//<< _T("<li>Ianaré Sévi : french")
 		<< _T("<li>senoutouya <senoutouya@gmail.com> : chinese")
 		<< _T("<li>Adi D. <nevvermind@users.sourceforge.net> : romanian")
 		<< _T("<li>Itamar Shoham <itsho@users.sourceforge.net> : hebrew")

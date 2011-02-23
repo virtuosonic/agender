@@ -43,7 +43,16 @@ wxThread::ExitCode Updater::Entry()
 	wxString found;
 	while (found.IsEmpty())
 	{
-		found = Search();
+		//read option to search for updates from
+		//config, the default is to search
+		bool searchforupdates = true;
+		wxConfig::Get()->Read(_T("/searchforupdates"),&searchforupdates);
+		if (searchforupdates)
+		{
+			//if true search
+			found = Search();
+		}
+		//if not empty compare
 		if (!found.IsEmpty())
 		{
 			if (!IsLatest(found))
@@ -67,12 +76,12 @@ wxString Updater::Search()
 	{
 		//this saves a little band width
 		updateClient.SetHeader(_T("If-Modified-Since"),
-			wxConfig::Get()->Read(_T("http-modified-time"),wxEmptyString));
+			wxConfig::Get()->Read(_T("/http-modified-time"),wxEmptyString));
 		wxInputStream* ver_data = (wxInputStream*)updateClient.GetInputStream(m_file);
 		wxLogVerbose(_T("http response: %i"),updateClient.GetResponse());
 		if (ver_data && updateClient.GetResponse() == 200)
 		{
-			wxConfig::Get()->Write(_T("http-modified-time"),
+			wxConfig::Get()->Write(_T("/http-modified-time"),
 					updateClient.GetHeader(_T("Date")));
 			wxLogVerbose(_T("Date = %s"),updateClient.GetHeader(_T("Date")).c_str());
 			wxString last_ver;

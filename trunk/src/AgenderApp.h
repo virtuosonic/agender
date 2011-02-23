@@ -13,6 +13,7 @@ unrecognized  * Created:   2008-11-21
 #include <wx/snglinst.h>
 #include <wx/intl.h>
 #include <wx/ipc.h>
+#include <wx/thread.h>
 #include "Notifier.h"
 
 class AgenderApp : public wxApp
@@ -24,11 +25,12 @@ class AgenderApp : public wxApp
 	private:
 		void OnEndSession(wxCloseEvent& event);
 		inline void SingleInstance();
-		inline wxString gud();
 		wxSingleInstanceChecker* m_checker;
 		wxServer* m_server;
 		wxLocale m_locale;
 		Notifier notif;
+		wxMutex run_mutex;
+		wxCondition* exit_cond;
 		DECLARE_EVENT_TABLE()
 };
 

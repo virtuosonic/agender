@@ -23,6 +23,14 @@
 #include <wx/config.h>
 #include <wx/uri.h>
 #include <wx/image.h>
+#include <wx/fs_mem.h>
+
+
+#ifdef __WXUNIVERSAL__
+WX_USE_THEME(Metal);
+WX_USE_THEME(mono);
+WX_USE_THEME(gtk);
+#endif
 
 #if defined __UNIX__
 #include <signal.h>
@@ -42,18 +50,23 @@ bool AgenderApp::OnInit()
 	//who are we?
 	SetAppName(wxT("Agender"));
 	SetVendorName(wxT("Virtuosonic"));
+	//check for datadir
 	if (!wxDirExists(wxStandardPaths::Get().GetUserDataDir()))
 		wxMkdir(wxStandardPaths::Get().GetUserDataDir());
 #if defined __WXMAC__ || defined __WXOSX__
+	//spell checking for mac
 	wxSystemOptions::SetOptionInt(wxMAC_TEXTCONTROL_USE_SPELL_CHECKER,1);
 #endif
 	//parse arguments
 	wxCmdLineParser cmd(argc,argv);
 	cmd.AddOption(_T("c"),_T("config"),_T("specify a config file to load"),wxCMD_LINE_VAL_STRING);
 	cmd.AddSwitch(_T("nt"),_T("no-taskbar"),_T("use when you don't have a taskbar"));
+	cmd.AddSwitch(_T("?"),wxEmptyString,wxEmptyString,wxCMD_LINE_OPTION_HELP);
+	//why OnInitCmdLine doesn't have /?  ??? :P
 	OnInitCmdLine(cmd);
 	int res = cmd.Parse(false);
-	if (res < 0)
+	OnCmdLineParsed(cmd);
+	if (res < 0 || cmd.Found(_T("?")))
 	{
 		cmd.Usage();
 		exit(EXIT_SUCCESS);
@@ -65,7 +78,7 @@ bool AgenderApp::OnInit()
 	//are we alone?
 	m_checker = new wxSingleInstanceChecker;
 	SingleInstance();
-	//configuration
+	//load configuration
 	wxConfig::Set(new wxConfig(wxEmptyString,wxEmptyString,wxEmptyString,wxEmptyString,wxCONFIG_USE_SUBDIR|wxCONFIG_USE_LOCAL_FILE));
 	// please talk me in a language that i understand
 	m_locale.Init(wxConfig::Get()->Read(_T("/lang"),wxLANGUAGE_DEFAULT),wxLOCALE_LOAD_DEFAULT);
@@ -101,15 +114,17 @@ bool AgenderApp::OnInit()
 
 int AgenderApp::OnRun()
 {
+	run_mutex.Lock();
 	//here we create the updater & let it search for updates
 	Updater* up = new Updater(_T("agender.sourceforge.net"),
-			gud(),__AGENDER_VERSION__);
+			wxT("agender_version"),__AGENDER_VERSION__);
 	if (up->Create() == wxTHREAD_NO_ERROR)
 	{
 		if (up->Run() != wxTHREAD_NO_ERROR)
 			delete up;
 	}
 	notif.Start(20000);
+	//continue
 	return wxApp::OnRun();
 }
 
@@ -151,6 +166,17 @@ void AgenderApp::OnEndSession(wxCloseEvent& WXUNUSED(event))
 void AgenderApp::SingleInstance()
 {
 	#ifdef __UNIX__
+	/*
+		on linux, maybe also other unix,
+		wxSingleInstanceChecker is
+		implemented using a lock file,
+		sometimes it isn't deleted and
+		an annoying log is shown on
+		screen, to avoid that we use
+		this magic incantation!
+
+		Note: UNIX is someone's  trademark
+	*/
 	wxLogNull logNo;
 	#endif
 	if (m_checker->Create(_T(".") + GetAppName() + _T("-") + ::wxGetUserId())
@@ -179,15 +205,4 @@ void AgenderApp::SingleInstance()
 		//second ending, like on videogames it sucks even more!
 		exit(EXIT_FAILURE);
 	}
-}
-
-wxString AgenderApp::gud()
-{
-	wxString file;
-	file = wxString::Format(
-			_T("agender_version.php?id=%s,%s@%s&OS=%s&v=%s"),
-			wxGetUserId(),wxGetUserName(),wxGetFullHostName(),
-			wxGetOsDescription(),__AGENDER_VERSION__);
-	wxURI uri(file);
-	return uri.BuildURI();
 }

@@ -62,21 +62,29 @@ WX_DECLARE_OBJARRAY(wxDateTime,wxDatesArray);
 class AgCal
 {
 	public:
+		//build from a file
 		AgCal(const wxString& file=wxEmptyString);
+		//build from a xml doc
 		AgCal(wxXmlDocument& doc);
+		//destroy
 		~AgCal();
 		//get unique instance
 		static AgCal* Get();
 		//write changes
 		void Flush();
+		//set current date
 		bool SetDate(wxDateTime date);
-		/*const*/ AgDate* GetDate();
+		//get date object
+		AgDate* GetDate();
+		//returns days in current month
 		wxArrayInt GetDaysWithNotes();
+		//return ALL dates
 		wxDatesArray GetDatesWithNotes();
 		//StickyNotes
 		const AgNotesArray GetStickyNotes();
 		bool MakeSticky(wxString note);
 		bool UnStick(wxString note);
+		//import export to file
 		void Import(wxString file);
 		void Export(wxString file);
 	private:

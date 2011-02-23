@@ -12,6 +12,7 @@
 
 #include "AgenderMain.h"
 #include "XmlNotes.h"
+#include "AgenderCal.h"
 
 #include <wx/filename.h>
 #include <wx/stdpaths.h>
@@ -50,6 +51,13 @@ AgCal::AgCal(const wxString& file)
 AgCal::AgCal(wxXmlDocument& doc)
 {
 	m_doc = doc;
+	m_dates = 0;
+	m_date = 0;
+	if (m_doc.GetRoot()->GetName() != wxT("Agender"))
+	{
+		//wLogError(_T("Not an agender xml file"));
+		return;
+	}
 	// TODO (gabriel#1#): move to a fuction!
 	wxXmlNode* child = m_doc.GetRoot()->GetChildren();
 	while (child)
@@ -63,7 +71,8 @@ AgCal::AgCal(wxXmlDocument& doc)
 
 AgCal::~AgCal()
 {
-	Flush();
+	if (this == g_Cal)
+		Flush();
 }
 
 AgCal* AgCal::Get()
@@ -179,13 +188,11 @@ wxDatesArray AgCal::GetDatesWithNotes()
 			str = child->GetPropVal(_T("day"),wxEmptyString);
 			str.ToLong(&dateday);
 			//date
-			wxDateTime date;
-			date.SetYear(dateyear);
-			date.SetMonth((wxDateTime::Month)datemonth);
-			date.SetDay(dateday);
+			wxDateTime date(dateday,(wxDateTime::Month)datemonth,dateyear);
 			//add
 			dates.Add(date);
 		}
+		child = child->GetNext();
 	}
 	return dates;
 }
@@ -198,25 +205,87 @@ wxDatesArray AgCal::GetDatesWithNotes()
 bool AgCal::Import1x(wxString file)
 {
 	// TODO (virtuoso#1#): implement import1x
+	AgenderCal import_cal(wxDateTime::Now(),file);
+	if (true /*import_cal.IsOK()*/)
+	{
+		wxDatesArray d_array = import_cal.GetDatesWithNotes();
+		if (d_array.GetCounnt() == 0)
+			return false;
+		for (unsigned i = 0;i < d_array.GetCount();i++)
+		{
+			//get the notes in the date we are traversing
+			import_cal.SetDate(d_array[i]);
+			wxArrayString n_array = import_cal.GetNotes();
+			//copy this date to this
+			AgDate* new_date = new AgDate(import_cal.GetDate(),this);
+			for (unsigned j = 0;j < n_array.GetCount();j++)
+			{
+				//if note doesn't exist in this copy it
+				if (!new_date->HasNote(n_array[j]))
+				{
+					new_date->AddNote(n_array[j]);
+					new_date->GetNote(n_array[j])->SetText(import_cal.GetNoteText(n_array[j]));
+				}
+			}
+			//clean memory
+			delete new_date;
+		}
+		//success
+		Flush();
+		return true;
+	}
 	return false;
 }
 
 bool AgCal::ImportXml(wxString file)
 {
-	// TODO (virtuoso#1#): implement importXml
+	//import the requested file
 	wxXmlDocument import_doc;
 	if (import_doc.Load(file))
 	{
 		AgCal import_cal(import_doc);
+		//gets ALL dates that have a note
+		wxDatesArray d_array = import_cal.GetDatesWithNotes();
+		for (unsigned i = 0;i < d_array.GetCount();i++)
+		{
+			//get the notes in the date we are traversing
+			import_cal.SetDate(d_array[i]);
+			AgNotesArray n_array = import_cal.GetDate()->GetNotes();
+			//copy this date to this
+			AgDate* new_date = new AgDate(import_cal.GetDate()->GetDate(),this);
+			for (unsigned j = 0;j < n_array.GetCount();j++)
+			{
+				//if note doesn't exist in this copy it
+				if (!new_date->HasNote(n_array[j]->GetName()))
+				{
+					new_date->AddNote(n_array[j]->GetName());
+					new_date->GetNote(n_array[j]->GetName())->SetText(n_array[j]->GetText());
+				}
+			}
+			//clean memory
+			delete new_date;
+		}
+		//success
+		Flush();
+		return true;
 	}
+	//failed
 	return false;
 }
 
 void AgCal::Import(wxString file)
 {
 	// TODO (virtuoso#1#): implement import
-	ImportXml(file);
-	wxLogError(_T("not a valid Agender file"));
+	if (!ImportXml(file))
+	{
+		wxLogMessage(_T("Not xml"));
+		if (!Import1x(file))
+		{
+			wxLogError(_T("not a valid Agender file"));
+			return;
+		}
+	}
+	wxLogMessage(_T("Finished importing file: '%s'"),file.c_str());
 }
 
 void AgCal::Export(wxString file)

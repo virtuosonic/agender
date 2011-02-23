@@ -23,6 +23,12 @@ Intro:
     a donation via paypal by clicking in the Support this project button
     that can be found on the left of Agender's website.
 
+Special:
+========
+    I'll send an edition of Agender with your name in the
+    title bar if you're the first one to send a mail saying
+    you read this.
+
 Licence:
 ========
     Agender is free software; you can redistribute it and/or modify
@@ -41,7 +47,7 @@ Licence:
 Dependencies:
 =============
     To compile you will need a C++ compiler and wxWidgets 2.8,
-    Agender is being developed with the Microsoft C/C++ 15.00, and
+    Agender is being developed with the Microsoft C/C++ 12.00, and
     wxWidgets 2.8.11 maybe it works with anothers, not sure.
     The website is www.wxwidgets.org.
 
@@ -58,7 +64,7 @@ Compiling & Installing:
             $cd $(Agender)
             $./configure
             $make
-            $su -c 'make install'
+            $su -c make\ install
 
     $(Agender) is the directory where this file is , don't type
     the $ at the start of every line.
@@ -85,10 +91,10 @@ Bugs:
 
 Porting/Packaging:
 ==================
-    Agender uses, the wxWidgets library, it almost doesn't use the
-    STL, doesn't use advanced C++ features like templates, C++
-    RTTI or exceptions. So it should be easy to port, since wxWidgets
-    it self has been ported to several platforms.
+    Agender uses, the wxWidgets library, doesn't use advanced C++
+    features like templates, C++ RTTI or exceptions. So it should be
+    easy to port, since wxWidgets it self has been ported to several
+    platforms.
 
     Some platforms already supported by wxWidgets that I would like
     to see running Agender would be: Mac OSX, Windows Mobile,
@@ -109,67 +115,38 @@ Translating/i18n:
     You can get Poedit at:
         http://www.poedit.net
 
+Help wanted:
+============
+   If you are a programmer and want to help you could start
+   choosing a task from the todo list below
+
 TODO:
 =====
+    -import
+    -Sticky notes
     -notifications
-    -new file format in xml
     -Trash bin
     -Undo/Redo!!!!!!!!!
     -Clipboard/Drag & Drop support
     -Search
+    -Integrate with Windows se7en dock
     -Sticky weekday notes
     -richtextctrl
     -More translations
-    -Multi User support on installer
+    -Windows mobile port
+    -OSX packages
+    -FreeBSD testing
 
 Changelog:
 ==========
-28 junio 2009
-   released version 1.0.6
-
-     Change log:
-        -Applied: cambio del archivo de configuracion para que sea oculto en un*x
-
-18 abril 2009
-   released version 1.0.5
-
-     Change log:
-        -Fixed: Error de manejo de memoria, que provocaba que el programa recibiera la señal SIGSEGV
-        -Added: el submenu opacity se deshabilita si no se soporta tranparencia
-        -New: ahora los dias se marcan inmediatamante al agregar o eliminar notas
-
-21 February 2009
-   released version 1.0.4
-
-     Change log:
-        -Fixed: ahora las fechas que solo tienen un digito tambien se colorean si contienen notas
-
-21 February 2009
-   released version 1.0.3
-
-     Change log:
-        -New: parcial: los dias que tinen notas aparecen marcados de rojo (se puede cabiar el color) en el calendario
-
-30 January 2009
-   released version 1.0.2
-
-     Change log:
-        -Fixed: Fallo al escribir al registro
-
-27 January 2009
-   released version 1.0.1
-
-     Change log:
-        -Fixed: Escribe en el registro solo cuando es necesario
-        -New: Iconos de la barra de tareas, programa y del cuadro acerca de...
-        -Fixed: Carga las notas del dia correspondiente
+Read ChangeLog.txt
 
 Distro Makers:
 ==============
     Hi distro maker, if you want to include Agender in your operating
     system, you are free to do it, just follow the license, but I request
     you to send me the instructions on how to install Agender on your
-    system, so I can add them to the website, screenshot are also cool.
+    system, so I can add them to the website, screenshots are also cool.
 
 Author:
 =======

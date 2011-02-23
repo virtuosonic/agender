@@ -27,7 +27,6 @@ msgid "Thanks"
 msgstr "Agradecimientos"
 
 #: ../src/AboutDialog.cpp:64
-#, fuzzy
 msgid "Donate"
 msgstr "Hacer Una Donación"
 
