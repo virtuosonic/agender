@@ -114,8 +114,6 @@ else {$page_data = $error404;}
 	<link rel="alternate" type="application/rss+xml" href="rss.xml"
 		title="Agender - a cross-platform schedule tool!"/>
 	<link rel="icon" href="agender32.png"/>
-	<script src="js/prototype.js" type="text/javascript"></script >
-	<script src="js/scriptaculous.js" type="text/javascript"></script >
 	<!--google analytics-->
 	<script type="text/javascript">
 	var _gaq = _gaq || [];
@@ -142,7 +140,7 @@ else {$page_data = $error404;}
 	<br/>
 	<noscript><input type="submit" value="Change language"/></noscript>
 	</form>
-	<!-- sf_net -->
+	<!-- sf_net logo-->
 	<a href="http://sourceforge.net/projects/agender" >
 		<img src="http://sourceforge.net/sflogo.php?group_id=146403&amp;type=1" alt='SourceForge.net Logo' title="SourceForge.net"/>
 	</a>
