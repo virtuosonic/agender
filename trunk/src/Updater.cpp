@@ -76,13 +76,13 @@ wxString Updater::Search()
 	{
 		//this saves a little band width
 		updateClient.SetHeader(_T("If-Modified-Since"),
-			wxConfig::Get()->Read(_T("/http-modified-time"),wxEmptyString));
+		                       wxConfig::Get()->Read(_T("/http-modified-time"),wxEmptyString));
 		wxInputStream* ver_data = (wxInputStream*)updateClient.GetInputStream(m_file);
 		wxLogVerbose(_T("http response: %i"),updateClient.GetResponse());
 		if (ver_data && updateClient.GetResponse() == 200)
 		{
 			wxConfig::Get()->Write(_T("/http-modified-time"),
-					updateClient.GetHeader(_T("Date")));
+			                       updateClient.GetHeader(_T("Date")));
 			wxLogVerbose(_T("Date = %s"),updateClient.GetHeader(_T("Date")).c_str());
 			wxString last_ver;
 			wxTextInputStream strm(*ver_data);
@@ -113,7 +113,7 @@ bool Updater::IsLatest(wxString latest)
 	wxArrayInt i_cur = ToInt(m_ver);
 	//retrieved from inet
 	wxArrayInt i_latest = ToInt(latest);
-	for (unsigned int i = 0;i < i_cur.GetCount()  && i < i_latest.GetCount();i++)
+	for (unsigned int i = 0; i < i_cur.GetCount()  && i < i_latest.GetCount(); i++)
 	{
 		if (i_latest[i] > i_cur[i])
 		{

@@ -4,7 +4,12 @@
 #a dmg disk image (i hope)
 #
 
-linguas="de es el he ja pt ro sv zh_CN zh_HK"
+cd ../
+#locales
+cd po/
+linguas=`ls *.po|sed s/.po//`
+cd ..
+#version
 APPNAME="Agender"
 VERSION="2.0"
 

@@ -93,7 +93,7 @@ void AgCal::CreateXml()
 	wxXmlNode* root = new wxXmlNode(wxXML_ELEMENT_NODE,_T("Agender"));
 	m_dates = new wxXmlNode(root,wxXML_ELEMENT_NODE,_T("dates"));
 	new wxXmlNode(root,wxXML_COMMENT_NODE,wxEmptyString,
-		_T("in this file Agender saves your notes, so be careful with it"));
+	              _T("in this file Agender saves your notes, so be careful with it"));
 	root->AddProperty(_T("version"),__AGENDER_VERSION__);
 	m_doc.SetRoot(root);
 }
@@ -204,21 +204,21 @@ wxDatesArray AgCal::GetDatesWithNotes()
   */
 bool AgCal::Import1x(wxString file)
 {
-	// TODO (virtuoso#1#): implement import1x
 	AgenderCal import_cal(wxDateTime::Now(),file);
 	if (true /*import_cal.IsOK()*/)
 	{
 		wxDatesArray d_array = import_cal.GetDatesWithNotes();
-		if (d_array.GetCounnt() == 0)
+		//error
+		if (d_array.GetCount() == 0)
 			return false;
-		for (unsigned i = 0;i < d_array.GetCount();i++)
+		for (unsigned i = 0; i < d_array.GetCount(); i++)
 		{
 			//get the notes in the date we are traversing
 			import_cal.SetDate(d_array[i]);
 			wxArrayString n_array = import_cal.GetNotes();
 			//copy this date to this
 			AgDate* new_date = new AgDate(import_cal.GetDate(),this);
-			for (unsigned j = 0;j < n_array.GetCount();j++)
+			for (unsigned j = 0; j < n_array.GetCount(); j++)
 			{
 				//if note doesn't exist in this copy it
 				if (!new_date->HasNote(n_array[j]))
@@ -246,14 +246,14 @@ bool AgCal::ImportXml(wxString file)
 		AgCal import_cal(import_doc);
 		//gets ALL dates that have a note
 		wxDatesArray d_array = import_cal.GetDatesWithNotes();
-		for (unsigned i = 0;i < d_array.GetCount();i++)
+		for (unsigned i = 0; i < d_array.GetCount(); i++)
 		{
 			//get the notes in the date we are traversing
 			import_cal.SetDate(d_array[i]);
 			AgNotesArray n_array = import_cal.GetDate()->GetNotes();
 			//copy this date to this
 			AgDate* new_date = new AgDate(import_cal.GetDate()->GetDate(),this);
-			for (unsigned j = 0;j < n_array.GetCount();j++)
+			for (unsigned j = 0; j < n_array.GetCount(); j++)
 			{
 				//if note doesn't exist in this copy it
 				if (!new_date->HasNote(n_array[j]->GetName()))
@@ -275,7 +275,6 @@ bool AgCal::ImportXml(wxString file)
 
 void AgCal::Import(wxString file)
 {
-	// TODO (virtuoso#1#): implement import
 	if (!ImportXml(file))
 	{
 		wxLogMessage(_T("Not xml"));
@@ -285,6 +284,7 @@ void AgCal::Import(wxString file)
 			return;
 		}
 	}
+	// TODO (gabriel#1#): send a message to update the gui
 	wxLogMessage(_T("Finished importing file: '%s'"),file.c_str());
 }
 
@@ -344,9 +344,9 @@ wxXmlNode* AgDate::GetNode()
 			str = child->GetPropVal(_T("day"),wxEmptyString);
 			str.ToLong(&dateday);
 			if (dateyear == m_date.GetYear() &&
-				datemonth == m_date.GetMonth() &&
-				dateday == m_date.GetDay())
-					return child;
+			        datemonth == m_date.GetMonth() &&
+			        dateday == m_date.GetDay())
+				return child;
 		}
 		child = child->GetNext();
 	}
@@ -356,7 +356,7 @@ wxXmlNode* AgDate::GetNode()
 wxXmlNode* AgDate::CreateNode()
 {
 	wxXmlNode* datenode = new wxXmlNode(m_cal->m_dates,
-			wxXML_ELEMENT_NODE,_T("date"));
+	                                    wxXML_ELEMENT_NODE,_T("date"));
 	datenode->AddProperty(_T("year"),wxString::Format(_T("%i"),m_date.GetYear()));
 	datenode->AddProperty(_T("month"),wxString::Format(_T("%i"),m_date.GetMonth()));
 	datenode->AddProperty(_T("day"),wxString::Format(_T("%i"),m_date.GetDay()));
@@ -381,7 +381,7 @@ bool AgDate::HasNote(const wxString& note)
 	while (child)
 	{
 		if (child->GetName() == _T("note") &&
-			child->GetPropVal(_T("name"),wxEmptyString) == note)
+		        child->GetPropVal(_T("name"),wxEmptyString) == note)
 			return true;
 		child = child->GetNext();
 	}
@@ -395,7 +395,7 @@ bool AgDate::AddNote(const wxString& note)
 	if (!m_node)
 		m_node = CreateNode();
 	wxXmlNode* notenode = new wxXmlNode(m_node,
-			wxXML_ELEMENT_NODE,_T("note"));
+	                                    wxXML_ELEMENT_NODE,_T("note"));
 	notenode->AddProperty(_T("name"),note);
 	AgNote* a_note = new AgNote(notenode);
 	notes.Add(a_note);
@@ -410,9 +410,9 @@ bool AgDate::DeleteNote(const wxString& note)
 	while (child )
 	{
 		if (child->GetName() == _T("note") &&
-			child->GetPropVal(_T("name"),wxEmptyString) == note)
+		        child->GetPropVal(_T("name"),wxEmptyString) == note)
 		{
-			for (unsigned int i = 0;i < notes.GetCount();i++)
+			for (unsigned int i = 0; i < notes.GetCount(); i++)
 			{
 				if (notes[i]->GetName() == note)
 				{
@@ -439,7 +439,7 @@ bool AgDate::DeleteNote(const wxString& note)
 
 AgNote* AgDate::GetNote(const wxString& note)
 {
-	for (unsigned int i = 0;i < notes.GetCount();i++)
+	for (unsigned int i = 0; i < notes.GetCount(); i++)
 	{
 		if (notes[i]->GetName() == note)
 			return notes[i];

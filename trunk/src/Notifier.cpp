@@ -15,11 +15,11 @@
 
 class Alarm : public wxTimer
 {
-	void Notify()
-	{
-		wxLogVerbose(_T("ringing"));
-		wxSound::Play(wxString(_T("../share/14262_xyzr_kx_alarm_clock.wav")));
-	}
+		void Notify()
+		{
+			wxLogVerbose(_T("ringing"));
+			wxSound::Play(wxString(_T("../share/14262_xyzr_kx_alarm_clock.wav")));
+		}
 };
 
 Notifier::Notifier()

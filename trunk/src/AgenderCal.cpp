@@ -14,6 +14,7 @@
 #include <wx/wfstream.h>
 #include <wx/regex.h>
 #include <wx/arrstr.h>
+#include <wx/tokenzr.h>
 
 //since this  software has a very bad design, now I have to use hacks because it wasn't mean to
 //be extensible, however it acomplishes it goals: small, fast & portable
@@ -133,12 +134,12 @@ wxArrayInt AgenderCal::GetDaysWithNotes()
 		if (i < 10)
 		{
 			dateStr = m_date.Format(_T("%Y-%m-")) +
-					  wxString::Format(_T("0%i"),i);
+			          wxString::Format(_T("0%i"),i);
 		}
 		else
 		{
 			dateStr = m_date.Format(_T("%Y-%m-")) +
-					  wxString::Format(_T("%i"),i);
+			          wxString::Format(_T("%i"),i);
 		}
 		if (cfg->HasGroup(dateStr))
 			days.Add(i);
@@ -218,7 +219,8 @@ wxDatesArray AgenderCal::GetDatesWithNotes()
 	bool test_bool = cfg->GetFirstGroup(group_str,indx);
 	while (test_bool)
 	{
-		wxArrayString ddd = wxSplit(group_str,'-',0);
+		wxLogMessage(_T("found date: %s"),group_str.c_str());
+		wxArrayString ddd = wxStringTokenize(group_str,wxT('-'));
 		if (ddd.GetCount() == 3)
 		{
 			wxString date_str;
@@ -228,7 +230,11 @@ wxDatesArray AgenderCal::GetDatesWithNotes()
 			//year
 			ddd[0].ToLong(&dateyear);
 			//month
-			ddd[1].ToLong(&datemonth);
+			//wxDateTime::Month goes from 0 to 11
+			//but Agender 1.x files save it from 1 to 12
+			//so decrement it to make it work
+			if (ddd[1].ToLong(&datemonth))
+				datemonth--;
 			//day
 			ddd[2].ToLong(&dateday);
 			//date

@@ -7,8 +7,8 @@
  * License: GPLv3+
  **************************************************************/
 #ifdef __BORLANDC__
-    //for those who can't change turboc++, like theacher Nancy
-    #pragma hdrstop
+//for those who can't change turboc++, like theacher Nancy
+#pragma hdrstop
 #endif
 
 #include <wx/msgdlg.h>
@@ -75,9 +75,9 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 	wxFlexGridSizer* FlexGridSizer1;
 
 	Create(0, wxID_ANY, _("Agender"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxFRAME_TOOL_WINDOW|wxTAB_TRAVERSAL, _T("wxID_ANY"));
-	#ifdef __WXMSW__
+#ifdef __WXMSW__
 	SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUBAR));
-	#endif
+#endif
 	FlexGridSizer1 = new wxFlexGridSizer(0, 2, 0, 0);
 	FlexGridSizer1->AddGrowableCol(0);
 	FlexGridSizer1->AddGrowableRow(0);
@@ -135,7 +135,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 	SearchMode = false;
 	//size
 	SetSize(wxConfig::Get()->Read(_T("/x"),wxDefaultPosition.x),wxConfig::Get()->Read(_T("/y"),wxDefaultPosition.y),
-		wxConfig::Get()->Read(_T("/w"),wxDefaultSize.x),wxConfig::Get()->Read(_T("/h"),wxDefaultSize.y));
+	        wxConfig::Get()->Read(_T("/w"),wxDefaultSize.x),wxConfig::Get()->Read(_T("/h"),wxDefaultSize.y));
 	SetTransparent(wxConfig::Get()->Read(_T("/opacity"),255));
 	//taskbaricon
 #if defined wxHAS_TASK_BAR_ICON
@@ -177,7 +177,7 @@ void AgenderFrame::OnButton3Click(wxCommandEvent& WXUNUSED(event))
 	info.AddArtist(_T("xyzr_kx from Freesound Project: alarm_clock.wav"));
 	//etc
 	info.SetDescription(wxString::Format(_T("%s\n%s %s %s\n%s %i"),_("A cross-platform schedule tool"),
-							 _("Build:"),__TDATE__,__TTIME__,_("Revision:"),__REVISION__));
+	                                     _("Build:"),__TDATE__,__TTIME__,_("Revision:"),__REVISION__));
 	info.SetWebSite(_T("http://agender.sourceforge.net"),_("Agender Web Site"));
 	info.SetLicence(_("Agender is free software; you can redistribute it and/or modify\n\
 it under the terms of the GNU General Public License as published by\n\
@@ -224,7 +224,7 @@ void AgenderFrame::OnBtnNuevoClick(wxCommandEvent& WXUNUSED(event))
 		if (dlg.GetValue().Find(_T("$(")) != wxNOT_FOUND)
 		{
 			wxMessageBox(_("Expresion '$(' reserved for Agender, please use another name"),
-					 _T("Error"),wxICON_ERROR,this);
+			             _T("Error"),wxICON_ERROR,this);
 			return;
 		}
 		//if this name is in use ignore
@@ -275,8 +275,8 @@ void AgenderFrame::MarkDays()
 	///reset all days attributes
 	unsigned int i;
 	for (i = 0;
-			i < wxDateTime::GetNumberOfDays(CalendarCtrl1->GetDate().GetMonth());
-			i++)
+	        i < wxDateTime::GetNumberOfDays(CalendarCtrl1->GetDate().GetMonth());
+	        i++)
 		CalendarCtrl1->ResetAttr(i+1);
 	///get day with notes
 	wxArrayInt days =  AgCal::Get()->GetDaysWithNotes();
@@ -410,7 +410,7 @@ void AgenderFrame::OnMenuExportNote(wxCommandEvent& WXUNUSED(event))
 	{
 		wxFile exportFile;
 		exportFile.Create(dlg.GetPath()+wxFILE_SEP_PATH+ListBox1->GetStringSelection()+
-				wxT(".txt"),true,wxFile::write);
+		                  wxT(".txt"),true,wxFile::write);
 		exportFile.Write(TextCtrl1->GetValue());
 		exportFile.Close();
 	}
@@ -433,10 +433,10 @@ void AgenderFrame::OnUpdateFound(wxCommandEvent& event)
 {
 	wxLogVerbose(_T("creating dialog"));
 	wxMessageDialog dlg(wxTheApp->GetTopWindow(),
-			wxString::Format(_("The %s version of %s has been released. \
+	                    wxString::Format(_("The %s version of %s has been released. \
 				Do you want to download it?"),event.GetString().c_str(),
-				wxTheApp->GetAppName().c_str()),
-			_("Upgrade Found"),wxYES_NO|wxSTAY_ON_TOP);
+	                                     wxTheApp->GetAppName().c_str()),
+	                    _("Upgrade Found"),wxYES_NO|wxSTAY_ON_TOP);
 	if (dlg.ShowModal() == wxID_YES)
 	{
 		wxLaunchDefaultBrowser(_T("http://agender.sourceforge.net/index.php?page=Downloads"));
