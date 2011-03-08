@@ -12,6 +12,7 @@ license GPLv3+
 	<!--build binary -->
 	<exe id="Agender" template="wx-lib">
 		<app-type>gui</app-type>
+		<set-srcdir>..</set-srcdir>
 		<!-- source files-->
 		<sources>src/AgenderIPC.cpp</sources>
 		<sources>src/AgenderApp.cpp</sources>

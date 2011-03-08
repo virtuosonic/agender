@@ -6,7 +6,7 @@
  * Copyright: Gabriel Espinoza
  * License: GPLv3+
  **************************************************************/
- #ifndef ABOUTDIALOG_H
+#ifndef ABOUTDIALOG_H
 #define ABOUTDIALOG_H
 
 //(*Headers(AboutDialog)

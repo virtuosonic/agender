@@ -213,13 +213,14 @@
 				</Linker>
 			</Target>
 		</Build>
-		<Unit filename="..\Agender.bkl" />
-		<Unit filename="..\Agender.nsi" />
-		<Unit filename="..\Agender.spec" />
 		<Unit filename="..\ChangeLog.txt" />
-		<Unit filename="..\Info.plist" />
 		<Unit filename="..\Readme.txt" />
-		<Unit filename="..\configure.in" />
+		<Unit filename="..\build\Agender.bkl" />
+		<Unit filename="..\build\Agender.nsi" />
+		<Unit filename="..\build\Agender.spec" />
+		<Unit filename="..\build\Bakefiles.bkgen" />
+		<Unit filename="..\build\build_osx.sh" />
+		<Unit filename="..\build\configure.in" />
 		<Unit filename="..\po\de.po" />
 		<Unit filename="..\po\el.po" />
 		<Unit filename="..\po\es.po" />

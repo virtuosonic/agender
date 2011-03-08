@@ -6,7 +6,7 @@
  * License: GPLv3+
  **************************************************************/
 #ifdef __BORLANDC__
-	#pragma hdrstop
+#pragma hdrstop
 #endif
 
 #include <wx/defs.h>
@@ -52,7 +52,7 @@ BEGIN_EVENT_TABLE(AgenderTray,wxTaskBarIcon)
 	EVT_MENU(ID_WIKI,AgenderTray::OnMenuWiki)
 	EVT_MENU(ID_BUG,AgenderTray::OnMenuBug)
 	EVT_MENU(ID_DONATE,AgenderTray::OnMenuDonate)
-	EVT_MENU(ID_ABOUT,AgenderTray::OnMenuAbout)
+	EVT_MENU(wxID_ABOUT,AgenderTray::OnMenuAbout)
 	EVT_MENU(ID_UPDATE,AgenderTray::OnMenuUpdate)
 END_EVENT_TABLE()
 
@@ -128,7 +128,7 @@ wxMenu * AgenderTray::CreatePopupMenu()
 	lmenu->AppendRadioItem(ID_LANG_RO,_T("Romanian"));
 	lmenu->AppendRadioItem(ID_LANG_HE,_T("Hebrew"));
 	long lang = wxConfig::Get()->Read(_T("/lang"),wxLANGUAGE_UNKNOWN);
-	// TODO (gabriel#1#): move to a function
+	// TODO (gabriel#1#): move to a class
 	switch (lang)
 	{
 		case wxLANGUAGE_SPANISH:
@@ -183,7 +183,7 @@ wxMenu * AgenderTray::CreatePopupMenu()
 	ToolsMenu->AppendCheckItem(ID_NOTIFY,_("Notify"));
 	ToolsMenu->AppendCheckItem(ID_AUTOSTART,_("Autostart"));
 	ToolsMenu->AppendCheckItem(ID_UPDATE,_("Search for updates"));
-	#if wxUSE_RICHTEXT
+#if wxUSE_RICHTEXT
 	ToolsMenu->Append(ID_SYMBOL,_("Symbol"));
 #endif//wxUSE_RICHTEXT
 	//help menu
@@ -191,7 +191,7 @@ wxMenu * AgenderTray::CreatePopupMenu()
 	HelpMenu->Append(ID_WIKI,_("Visit wiki"));
 	HelpMenu->Append(ID_BUG,_("Report a bug"));
 	HelpMenu->Append(ID_DONATE,_("Make a donation"));
-	HelpMenu->Append(ID_ABOUT,_("About..."));
+	HelpMenu->Append(wxID_ABOUT,_("About..."));
 	//main menu
 	wxMenu* menu;
 	menu = new wxMenu;
@@ -293,7 +293,7 @@ void AgenderTray::OnMenuSymbols(wxCommandEvent& WXUNUSED(event))
 {
 #if wxUSE_RICHTEXT
 	wxSymbolPickerDialog dlg(_T("*"),wxEmptyString,
-							 wxTheApp->GetTopWindow()->GetFont().GetFaceName(),NULL);
+	                         wxTheApp->GetTopWindow()->GetFont().GetFaceName(),NULL);
 	if (dlg.ShowModal() ==wxID_OK && dlg.HasSelection())
 	{
 		if (wxTheClipboard->Open())
@@ -310,7 +310,7 @@ void AgenderTray::OnMenuNotify(wxCommandEvent& event)
 	if (event.IsChecked())
 	{
 		wxNumberEntryDialog dlg(wxTheApp->GetTopWindow(),_("Days to notify before note"),_("Days"),
-				_("Notify"),1,0,365);
+		                        _("Notify"),1,0,365);
 		if (dlg.ShowModal() == wxID_OK)
 		{
 			wxConfig::Get()->Write(_T("/notify"),true);
@@ -367,7 +367,7 @@ void AgenderTray::OnMenuLang(wxCommandEvent& event)
 	}
 	wxConfig::Get()->Write(_T("/lang"),(long)l);
 	wxMessageBox(_T("To apply changes you must restart Agender"),
-		_("Agender Language changed"),wxOK,frame);
+	             _("Agender Language changed"),wxOK,frame);
 }
 
 void AgenderTray::OnMenuImport(wxCommandEvent& WXUNUSED(event))
@@ -392,25 +392,26 @@ void AgenderTray::OnMenuExport(wxCommandEvent& WXUNUSED(event))
 
 void AgenderTray::OnMenuAbout(wxCommandEvent& event)
 {
-	// TODO (gabriel#1#): implement
+	event.SetEventType(wxEVT_COMMAND_BUTTON_CLICKED);
+	::wxPostEvent(frame->GetEventHandler(),event);
 }
 
-void AgenderTray::OnMenuDonate(wxCommandEvent& event)
+void AgenderTray::OnMenuDonate(wxCommandEvent& WXUNUSED(event))
 {
 	wxLaunchDefaultBrowser(
-			_T("http://sourceforge.net/donate/index.php?group_id=271084"));
+	    _T("http://sourceforge.net/donate/index.php?group_id=271084"));
 }
 
-void AgenderTray::OnMenuBug(wxCommandEvent& event)
+void AgenderTray::OnMenuBug(wxCommandEvent& WXUNUSED(event))
 {
 	wxLaunchDefaultBrowser(
-			_T("http://sourceforge.net/tracker/?group_id=271084&atid=1152801"));
+	    _T("http://sourceforge.net/tracker/?group_id=271084&atid=1152801"));
 }
 
-void AgenderTray::OnMenuWiki(wxCommandEvent& event)
+void AgenderTray::OnMenuWiki(wxCommandEvent& WXUNUSED(event))
 {
 	wxLaunchDefaultBrowser(
-			_T("http://sourceforge.net/apps/mediawiki/agender"));
+	    _T("http://sourceforge.net/apps/mediawiki/agender"));
 }
 
 void AgenderTray::OnMenuUpdate(wxCommandEvent& event)

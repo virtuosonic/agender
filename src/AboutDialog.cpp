@@ -6,7 +6,7 @@
  * Copyright: Gabriel Espinoza
  * License: GPLv3+
  **************************************************************/
- #include "AboutDialog.h"
+#include "AboutDialog.h"
 #include <wx/build.h>
 #include <wx/stdpaths.h>
 #include <wx/filename.h>
@@ -14,7 +14,7 @@
 #include <wx/image.h>
 
 #ifndef __REVISION__
-#define __REVISION__ 274
+#define __REVISION__ 0
 #endif
 
 //(*InternalHeaders(AboutDialog)
@@ -142,7 +142,7 @@ AboutDialog::AboutDialog(wxAboutDialogInfo& info,wxWindow* parent)
 		<< _T("<li>George Petsagourakis : greek")
 		<< _T("<li>Rickard Hedlund <bigricke@hotmail.com> : swedish")
 		<< _T("<li>Bruno Mace : french")
-		//<< _T("<li>Ianaré Sévi : french")
+		<< _T("<li>IanarÃ© SÃ©vi : french")
 		<< _T("<li>senoutouya <senoutouya@gmail.com> : chinese")
 		<< _T("<li>Adi D. <nevvermind@users.sourceforge.net> : romanian")
 		<< _T("<li>Itamar Shoham <itsho@users.sourceforge.net> : hebrew")
@@ -177,8 +177,10 @@ AboutDialog::AboutDialog(wxAboutDialogInfo& info,wxWindow* parent)
 //translating</a> it to more languages
 	}
 	//bitmap
-	StaticBitmap1->SetBitmap(wxBitmap(wxStandardPaths::Get().GetResourcesDir()+
-			wxFILE_SEP_PATH+wxT("hdr.png"),wxBITMAP_TYPE_PNG));
+//	StaticBitmap1->SetBitmap(wxBitmap(wxStandardPaths::Get().GetResourcesDir()+
+//	                                  wxFILE_SEP_PATH+wxT("hdr.png"),wxBITMAP_TYPE_PNG));
+
+	StaticBitmap1->SetBitmap(wxBitmap(wxT("about"), wxBITMAP_TYPE_RESOURCE  ));
 	FlexGridSizer1->Fit(this);
 }
 

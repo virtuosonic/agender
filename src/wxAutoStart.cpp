@@ -22,7 +22,7 @@
 #include <wx/msw/registry.h>
 #endif//__WXMSW__
 
- AutoStart::AutoStart()
+AutoStart::AutoStart()
 {
 
 }
@@ -35,15 +35,15 @@ AutoStart::~AutoStart()
 void AutoStart::OutputError()
 {
 	wxMessageBox(wxString::Format(
-			_("AutoStart is only available under %s \
+	                 _("AutoStart is only available under %s \
 			and Unix desktops that follow the freedesktop.org standards. \
 			If you add support for any other system, please send patches \
 			to the patch tracker in the Agender project page at \
 			http://sourceforge.net/projects/agender/ or you can also help \
 			donating hardware that runs your favorite system."),
-			_T("Windows, Fluxbox, IceWM")),
-			_("Error setting auto start"));
-			/*how sadly! =(*/
+	                 _T("Windows, Fluxbox, IceWM")),
+	             _("Error setting auto start"));
+	/*how sadly! =(*/
 }
 
 bool AutoStart::Get()
@@ -53,7 +53,7 @@ bool AutoStart::Get()
 
 bool AutoStart::Set(bool on)
 {
-	#if defined __UNIX__ && !defined __APPLE__
+#if defined __UNIX__ && !defined __APPLE__
 	if (on)
 	{
 		bool return_value[3];
@@ -72,15 +72,15 @@ bool AutoStart::Set(bool on)
 		return_value[2] = UnSetXDG();
 		return return_value[0] ||return_value[1] ||return_value[2];
 	}
-	#elif defined __WXMSW__
+#elif defined __WXMSW__
 	if (on)
 		return SetWindows();
 	else
 		return UnSetWindows();
-	#else
-		OutputError();
-		return false;
-	#endif
+#else
+	OutputError();
+	return false;
+#endif
 }
 
 #ifdef __WXMSW__
@@ -101,14 +101,15 @@ bool AutoStart::UnSetWindows()
 	wxRegKey key;
 	key.SetName(_T("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"));
 	if (key.HasValue(wxTheApp->GetAppName()))
-			key.DeleteValue(wxTheApp->GetAppName());
+		key.DeleteValue(wxTheApp->GetAppName());
 	return true;
 }
 
 #elif defined __UNIX__ && !defined __APPLE__
 bool AutoStart::SetFluxbox()
 {
-	wxString  fluxFile;fluxFile << wxGetHomeDir() << _T("/.fluxbox/startup");
+	wxString  fluxFile;
+	fluxFile << wxGetHomeDir() << _T("/.fluxbox/startup");
 	wxLogVerbose(_T("Adding \"Agender &\" to %s"),fluxFile.c_str());
 	wxTextFile startflux;
 	if (startflux.Open(fluxFile))
@@ -117,7 +118,7 @@ bool AutoStart::SetFluxbox()
 		int indx = -1;
 		bool alreadyThere = false;
 		for (command = startflux.GetLastLine(); startflux.GetCurrentLine() > 0;
-				command = startflux.GetPrevLine())
+		        command = startflux.GetPrevLine())
 		{
 			if (command.Matches(_T("exec*fluxbox*")))
 				indx = startflux.GetCurrentLine();
@@ -139,14 +140,15 @@ bool AutoStart::SetFluxbox()
 
 bool AutoStart::UnSetFluxbox()
 {
-	wxString  fluxFile;fluxFile << wxGetHomeDir() << _T("/.fluxbox/startup");
+	wxString  fluxFile;
+	fluxFile << wxGetHomeDir() << _T("/.fluxbox/startup");
 	//clean fluxbox startup script
 	wxTextFile startflux;
 	if (startflux.Open(fluxFile))
 	{
 		wxString command;
 		for (command = startflux.GetLastLine(); startflux.GetCurrentLine() > 0;
-				command = startflux.GetPrevLine())
+		        command = startflux.GetPrevLine())
 		{
 			if (command.Matches(_T("Agender &")))
 			{
@@ -161,10 +163,11 @@ bool AutoStart::UnSetFluxbox()
 
 bool AutoStart::SetXDG()
 {
-	wxString desktopFile;desktopFile << wxGetHomeDir()
-		<< _T("/.config/autostart/")
-		<< wxTheApp->GetAppName()
-		<< _T(".desktop");
+	wxString desktopFile;
+	desktopFile << wxGetHomeDir()
+	<< _T("/.config/autostart/")
+	<< wxTheApp->GetAppName()
+	<< _T(".desktop");
 	wxLogVerbose(_T("Creating %s"),desktopFile.c_str());
 	//freedesktop.org
 	if (!wxFileExists(desktopFile))
@@ -189,18 +192,20 @@ bool AutoStart::SetXDG()
 
 bool AutoStart::UnSetXDG()
 {
-	wxString desktopFile;desktopFile << wxGetHomeDir()
-		<< _T("/.config/autostart/")
-		<< wxTheApp->GetAppName()
-		<< _T(".desktop");
+	wxString desktopFile;
+	desktopFile << wxGetHomeDir()
+	<< _T("/.config/autostart/")
+	<< wxTheApp->GetAppName()
+	<< _T(".desktop");
 	if (wxFileExists(desktopFile))
-			wxRemoveFile(desktopFile);
+		wxRemoveFile(desktopFile);
 	return true;
 }
 
 bool AutoStart::SetIceWM()
 {
-	wxString  IceFile;IceFile << wxGetHomeDir() << _T("/.icewm/startup");
+	wxString  IceFile;
+	IceFile << wxGetHomeDir() << _T("/.icewm/startup");
 	//add a command to run Agender to the icewm  startup script
 	wxLogVerbose(_T("Adding \"Agender &\" to %s"),IceFile.c_str());
 	wxTextFile startice;
@@ -209,7 +214,7 @@ bool AutoStart::SetIceWM()
 		wxString command;
 		bool alreadyThere = false;
 		for (command = startice.GetLastLine(); startice.GetCurrentLine() > 0;
-				command = startice.GetPrevLine())
+		        command = startice.GetPrevLine())
 		{
 			if (command.Matches(_T("Agender &")))
 			{
@@ -229,14 +234,15 @@ bool AutoStart::SetIceWM()
 
 bool AutoStart::UnSetIceWM()
 {
-	wxString  IceFile;IceFile << wxGetHomeDir() << _T("/.icewm/startup");
+	wxString  IceFile;
+	IceFile << wxGetHomeDir() << _T("/.icewm/startup");
 	//clean icewm startup script
 	wxTextFile startice;
 	if (startice.Open(IceFile))
 	{
 		wxString command;
-		for (command = startice.GetLastLine();startice.GetCurrentLine() > 0;
-				command = startice.GetPrevLine())
+		for (command = startice.GetLastLine(); startice.GetCurrentLine() > 0;
+		        command = startice.GetPrevLine())
 		{
 			if (command.Matches(_T("Agender &")))
 			{

@@ -65,10 +65,6 @@ en Fluxbox, IceWM y escritorios compatibles con freedesktop.org
 %setup -q
 
 %build
-	bakefile -f autoconf Agender.bkl
-	bakefilize
-	aclocal
-	autoconf
 	%configure --prefix=%{_prefix} --with-wx-config=%{_bindir}/wx-config
 	%{__make} %{?_smp_mflags}
 

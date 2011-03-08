@@ -1,3 +1,9 @@
 aaaa ICON "Agender.ico"
+about PNG "../share/hdr.png"
 
 #include "wx/msw/wx.rc"
+
+//#ifdef __AGENDER_PORTABLE__
+
+
+//#endif

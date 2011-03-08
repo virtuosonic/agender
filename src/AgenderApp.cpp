@@ -24,7 +24,7 @@
 #include <wx/uri.h>
 #include <wx/image.h>
 #include <wx/fs_mem.h>
-
+#include <wx/sysopt.h>
 
 #ifdef __WXUNIVERSAL__
 WX_USE_THEME(Metal);
@@ -114,15 +114,17 @@ bool AgenderApp::OnInit()
 
 int AgenderApp::OnRun()
 {
-	run_mutex.Lock();
 	//here we create the updater & let it search for updates
-	Updater* up = new Updater(_T("agender.sourceforge.net"),
-			wxT("agender_version"),__AGENDER_VERSION__);
-	if (up->Create() == wxTHREAD_NO_ERROR)
-	{
-		if (up->Run() != wxTHREAD_NO_ERROR)
-			delete up;
+	try {
+		Updater* up = new Updater(_T("agender.sourceforge.net"),
+			wxT("/agender_version"),__AGENDER_VERSION__);
+		if (up->Create() == wxTHREAD_NO_ERROR)
+		{
+			if (up->Run() != wxTHREAD_NO_ERROR)
+				delete up;
+		}
 	}
+	catch(...){}
 	notif.Start(20000);
 	//continue
 	return wxApp::OnRun();
@@ -165,7 +167,7 @@ void AgenderApp::OnEndSession(wxCloseEvent& WXUNUSED(event))
 
 void AgenderApp::SingleInstance()
 {
-	#ifdef __UNIX__
+#ifdef __UNIX__
 	/*
 		on linux, maybe also other unix,
 		wxSingleInstanceChecker is
@@ -178,9 +180,9 @@ void AgenderApp::SingleInstance()
 		Note: UNIX is someone's  trademark
 	*/
 	wxLogNull logNo;
-	#endif
+#endif
 	if (m_checker->Create(_T(".") + GetAppName() + _T("-") + ::wxGetUserId())
-			&& m_checker->IsAnotherRunning())
+	        && m_checker->IsAnotherRunning())
 	{
 		//lets try to connect to Another and  asking to show it self
 		wxClient client;

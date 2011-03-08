@@ -28,7 +28,9 @@ class AgNote
 		void SetName(wxString name);
 		void SetText(wxString text);
 		bool Stick(bool stick);
-		bool IsSticky(){return false;}
+		bool IsSticky() {
+			return false;
+		}
 	private:
 		wxXmlNode* m_node;
 		bool m_sticky;
@@ -45,7 +47,9 @@ class AgDate
 		bool AddNote(const wxString& note);
 		bool DeleteNote(const wxString& note);
 		AgNote* GetNote(const wxString& note);
-		wxDateTime GetDate() {return m_date;}
+		wxDateTime GetDate() {
+			return m_date;
+		}
 	private:
 		wxXmlNode* GetNode();
 		wxXmlNode* CreateNode();
@@ -54,7 +58,7 @@ class AgDate
 		AgCal* m_cal;
 		wxDateTime m_date;
 		AgNotesArray notes;
-	friend class AgCal;
+		friend class AgCal;
 };
 
 WX_DEFINE_ARRAY(AgDate*,AgDatesArray);
@@ -98,7 +102,7 @@ class AgCal
 		bool ImportXml(wxString file);
 		bool Import1x(wxString file);
 		wxXmlNode* m_dates;
-	friend class AgDate;
+		friend class AgDate;
 };
 
 #endif // _XMLNOTES_H_
