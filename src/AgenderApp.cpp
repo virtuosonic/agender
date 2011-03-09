@@ -61,6 +61,7 @@ bool AgenderApp::OnInit()
 	wxCmdLineParser cmd(argc,argv);
 	cmd.AddOption(_T("c"),_T("config"),_T("specify a config file to load"),wxCMD_LINE_VAL_STRING);
 	cmd.AddSwitch(_T("nt"),_T("no-taskbar"),_T("use when you don't have a taskbar"));
+	cmd.AddSwitch(_T("nd"),_T("no-default"),_T("don't create the default file"));
 	cmd.AddSwitch(_T("?"),wxEmptyString,wxEmptyString,wxCMD_LINE_OPTION_HELP);
 	//why OnInitCmdLine doesn't have /?  ??? :P
 	OnInitCmdLine(cmd);
@@ -168,17 +169,17 @@ void AgenderApp::OnEndSession(wxCloseEvent& WXUNUSED(event))
 void AgenderApp::SingleInstance()
 {
 #ifdef __UNIX__
-	/*
-		on linux, maybe also other unix,
-		wxSingleInstanceChecker is
-		implemented using a lock file,
-		sometimes it isn't deleted and
-		an annoying log is shown on
-		screen, to avoid that we use
-		this magic incantation!
-
-		Note: UNIX is someone's  trademark
-	*/
+	/**
+	 *	on linux, maybe also other UNIX,
+	 *	wxSingleInstanceChecker is
+	 *	implemented using a lock file,
+	 *	sometimes it isn't deleted and
+	 *	an annoying log is shown on
+	 *	screen, to avoid that we use
+	 *	this magic incantation!
+	 *
+	 *	Note: UNIX is someone's  trademark
+	 */
 	wxLogNull logNo;
 #endif
 	if (m_checker->Create(_T(".") + GetAppName() + _T("-") + ::wxGetUserId())

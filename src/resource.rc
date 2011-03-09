@@ -1,9 +1,10 @@
 aaaa ICON "Agender.ico"
-about PNG "../share/hdr.png"
+
+#ifdef __AGENDER_PORTABLE__
+
+about BITMAP "hdr.bmp"
+donate BITMAP "project-support.bmp"
+
+#endif
 
 #include "wx/msw/wx.rc"
-
-//#ifdef __AGENDER_PORTABLE__
-
-
-//#endif
