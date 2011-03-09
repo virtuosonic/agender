@@ -155,6 +155,7 @@ AboutDialog::AboutDialog(wxAboutDialogInfo& info,wxWindow* parent)
 		HtmlWindow3->SetPage(thStr);
 	}
 	//donate
+
 	{
 		wxString donateStr;
 		donateStr << _T("<html><body><h5>")
@@ -177,10 +178,8 @@ AboutDialog::AboutDialog(wxAboutDialogInfo& info,wxWindow* parent)
 //translating</a> it to more languages
 	}
 	//bitmap
-//	StaticBitmap1->SetBitmap(wxBitmap(wxStandardPaths::Get().GetResourcesDir()+
-//	                                  wxFILE_SEP_PATH+wxT("hdr.png"),wxBITMAP_TYPE_PNG));
-
-	StaticBitmap1->SetBitmap(wxBitmap(wxT("about"), wxBITMAP_TYPE_RESOURCE  ));
+	StaticBitmap1->SetBitmap(wxBitmap(wxStandardPaths::Get().GetResourcesDir()+
+			wxFILE_SEP_PATH+wxT("hdr.png"),wxBITMAP_TYPE_PNG));
 	FlexGridSizer1->Fit(this);
 }
 
