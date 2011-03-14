@@ -69,7 +69,7 @@ END_EVENT_TABLE()
 
 AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 {
-	// TODO (virtuoso#1#): compatibilidad wx-2.9: opcion de usar wxGenericCalenderCtrl en vez de wxCalenderCtrl
+	// TODO (virtuoso#5#): compatibilidad wx-2.9: opcion de usar wxGenericCalenderCtrl en vez de wxCalenderCtrl
 	//(*Initialize(AgenderFrame)
 	wxBoxSizer* BoxSizer1;
 	wxFlexGridSizer* FlexGridSizer1;
@@ -123,7 +123,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 	wxAcceleratorEntry entries[5];
 	entries[0].Set(wxACCEL_CTRL,(int)'f',wxID_FIND);
 	entries[1].Set(wxACCEL_NORMAL,WXK_ESCAPE,wxID_CLOSE);
-	// TODO (virtuoso#1#): use for cut
+	// TODO (virtuoso#5#): use for cut
 	entries[2].Set(wxACCEL_CTRL,(int)'x',wxID_ANY);
 	entries[3].Set(wxACCEL_CTRL,(int)'q',wxID_EXIT);
 	entries[4].Set(wxACCEL_CTRL,(int)'n',ID_BUTTON1);
@@ -353,8 +353,9 @@ void AgenderFrame::OnListBox1DClick(wxCommandEvent& WXUNUSED(event))
 	noteMenu->AppendSeparator();
 	noteMenu->AppendRadioItem(ID_NORMAL,_("Normal"));
 	noteMenu->AppendRadioItem(ID_STICKY,_("Sticky"));
-	if (AgCal::Get()->GetDate()->GetNote(ListBox1->GetStringSelection())->IsSticky())
-		noteMenu->Check(ID_STICKY,true);
+	// TODO (gabriel#1#): sticky!!!
+//	if (AgCal::Get()->GetDate()->GetNote(ListBox1->GetStringSelection())->IsSticky())
+//		noteMenu->Check(ID_STICKY,true);
 	ListBox1->PopupMenu(noteMenu);
 }
 

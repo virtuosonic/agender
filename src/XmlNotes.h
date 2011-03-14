@@ -13,6 +13,11 @@
 #include <wx/dynarray.h>
 #include <wx/xml/xml.h>
 #include <wx/datetime.h>
+#include <wx/platform.h>//for __VISUALC__
+
+#ifdef __VISUALC__
+#pragma warning(disable: 4284)
+#endif
 
 #define stickSymb _T("$(sticky)")
 
@@ -27,13 +32,9 @@ class AgNote
 		const wxString GetText();
 		void SetName(wxString name);
 		void SetText(wxString text);
-		bool Stick(bool stick);
-		bool IsSticky() {
-			return false;
-		}
 	private:
 		wxXmlNode* m_node;
-		bool m_sticky;
+		friend class AgCal;
 };
 
 WX_DEFINE_ARRAY(AgNote*,AgNotesArray);
@@ -53,7 +54,7 @@ class AgDate
 	private:
 		wxXmlNode* GetNode();
 		wxXmlNode* CreateNode();
-		wxXmlNode* DetachNote(const wxString& note);
+		AgNote* DetachNote(const wxString& note);
 		wxXmlNode* m_node;
 		AgCal* m_cal;
 		wxDateTime m_date;
@@ -74,6 +75,7 @@ class AgCal
 		~AgCal();
 		//get unique instance
 		static AgCal* Get();
+		static AgCal* Set(AgCal* cal);
 		//write changes
 		void Flush();
 		//set current date
@@ -98,10 +100,13 @@ class AgCal
 		AgNotesArray snotes;
 		static AgCal* g_Cal;
 		void CreateXml();
+		void CreateStickyNode();
 		void LoadXml();
+		inline void LoadStickyNotes();
 		bool ImportXml(wxString file);
 		bool Import1x(wxString file);
 		wxXmlNode* m_dates;
+		wxXmlNode* m_sticky;
 		friend class AgDate;
 };
 

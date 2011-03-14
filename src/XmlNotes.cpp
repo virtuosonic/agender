@@ -56,9 +56,10 @@ AgCal::AgCal(wxXmlDocument& doc)
 	if (m_doc.GetRoot()->GetName() != wxT("Agender"))
 	{
 		//wLogError(_T("Not an agender xml file"));
+		// TODO (gabriel#2#): change for throw
 		return;
 	}
-	// TODO (gabriel#1#): move to a fuction!
+	// TODO (gabriel#3#): move to a fuction!
 	wxXmlNode* child = m_doc.GetRoot()->GetChildren();
 	while (child)
 	{
@@ -82,6 +83,12 @@ AgCal* AgCal::Get()
 	return g_Cal;
 }
 
+AgCal* AgCal::Set(AgCal* cal)
+{
+	AgCal* old = g_Cal;
+	g_Cal = cal;
+	return old;
+}
 
 void AgCal::Flush()
 {
@@ -93,9 +100,19 @@ void AgCal::CreateXml()
 	wxXmlNode* root = new wxXmlNode(wxXML_ELEMENT_NODE,_T("Agender"));
 	m_dates = new wxXmlNode(root,wxXML_ELEMENT_NODE,_T("dates"));
 	new wxXmlNode(root,wxXML_COMMENT_NODE,wxEmptyString,
-	              _T("in this file Agender saves your notes, so be careful with it"));
+	              _("in this file Agender saves your notes, so be careful with it"));
 	root->AddProperty(_T("version"),__AGENDER_VERSION__);
 	m_doc.SetRoot(root);
+	CreateStickyNode();
+}
+
+/** @brief CreateStickyNode
+  *
+  * @todo: document this function
+  */
+void AgCal::CreateStickyNode()
+{
+	m_sticky = new wxXmlNode(m_doc.GetRoot(),wxXML_ELEMENT_NODE,_T("dates"));
 }
 
 const AgNotesArray AgCal::GetStickyNotes()
@@ -105,8 +122,9 @@ const AgNotesArray AgCal::GetStickyNotes()
 
 bool AgCal::MakeSticky(wxString note)
 {
-	GetDate()->DetachNote(note);
-	return false;
+	AgNote* s_note = GetDate()->DetachNote(note);
+	s_note->m_node->SetParent(m_sticky);
+	return true;
 }
 
 bool AgCal::UnStick(wxString note)
@@ -121,9 +139,14 @@ void AgCal::LoadXml()
 	while (child)
 	{
 		if (child->GetName() == _T("dates"))
+		{
 			m_dates = child;
-		child = child->GetNext();
+			child = 0;
+		}
+		else
+			child = child->GetNext();
 	}
+	LoadStickyNotes();
 }
 
 bool AgCal::SetDate(wxDateTime date)
@@ -293,6 +316,31 @@ void AgCal::Export(wxString file)
 	m_doc.Save(file);
 }
 
+void AgCal::LoadStickyNotes()
+{
+	wxXmlNode* child = m_doc.GetRoot()->GetChildren();
+	while (child)
+	{
+		if (child->GetName() == _T("sticky"))
+		{
+			m_sticky = child;
+			wxXmlNode* note = child->GetChildren();
+			while (note)
+			{
+				if (note->GetName() == _T("note"))
+				{
+					snotes.Add(new AgNote(note));
+				}
+				note = note->GetNext();
+			}
+			return;
+		}
+		else
+			child = child->GetNext();
+	}
+	CreateStickyNode();
+}
+
 AgDate::AgDate(wxDateTime date,AgCal* cal)
 {
 	m_date = date;
@@ -363,9 +411,11 @@ wxXmlNode* AgDate::CreateNode()
 	return datenode;
 }
 
-wxXmlNode* AgDate::DetachNote(const wxString& WXUNUSED(note))
+AgNote* AgDate::DetachNote(const wxString& note)
 {
-	return 0;
+	AgNote* d_note = GetNote(note);
+	notes.Remove(d_note);
+	return d_note;
 }
 
 const AgNotesArray AgDate::GetNotes()
