@@ -128,7 +128,7 @@ wxMenu * AgenderTray::CreatePopupMenu()
 	lmenu->AppendRadioItem(ID_LANG_RO,_T("Romanian"));
 	lmenu->AppendRadioItem(ID_LANG_HE,_T("Hebrew"));
 	long lang = wxConfig::Get()->Read(_T("/lang"),wxLANGUAGE_UNKNOWN);
-	// TODO (gabriel#1#): move to a class
+	// TODO (gabriel#3#): move to a class
 	switch (lang)
 	{
 		case wxLANGUAGE_SPANISH:

@@ -4,6 +4,7 @@
 #
 
 VERSION="2.0"
+cd ..
 AgROOT=`pwd`
 DISTROOT="Agender-$VERSION"
 
@@ -12,11 +13,11 @@ mkdir "$DISTROOT"
 cp -r -T "$AgROOT" "$DISTROOT/"
 cd "$DISTROOT"
 
-./update_revision.sh
-bakefile -I"$WXWIN/build/bakefiles/wxpresets" -f autoconf Agender.bkl
+./build/update_revision.sh
+bakefile -I"$WXWIN/build/bakefiles/wxpresets" -f autoconf "build/Agender.bkl"
 bakefilize
 aclocal
-autoconf
+#autoconf "build/configure.in"
 
 find . -depth -name "*.svn" -exec rm -fr {} \;
 find . -depth -name "obj" -exec rm -fr {} \;
@@ -26,6 +27,7 @@ find . -depth -name "*.bz2" -exec rm -fr {} \;
 cd ..
 
 tar -cjf "$AgROOT/$DISTROOT.tar.bz2" "$DISTROOT"
-#rm -rf "$DISTROOT"
+rm -rf "$DISTROOT"
 
 cd "$AgROOT"
+cd build

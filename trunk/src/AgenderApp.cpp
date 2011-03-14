@@ -21,6 +21,7 @@
 #include <wx/stdpaths.h>
 #include <wx/cmdline.h>
 #include <wx/config.h>
+#include <wx/fileconf.h>
 #include <wx/uri.h>
 #include <wx/image.h>
 #include <wx/fs_mem.h>
@@ -59,9 +60,12 @@ bool AgenderApp::OnInit()
 #endif
 	//parse arguments
 	wxCmdLineParser cmd(argc,argv);
-	cmd.AddOption(_T("c"),_T("config"),_T("specify a config file to load"),wxCMD_LINE_VAL_STRING);
+	//not in use
+	//cmd.AddOption(_T("c"),_T("config"),_T("specify a config file to load"),wxCMD_LINE_VAL_STRING);
+	//switches
 	cmd.AddSwitch(_T("nt"),_T("no-taskbar"),_T("use when you don't have a taskbar"));
-	cmd.AddSwitch(_T("nd"),_T("no-default"),_T("don't create the default file"));
+	cmd.AddSwitch(_T("p"),_T("portable"),_T("read config and notes from app dir"));
+	cmd.AddSwitch(_T("na"),_T("no-autostart"),_T("disable auto start"));
 	cmd.AddSwitch(_T("?"),wxEmptyString,wxEmptyString,wxCMD_LINE_OPTION_HELP);
 	//why OnInitCmdLine doesn't have /?  ??? :P
 	OnInitCmdLine(cmd);
@@ -80,10 +84,27 @@ bool AgenderApp::OnInit()
 	m_checker = new wxSingleInstanceChecker;
 	SingleInstance();
 	//load configuration
-	wxConfig::Set(new wxConfig(wxEmptyString,wxEmptyString,wxEmptyString,wxEmptyString,wxCONFIG_USE_SUBDIR|wxCONFIG_USE_LOCAL_FILE));
+	if(cmd.Found(_T("p")))//PortableApp
+	{
+		wxFileName fname;
+		fname.AssignDir(wxStandardPaths::Get().GetDataDir());
+		fname.SetName(GetAppName());
+		fname.SetExt(wxT("ini"));
+		wxConfig::Set(new wxFileConfig(wxEmptyString,wxEmptyString,
+			fname.GetFullPath(),wxEmptyString,wxCONFIG_USE_SUBDIR|
+			wxCONFIG_USE_LOCAL_FILE));
+		fname.SetExt(wxT("xml"));
+		AgCal::Set(new AgCal(fname.GetFullPath()));
+	}
+	else//nonPortableApp
+		wxConfig::Set(new wxConfig(wxEmptyString,wxEmptyString,wxEmptyString,wxEmptyString,wxCONFIG_USE_SUBDIR|wxCONFIG_USE_LOCAL_FILE));
+	if (cmd.Found(_T("na")))
+	{
+		wxConfig::Get()->Write(_T("/autostart"),false);
+	}
 	// please talk me in a language that i understand
 	m_locale.Init(wxConfig::Get()->Read(_T("/lang"),wxLANGUAGE_DEFAULT),wxLOCALE_LOAD_DEFAULT);
-	m_locale.AddCatalog(wxT("Agender"),wxLANGUAGE_ENGLISH,wxT("WINDOWS-1252"));
+	m_locale.AddCatalog(wxT("Agender"),wxLANGUAGE_ENGLISH,wxT("UTF-8"));
 	//(*AppInitialize
 	bool wxsOK = true;
 	wxInitAllImageHandlers();

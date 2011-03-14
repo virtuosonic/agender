@@ -7,6 +7,8 @@
  * License: GPLv3+
  **************************************************************/
 #include "AboutDialog.h"
+#include "version.h"
+
 #include <wx/build.h>
 #include <wx/stdpaths.h>
 #include <wx/filename.h>
@@ -108,6 +110,8 @@ AboutDialog::AboutDialog(wxAboutDialogInfo& info,wxWindow* parent)
 		<< _("Revision: ")
 		<< _T("</strong>")
 		<< __REVISION__
+		<< _T("<br>")
+//		<< wxString(AgAutoVersion::SVN_DATE);
 		<< _T("<br>")
 		<< _T("<strong>")
 		<< _T("Runing on: ")
