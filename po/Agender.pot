@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Agender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-11 17:10-0800\n"
-"PO-Revision-Date: 2011-03-11 17:12-0800\n"
+"POT-Creation-Date: 2011-03-23 00:54-0800\n"
+"PO-Revision-Date: 2011-03-23 00:54-0800\n"
 "Last-Translator: Gabriel Espinoza <virtuosonic@users.sourceforge.net>\n"
 "Language-Team: Agender Project <agender-support@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -13,43 +13,43 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ../src\n"
 
-#: ../src/AboutDialog.cpp:53
+#: ../src/AboutDialog.cpp:55
 msgid "About Agender"
 msgstr ""
 
-#: ../src/AboutDialog.cpp:63
+#: ../src/AboutDialog.cpp:65
 msgid "Info"
 msgstr ""
 
-#: ../src/AboutDialog.cpp:64
+#: ../src/AboutDialog.cpp:66
 msgid "Thanks"
 msgstr ""
 
-#: ../src/AboutDialog.cpp:65
+#: ../src/AboutDialog.cpp:67
 msgid "Donate"
 msgstr ""
 
-#: ../src/AboutDialog.cpp:66
+#: ../src/AboutDialog.cpp:68
 msgid "License"
 msgstr ""
 
-#: ../src/AboutDialog.cpp:89
+#: ../src/AboutDialog.cpp:91
 msgid "A cross-platform schedule tool!"
 msgstr ""
 
-#: ../src/AboutDialog.cpp:92
+#: ../src/AboutDialog.cpp:94
 msgid "Agender is a small cross-platform schedule tool where you asociate some notes with a date or with no date in particular if  you mark the note as sticky, you simply start it  and it will create a taskbar icon and stay in the background, without anoying you, it can also be configured to run on login."
 msgstr ""
 
-#: ../src/AboutDialog.cpp:101
+#: ../src/AboutDialog.cpp:103
 msgid "Build: "
 msgstr ""
 
-#: ../src/AboutDialog.cpp:108
+#: ../src/AboutDialog.cpp:110
 msgid "Revision: "
 msgstr ""
 
-#: ../src/AboutDialog.cpp:163
+#: ../src/AboutDialog.cpp:165
 msgid "If you like Agender consider making a donation, that way you will help the development of Agender"
 msgstr ""
 
@@ -119,7 +119,7 @@ msgid "Expresion '$(' reserved for Agender, please use another name"
 msgstr ""
 
 #: ../src/AgenderMain.cpp:351
-#: ../src/AgenderMain.cpp:390
+#: ../src/AgenderMain.cpp:391
 msgid "Rename"
 msgstr ""
 
@@ -135,16 +135,16 @@ msgstr ""
 msgid "Sticky"
 msgstr ""
 
-#: ../src/AgenderMain.cpp:390
+#: ../src/AgenderMain.cpp:391
 msgid "New name"
 msgstr ""
 
-#: ../src/AgenderMain.cpp:436
+#: ../src/AgenderMain.cpp:437
 #, c-format
 msgid "The %s version of %s has been released. \t\t\t\tDo you want to download it?"
 msgstr ""
 
-#: ../src/AgenderMain.cpp:439
+#: ../src/AgenderMain.cpp:440
 msgid "Upgrade Found"
 msgstr ""
 

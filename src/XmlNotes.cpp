@@ -124,12 +124,19 @@ bool AgCal::MakeSticky(wxString note)
 {
 	AgNote* s_note = GetDate()->DetachNote(note);
 	s_note->m_node->SetParent(m_sticky);
+	snotes.Add(s_note);
 	return true;
 }
 
 bool AgCal::UnStick(wxString note)
 {
+
 	return false;
+}
+
+AgNote* AgCal::GetStickyNote(wxString note)
+{
+
 }
 
 void AgCal::LoadXml()
