@@ -7,7 +7,7 @@
  * License: GPLv3+
  **************************************************************/
 #include "AboutDialog.h"
-#include "version.h"
+//#include "version.h"
 
 #include <wx/build.h>
 #include <wx/stdpaths.h>
@@ -111,8 +111,6 @@ AboutDialog::AboutDialog(wxAboutDialogInfo& info,wxWindow* parent)
 		<< _T("</strong>")
 		<< __REVISION__
 		<< _T("<br>")
-//		<< wxString(AgAutoVersion::SVN_DATE);
-		<< _T("<br>")
 		<< _T("<strong>")
 		<< _T("Runing on: ")
 		<< _T("</strong>")
@@ -143,10 +141,10 @@ AboutDialog::AboutDialog(wxAboutDialogInfo& info,wxWindow* parent)
 		<< _T("<li>Daniel Daows : japanese")
 		<< _T("<li>Miguel Haruki Yamaguchi <mhy@users.sourceforge.net> : japanese")
 		<< _T("<li>Pedro Silva <pbsilva@users.sourceforge.net> : portuguese")
-		<< _T("<li>George Petsagourakis : greek")
+		<< _T("<li>Georgios Petsagourakis : greek")
 		<< _T("<li>Rickard Hedlund <bigricke@hotmail.com> : swedish")
 		<< _T("<li>Bruno Mace : french")
-		<< _T("<li>Ianaré Sévi : french")
+		<< _T("<li>Ianar&eacute; S&eacute;vi : french")
 		<< _T("<li>senoutouya <senoutouya@gmail.com> : chinese")
 		<< _T("<li>Adi D. <nevvermind@users.sourceforge.net> : romanian")
 		<< _T("<li>Itamar Shoham <itsho@users.sourceforge.net> : hebrew")

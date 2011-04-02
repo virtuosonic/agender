@@ -17,6 +17,10 @@ Intro:
     writing your schedule, it is  a cross-platform software and should
     compile and run on Unix, Windows, Mac OSX and someother platforms.
 
+    If you're tired of using slow, big and complicated software
+    like Microsoft Works, Evolution or iCal then Agender is for
+    you, Agender makes it all simple.
+
     If you like Agender consider making a donation, that way you will
     help the development of Agender, we will also add you to the
     Hall of Fame and link to your website if you like so, you can send
@@ -122,11 +126,11 @@ Help wanted:
 
 TODO:
 =====
-    -import
     -Sticky notes
     -notifications
     -Trash bin
     -Undo/Redo!!!!!!!!!
+    -iCalendar support
     -Clipboard/Drag & Drop support
     -Search
     -Integrate with Windows se7en dock

@@ -212,7 +212,7 @@ void AgenderApp::SingleInstance()
 		cnn = (wxConnection*)client.MakeConnection(_T("localhost"),IPC_Service,IPC_Topic);
 		if (cnn)
 		{
-			wxLogMessage(_T("executing"));
+			wxLogVerbose(_T("executing"));
 			//this is a security issue, someone could write a client application(even you),
 			//that sends NULL, via Execute and causes Agender to crash
 			if (cnn->Execute(wxEmptyString))

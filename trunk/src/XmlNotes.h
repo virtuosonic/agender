@@ -15,6 +15,7 @@
 #include <wx/datetime.h>
 #include <wx/platform.h>//for __VISUALC__
 
+//disable a wxArray related warning
 #ifdef __VISUALC__
 #pragma warning(disable: 4284)
 #endif
@@ -90,6 +91,7 @@ class AgCal
 		const AgNotesArray GetStickyNotes();
 		bool MakeSticky(wxString note);
 		bool UnStick(wxString note);
+		AgNote* GetStickyNote(wxString note);
 		//import export to file
 		void Import(wxString file);
 		void Export(wxString file);

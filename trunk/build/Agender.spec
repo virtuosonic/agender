@@ -1,3 +1,4 @@
+#!/bin/rpmbuild -ba
 #This File is part of the Agender Project, 100% free  software
 #you are free to modify it to build packages for your distro, patches are welcome :-)
 #File: Agender.spec
