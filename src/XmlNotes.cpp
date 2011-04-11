@@ -136,7 +136,7 @@ bool AgCal::UnStick(wxString note)
 
 AgNote* AgCal::GetStickyNote(wxString note)
 {
-
+	return 0;
 }
 
 void AgCal::LoadXml()
