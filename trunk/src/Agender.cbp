@@ -240,6 +240,7 @@
 		<Unit filename="..\share\catalogs.ini" />
 		<Unit filename="AboutDialog.cpp" />
 		<Unit filename="AboutDialog.h" />
+		<Unit filename="AgCommand.h" />
 		<Unit filename="AgenderApp.cpp" />
 		<Unit filename="AgenderApp.h" />
 		<Unit filename="AgenderCal.cpp" />
@@ -279,7 +280,7 @@
 			<wxsmith version="1">
 				<gui name="wxWidgets" src="AgenderApp.cpp" main="-- None --" init_handlers="never" language="CPP" />
 				<resources>
-					<wxDialog wxs="wxsmith/AboutDialog.wxs" src="AboutDialog.cpp" hdr="AboutDialog.h" name="AboutDialog" language="CPP" />
+					<wxDialog wxs="wxsmith/AboutDialog.wxs" src="AboutDialog.cpp" hdr="AboutDialog.h" fwddecl="0" i18n="1" name="AboutDialog" language="CPP" />
 				</resources>
 			</wxsmith>
 			<DoxyBlocks>
