@@ -16,12 +16,18 @@ unrecognized  * Created:   2008-11-21
 #include <wx/thread.h>
 #include "Notifier.h"
 
+namespace Agender {
 class AgenderApp : public wxApp
 {
 	public:
+		#if wxUSE_ON_FATAL_EXCEPTION
+		AgenderApp();
+		virtual void OnFatalException();
+		#endif
 		bool OnInit();
 		int OnRun();
 		int OnExit();
+
 	private:
 		void OnEndSession(wxCloseEvent& event);
 		inline void SingleInstance();
@@ -33,5 +39,6 @@ class AgenderApp : public wxApp
 		wxCondition* exit_cond;
 		DECLARE_EVENT_TABLE()
 };
+}//namespace Agender
 
 #endif // AGENDERAPP_H_INCLUDED

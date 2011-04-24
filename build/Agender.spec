@@ -66,7 +66,7 @@ en Fluxbox, IceWM y escritorios compatibles con freedesktop.org
 %setup -q
 
 %build
-	%configure --prefix=%{_prefix} --with-wx-config=%{_bindir}/wx-config
+	cd build
 	%{__make} %{?_smp_mflags}
 
 %install

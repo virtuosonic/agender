@@ -26,18 +26,35 @@
 #include <wx/image.h>
 #include <wx/fs_mem.h>
 #include <wx/sysopt.h>
+#include <wx/ffile.h>
+#include <wx/debugrpt.h>
+#include <wx/utils.h>
 
 #ifdef __WXUNIVERSAL__
 WX_USE_THEME(Metal);
 WX_USE_THEME(mono);
 WX_USE_THEME(gtk);
 #endif
-
+namespace Agender {
 #if defined __UNIX__
-#include <signal.h>
+#include <csignal>
 //i hate globals
 void OnSignal(int sig);
 #endif
+
+bool LaunchFileBrowser(const wxString& dir)
+{
+	#ifdef __WXMSW__
+	return wxExecute(_T("explorer ")+dir);
+	#elif defined __LINUX__
+	return wxExecute(_T("xdg-open ")+dir);
+	#elif defined __WXOSX__
+	// TODO (gabriel#1#): is this the right command for Finder ?
+	return wxExecute(_T("open -R ")+dir);
+	#else
+	return false;
+	#endif
+}
 
 BEGIN_EVENT_TABLE(AgenderApp,wxApp)
 	EVT_QUERY_END_SESSION(AgenderApp::OnEndSession)
@@ -46,11 +63,25 @@ END_EVENT_TABLE()
 
 IMPLEMENT_APP(AgenderApp);
 
+#if wxUSE_ON_FATAL_EXCEPTION
+AgenderApp::AgenderApp()
+{
+	::wxHandleFatalExceptions(true);
+}
+#endif
+
 bool AgenderApp::OnInit()
 {
 	//who are we?
 	SetAppName(wxT("Agender"));
 	SetVendorName(wxT("Virtuosonic"));
+	//log
+	wxFileName logfname;
+	logfname.AssignDir(wxStandardPaths::Get().GetUserDataDir());
+	logfname.SetName(GetAppName());
+	logfname.SetExt(_T("log"));
+	wxFFile logfile(logfname.GetFullPath(),_T("w"));
+	wxLog::SetActiveTarget(new wxLogStderr(logfile.fp()));
 	//check for datadir
 	if (!wxDirExists(wxStandardPaths::Get().GetUserDataDir()))
 		wxMkdir(wxStandardPaths::Get().GetUserDataDir());
@@ -91,8 +122,8 @@ bool AgenderApp::OnInit()
 		fname.SetName(GetAppName());
 		fname.SetExt(wxT("ini"));
 		wxConfig::Set(new wxFileConfig(wxEmptyString,wxEmptyString,
-			fname.GetFullPath(),wxEmptyString,wxCONFIG_USE_SUBDIR|
-			wxCONFIG_USE_LOCAL_FILE));
+		                               fname.GetFullPath(),wxEmptyString,wxCONFIG_USE_SUBDIR|
+		                               wxCONFIG_USE_LOCAL_FILE));
 		fname.SetExt(wxT("xml"));
 		AgCal::Set(new AgCal(fname.GetFullPath()));
 	}
@@ -139,14 +170,14 @@ int AgenderApp::OnRun()
 	//here we create the updater & let it search for updates
 	try {
 		Updater* up = new Updater(_T("agender.sourceforge.net"),
-			wxT("/agender_version"),__AGENDER_VERSION__);
+		                          wxT("/agender_version"),wxString::FromAscii(FULLVERSION_STRING));
 		if (up->Create() == wxTHREAD_NO_ERROR)
 		{
 			if (up->Run() != wxTHREAD_NO_ERROR)
 				delete up;
 		}
 	}
-	catch(...){}
+	catch(...) {}
 	notif.Start(20000);
 	//continue
 	return wxApp::OnRun();
@@ -230,3 +261,21 @@ void AgenderApp::SingleInstance()
 		exit(EXIT_FAILURE);
 	}
 }
+
+#if wxUSE_ON_FATAL_EXCEPTION
+void AgenderApp::OnFatalException()
+{
+	wxDebugReportCompress *report = new wxDebugReportCompress;
+	report->AddAll(wxDebugReport::Context_Exception);
+	if ( wxDebugReportPreviewStd().Show(*report) )
+	{
+		report->Process();
+		wxString dir(report->GetDirectory());
+		report->Reset();
+		::wxLaunchDefaultBrowser(_T("http://sourceforge.net/tracker/?group_id=271084&atid=1152801"));
+		LaunchFileBrowser(dir);
+	}
+	delete report;
+}
+#endif
+}//namespace Agender

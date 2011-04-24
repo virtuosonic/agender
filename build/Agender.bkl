@@ -6,9 +6,6 @@ license GPLv3+
 <makefile>
 	<include file="presets/wx.bkl"/>
 	<using module="datafiles"/>
-	<using module="gettext"/>
-	<set var="VERSION">2.0</set>
-	<set var="TRANSLATIONS">de el es  fr he ja pt ro sv zh_CN zh_HK</set>
 	<!--build binary -->
 	<exe id="Agender" template="wx-lib">
 		<app-type>gui</app-type>
@@ -34,9 +31,6 @@ license GPLv3+
 		<!--resource file -->
 		<win32-res>src/resource.rc</win32-res>
 		<install-to>$(BINDIR)</install-to>
-		<if cond="FORMAT=='autoconf'">
-			<define>__REVISION__=@REVISION@</define>
-		</if>
   	</exe>
   	<!-- freedesktop.org shortcut, for gnome, kde and some other desktops-->
   	<data-files id="shortcut">
@@ -56,11 +50,4 @@ license GPLv3+
   		<install-to>$(DATADIR)/Agender/</install-to>
   		<files>hdr.png project-support.jpg</files>
   	</data-files>
-  	<!--translations-->
-  	<gettext-catalogs>
-  		<catalog-name>Agender</catalog-name>
-		<linguas>$(TRANSLATIONS)</linguas>
-		<srcdir>$(SRCDIR)/po</srcdir>
-  		<install-to>$(DATADIR)/locale</install-to>
-  	</gettext-catalogs>
 </makefile>

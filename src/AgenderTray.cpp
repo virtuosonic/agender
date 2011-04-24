@@ -29,6 +29,9 @@
 #include <wx/artprov.h>
 #include <wx/utils.h>
 
+namespace Agender
+{
+
 BEGIN_EVENT_TABLE(AgenderTray,wxTaskBarIcon)
 	//click
 	EVT_TASKBAR_LEFT_UP(AgenderTray::OnLeft)
@@ -418,5 +421,5 @@ void AgenderTray::OnMenuUpdate(wxCommandEvent& event)
 {
 	wxConfig::Get()->Write(_T("/searchforupdates"),event.IsChecked());
 }
-
+}//namespace Agender
 #endif //wxHAS_TASK_BAR_ICON

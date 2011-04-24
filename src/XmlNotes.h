@@ -22,8 +22,9 @@
 
 #define stickSymb _T("$(sticky)")
 
+namespace Agender
+{
 class  AgCal;
-
 class AgNote
 {
 	public:
@@ -111,5 +112,5 @@ class AgCal
 		wxXmlNode* m_sticky;
 		friend class AgDate;
 };
-
+}//namespace Agender
 #endif // _XMLNOTES_H_

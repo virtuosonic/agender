@@ -3,40 +3,59 @@
 #builds a source package of Agender
 #
 
+#error reporting
+function check_error() {
+	if [ $1 != 0 ];then
+		echo $2
+		exit 1
+	fi
+}
+#clean the especified wildcards
+function clean_dist() {
+	for wc in $1;do
+		find . -depth -name $wc -exec rm -fr {} \;
+	done
+}
+#constants
 VERSION="2.0"
 cd ..
 AgROOT=`pwd`
 DISTROOT="Agender-$VERSION"
-
+#make a copy
 cd ..
 mkdir "$DISTROOT"
+check_error $? "error creating dir"
+
 cp -r -T "$AgROOT" "$DISTROOT/"
+check_error $? "error copying dir"
 cd "$DISTROOT"
-if [ $? != 0];then
-	echo "error creating dir"
-	exit
-fi
+check_error $? "error changing dir"
 
-./build/update_revision.sh
-bakefile -o "./Makefile.in" -I"$WXWIN/build/bakefiles/wxpresets" -f autoconf "build/Agender.bkl"
-bakefilize
-aclocal
-autoconf -o "./configure" "build/configure.in"
-
-find . -depth -name "*.svn" -exec rm -fr {} \;
-find . -depth -name "obj" -exec rm -fr {} \;
-find . -depth -name "bin" -exec rm -fr {} \;
-find . -depth -name "*.exe" -exec rm -fr {} \;
-find . -depth -name "*.bz2" -exec rm -fr {} \;
-find . -depth -name "*.layout" -exec rm -fr {} \;
-find . -depth -name "*.depend" -exec rm -fr {} \;
-find . -depth -name "*.bak" -exec rm -fr {} \;
-find . -depth -name "*.idb" -exec rm -fr {} \;
-find . -depth -name "*.pdb" -exec rm -fr {} \;
+#buid makefiles
+cd "build"
+bakefile_gen
+check_error $? "error generating bakefile"
 cd ..
-
+#cleanup the copy
+clean_dist "*.svn
+	obj
+	bin
+	*.exe
+	*.bz2
+	*.layout
+	*.depend
+	*.bak
+	*.idb
+	*.pdb
+	.bakefile_gen.state
+	Thumbs.db
+	*.o
+	*.obj"
+cd ..
+#compress
 tar -cjf "$AgROOT/$DISTROOT.tar.bz2" "$DISTROOT"
+7z a "$AgROOT/$DISTROOT.7z" "$DISTROOT"
+#delete
 rm -rf "$DISTROOT"
-
-cd "$AgROOT"
-cd build
+#back
+cd `dirname $0`

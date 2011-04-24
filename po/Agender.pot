@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Agender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-23 00:54-0800\n"
-"PO-Revision-Date: 2011-03-23 00:54-0800\n"
+"POT-Creation-Date: 2011-04-20 13:27-0800\n"
+"PO-Revision-Date: 2011-04-20 13:27-0800\n"
 "Last-Translator: Gabriel Espinoza <virtuosonic@users.sourceforge.net>\n"
 "Language-Team: Agender Project <agender-support@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -49,48 +49,48 @@ msgstr ""
 msgid "Revision: "
 msgstr ""
 
-#: ../src/AboutDialog.cpp:165
+#: ../src/AboutDialog.cpp:168
 msgid "If you like Agender consider making a donation, that way you will help the development of Agender"
 msgstr ""
 
-#: ../src/AgenderMain.cpp:77
+#: ../src/AgenderMain.cpp:80
 #: ../src/AgenderTray.cpp:198
 msgid "Agender"
 msgstr ""
 
-#: ../src/AgenderMain.cpp:93
+#: ../src/AgenderMain.cpp:96
 msgid "Add &note"
 msgstr ""
 
-#: ../src/AgenderMain.cpp:97
+#: ../src/AgenderMain.cpp:100
 msgid "&Delete selection"
 msgstr ""
 
-#: ../src/AgenderMain.cpp:99
+#: ../src/AgenderMain.cpp:102
 msgid "&About..."
 msgstr ""
 
-#: ../src/AgenderMain.cpp:134
+#: ../src/AgenderMain.cpp:137
 msgid "Agender|Search Notes"
 msgstr ""
 
-#: ../src/AgenderMain.cpp:179
+#: ../src/AgenderMain.cpp:182
 msgid "A cross-platform schedule tool"
 msgstr ""
 
-#: ../src/AgenderMain.cpp:180
+#: ../src/AgenderMain.cpp:183
 msgid "Build:"
 msgstr ""
 
-#: ../src/AgenderMain.cpp:180
+#: ../src/AgenderMain.cpp:183
 msgid "Revision:"
 msgstr ""
 
-#: ../src/AgenderMain.cpp:181
+#: ../src/AgenderMain.cpp:184
 msgid "Agender Web Site"
 msgstr ""
 
-#: ../src/AgenderMain.cpp:182
+#: ../src/AgenderMain.cpp:185
 msgid ""
 "Agender is free software; you can redistribute it and/or modify\n"
 "it under the terms of the GNU General Public License as published by\n"
@@ -106,45 +106,45 @@ msgid ""
 "along with Agender. If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
 
-#: ../src/AgenderMain.cpp:221
+#: ../src/AgenderMain.cpp:224
 msgid "To-Do Title"
 msgstr ""
 
-#: ../src/AgenderMain.cpp:221
+#: ../src/AgenderMain.cpp:224
 msgid "New To-Do"
 msgstr ""
 
-#: ../src/AgenderMain.cpp:226
+#: ../src/AgenderMain.cpp:229
 msgid "Expresion '$(' reserved for Agender, please use another name"
 msgstr ""
 
-#: ../src/AgenderMain.cpp:351
-#: ../src/AgenderMain.cpp:391
+#: ../src/AgenderMain.cpp:354
+#: ../src/AgenderMain.cpp:394
 msgid "Rename"
 msgstr ""
 
-#: ../src/AgenderMain.cpp:352
+#: ../src/AgenderMain.cpp:355
 msgid "Export selected note"
 msgstr ""
 
-#: ../src/AgenderMain.cpp:354
+#: ../src/AgenderMain.cpp:357
 msgid "Normal"
 msgstr ""
 
-#: ../src/AgenderMain.cpp:355
+#: ../src/AgenderMain.cpp:358
 msgid "Sticky"
 msgstr ""
 
-#: ../src/AgenderMain.cpp:391
+#: ../src/AgenderMain.cpp:394
 msgid "New name"
 msgstr ""
 
-#: ../src/AgenderMain.cpp:437
+#: ../src/AgenderMain.cpp:440
 #, c-format
 msgid "The %s version of %s has been released. \t\t\t\tDo you want to download it?"
 msgstr ""
 
-#: ../src/AgenderMain.cpp:440
+#: ../src/AgenderMain.cpp:443
 msgid "Upgrade Found"
 msgstr ""
 

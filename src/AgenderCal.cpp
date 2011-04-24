@@ -19,6 +19,8 @@
 //since this  software has a very bad design, now I have to use hacks because it wasn't mean to
 //be extensible, however it acomplishes it goals: small, fast & portable
 //maybe i'll fix al this in 2.0
+namespace Agender
+{
 
 const wxChar* AgenderCal::stickPath = _T("/sticky");
 
@@ -247,3 +249,4 @@ wxDatesArray AgenderCal::GetDatesWithNotes()
 	}
 	return dates;
 }
+}//namespace Agender
