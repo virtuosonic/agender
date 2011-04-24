@@ -39,6 +39,9 @@
 #define __REVISION__ 0
 #endif
 
+
+namespace Agender {
+
 #include "Agender16x16.xpm"
 
 //(*IdInit(AgenderFrame)
@@ -191,7 +194,7 @@ GNU General Public License for more details.\n\
 \n\
 You should have received a copy of the GNU General Public License\n\
 along with Agender. If not, see <http://www.gnu.org/licenses/>."));
-	info.SetVersion(__AGENDER_VERSION__);
+	info.SetVersion(wxString::FromAscii(FULLVERSION_STRING));
 	info.SetCopyright(_T("Copyright (C) 2009-2011 Gabriel Espinoza"));
 	AboutDialog dlg(info,this);
 	dlg.ShowModal();
@@ -467,3 +470,4 @@ void AgenderFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
 {
 	Destroy();
 }
+}//namespace Agender

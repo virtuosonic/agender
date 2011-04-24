@@ -24,6 +24,8 @@
 //found in host is newer
 //it sends a message to
 //the topwindow
+namespace Agender
+{
 
 class Updater : public wxThread
 {
@@ -42,5 +44,5 @@ class Updater : public wxThread
 		wxString m_file;
 		wxString m_ver;
 };
-
+}//namespace Agender
 #endif // _UPDATER_H_

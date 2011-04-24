@@ -20,6 +20,9 @@
 #include <wx/config.h>
 #include <wx/app.h>
 
+namespace Agender
+{
+
 Updater::Updater(wxString host,wxString file,wxString ver) : wxThread(wxTHREAD_DETACHED)
 {
 	m_host=host;
@@ -152,4 +155,5 @@ wxArrayInt Updater::ToInt(wxString ver)
 		ver_num.Add(n);
 	}
 	return ver_num;
+}
 }

@@ -1,7 +1,0 @@
-.svn\
-obj\
-bin\
-.layout
-.depend
-.exe
-.bz2

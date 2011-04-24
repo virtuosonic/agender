@@ -13,10 +13,14 @@
 #include "AgenderMain.h"
 #include "XmlNotes.h"
 #include "AgenderCal.h"
+#include "version.h"
 
 #include <wx/filename.h>
 #include <wx/stdpaths.h>
 #include <wx/log.h>
+
+namespace Agender
+{
 
 #include <wx/arrimpl.cpp>
 WX_DEFINE_OBJARRAY(wxDatesArray);
@@ -101,7 +105,7 @@ void AgCal::CreateXml()
 	m_dates = new wxXmlNode(root,wxXML_ELEMENT_NODE,_T("dates"));
 	new wxXmlNode(root,wxXML_COMMENT_NODE,wxEmptyString,
 	              _("in this file Agender saves your notes, so be careful with it"));
-	root->AddProperty(_T("version"),__AGENDER_VERSION__);
+	root->AddProperty(_T("version"),wxString::FromAscii(FULLVERSION_STRING));
 	m_doc.SetRoot(root);
 	CreateStickyNode();
 }
@@ -112,7 +116,7 @@ void AgCal::CreateXml()
   */
 void AgCal::CreateStickyNode()
 {
-	m_sticky = new wxXmlNode(m_doc.GetRoot(),wxXML_ELEMENT_NODE,_T("dates"));
+	//m_sticky = new wxXmlNode(m_doc.GetRoot(),wxXML_ELEMENT_NODE,_T("dates"));
 }
 
 const AgNotesArray AgCal::GetStickyNotes()
@@ -576,3 +580,4 @@ void AgNote::SetText(wxString text)
 		content = new wxXmlNode(message,wxXML_TEXT_NODE,wxEmptyString);
 	content->SetContent(text);
 }
+}//namespace Agender

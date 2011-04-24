@@ -12,17 +12,16 @@
 #include <wx/build.h>
 #include <wx/stdpaths.h>
 #include <wx/filename.h>
-#include <wx/fs_mem.h>
 #include <wx/image.h>
 
-#ifndef __REVISION__
-#define __REVISION__ 0
-#endif
+#include "version.h"
 
 //(*InternalHeaders(AboutDialog)
 #include <wx/intl.h>
 #include <wx/string.h>
 //*)
+
+namespace Agender {
 
 //(*IdInit(AboutDialog)
 const long AboutDialog::ID_STATICBITMAP1 = wxNewId();
@@ -109,7 +108,10 @@ AboutDialog::AboutDialog(wxAboutDialogInfo& info,wxWindow* parent)
 		<< _T("<strong>")
 		<< _("Revision: ")
 		<< _T("</strong>")
-		<< __REVISION__
+		<< _T(" svn")
+		<< wxString::FromAscii(SVN_REVISION)
+		<< _T(" ")
+		<< wxString::FromAscii(SVN_DATE)
 		<< _T("<br>")
 		<< _T("<strong>")
 		<< _T("Runing on: ")
@@ -199,3 +201,4 @@ void AboutDialog::OnLink(wxHtmlLinkEvent& event)
 {
 	wxLaunchDefaultBrowser(event.GetLinkInfo().GetHref());
 }
+}//namespace Agender

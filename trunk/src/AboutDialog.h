@@ -20,6 +20,8 @@
 
 #include <wx/aboutdlg.h>
 
+namespace Agender {
+
 class AboutDialog: public wxDialog
 {
 	public:
@@ -47,5 +49,5 @@ class AboutDialog: public wxDialog
 
 		DECLARE_EVENT_TABLE()
 };
-
+}//namespace Agender
 #endif

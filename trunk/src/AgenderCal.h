@@ -18,6 +18,8 @@
 
 //i hate globals
 //static const wxChar* stickSymb = _T("$(sticky)");
+namespace Agender
+{
 
 class AgenderCal
 {
@@ -46,5 +48,5 @@ class AgenderCal
 		static const wxChar* stickPath;
 		wxFileConfig* cfg;
 };
-
+}//namespace Agender
 #endif // AGENDERCAL_H_INCLUDED

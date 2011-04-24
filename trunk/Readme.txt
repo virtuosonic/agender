@@ -61,26 +61,21 @@ Compiling & Installing:
     website is named something like Agender-x.x.x.exe where x.x.x
     is the version.
 
-    Read the file INSTALL, if you don't wan't to read so much, here
-    are some short instructions:
+	-To build using Visual C++ you can use the workspace
+	or the solution in the build folder
 
-        Type on a terminal:
-            $cd $(Agender)
-            $./configure
-            $make
-            $su -c make\ install
+	-To build with MinGW you can use the makefile
+	makefile.gcc,
 
-    $(Agender) is the directory where this file is , don't type
-    the $ at the start of every line.
+	-If you are using UNIX then use GNUMakefile to
+	build with gnu make and g++.
 
-    If you aren't using a un*x operating system, you can generate
-    makefiles and project file for several compiler using bakefile
-    for example:
-        bakefile -f gnu Agender.bkl
-        bakefile -f msvc Agender.bkl
+	-If you have a really powerfull IDE then use the
+	Code::Blocks project in the src folder
 
-    If you're building from svn then you need to generate your
-    makefile using bakefile, you can get bakefile at:
+    If you're building from svn or you need makefiles for borland,
+    digital mars or open watcom, then you need to generate
+    your makefile using bakefile, you can get bakefile at:
         http://www.bakefile.org/
 
 Bugs:

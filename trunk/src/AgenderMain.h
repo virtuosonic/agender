@@ -6,7 +6,6 @@
  * Copyright: Gabriel Espinoza
  * License: GPLv3+
  **************************************************************/
-
 #ifndef AGENDERMAIN_H
 #define AGENDERMAIN_H
 
@@ -20,8 +19,9 @@
 //*)
 #include <wx/fdrepdlg.h>
 #include <wx/taskbar.h>
+#include "version.h"
 
-#define __AGENDER_VERSION__ _T("2.0")
+namespace Agender {
 
 class AgenderFrame: public wxFrame
 {
@@ -87,5 +87,5 @@ class AgenderFrame: public wxFrame
 
 		DECLARE_EVENT_TABLE()
 };
-
+}//namespace Agender
 #endif // AGENDERMAIN_H

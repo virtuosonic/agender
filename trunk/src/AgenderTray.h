@@ -12,6 +12,8 @@
 #include <wx/colour.h>
 #include <wx/frame.h>
 #include "wxAutoStart.h"
+namespace Agender
+{
 
 class AgenderTray : public wxTaskBarIcon
 {
@@ -85,5 +87,6 @@ class AgenderTray : public wxTaskBarIcon
 
 		DECLARE_EVENT_TABLE()
 };
+}//namespace Agender
 
 #endif // AGENDERTRAY_H

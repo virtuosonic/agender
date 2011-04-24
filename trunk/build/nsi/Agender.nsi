@@ -4,55 +4,43 @@
 ;Author: Gabriel Espinoza
 ;License: GPLv3+
 
-;compress with upx
-!tempfile PACKHDRTEMP
-!define UPX "C:\Archivos de programa\upx307w\upx.exe"
-!packhdr "${PACKHDRTEMP}" '"${UPX}" -9 "${PACKHDRTEMP}"'
-!execute '"${UPX}" -9 src\bin\vc6\Agender.exe'
-
-;this defines are configurable, change them when needed
-!define WX_VERSION 2.8.11
-!define WX_DIR "..\wxWidgets-${WX_VERSION}"
-!define PRODUCT_VERSION "2.0"
-;constants (don't touch)
-!define PRODUCT_NAME "Agender"
-!define PRODUCT_PUBLISHER "Virtuosonic"
-!define PRODUCT_WEB_SITE "http://agender.sourceforge.net"
-!define DONATE_LINK "http://sourceforge.net/donate/index.php?group_id=271084"
-!define PRODUCT_EMAIL "agender-support@lists.sourceforge.net"
-!define PRODUCT_CFG_REGKEY "Software\Virtuosonic\Agender"
-!define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\Agender.exe"
-!define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 
 SetCompressor /SOLID lzma
+!include "shareddefinitions.nsh"
 ;MultiUser
 !define MULTIUSER_EXECUTIONLEVEL Highest
 !define MULTIUSER_MUI
 !define MULTIUSER_INSTALLMODE_COMMANDLINE
 !define MULTIUSER_INSTALLMODE_INSTDIR ${PRODUCT_NAME}
+;headers
 !include "MUI2.nsh"
 !include "MultiUser.nsh"
 !include "FileFunc.nsh"
 !include "Memento.nsh"
+!include "donationpage.nsh"
 !insertmacro GetParent
+;change to topdir
+!cd "..\.."
+;compress with upx
+!tempfile PACKHDRTEMP
+!packhdr "${PACKHDRTEMP}" '"${UPX}" -9 "${PACKHDRTEMP}"'
+!execute '"${UPX}" -9 ${Ag_EXE}'
+
+;constants (don't touch)
+!define PRODUCT_EMAIL "agender-support@lists.sourceforge.net"
+!define PRODUCT_CFG_REGKEY "Software\Virtuosonic\Agender"
+!define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\Agender.exe"
+!define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 ;Memento
 !define MEMENTO_REGISTRY_ROOT "SHCTX"
 !define MEMENTO_REGISTRY_KEY "${PRODUCT_CFG_REGKEY}"
-; MUI Settings
-!define MUI_ICON "${NSISDIR}\Contrib\Graphics\Icons\orange-install.ico"
-!define MUI_UNICON "${NSISDIR}\Contrib\Graphics\Icons\orange-uninstall.ico"
-!define MUI_HEADERIMAGE
-!define MUI_HEADERIMAGE_BITMAP "${NSISDIR}\Contrib\Graphics\Header\orange.bmp"
-!define MUI_HEADERIMAGE_UNBITMAP "${NSISDIR}\Contrib\Graphics\Header\orange-uninstall.bmp"
-!define MUI_WELCOMEFINISHPAGE_BITMAP "${NSISDIR}\Contrib\Graphics\Wizard\orange.bmp"
-!define MUI_UNWELCOMEFINISHPAGE_BITMAP  "${NSISDIR}\Contrib\Graphics\Wizard\orange-uninstall.bmp"
 ;pages
 !insertmacro MUI_PAGE_WELCOME
 !insertmacro MUI_PAGE_LICENSE "gpl-3.0.txt"
 !insertmacro MULTIUSER_PAGE_INSTALLMODE
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_COMPONENTS
-Page custom DonateDialog DonateLeave
+!insertmacro VS_PAGE_DONATE
 !insertmacro MUI_PAGE_INSTFILES
 ; Finish page
 !define MUI_FINISHPAGE_RUN "$INSTDIR\Agender.exe"
@@ -101,62 +89,6 @@ VIAddVersionKey "FileDescription" "The ${PRODUCT_NAME} installer"
 VIAddVersionKey "FileVersion" ${PRODUCT_VERSION}
 VIAddVersionKey "ProductVersion" ${PRODUCT_VERSION}
 
-Var customDialog
-Var Label
-Var Button
-Var Check
-Var Checkbox_State
-
-Function DonateDialog
-	;title
-	!insertmacro MUI_HEADER_TEXT "Make a donation" "Put some coffee in this hacker veins."
-	;create
-	nsDialogs::Create 1018
-	Pop $customDialog
-	${If} $customDialog == error
-		Abort
-	${EndIf}
-	;label
-	${NSD_CreateLabel} 0 0 100% 40u "Agender is free of charge, \
-	but if you want you can invite me a coffee via paypal, \
-	to tell me how much you like it."
-	Pop $Label
-	;button
-	${NSD_CreateButton} 120u 50u 70u 18u "Donate now!"
-	Pop $Button
-	${NSD_OnClick} $Button OnDonateButton
-	;checkboxxxxxxxxxxx
-	${NSD_CreateCheckBox} 0 90% 100% 12u "Maybe later(check this to continue with the install)"
-	Pop $Check
-	${If} $Checkbox_State == ${BST_CHECKED}
-		${NSD_Check} $Check
-	${Else}
-		GetDlgItem $0 $HWNDPARENT 1
-		EnableWindow $0 0
-	${EndIf}
-	${NSD_OnClick} $Check OnCheck
-
-	nsDialogs::Show
-
-FunctionEnd
-
-Function OnCheck
-	${NSD_GetState} $Check $Checkbox_State
-	${If} $Checkbox_State == ${BST_CHECKED}
-		GetDlgItem $0 $HWNDPARENT 1
-		EnableWindow $0 1
-	${EndIf}
-FunctionEnd
-
-Function DonateLeave
-	${NSD_GetState} $Check $Checkbox_State
-FunctionEnd
-
-Function OnDonateButton
-	ExecShell "open" ${DONATE_LINK}
-	GetDlgItem $0 $HWNDPARENT 1
-	EnableWindow $0 1
-FunctionEnd
 
 Section "Agender" SEC01
 	SectionIn RO
@@ -164,7 +96,7 @@ Section "Agender" SEC01
 	SetOutPath "$INSTDIR"
 	SetOverwrite ifdiff
 	;executable
-	File "src\bin\vc6\Agender.exe"
+	File "${Ag_EXE}"
 	;shortcuts
 	CreateDirectory "$SMPROGRAMS\Agender"
 	CreateShortCut "$SMPROGRAMS\Agender\Agender.lnk" "$INSTDIR\Agender.exe"
@@ -314,6 +246,14 @@ FunctionEnd
 
 Function un.onInit
 	!insertmacro MULTIUSER_UNINIT
+	;check for connection
+	Dialer::GetConnectedState
+	Pop $R0
+	StrCmp $R0 "offline" nowebsite ;if offline jump out
+    ;if silent do nothing, else open website
+	IfSilent nowebsite
+		ExecShell "open" "http://sourceforge.net/tracker/?group_id=271084"
+	nowebsite:
 FunctionEnd
 
 
