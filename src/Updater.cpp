@@ -33,7 +33,7 @@ Updater::Updater(wxString host,wxString file,wxString ver) : wxThread(wxTHREAD_D
 Updater::~Updater()
 {
 	//nothing todo here
-	wxLogVerbose(_T("destroying updater"));
+	wxLogMessage(_T("destroying updater"));
 }
 
 wxThread::ExitCode Updater::Entry()
@@ -72,21 +72,21 @@ wxThread::ExitCode Updater::Entry()
 
 wxString Updater::Search()
 {
-	wxLogVerbose(_T("creating http client"));
+	wxLogMessage(_T("creating http client"));
 	wxHTTP updateClient;
-	wxLogVerbose(_T("connecting to %s"),m_host.c_str());
+	wxLogMessage(_T("connecting to %s"),m_host.c_str());
 	if (updateClient.Connect(m_host))
 	{
 		//this saves a little band width
 		updateClient.SetHeader(_T("If-Modified-Since"),
 		                       wxConfig::Get()->Read(_T("/http-modified-time"),wxEmptyString));
 		wxInputStream* ver_data = (wxInputStream*)updateClient.GetInputStream(m_file);
-		wxLogVerbose(_T("http response: %i"),updateClient.GetResponse());
+		wxLogMessage(_T("http response: %i"),updateClient.GetResponse());
 		if (ver_data && updateClient.GetResponse() == 200)
 		{
 			wxConfig::Get()->Write(_T("/http-modified-time"),
 			                       updateClient.GetHeader(_T("Date")));
-			wxLogVerbose(_T("Date = %s"),updateClient.GetHeader(_T("Date")).c_str());
+			wxLogMessage(_T("Date = %s"),updateClient.GetHeader(_T("Date")).c_str());
 			wxString last_ver;
 			wxTextInputStream strm(*ver_data);
 			last_ver = strm.ReadLine();
@@ -98,12 +98,12 @@ wxString Updater::Search()
 			return last_ver;
 		}
 		else if (updateClient.GetResponse() == 304)
-			wxLogVerbose(_T("no changes in version info"));
+			wxLogMessage(_T("no changes in version info"));
 		else
-			wxLogVerbose(_T("failed opening http stream"));
+			wxLogMessage(_T("failed opening http stream"));
 	}
 	else
-		wxLogVerbose(_T("failed connecting to %s"),m_host.c_str());
+		wxLogWarning(_T("failed connecting to %s"),m_host.c_str());
 	//we return nothing
 	return wxEmptyString;
 }
@@ -137,7 +137,7 @@ void Updater::AskUser(wxString ver)
 {
 	//this sends an event to the
 	//main window
-	wxLogVerbose(_T("sending event to frame"));
+	wxLogMessage(_T("sending event to frame"));
 	wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED,AgenderFrame::ID_UPDATE_FOUND);
 	event.SetString(ver);
 	wxPostEvent(wxTheApp->GetTopWindow(),event);

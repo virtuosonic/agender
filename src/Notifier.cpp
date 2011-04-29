@@ -17,7 +17,7 @@ class Alarm : public wxTimer
 {
 		void Notify()
 		{
-			wxLogVerbose(_T("ringing"));
+			wxLogMessage(_T("ringing"));
 			wxSound::Play(wxString(_T("../share/14262_xyzr_kx_alarm_clock.wav")));
 		}
 };
@@ -38,7 +38,7 @@ void Notifier::Notify()
 	wxConfig::Get()->Read(_T("/notify"),&test_bool,false);
 	if (test_bool)
 	{
-		wxLogVerbose(_T("runing"));
+		wxLogMessage(_T("runing"));
 		m_alarm->Start(5000);
 	}
 }

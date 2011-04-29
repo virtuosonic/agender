@@ -149,7 +149,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 
 AgenderFrame::~AgenderFrame()
 {
-	wxLogVerbose(_T("destroying AgenderFrame"));
+	wxLogMessage(_T("destroying AgenderFrame"));
 	wxConfig::Get()->Write(_T("/x"),GetPosition().x);
 	wxConfig::Get()->Write(_T("/y"),GetPosition().y);
 	wxConfig::Get()->Write(_T("/w"),GetSize().x);
@@ -435,7 +435,7 @@ void AgenderFrame::OnEscape(wxCommandEvent& WXUNUSED(event))
 
 void AgenderFrame::OnUpdateFound(wxCommandEvent& event)
 {
-	wxLogVerbose(_T("creating dialog"));
+	wxLogMessage(_T("creating update dialog"));
 	wxMessageDialog dlg(wxTheApp->GetTopWindow(),
 	                    wxString::Format(_("The %s version of %s has been released. \
 				Do you want to download it?"),event.GetString().c_str(),

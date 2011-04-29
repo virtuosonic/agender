@@ -35,25 +35,34 @@ WX_USE_THEME(Metal);
 WX_USE_THEME(mono);
 WX_USE_THEME(gtk);
 #endif
+
 namespace Agender {
+
 #if defined __UNIX__
-#include <csignal>
+#include <signal.h>
 //i hate globals
 void OnSignal(int sig);
 #endif
 
+inline const wxString GetOpenDirCmdFor(const wxString& exe,const wxString& dir)
+{
+	return exe + _T(" ") + _T("\"") + dir + _T("\"");
+}
+
 bool LaunchFileBrowser(const wxString& dir)
 {
+	wxString file_browser_command;
 	#ifdef __WXMSW__
-	return wxExecute(_T("explorer ")+dir);
+	file_browser_command = GetOpenDirCmdFor(_T("explorer"),dir);
 	#elif defined __LINUX__
-	return wxExecute(_T("xdg-open ")+dir);
+	file_browser_command = GetOpenDirCmdFor(_T("xdg-open"),dir);
 	#elif defined __WXOSX__
 	// TODO (gabriel#1#): is this the right command for Finder ?
-	return wxExecute(_T("open -R ")+dir);
+	file_browser_command = GetOpenDirCmdFor(_T("open -R"),dir);
 	#else
 	return false;
 	#endif
+	return wxExecute(file_browser_command) == 0;
 }
 
 BEGIN_EVENT_TABLE(AgenderApp,wxApp)
@@ -75,13 +84,17 @@ bool AgenderApp::OnInit()
 	//who are we?
 	SetAppName(wxT("Agender"));
 	SetVendorName(wxT("Virtuosonic"));
-	//log
-	wxFileName logfname;
-	logfname.AssignDir(wxStandardPaths::Get().GetUserDataDir());
-	logfname.SetName(GetAppName());
-	logfname.SetExt(_T("log"));
-	wxFFile logfile(logfname.GetFullPath(),_T("w"));
-	wxLog::SetActiveTarget(new wxLogStderr(logfile.fp()));
+	//log to file
+	{
+		wxFileName logfname;
+		logfname.AssignDir(wxStandardPaths::Get().GetUserDataDir());
+		logfname.SetName(GetAppName());
+		logfname.SetExt(_T("log"));
+		wxFFile logfile(logfname.GetFullPath(),_T("w"));
+		wxLog::SetActiveTarget(new wxLogStderr(logfile.fp()));
+		wxLog::SetVerbose(true);
+		logfile.Detach();
+	}
 	//check for datadir
 	if (!wxDirExists(wxStandardPaths::Get().GetUserDataDir()))
 		wxMkdir(wxStandardPaths::Get().GetUserDataDir());
@@ -106,10 +119,6 @@ bool AgenderApp::OnInit()
 	{
 		cmd.Usage();
 		exit(EXIT_SUCCESS);
-	}
-	if(cmd.Found(_T("verbose")))
-	{
-		wxLog::SetVerbose(true);
 	}
 	//are we alone?
 	m_checker = new wxSingleInstanceChecker;
@@ -146,10 +155,10 @@ bool AgenderApp::OnInit()
 	//lets create a server so Anothers can comunicate with this->m_server
 	m_server = new AgenderServer;
 	if (m_server->Create(IPC_Service))
-		wxLogVerbose(_T("server created"));
+		wxLogMessage(_T("server created"));
 	else
 	{
-		wxLogVerbose(_T("server creation failed"));
+		wxLogWarning(_T("server creation failed"));
 		m_server = NULL;
 	}
 	//no taskbar?
@@ -191,14 +200,14 @@ int AgenderApp::OnExit()
 		delete m_server;
 	//delete global pointer
 	delete AgCal::Get();
-	wxLogVerbose(_T("Exiting: goodbye"));
+	wxLogMessage(_T("Exiting: goodbye"));
 	return wxApp::OnExit();
 }
 
 #ifdef __UNIX__
 void OnSignal(int sig)
 {
-	wxLogVerbose(_T("signal %i catched"),sig);
+	wxLogMessage(_T("signal %i catched"),sig);
 	if (wxTheApp->GetTopWindow())
 	{
 		//if the frame is hiden calling destroy won't work
@@ -210,7 +219,7 @@ void OnSignal(int sig)
 
 void AgenderApp::OnEndSession(wxCloseEvent& WXUNUSED(event))
 {
-	wxLogVerbose(_T("ending session"));
+	wxLogMessage(_T("ending session"));
 	if (GetTopWindow())
 	{
 		GetTopWindow()->Show();
@@ -220,20 +229,6 @@ void AgenderApp::OnEndSession(wxCloseEvent& WXUNUSED(event))
 
 void AgenderApp::SingleInstance()
 {
-#ifdef __UNIX__
-	/**
-	 *	on linux, maybe also other UNIX,
-	 *	wxSingleInstanceChecker is
-	 *	implemented using a lock file,
-	 *	sometimes it isn't deleted and
-	 *	an annoying log is shown on
-	 *	screen, to avoid that we use
-	 *	this magic incantation!
-	 *
-	 *	Note: UNIX is someone's  trademark
-	 */
-	wxLogNull logNo;
-#endif
 	if (m_checker->Create(_T(".") + GetAppName() + _T("-") + ::wxGetUserId())
 	        && m_checker->IsAnotherRunning())
 	{
@@ -243,19 +238,19 @@ void AgenderApp::SingleInstance()
 		cnn = (wxConnection*)client.MakeConnection(_T("localhost"),IPC_Service,IPC_Topic);
 		if (cnn)
 		{
-			wxLogVerbose(_T("executing"));
+			wxLogMessage(_T("executing"));
 			//this is a security issue, someone could write a client application(even you),
 			//that sends NULL, via Execute and causes Agender to crash
 			if (cnn->Execute(wxEmptyString))
 			{
-				wxLogVerbose(_T("finished executing"));
+				wxLogMessage(_T("finished executing"));
 				//first ending, like on video games it sucks!
 				exit(EXIT_SUCCESS);
 			}
-			wxLogVerbose(_T("not executed"));
+			wxLogError(_T("not executed"));
 		}
 		else
-			wxLogVerbose(_T("connection failed: %s"),wxSysErrorMsg());
+			wxLogError(_T("connection failed: %s"),wxSysErrorMsg());
 		//this goes outside of the 'else' because  if everything goes right : exit(EXIT_SUCCESS);
 		//second ending, like on videogames it sucks even more!
 		exit(EXIT_FAILURE);
@@ -267,6 +262,11 @@ void AgenderApp::OnFatalException()
 {
 	wxDebugReportCompress *report = new wxDebugReportCompress;
 	report->AddAll(wxDebugReport::Context_Exception);
+	wxFileName logfname;
+	logfname.AssignDir(wxStandardPaths::Get().GetUserDataDir());
+	logfname.SetName(GetAppName());
+	logfname.SetExt(_T("log"));
+	report->AddFile(logfname.GetFullPath(),_("Agender log file"));
 	if ( wxDebugReportPreviewStd().Show(*report) )
 	{
 		report->Process();

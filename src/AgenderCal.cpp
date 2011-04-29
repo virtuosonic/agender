@@ -33,7 +33,7 @@ AgenderCal::AgenderCal(wxDateTime date,wxString file)
 
 AgenderCal::~AgenderCal()
 {
-	wxLogVerbose(_T("destroying AgenderCal"));
+	wxLogMessage(_T("destroying AgenderCal"));
 	delete cfg;
 }
 
