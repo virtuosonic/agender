@@ -110,7 +110,7 @@ bool AutoStart::SetFluxbox()
 {
 	wxString  fluxFile;
 	fluxFile << wxGetHomeDir() << _T("/.fluxbox/startup");
-	wxLogVerbose(_T("Adding \"Agender &\" to %s"),fluxFile.c_str());
+	wxLogMessage(_T("Adding \"Agender &\" to %s"),fluxFile.c_str());
 	wxTextFile startflux;
 	if (startflux.Open(fluxFile))
 	{
@@ -125,7 +125,7 @@ bool AutoStart::SetFluxbox()
 			if (command.Matches(_T("Agender &")))
 			{
 				alreadyThere = true;
-				wxLogVerbose(_T("Already there at line: %i"),startflux.GetCurrentLine());
+				wxLogMessage(_T("Already there at line: %i"),startflux.GetCurrentLine());
 			}
 		}
 		if (indx > -1 && !alreadyThere)
@@ -168,7 +168,7 @@ bool AutoStart::SetXDG()
 	<< _T("/.config/autostart/")
 	<< wxTheApp->GetAppName()
 	<< _T(".desktop");
-	wxLogVerbose(_T("Creating %s"),desktopFile.c_str());
+	wxLogMessage(_T("Creating %s"),desktopFile.c_str());
 	//freedesktop.org
 	if (!wxFileExists(desktopFile))
 	{
@@ -185,7 +185,7 @@ bool AutoStart::SetXDG()
 	}
 	else
 	{
-		wxLogVerbose(_T("The file exists"));
+		wxLogMessage(_T("The file exists"));
 	}
 	return true;
 }
@@ -207,7 +207,7 @@ bool AutoStart::SetIceWM()
 	wxString  IceFile;
 	IceFile << wxGetHomeDir() << _T("/.icewm/startup");
 	//add a command to run Agender to the icewm  startup script
-	wxLogVerbose(_T("Adding \"Agender &\" to %s"),IceFile.c_str());
+	wxLogMessage(_T("Adding \"Agender &\" to %s"),IceFile.c_str());
 	wxTextFile startice;
 	if (startice.Open(IceFile))
 	{
@@ -219,7 +219,7 @@ bool AutoStart::SetIceWM()
 			if (command.Matches(_T("Agender &")))
 			{
 				alreadyThere = true;
-				wxLogVerbose(_T("Already there at line: %i"),startice.GetCurrentLine());
+				wxLogMessage(_T("Already there at line: %i"),startice.GetCurrentLine());
 			}
 		}
 		if (!alreadyThere)
