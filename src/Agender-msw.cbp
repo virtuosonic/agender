@@ -13,10 +13,10 @@
 				<Option compiler="msvc8" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
+					<Add option="/MDd" />
 					<Add option="/Zi" />
 					<Add option="/D_DEBUG" />
 					<Add option="/D__WXDEBUG__" />
-					<Add option="/MDd" />
 					<Add directory="$(#wx)\lib\vc_lib\mswud" />
 				</Compiler>
 				<ResourceCompiler>
