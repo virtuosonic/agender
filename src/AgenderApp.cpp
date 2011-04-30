@@ -14,105 +14,75 @@
 #include "AgenderMain.h"
 #include "AgenderIPC.h"
 #include "Updater.h"
-
+#include "version.h"
 #include <wx/log.h>
 #include <wx/defs.h>
 #include <wx/stdpaths.h>
 #include <wx/cmdline.h>
-#include <wx/stopwatch.h>
-#include <wx/wfstream.h>
+#include <wx/config.h>
+#include <wx/fileconf.h>
+#include <wx/uri.h>#include <wx/image.h>#include <wx/fs_mem.h>#include <wx/sysopt.h>#include <wx/ffile.h>#include <wx/debugrpt.h>#include <wx/utils.h>
+#ifdef __WXUNIVERSAL__
+WX_USE_THEME(Metal);
+WX_USE_THEME(mono);WX_USE_THEME(gtk);#endif
 
-#if !defined __WXMAC__ || !defined __WXOSX__
-#include <iostream>
-#endif
-
-#if defined __UNIX__
+namespace Agender {#if defined __UNIX__
 #include <signal.h>
 //i hate globals
 void OnSignal(int sig);
 #endif
 
-//(*AppHeaders
-#include <wx/image.h>
-//*)
-
-BEGIN_EVENT_TABLE(AgenderApp,wxApp)
+inline const wxString GetOpenDirCmdFor(const wxString& exe,const wxString& dir)
+{
+	return exe + _T(" ") + _T("\"") + dir + _T("\"");
+}
+bool LaunchFileBrowser(const wxString& dir){	wxString file_browser_command;	#ifdef __WXMSW__	file_browser_command = GetOpenDirCmdFor(_T("explorer"),dir);	#elif defined __LINUX__	file_browser_command = GetOpenDirCmdFor(_T("xdg-open"),dir);	#elif defined __WXOSX__	// TODO (gabriel#1#): is this the right command for Finder ?	file_browser_command = GetOpenDirCmdFor(_T("open -R"),dir);	#else	return false;	#endif	return wxExecute(file_browser_command) == 0;}BEGIN_EVENT_TABLE(AgenderApp,wxApp)
 	EVT_QUERY_END_SESSION(AgenderApp::OnEndSession)
 	EVT_END_SESSION(AgenderApp::OnEndSession)
 END_EVENT_TABLE()
 
 IMPLEMENT_APP(AgenderApp);
 
-bool AgenderApp::OnInit()
+#if wxUSE_ON_FATAL_EXCEPTIONAgenderApp::AgenderApp(){	::wxHandleFatalExceptions(true);}#endifbool AgenderApp::OnInit()
 {
-	wxStopWatch sw;
 	//who are we?
-	SetAppName(_T("Agender"));
-	SetVendorName(_T("Virtuosonic"));
-#if defined __WXMAC__ || defined __WXOSX__
-	//under OSX the next block gives a compilation error
-	//so we use this instead
-	wxLogNull logNo;
+	SetAppName(wxT("Agender"));
+	SetVendorName(wxT("Virtuosonic"));
+	//log to file	{		wxFileName logfname;		logfname.AssignDir(wxStandardPaths::Get().GetUserDataDir());		logfname.SetName(GetAppName());		logfname.SetExt(_T("log"));		wxFFile logfile(logfname.GetFullPath(),_T("w"));		wxLog::SetActiveTarget(new wxLogStderr(logfile.fp()));		wxLog::SetVerbose(true);		logfile.Detach();	}	//check for datadir	if (!wxDirExists(wxStandardPaths::Get().GetUserDataDir()))		wxMkdir(wxStandardPaths::Get().GetUserDataDir());#if defined __WXMAC__ || defined __WXOSX__
+	//spell checking for mac
 	wxSystemOptions::SetOptionInt(wxMAC_TEXTCONTROL_USE_SPELL_CHECKER,1);
-#else
-	/*redirect logging to cout, if you want to annoy users use ::wxMessageBox(_T("do you want me to annoy you?"));*/
-	delete wxLog::SetActiveTarget(new wxLogStream(&std::cout));
 #endif
 	//parse arguments
 	wxCmdLineParser cmd(argc,argv);
-	cmd.AddOption(_T("c"),_T("config"),_T("specify a config file to load"),wxCMD_LINE_VAL_STRING);
-	cmd.AddSwitch(_T("nt"),_T("no-taskbar"),_T("use when you don't have a taskbar"));
-	OnInitCmdLine(cmd);
+	//not in use
+	//cmd.AddOption(_T("c"),_T("config"),_T("specify a config file to load"),wxCMD_LINE_VAL_STRING);	//switches	cmd.AddSwitch(_T("nt"),_T("no-taskbar"),_T("use when you don't have a taskbar"));
+	cmd.AddSwitch(_T("p"),_T("portable"),_T("read config and notes from app dir"));	cmd.AddSwitch(_T("na"),_T("no-autostart"),_T("disable auto start"));	cmd.AddSwitch(_T("?"),wxEmptyString,wxEmptyString,wxCMD_LINE_OPTION_HELP);	//why OnInitCmdLine doesn't have /?  ??? :P	OnInitCmdLine(cmd);
 	int res = cmd.Parse(false);
-	if (res < 0)
-	{
+	OnCmdLineParsed(cmd);
+	if (res < 0 || cmd.Found(_T("?")))	{
 		cmd.Usage();
 		exit(EXIT_SUCCESS);
 	}
 	wxString cfgFile(wxGetHomeDir()+_T("/.Agender-current user.txt"));
 	cmd.Found(_T("c"),&cfgFile);
-	if(cmd.Found(_T("verbose")))
-	{
-		wxLog::SetVerbose(true);
-	}
 	//are we alone?
 	m_checker = new wxSingleInstanceChecker;
-	if (m_checker->Create(_T(".") + GetAppName() + _T("-") + ::wxGetUserId())
-			&& m_checker->IsAnotherRunning())
-	{
-		//lets try to connect to Another and  asking to show it self
-		wxClient client;
-		wxConnection* cnn = NULL;
-		cnn = (wxConnection*)client.MakeConnection(_T("localhost"),IPC_Service,IPC_Topic);
-		if (cnn)
-		{
-			wxLogMessage(_T("executing"));
-			//this is a security issue, someone could write a client application(even you),
-			//that sends NULL, via Execute and causes Agender to crash
-			if (cnn->Execute(wxEmptyString))
-			{
-				wxLogVerbose(_T("finished executing"));
-				//first ending, like on video games it sucks!
-				exit(EXIT_SUCCESS);
-			}
-			wxLogVerbose(_T("not executed"));
-		}
-		else
-			wxLogVerbose(_T("connection failed: %s"),wxSysErrorMsg());
-		//this goes outside of the 'else' because  if everything goes right : exit(EXIT_SUCCESS);
-		//second ending, like on videogames it sucks even more!
-		exit(EXIT_FAILURE);
+	SingleInstance();
+	//load configuration
+	if(cmd.Found(_T("p")))//PortableApp	{
+		wxFileName fname;
+		fname.AssignDir(wxStandardPaths::Get().GetDataDir());
+		fname.SetName(GetAppName());
+		fname.SetExt(wxT("ini"));
+		cfgFile =  fname.GetFullPath();
+		
 	}
-	// please talk me in a language that i understand
-	wxFileInputStream infile(cfgFile);
-	wxFileConfig* cfg = new wxFileConfig(infile);
-	if (m_locale.Init(cfg->Read(_T("/lang"),wxLANGUAGE_DEFAULT),wxLOCALE_LOAD_DEFAULT)) {}
-	//this goes out because if wxstd.mo isn't found, Agender.mo isn't loaded,
-	//like in romanian ( there's no locale/ro/LC_MESSAGES/wxstd.mo)
+	wxConfig::Set(new wxFileConfig(wxEmptyString,wxEmptyString,
+		                               cfgFile,wxEmptyString,wxCONFIG_USE_SUBDIR|
+		                               wxCONFIG_USE_LOCAL_FILE));
+	if (cmd.Found(_T("na")))	{		wxConfig::Get()->Write(_T("/autostart"),false);	}	// please talk me in a language that i understand
+	m_locale.Init(wxConfig::Get()->Read(_T("/lang"),wxLANGUAGE_DEFAULT),wxLOCALE_LOAD_DEFAULT);
 	m_locale.AddCatalog(wxT("Agender"),wxLANGUAGE_ENGLISH,wxT("UTF-8"));
-	wxFileOutputStream ofile(cfgFile);
-	cfg->Save(ofile);
-	delete cfg;
 	//(*AppInitialize
 	bool wxsOK = true;
 	wxInitAllImageHandlers();
@@ -122,11 +92,11 @@ bool AgenderApp::OnInit()
 	SetTopWindow(Frame);
 	//lets create a server so Anothers can comunicate with this->m_server
 	m_server = new AgenderServer;
-	if (m_server && m_server->Create(IPC_Service))
-		wxLogVerbose(_T("server created"));
+	if (m_server->Create(IPC_Service))
+		wxLogMessage(_T("server created"));
 	else
 	{
-		wxLogVerbose(_T("server creation failed"));
+		wxLogWarning(_T("server creation failed"));
 		m_server = NULL;
 	}
 	//no taskbar?
@@ -138,28 +108,21 @@ bool AgenderApp::OnInit()
 #endif
 #if !defined wxHAS_TASK_BAR_ICON
 	Frame->Show();
-	// TODO (virtuoso#1#): think in another way to exit agender
-	//without having to kill it
-	//this is intended for some mobile platform, is it needed?
-	//i remember that windows CE had a function to finish apps
-	// and accoding to its guidelines it should continue in memory
-	//but what about Familiar Linux, iPhoneOS, etc ?
 #endif//wxHAS_TASK_BAR_ICON
-	wxLogVerbose(_T("time %i ms"),sw.Time());
 	return wxsOK;
 }
 
 int AgenderApp::OnRun()
 {
-	Updater* up = new Updater(_T("agender.sourceforge.net"),
-			_T("/agender_version"),__AGENDER_VERSION__);
-	if (up->Create() == wxTHREAD_NO_ERROR)
-	{
-		if (up->Run() != wxTHREAD_NO_ERROR)
-			delete up;
-	}
-	//notif.Start(20000);
-	return wxApp::OnRun();
+	//here we create the updater & let it search for updates
+	try {
+		Updater* up = new Updater(_T("agender.sourceforge.net"),
+		                          wxT("/agender_version"),wxString::FromAscii(FULLVERSION_STRING));
+		if (up->Create() == wxTHREAD_NO_ERROR)
+		{
+			if (up->Run() != wxTHREAD_NO_ERROR)				delete up;		}	}
+	catch(...) {}
+	notif.Start(20000);	//continue	return wxApp::OnRun();
 }
 
 int AgenderApp::OnExit()
@@ -168,14 +131,13 @@ int AgenderApp::OnExit()
 		delete m_checker;
 	if (m_server)
 		delete m_server;
-	wxLogVerbose(_T("Exiting: goodbye"));
-	return wxApp::OnExit();
+	wxLogMessage(_T("Exiting: goodbye"));	return wxApp::OnExit();
 }
 
 #ifdef __UNIX__
 void OnSignal(int sig)
 {
-	wxLogVerbose(_T("signal %i catched"),sig);
+	wxLogMessage(_T("signal %i catched"),sig);
 	if (wxTheApp->GetTopWindow())
 	{
 		//if the frame is hiden calling destroy won't work
@@ -187,10 +149,11 @@ void OnSignal(int sig)
 
 void AgenderApp::OnEndSession(wxCloseEvent& WXUNUSED(event))
 {
-	wxLogVerbose(_T("ending session"));
+	wxLogMessage(_T("ending session"));
 	if (GetTopWindow())
 	{
 		GetTopWindow()->Show();
 		GetTopWindow()->Destroy();
 	}
 }
+void AgenderApp::SingleInstance(){	if (m_checker->Create(_T(".") + GetAppName() + _T("-") + ::wxGetUserId())	        && m_checker->IsAnotherRunning())	{		//lets try to connect to Another and  asking to show it self		wxClient client;		wxConnection* cnn = NULL;		cnn = (wxConnection*)client.MakeConnection(_T("localhost"),IPC_Service,IPC_Topic);		if (cnn)		{			wxLogMessage(_T("executing"));			//this is a security issue, someone could write a client application(even you),			//that sends NULL, via Execute and causes Agender to crash			if (cnn->Execute(wxEmptyString))			{				wxLogMessage(_T("finished executing"));				//first ending, like on video games it sucks!				exit(EXIT_SUCCESS);			}			wxLogError(_T("not executed"));		}		else			wxLogError(_T("connection failed: %s"),wxSysErrorMsg());		//this goes outside of the 'else' because  if everything goes right : exit(EXIT_SUCCESS);		//second ending, like on videogames it sucks even more!		exit(EXIT_FAILURE);	}}#if wxUSE_ON_FATAL_EXCEPTIONvoid AgenderApp::OnFatalException(){	wxDebugReportCompress *report = new wxDebugReportCompress;	report->AddAll(wxDebugReport::Context_Exception);	//add log file	wxFileName logfname;	logfname.AssignDir(wxStandardPaths::Get().GetUserDataDir());	logfname.SetName(GetAppName());	logfname.SetExt(_T("log"));	report->AddFile(logfname.GetFullPath(),_("Agender log file"));	//add revision data	report->AddText(_T("svn_revision.txt"),			wxString::FromAscii(SVN_REVISION)+			_T(" ") + wxString::FromAscii(SVN_DATE),			_("Subversion revision data."));	//preview	if ( wxDebugReportPreviewStd().Show(*report) )	{		report->Process();		wxString dir(report->GetDirectory());		report->Reset();		::wxLaunchDefaultBrowser(_T("http://sourceforge.net/tracker/?group_id=271084&atid=1152801"));		LaunchFileBrowser(dir);	}	delete report;}#endif}//namespace Agender
