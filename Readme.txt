@@ -1,4 +1,4 @@
-﻿/******************************************************************************
+/******************************************************************************
 *                   Agender, a cross-platform schedule tool
 ******************************************************************************/
 
@@ -6,8 +6,6 @@ Web:
 ====
     http://agender.sourceforge.net
     http://sourceforge.net/projects/agender
-    http://sourceforge.net/apps/mediawiki/agender
-    http://sourceforge.net/apps/gallery/agender
     agender-announce@lists.sourceforge.net
     agender-support@lists.sourceforge.net
 
@@ -17,21 +15,11 @@ Intro:
     writing your schedule, it is  a cross-platform software and should
     compile and run on Unix, Windows, Mac OSX and someother platforms.
 
-    If you're tired of using slow, big and complicated software
-    like Microsoft Works, Evolution or iCal then Agender is for
-    you, Agender makes it all simple.
-
     If you like Agender consider making a donation, that way you will
     help the development of Agender, we will also add you to the
     Hall of Fame and link to your website if you like so, you can send
     a donation via paypal by clicking in the Support this project button
     that can be found on the left of Agender's website.
-
-Special:
-========
-    I'll send an edition of Agender with your name in the
-    title bar if you're the first one to send a mail saying
-    you read this.
 
 Licence:
 ========
@@ -51,7 +39,7 @@ Licence:
 Dependencies:
 =============
     To compile you will need a C++ compiler and wxWidgets 2.8,
-    Agender is being developed with the Microsoft C/C++ 12.00, and
+    Agender is being developed with GNU g++ 4.4.1, and
     wxWidgets 2.8.11 maybe it works with anothers, not sure.
     The website is www.wxwidgets.org.
 
@@ -59,23 +47,30 @@ Compiling & Installing:
 =======================
     If you are using Windows you can dowload the installer from the
     website is named something like Agender-x.x.x.exe where x.x.x
-    is the version.
+    is the version. If you are upgrading from version 1.1.6 please first
+    run the uninstaller and then install, the way translations are installed
+    haves changed.
 
-	-To build using Visual C++ you can use the workspace
-	or the solution in the build folder
+    Read the file INSTALL, if you don't wan't to read so much, here
+    are some short instructions:
 
-	-To build with MinGW you can use the makefile
-	makefile.gcc,
+        Type on a terminal:
+            $cd $(Agender)
+            $./configure
+            $make
+            $su -c 'make install'
 
-	-If you are using UNIX then use GNUMakefile to
-	build with gnu make and g++.
+    $(Agender) is the directory where this file is (unless you have
+    move it:), don't type the $ at the start of every line.
 
-	-If you have a really powerfull IDE then use the
-	Code::Blocks project in the src folder
+    If you aren't using a un*x operating system, you can generate
+    makefiles and project file for several compiler using bakefile
+    for example:
+        bakefile -f gnu Agender.bkl
+        bakefile -f msvc Agender.bkl
 
-    If you're building from svn or you need makefiles for borland,
-    digital mars or open watcom, then you need to generate
-    your makefile using bakefile, you can get bakefile at:
+    If you're building from svn then you need to generate your
+    makefile using bakefile, you can get bakefile at:
         http://www.bakefile.org/
 
 Bugs:
@@ -90,10 +85,10 @@ Bugs:
 
 Porting/Packaging:
 ==================
-    Agender uses, the wxWidgets library, doesn't use advanced C++
-    features like templates, C++ RTTI or exceptions. So it should be
-    easy to port, since wxWidgets it self has been ported to several
-    platforms.
+    Agender uses, the wxWidgets library, it almost doesn't use the
+    STL, doesn't use advanced C++ features like templates, C++
+    RTTI or exceptions. So it should be easy to port, since wxWidgets
+    it self has been ported to several platforms.
 
     Some platforms already supported by wxWidgets that I would like
     to see running Agender would be: Mac OSX, Windows Mobile,
@@ -114,38 +109,67 @@ Translating/i18n:
     You can get Poedit at:
         http://www.poedit.net
 
-Help wanted:
-============
-   If you are a programmer and want to help you could start
-   choosing a task from the todo list below
-
 TODO:
 =====
-    -Sticky notes
     -notifications
+    -new file format in xml
     -Trash bin
     -Undo/Redo!!!!!!!!!
-    -iCalendar support
     -Clipboard/Drag & Drop support
     -Search
-    -Integrate with Windows se7en dock
     -Sticky weekday notes
     -richtextctrl
     -More translations
-    -Windows mobile port
-    -OSX packages
-    -FreeBSD testing
+    -Multi User support on installer
 
 Changelog:
 ==========
-Read ChangeLog.txt
+28 junio 2009
+   released version 1.0.6
+
+     Change log:
+        -Applied: cambio del archivo de configuracion para que sea oculto en un*x
+
+18 abril 2009
+   released version 1.0.5
+
+     Change log:
+        -Fixed: Error de manejo de memoria, que provocaba que el programa recibiera la señal SIGSEGV
+        -Added: el submenu opacity se deshabilita si no se soporta tranparencia
+        -New: ahora los dias se marcan inmediatamante al agregar o eliminar notas
+
+21 February 2009
+   released version 1.0.4
+
+     Change log:
+        -Fixed: ahora las fechas que solo tienen un digito tambien se colorean si contienen notas
+
+21 February 2009
+   released version 1.0.3
+
+     Change log:
+        -New: parcial: los dias que tinen notas aparecen marcados de rojo (se puede cabiar el color) en el calendario
+
+30 January 2009
+   released version 1.0.2
+
+     Change log:
+        -Fixed: Fallo al escribir al registro
+
+27 January 2009
+   released version 1.0.1
+
+     Change log:
+        -Fixed: Escribe en el registro solo cuando es necesario
+        -New: Iconos de la barra de tareas, programa y del cuadro acerca de...
+        -Fixed: Carga las notas del dia correspondiente
 
 Distro Makers:
 ==============
     Hi distro maker, if you want to include Agender in your operating
     system, you are free to do it, just follow the license, but I request
     you to send me the instructions on how to install Agender on your
-    system, so I can add them to the website, screenshots are also cool.
+    system, so I can add them to the website.
 
 Author:
 =======

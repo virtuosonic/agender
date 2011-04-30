@@ -13,18 +13,14 @@
 #include <wx/string.h>
 #include <wx/arrstr.h>
 #include <wx/dynarray.h>
-#include <wx/fileconf.h>
-#include "XmlNotes.h"
 
 //i hate globals
-//static const wxChar* stickSymb = _T("$(sticky)");
-namespace Agender
-{
+static const wxChar* stickSymb = _T("$(sticky)");
 
 class AgenderCal
 {
 	public:
-		AgenderCal(wxDateTime date,wxString file);
+		AgenderCal(wxDateTime date);
 		~AgenderCal();
 		void SetDate(wxDateTime date);
 		wxDateTime GetDate();
@@ -33,7 +29,6 @@ class AgenderCal
 		wxString GetNoteText(wxString note);
 		void SetNoteText(wxString note,wxString text);
 		wxArrayInt GetDaysWithNotes();
-		wxDatesArray GetDatesWithNotes();
 		void RmNote(wxString note);
 		bool RenameNote(wxString OldName,wxString NewName);
 		bool MakeSticky(wxString note);
@@ -46,7 +41,6 @@ class AgenderCal
 		wxString GetFullPath(wxString note);
 		bool RmStickySimb(wxString* note);
 		static const wxChar* stickPath;
-		wxFileConfig* cfg;
 };
-}//namespace Agender
+
 #endif // AGENDERCAL_H_INCLUDED

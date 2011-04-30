@@ -5,16 +5,19 @@
  * Copyright: Gabriel Espinoza
  * License: GPLv3+
  **************************************************************/
+#include <wx/wxprec.h>
+
 #ifdef __BORLANDC__
-#pragma hdrstop
+	#pragma hdrstop
 #endif
 
-#include <wx/defs.h>
+#ifndef WX_PRECOMP
+	#include <wx/defs.h>
+#endif//WX_PRECOMP
 
 #if defined wxHAS_TASK_BAR_ICON
 
 #include "AgenderTray.h"
-#include "XmlNotes.h"
 #include <wx/colordlg.h>
 #include <wx/numdlg.h>
 #include <wx/menu.h>
@@ -23,22 +26,16 @@
 #include <wx/clipbrd.h>
 #include <wx/dataobj.h>
 #include <wx/msgdlg.h>
-#include <wx/filedlg.h>
 #include <wx/intl.h>
-#include <wx/richtext/richtextsymboldlg.h>
-#include <wx/artprov.h>
-#include <wx/utils.h>
 
-namespace Agender
-{
+#if wxUSE_RICHTEXT
+#include <wx/richtext/richtextsymboldlg.h>
+#endif//wxUSE_RICHTEXT
 
 BEGIN_EVENT_TABLE(AgenderTray,wxTaskBarIcon)
-	//click
 	EVT_TASKBAR_LEFT_UP(AgenderTray::OnLeft)
-	//menu
 	EVT_MENU(ID_SHOW,AgenderTray::OnMenuShow)
 	EVT_MENU(ID_HIDE,AgenderTray::OnMenuHide)
-	//opacity
 	EVT_MENU_RANGE(ID_OPC100,ID_OPC25,AgenderTray::OnMenuOpc)
 	EVT_MENU(ID_YEARSEL,AgenderTray::OnYearSel)
 	EVT_MENU(ID_NOTES_COLOUR,AgenderTray::OnMenuNotesColour)
@@ -47,21 +44,8 @@ BEGIN_EVENT_TABLE(AgenderTray,wxTaskBarIcon)
 	EVT_MENU(ID_AUTOSTART,AgenderTray::OnMenuAutoStart)
 	EVT_MENU(ID_SYMBOL,AgenderTray::OnMenuSymbols)
 	EVT_MENU(ID_NOTIFY,AgenderTray::OnMenuNotify)
-	EVT_MENU(ID_IMPORT,AgenderTray::OnMenuImport)
-	EVT_MENU(ID_EXPORT,AgenderTray::OnMenuExport)
-	//lang menu
 	EVT_MENU_RANGE(ID_LANG_DEF,ID_LANG_LAST-1,AgenderTray::OnMenuLang)
-	//help menu
-	EVT_MENU(ID_WIKI,AgenderTray::OnMenuWiki)
-	EVT_MENU(ID_BUG,AgenderTray::OnMenuBug)
-	EVT_MENU(ID_DONATE,AgenderTray::OnMenuDonate)
-	EVT_MENU(wxID_ABOUT,AgenderTray::OnMenuAbout)
-	EVT_MENU(ID_UPDATE,AgenderTray::OnMenuUpdate)
 END_EVENT_TABLE()
-
-#define wiki wxT("http://sourceforge.net/apps/mediawiki/agender")
-#define bugtracker wxT("http://sourceforge.net/tracker/?group_id=271084&atid=1152801")
-#define donate wxT("http://sourceforge.net/donate/index.php?group_id=271084")
 
 AgenderTray::AgenderTray(wxFrame* frame)
 {
@@ -92,7 +76,6 @@ AgenderTray::AgenderTray(wxFrame* frame)
 
 void AgenderTray::OnLeft(wxTaskBarIconEvent& WXUNUSED(event))
 {
-	//show the main window
 	if (frame->IsShownOnScreen())
 	{
 		frame->Hide();
@@ -119,19 +102,18 @@ wxMenu * AgenderTray::CreatePopupMenu()
 	wxMenu* lmenu;
 	lmenu = new wxMenu;
 	lmenu->AppendRadioItem(ID_LANG_DEF,_("default"));
-	lmenu->AppendRadioItem(ID_LANG_ES,_T("Español"));
-	lmenu->AppendRadioItem(ID_LANG_DE,_T("Deutch"));
-	lmenu->AppendRadioItem(ID_LANG_JA,_T("日本語"));
-	lmenu->AppendRadioItem(ID_LANG_PT,_T("Português"));
-	lmenu->AppendRadioItem(ID_LANG_FR,_T("Français"));
-	lmenu->AppendRadioItem(ID_LANG_EL,_T("Ελληνικά"));
-	lmenu->AppendRadioItem(ID_LANG_SV,_T("Svenska"));
-	lmenu->AppendRadioItem(ID_LANG_ZH_HK,_T("Traditional Chinese"));
-	lmenu->AppendRadioItem(ID_LANG_ZH_CN,_T("中文"));
-	lmenu->AppendRadioItem(ID_LANG_RO,_T("Romanian"));
-	lmenu->AppendRadioItem(ID_LANG_HE,_T("Hebrew"));
+	lmenu->AppendRadioItem(ID_LANG_ES,_("Spanish"));
+	lmenu->AppendRadioItem(ID_LANG_DE,_("Deutch"));
+	lmenu->AppendRadioItem(ID_LANG_JA,_("Japanese"));
+	lmenu->AppendRadioItem(ID_LANG_PT,_("Portuguese"));
+	lmenu->AppendRadioItem(ID_LANG_FR,_("French"));
+	lmenu->AppendRadioItem(ID_LANG_EL,_("Greek"));
+	lmenu->AppendRadioItem(ID_LANG_SV,_("Swedish"));
+	lmenu->AppendRadioItem(ID_LANG_ZH_HK,_("Traditional Chinese"));
+	lmenu->AppendRadioItem(ID_LANG_ZH_CN,_("Simplified Chinese"));
+	lmenu->AppendRadioItem(ID_LANG_RO,_("Romanian"));
+	lmenu->AppendRadioItem(ID_LANG_HE,_("Hebrew"));
 	long lang = wxConfig::Get()->Read(_T("/lang"),wxLANGUAGE_UNKNOWN);
-	// TODO (gabriel#3#): move to a class
 	switch (lang)
 	{
 		case wxLANGUAGE_SPANISH:
@@ -170,57 +152,33 @@ wxMenu * AgenderTray::CreatePopupMenu()
 		default:
 			break;
 	}
-	//file menu
-	wxMenu* FileMenu = new wxMenu;
-	FileMenu->Append(ID_IMPORT,_("Import"));
-	FileMenu->Append(ID_EXPORT,_("Export"));
-	//gui menu
-	wxMenu* GuiMenu = new wxMenu;
-	if (frame->CanSetTransparent())
-		GuiMenu->AppendSubMenu(opcMenu,_("Opacity"));
-	GuiMenu->AppendCheckItem(ID_YEARSEL,_("Year selector"));
-	GuiMenu->Append(ID_NOTES_COLOUR,_("Notes Colour"));
-	GuiMenu->AppendSubMenu(lmenu,_("Language"));
-	//Tools menu
-	wxMenu* ToolsMenu = new wxMenu;
-	ToolsMenu->AppendCheckItem(ID_NOTIFY,_("Notify"));
-	ToolsMenu->AppendCheckItem(ID_AUTOSTART,_("Autostart"));
-	ToolsMenu->AppendCheckItem(ID_UPDATE,_("Search for updates"));
-#if wxUSE_RICHTEXT
-	ToolsMenu->Append(ID_SYMBOL,_("Symbol"));
-#endif//wxUSE_RICHTEXT
-	//help menu
-	wxMenu* HelpMenu = new wxMenu;
-	HelpMenu->Append(ID_WIKI,_("Visit wiki"));
-	HelpMenu->Append(ID_BUG,_("Report a bug"));
-	HelpMenu->Append(ID_DONATE,_("Make a donation"));
-	HelpMenu->Append(wxID_ABOUT,_("About..."));
 	//main menu
 	wxMenu* menu;
 	menu = new wxMenu;
-	menu->SetTitle(_("Agender"));
-	//show/hide
-	menu->Append(ID_SHOW,_("Show"))->SetBitmaps(m_icon);
+	menu->Append(ID_SHOW,_("Show"));
 	menu->Append(ID_HIDE,_("Hide"));
-	//submenus
 	menu->AppendSeparator();
-	menu->AppendSubMenu(FileMenu,_("File"));
-	menu->AppendSubMenu(GuiMenu,_("Gui"));
-	menu->AppendSubMenu(ToolsMenu,_("Tools"));
-	menu->AppendSubMenu(HelpMenu,_("Help"))->SetBitmap(wxArtProvider::GetBitmap(wxART_HELP,wxART_MENU));
-	//exit
+	if (frame->CanSetTransparent())
+		menu->AppendSubMenu(opcMenu,_("Opacity"));
+	menu->AppendCheckItem(ID_YEARSEL,_("Year selector"));
+	menu->Append(ID_NOTES_COLOUR,_("Notes Colour"));
+	menu->AppendSubMenu(lmenu,_("Language"));
+#if wxUSE_RICHTEXT
+	menu->Append(ID_SYMBOL,_("Symbol"));
+#endif//wxUSE_RICHTEXT
+	// TODO (virtuoso#1#): uncoment when implemented in v1.2
+	//menu->AppendCheckItem(ID_NOTIFY,_("Notify"));
+	menu->AppendCheckItem(ID_AUTOSTART,_("Autostart"));
 	menu->AppendSeparator();
-	menu->Append(wxID_EXIT,_("Exit"),_("Exits"))->SetBitmap(wxArtProvider::GetBitmap(wxART_QUIT,wxART_MENU));
+	menu->Append(wxID_EXIT,_("Exit"));
 	//read value from config
 	bool test_bool= false;
 	wxConfig::Get()->Read(_T("/yearselector"),&test_bool,false);
 	menu->Check(ID_YEARSEL,test_bool);
 	wxConfig::Get()->Read(_T("/autostart"),&test_bool,true);
 	menu->Check(ID_AUTOSTART,test_bool);
-	wxConfig::Get()->Read(_T("/searchforupdates"),&test_bool,true);
-	menu->Check(ID_UPDATE,test_bool);
-	//wxConfig::Get()->Read(2_T("/notify"),&test_bool,false);
-	//menu->Check(ID_NOTIFY,test_bool);
+	wxConfig::Get()->Read(_T("/notify"),&test_bool,false);
+	menu->Check(ID_NOTIFY,test_bool);
 
 	return menu;
 }
@@ -296,7 +254,7 @@ void AgenderTray::OnMenuSymbols(wxCommandEvent& WXUNUSED(event))
 {
 #if wxUSE_RICHTEXT
 	wxSymbolPickerDialog dlg(_T("*"),wxEmptyString,
-	                         wxTheApp->GetTopWindow()->GetFont().GetFaceName(),NULL);
+							 wxTheApp->GetTopWindow()->GetFont().GetFaceName(),NULL);
 	if (dlg.ShowModal() ==wxID_OK && dlg.HasSelection())
 	{
 		if (wxTheClipboard->Open())
@@ -313,7 +271,7 @@ void AgenderTray::OnMenuNotify(wxCommandEvent& event)
 	if (event.IsChecked())
 	{
 		wxNumberEntryDialog dlg(wxTheApp->GetTopWindow(),_("Days to notify before note"),_("Days"),
-		                        _("Notify"),1,0,365);
+				_("Notify"),1,0,365);
 		if (dlg.ShowModal() == wxID_OK)
 		{
 			wxConfig::Get()->Write(_T("/notify"),true);
@@ -370,56 +328,7 @@ void AgenderTray::OnMenuLang(wxCommandEvent& event)
 	}
 	wxConfig::Get()->Write(_T("/lang"),(long)l);
 	wxMessageBox(_T("To apply changes you must restart Agender"),
-	             _("Agender Language changed"),wxOK,frame);
+		_("Agender Language changed"),wxOK,frame);
 }
 
-void AgenderTray::OnMenuImport(wxCommandEvent& WXUNUSED(event))
-{
-	wxFileDialog dlg(0);
-	dlg.SetWildcard(_T("Agender files|*.xml;*.txt"));
-	if (dlg.ShowModal() == wxID_OK)
-	{
-		AgCal::Get()->Import(dlg.GetPath());
-	}
-}
-
-void AgenderTray::OnMenuExport(wxCommandEvent& WXUNUSED(event))
-{
-	wxFileDialog dlg(0);
-	dlg.SetWildcard(_T("Agender xml|*.xml"));
-	if (dlg.ShowModal() == wxID_OK)
-	{
-		AgCal::Get()->Export(dlg.GetPath());
-	}
-}
-
-void AgenderTray::OnMenuAbout(wxCommandEvent& event)
-{
-	event.SetEventType(wxEVT_COMMAND_BUTTON_CLICKED);
-	::wxPostEvent(frame->GetEventHandler(),event);
-}
-
-void AgenderTray::OnMenuDonate(wxCommandEvent& WXUNUSED(event))
-{
-	wxLaunchDefaultBrowser(
-	    _T("http://sourceforge.net/donate/index.php?group_id=271084"));
-}
-
-void AgenderTray::OnMenuBug(wxCommandEvent& WXUNUSED(event))
-{
-	wxLaunchDefaultBrowser(
-	    _T("http://sourceforge.net/tracker/?group_id=271084&atid=1152801"));
-}
-
-void AgenderTray::OnMenuWiki(wxCommandEvent& WXUNUSED(event))
-{
-	wxLaunchDefaultBrowser(
-	    _T("http://sourceforge.net/apps/mediawiki/agender"));
-}
-
-void AgenderTray::OnMenuUpdate(wxCommandEvent& event)
-{
-	wxConfig::Get()->Write(_T("/searchforupdates"),event.IsChecked());
-}
-}//namespace Agender
 #endif //wxHAS_TASK_BAR_ICON

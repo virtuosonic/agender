@@ -12,8 +12,6 @@
 #include <wx/colour.h>
 #include <wx/frame.h>
 #include "wxAutoStart.h"
-namespace Agender
-{
 
 class AgenderTray : public wxTaskBarIcon
 {
@@ -31,19 +29,10 @@ class AgenderTray : public wxTaskBarIcon
 			ID_OPC25,
 			ID_BGCOLOUR,
 			ID_SYMBOL,
-			ID_UPDATE,
 			ID_YEARSEL=7003,
 			ID_NOTES_COLOUR=7004,
 			ID_AUTOSTART = 7005,
-			ID_IMPORT,
-			ID_EXPORT,
 			ID_NOTIFY,
-			//help menu
-			ID_WIKI,
-			ID_BUG,
-			ID_DONATE,
-			ID_ABOUT,
-			//Lang menu
 			ID_LANG_DEF,
 			ID_LANG_ES,
 			ID_LANG_DE,
@@ -74,19 +63,10 @@ class AgenderTray : public wxTaskBarIcon
 		void OnMenuFind(wxCommandEvent& event);
 		void OnMenuAutoStart(wxCommandEvent& event);
 		void OnMenuSymbols(wxCommandEvent& event);
-		void OnMenuImport(wxCommandEvent& event);
-		void OnMenuExport(wxCommandEvent& event);
 		void OnMenuNotify(wxCommandEvent& event);
 		void OnMenuLang(wxCommandEvent& event);
-		//from help menu
-		void OnMenuWiki(wxCommandEvent& event);
-		void OnMenuBug(wxCommandEvent& event);
-		void OnMenuDonate(wxCommandEvent& event);
-		void OnMenuAbout(wxCommandEvent& event);
-		void OnMenuUpdate(wxCommandEvent& event);
 
 		DECLARE_EVENT_TABLE()
 };
-}//namespace Agender
 
 #endif // AGENDERTRAY_H

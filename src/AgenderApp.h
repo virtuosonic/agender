@@ -2,7 +2,7 @@
  * Name:      AgenderApp.h
  * Purpose:   Defines Application Class
  * Author:    Gabriel Espinoza (virtuosonic@users.sourceforge.net)
-unrecognized  * Created:   2008-11-21
+ * Created:   2008-11-21
  * Copyright: Gabriel Espinoza
  * License: GPLv3+
  **************************************************************/
@@ -13,32 +13,22 @@ unrecognized  * Created:   2008-11-21
 #include <wx/snglinst.h>
 #include <wx/intl.h>
 #include <wx/ipc.h>
-#include <wx/thread.h>
 #include "Notifier.h"
+//#include "AgenderIPC.h"
 
-namespace Agender {
 class AgenderApp : public wxApp
 {
 	public:
-		#if wxUSE_ON_FATAL_EXCEPTION
-		AgenderApp();
-		virtual void OnFatalException();
-		#endif
 		bool OnInit();
 		int OnRun();
 		int OnExit();
-
 	private:
 		void OnEndSession(wxCloseEvent& event);
-		inline void SingleInstance();
 		wxSingleInstanceChecker* m_checker;
 		wxServer* m_server;
 		wxLocale m_locale;
 		Notifier notif;
-		wxMutex run_mutex;
-		wxCondition* exit_cond;
 		DECLARE_EVENT_TABLE()
 };
-}//namespace Agender
 
 #endif // AGENDERAPP_H_INCLUDED

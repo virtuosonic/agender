@@ -6,6 +6,7 @@
  * Copyright: Gabriel Espinoza
  * License: GPLv3+
  **************************************************************/
+
 #ifndef AGENDERMAIN_H
 #define AGENDERMAIN_H
 
@@ -17,16 +18,19 @@
 #include <wx/button.h>
 #include <wx/frame.h>
 //*)
+#include <wx/fileconf.h>
+#include <wx/config.h>
 #include <wx/fdrepdlg.h>
 #include <wx/taskbar.h>
-#include "version.h"
 
-namespace Agender {
+#define __AGENDER_VERSION__ _T("1.1.9")
+
+class AgenderCal;
 
 class AgenderFrame: public wxFrame
 {
 	public:
-		AgenderFrame(wxLocale& locale);
+		AgenderFrame(wxLocale& locale,wxString cfgFile);
 		~AgenderFrame();
 		static const long ID_UPDATE_FOUND;
 	private:
@@ -46,12 +50,10 @@ class AgenderFrame: public wxFrame
 		void OnChangeNotesColour(wxCommandEvent& event);
 		void OnYearSel(wxCommandEvent& event);
 		void OnMenuRename(wxCommandEvent& event);
-		void OnMenuExportNote(wxCommandEvent& event);
 		void OnMenuNoteFlag(wxCommandEvent& event);
 		void OnActivate(wxActivateEvent& event);
 		void OnEscape(wxCommandEvent& event);
 		void OnUpdateFound(wxCommandEvent& event);
-		void OnQuit(wxCommandEvent& event);
 		//(*Identifiers(AgenderFrame)
 		static const long ID_CALENDARCTRL1;
 		static const long ID_LISTBOX1;
@@ -69,23 +71,24 @@ class AgenderFrame: public wxFrame
 		//*)
 		wxFindReplaceDialog* fndDlg;
 		wxFindReplaceData* fndData;
+		wxFileConfig* schdl;
+		wxString schFile;
 		wxTaskBarIcon* trayicon;
 		bool SearchMode;
 		wxLocale& m_locale;
+		AgenderCal* a_cal;
 
 		void MarkDays();
 		void ChangeSelector();
-		void UpdateNotesList();
 
 		enum
 		{
 			ID_RENAME,
 			ID_NORMAL,
-			ID_STICKY,
-			ID_EXPORT_NOTE
+			ID_STICKY
 		};
 
 		DECLARE_EVENT_TABLE()
 };
-}//namespace Agender
+
 #endif // AGENDERMAIN_H

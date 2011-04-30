@@ -2,11 +2,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Agender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-18 20:19-0800\n"
+"POT-Creation-Date: 2010-10-10 23:08-0800\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Gabriel Espinoza <virtuosonic@users.sourceforge.net>\n"
 "Language-Team: Agender project <agender-support@lists.sourceforge.net>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -15,116 +14,47 @@ msgstr ""
 "X-Poedit-Country: CHINA\n"
 "X-Poedit-SearchPath-0: ../src\n"
 
-#: ../src/AgenderTray.cpp:91
-msgid "100%"
-msgstr "100%"
-
-#: ../src/AgenderTray.cpp:92
-msgid "75%"
-msgstr "75%"
-
-#: ../src/AgenderTray.cpp:93
-msgid "50%"
-msgstr "50%"
-
-#: ../src/AgenderTray.cpp:94
-msgid "25%"
-msgstr "25%"
-
-#: ../src/AgenderTray.cpp:99
-msgid "default"
-msgstr ""
-
-#: ../src/AgenderTray.cpp:153
-msgid "Show"
-msgstr "顯示"
-
-#: ../src/AgenderTray.cpp:154
-msgid "Hide"
-msgstr "隱藏"
-
-#: ../src/AgenderTray.cpp:157
-msgid "Opacity"
-msgstr "透明度"
-
-#: ../src/AgenderTray.cpp:158
-msgid "Year selector"
-msgstr "年份選擇"
-
-#: ../src/AgenderTray.cpp:159
-msgid "Notes Colour"
-msgstr "便籤顏色"
-
-#: ../src/AgenderTray.cpp:160
-msgid "Language"
-msgstr ""
-
-#: ../src/AgenderTray.cpp:162
-msgid "Symbol"
-msgstr "符號"
-
-#: ../src/AgenderTray.cpp:164
-#: ../src/AgenderTray.cpp:268
-msgid "Notify"
-msgstr ""
-
-#: ../src/AgenderTray.cpp:165
-msgid "Autostart"
-msgstr "自動啟動"
-
-#: ../src/AgenderTray.cpp:167
-msgid "Exit"
-msgstr "關閉"
-
-#: ../src/AgenderTray.cpp:267
-msgid "Days to notify before note"
-msgstr ""
-
-#: ../src/AgenderTray.cpp:267
-msgid "Days"
-msgstr ""
-
-#: ../src/AgenderTray.cpp:325
-msgid "Agender Language changed"
-msgstr ""
-
-#: ../src/AgenderMain.cpp:75
+#: ../src/AgenderMain.cpp:73
 msgid "Agender"
 msgstr "Agender"
 
-#: ../src/AgenderMain.cpp:91
+#: ../src/AgenderMain.cpp:89
 msgid "Add &note"
 msgstr "增加便籤(&n)"
 
-#: ../src/AgenderMain.cpp:95
+#: ../src/AgenderMain.cpp:93
 msgid "&Delete selection"
 msgstr "删除所選便籤(&D)"
 
-#: ../src/AgenderMain.cpp:97
+#: ../src/AgenderMain.cpp:95
 msgid "&About..."
 msgstr "關於(&A)"
 
-#: ../src/AgenderMain.cpp:131
+#: ../src/AgenderMain.cpp:135
+msgid "Agender uses this file to save your schedule, don't delete it!"
+msgstr "Agender使用此文件來保存您的時間表，請勿刪除！"
+
+#: ../src/AgenderMain.cpp:160
 msgid "Agender|Search Notes"
 msgstr "Agender|搜索便籤"
 
-#: ../src/AgenderMain.cpp:190
+#: ../src/AgenderMain.cpp:239
 msgid "A cross-platform schedule tool"
 msgstr "A cross-platform schedule tool"
 
-#: ../src/AgenderMain.cpp:191
+#: ../src/AgenderMain.cpp:240
 msgid "Build:"
 msgstr "構建："
 
-#: ../src/AgenderMain.cpp:191
+#: ../src/AgenderMain.cpp:240
 msgid "Revision:"
 msgstr "版本："
 
-#: ../src/AgenderMain.cpp:192
+#: ../src/AgenderMain.cpp:241
 msgid "Agender Web Site"
 msgstr "Agender 首頁"
 
-#: ../src/AgenderMain.cpp:193
+#: ../src/AgenderMain.cpp:242
 msgid ""
 "Agender is free software; you can redistribute it and/or modify\n"
 "it under the terms of the GNU General Public License as published by\n"
@@ -149,52 +79,111 @@ msgstr ""
 "您應該已經收到一份隨Agender發布的GNU通用公共許可證（GPL）的\n"
 "副本。如果没有，參閱<http://www.gnu.org/licenses/>。"
 
-#: ../src/AgenderMain.cpp:239
+#: ../src/AgenderMain.cpp:300
 msgid "To-Do Title"
 msgstr "待辦事項標題"
 
-#: ../src/AgenderMain.cpp:239
+#: ../src/AgenderMain.cpp:300
 msgid "New To-Do"
 msgstr "新待辦事項"
 
-#: ../src/AgenderMain.cpp:244
+#: ../src/AgenderMain.cpp:305
 msgid "Expresion '$(' reserved for Agender, please use another name"
 msgstr "'$(' 由Agender預留，請使用另一名稱。"
 
-#: ../src/AgenderMain.cpp:368
-#: ../src/AgenderMain.cpp:406
+#: ../src/AgenderMain.cpp:421
+#: ../src/AgenderMain.cpp:459
 msgid "Rename"
 msgstr "重命名"
 
-#: ../src/AgenderMain.cpp:370
+#: ../src/AgenderMain.cpp:423
 msgid "Normal"
 msgstr "標準"
 
-#: ../src/AgenderMain.cpp:371
+#: ../src/AgenderMain.cpp:424
 msgid "Sticky"
 msgstr "固頂"
 
-#: ../src/AgenderMain.cpp:406
+#: ../src/AgenderMain.cpp:459
 msgid "New name"
 msgstr "新名稱"
 
-#: ../src/AgenderMain.cpp:439
+#: ../src/AgenderMain.cpp:493
 #, c-format
 msgid "The %s version of %s has been released. Do you want to download it?"
 msgstr "版本號為%s的%s已發佈。您想下載嗎？"
 
-#: ../src/AgenderMain.cpp:442
+#: ../src/AgenderMain.cpp:495
 msgid "Upgrade Found"
 msgstr "發現新版本"
 
-#: ../src/wxAutoStart.cpp:38
+#: ../src/wxAutoStart.cpp:39
 #, c-format
 msgid "AutoStart is only available under %s  and Unix desktops that follow the freedesktop.org standards. If you add support for any other system, please send patches to the patch tracker in the Agender project page at http://sourceforge.net/projects/agender/ or you can also help donating hardware that runs your favorite system."
 msgstr "自啟動(AutoStart)功能只在%s和遵循freedesktop.org標準的Unix桌面上才可用。如果您為其他系統增加此功能，請將補丁包發到Agender工程的補丁追踪頁http://sourceforge.net/projects/agender/,另外您也可以通過捐贈裝有您喜愛的系統的硬體來幫助我們。"
 
-#: ../src/wxAutoStart.cpp:45
+#: ../src/wxAutoStart.cpp:46
 msgid "Error setting auto start"
 msgstr "自啟動(AutoStart)設置失敗"
 
-#~ msgid "Agender uses this file to save your schedule, don't delete it!"
-#~ msgstr "Agender使用此文件來保存您的時間表，請勿刪除！"
+#: ../src/AgenderTray.cpp:93
+msgid "100%"
+msgstr "100%"
+
+#: ../src/AgenderTray.cpp:94
+msgid "75%"
+msgstr "75%"
+
+#: ../src/AgenderTray.cpp:95
+msgid "50%"
+msgstr "50%"
+
+#: ../src/AgenderTray.cpp:96
+msgid "25%"
+msgstr "25%"
+
+#: ../src/AgenderTray.cpp:101
+msgid "Show"
+msgstr "顯示"
+
+#: ../src/AgenderTray.cpp:102
+msgid "Hide"
+msgstr "隱藏"
+
+#: ../src/AgenderTray.cpp:105
+msgid "Opacity"
+msgstr "透明度"
+
+#: ../src/AgenderTray.cpp:106
+msgid "Year selector"
+msgstr "年份選擇"
+
+#: ../src/AgenderTray.cpp:107
+msgid "Notes Colour"
+msgstr "便籤顏色"
+
+#: ../src/AgenderTray.cpp:109
+msgid "Symbol"
+msgstr "符號"
+
+#: ../src/AgenderTray.cpp:111
+#: ../src/AgenderTray.cpp:215
+msgid "Notify"
+msgstr ""
+
+#: ../src/AgenderTray.cpp:112
+msgid "Autostart"
+msgstr "自動啟動"
+
+#: ../src/AgenderTray.cpp:114
+msgid "Exit"
+msgstr "關閉"
+
+#: ../src/AgenderTray.cpp:214
+msgid "Days to notify before note"
+msgstr ""
+
+#: ../src/AgenderTray.cpp:214
+msgid "Days"
+msgstr ""
+

@@ -10,31 +10,23 @@
 #endif
 
 #include "AgenderCal.h"
+#include <wx/config.h>
 #include <wx/log.h>
-#include <wx/wfstream.h>
-#include <wx/regex.h>
-#include <wx/arrstr.h>
-#include <wx/tokenzr.h>
 
 //since this  software has a very bad design, now I have to use hacks because it wasn't mean to
 //be extensible, however it acomplishes it goals: small, fast & portable
 //maybe i'll fix al this in 2.0
-namespace Agender
-{
 
 const wxChar* AgenderCal::stickPath = _T("/sticky");
 
-AgenderCal::AgenderCal(wxDateTime date,wxString file)
+AgenderCal::AgenderCal(wxDateTime date)
 {
-	wxFileInputStream stream(file);
-	cfg = new wxFileConfig(stream);
 	SetDate(date);
 }
 
 AgenderCal::~AgenderCal()
 {
-	wxLogMessage(_T("destroying AgenderCal"));
-	delete cfg;
+	wxLogVerbose(_T("destroying AgenderCal"));
 }
 
 void AgenderCal::SetDate(wxDateTime date)
@@ -51,50 +43,52 @@ wxArrayString AgenderCal::GetNotes()
 {
 	wxArrayString notes;
 	wxString dateStr(m_date.Format(_T("%Y-%m-%d")));
-	if (cfg->HasGroup(m_date.Format(_T("%Y-%m-%d"))))
+	if (wxConfig::Get()->HasGroup(m_date.Format(_T("%Y-%m-%d"))))
 	{
-		cfg->SetPath(dateStr);
+		wxConfig::Get()->SetPath(dateStr);
 		wxString noteName;
 		long indx = 0;
-		if (cfg->GetFirstEntry(noteName,indx))
+		if (wxConfig::Get()->GetFirstEntry(noteName,indx))
 		{
 			notes.Add(noteName);
-			while (cfg->GetNextEntry(noteName,indx))
+			while (wxConfig::Get()->GetNextEntry(noteName,indx))
 				notes.Add(noteName);
 		}
-		cfg->SetPath(_T("/"));
+		wxConfig::Get()->SetPath(_T("/"));
+		// TODO (virtuoso#1#): is this needed?
 		if (notes.GetCount() == 0)
-			cfg->DeleteGroup(dateStr);
+			wxConfig::Get()->DeleteGroup(dateStr);
 	}
-	if (cfg->HasGroup(stickPath))
+	if (wxConfig::Get()->HasGroup(stickPath))
 	{
-		cfg->SetPath(stickPath);
+		wxConfig::Get()->SetPath(stickPath);
 		wxString noteName;
 		long indx = 0;
-		if (cfg->GetFirstEntry(noteName,indx))
+		if (wxConfig::Get()->GetFirstEntry(noteName,indx))
 		{
 			notes.Add(noteName+ stickSymb);
-			while (cfg->GetNextEntry(noteName,indx))
+			while (wxConfig::Get()->GetNextEntry(noteName,indx))
 				notes.Add(noteName+ stickSymb);
 		}
-		cfg->SetPath(_T("/"));
+		wxConfig::Get()->SetPath(_T("/"));
 	}
 	return notes;
 }
 
 wxString AgenderCal::GetNoteText(wxString note)
 {
-	return cfg->Read(GetFullPath(note),wxEmptyString);
+	return wxConfig::Get()->Read(GetFullPath(note),wxEmptyString);
 }
 
 void AgenderCal::SetNoteText(wxString note,wxString text)
 {
-	cfg->Write(GetFullPath(note),text);
+	wxConfig::Get()->Write(GetFullPath(note),text);
 }
 
 wxArrayString AgenderCal::Find(wxString WXUNUSED(FindString))
 {
 	wxArrayString found;
+	// TODO (virtuoso#1#): implement!!!
 	return found;
 }
 
@@ -104,19 +98,20 @@ wxArrayInt AgenderCal::GetDaysWithNotes()
 	wxArrayInt days;
 	//the first looks if the existing notes
 	//belong to the current month
-	if (cfg->GetNumberOfGroups() < 30)
+	if (wxConfig::Get()->GetNumberOfGroups() < 30)
 	{
 		wxString group;
 		long indx=0;
-		if (cfg->GetFirstGroup(group,indx))
+		if (wxConfig::Get()->GetFirstGroup(group,indx))
 		{
+			// TODO (virtuoso#1#): send this to a method?
 			if (m_date.Format(_T("%m")) == group.BeforeLast('-').AfterFirst('-'))
 			{
 				long i;
 				group.AfterLast('-').ToLong(&i);
 				days.Add(i);
 			}
-			while(cfg->GetNextGroup(group,indx))
+			while(wxConfig::Get()->GetNextGroup(group,indx))
 			{
 				if (m_date.Format(_T("%m")) == group.BeforeLast('-').AfterFirst('-'))
 				{
@@ -136,14 +131,14 @@ wxArrayInt AgenderCal::GetDaysWithNotes()
 		if (i < 10)
 		{
 			dateStr = m_date.Format(_T("%Y-%m-")) +
-			          wxString::Format(_T("0%i"),i);
+					  wxString::Format(_T("0%i"),i);
 		}
 		else
 		{
 			dateStr = m_date.Format(_T("%Y-%m-")) +
-			          wxString::Format(_T("%i"),i);
+					  wxString::Format(_T("%i"),i);
 		}
-		if (cfg->HasGroup(dateStr))
+		if (wxConfig::Get()->HasGroup(dateStr))
 			days.Add(i);
 	}
 	return days;
@@ -151,28 +146,28 @@ wxArrayInt AgenderCal::GetDaysWithNotes()
 
 void AgenderCal::RmNote(wxString note)
 {
-	cfg->DeleteEntry(GetFullPath(note),true);
+	wxConfig::Get()->DeleteEntry(GetFullPath(note),true);
 }
 
 bool AgenderCal::RenameNote(wxString OldName,wxString NewName)
 {
 	wxString noteVal;
-	if (!cfg->Read(GetFullPath(OldName),&noteVal))
+	if (!wxConfig::Get()->Read(GetFullPath(OldName),&noteVal))
 		return false;
-	cfg->DeleteEntry(GetFullPath(OldName),true);
-	cfg->Write(GetFullPath(NewName),noteVal);
+	wxConfig::Get()->DeleteEntry(GetFullPath(OldName),true);
+	wxConfig::Get()->Write(GetFullPath(NewName),noteVal);
 	return true;
 }
 
 bool AgenderCal::HasNote(wxString note)
 {
-	return cfg->HasEntry(GetFullPath(note));
+	return wxConfig::Get()->HasEntry(GetFullPath(note));
 }
 
 bool AgenderCal::MakeSticky(wxString note)
 {
 	wxString stickyNote(wxString::Format(_T("%s/%s"),stickPath,note.c_str()));
-	cfg->Write(stickyNote,GetNoteText(note));
+	wxConfig::Get()->Write(stickyNote,GetNoteText(note));
 	RmNote(note);
 	return true;
 }
@@ -189,7 +184,7 @@ wxString AgenderCal::GetFullPath(wxString note)
 bool AgenderCal::IsSticky(wxString note)
 {
 	if (RmStickySimb(&note))
-		return cfg->HasEntry(wxString::Format(_T("%s/%s"),stickPath,note.c_str()));
+		return wxConfig::Get()->HasEntry(wxString::Format(_T("%s/%s"),stickPath,note.c_str()));
 	return false;
 
 }
@@ -197,7 +192,7 @@ bool AgenderCal::IsSticky(wxString note)
 bool AgenderCal::UnStick(wxString note)
 {
 	wxString NormalNote(GetFullPath(note.BeforeLast('$')));
-	cfg->Write(NormalNote,GetNoteText(note));
+	wxConfig::Get()->Write(NormalNote,GetNoteText(note));
 	RmNote(note);
 	return true;
 }
@@ -212,41 +207,3 @@ bool AgenderCal::RmStickySimb(wxString* note)
 	return false;
 }
 
-wxDatesArray AgenderCal::GetDatesWithNotes()
-{
-	wxDatesArray dates;
-	//set
-	wxString group_str;
-	long indx;
-	bool test_bool = cfg->GetFirstGroup(group_str,indx);
-	while (test_bool)
-	{
-		wxLogMessage(_T("found date: %s"),group_str.c_str());
-		wxArrayString ddd = wxStringTokenize(group_str,wxT('-'));
-		if (ddd.GetCount() == 3)
-		{
-			wxString date_str;
-			long datemonth = wxDateTime::Inv_Month;
-			long dateyear = wxDateTime::Inv_Year;
-			long dateday = -1;
-			//year
-			ddd[0].ToLong(&dateyear);
-			//month
-			//wxDateTime::Month goes from 0 to 11
-			//but Agender 1.x files save it from 1 to 12
-			//so decrement it to make it work
-			if (ddd[1].ToLong(&datemonth))
-				datemonth--;
-			//day
-			ddd[2].ToLong(&dateday);
-			//date
-			wxDateTime date(dateday,(wxDateTime::Month)datemonth,dateyear);
-			//add
-			if (date.IsValid())
-				dates.Add(date);
-		}
-		test_bool = cfg->GetNextGroup(group_str, indx);
-	}
-	return dates;
-}
-}//namespace Agender
