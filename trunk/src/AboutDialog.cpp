@@ -174,12 +174,6 @@ AboutDialog::AboutDialog(wxAboutDialogInfo& info,wxWindow* parent)
 		<< _T("</a>")
 		<< _T("</<body></html>");
 		HtmlWindow4->SetPage(donateStr);
-//		, we will also add you to the
-//Hall of Fame and link to your website if you like so, you can also help reporting
-//<a href="http://sourceforge.net/tracker/?group_id=271084&atid=1152801">bugs</a>,
-//posting a <a href="http://sourceforge.net/projects/agender/">review</a> or
-//<a href="http://sourceforge.net/apps/mediawiki/agender/index.php?title=Translating">
-//translating</a> it to more languages
 	}
 	//bitmap
 	StaticBitmap1->SetBitmap(wxBitmap(wxStandardPaths::Get().GetResourcesDir()+

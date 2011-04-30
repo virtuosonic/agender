@@ -15,6 +15,7 @@
 #include "AgenderIPC.h"
 #include "Updater.h"
 #include "XmlNotes.h"
+#include "version.h"
 
 #include <wx/log.h>
 #include <wx/defs.h>
@@ -262,11 +263,18 @@ void AgenderApp::OnFatalException()
 {
 	wxDebugReportCompress *report = new wxDebugReportCompress;
 	report->AddAll(wxDebugReport::Context_Exception);
+	//add log file
 	wxFileName logfname;
 	logfname.AssignDir(wxStandardPaths::Get().GetUserDataDir());
 	logfname.SetName(GetAppName());
 	logfname.SetExt(_T("log"));
 	report->AddFile(logfname.GetFullPath(),_("Agender log file"));
+	//add revision data
+	report->AddText(_T("svn_revision.txt"),
+			wxString::FromAscii(SVN_REVISION)+
+			_T(" ") + wxString::FromAscii(SVN_DATE),
+			_("Subversion revision data."));
+	//preview
 	if ( wxDebugReportPreviewStd().Show(*report) )
 	{
 		report->Process();
