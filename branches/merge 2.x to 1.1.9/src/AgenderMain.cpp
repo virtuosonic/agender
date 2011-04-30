@@ -7,8 +7,8 @@
  * License: GPLv3+
  **************************************************************/
 #ifdef __BORLANDC__
-    #pragma hdrstop
-    //for those who can't change turboc++, like theacher Nancy
+//for those who can't change turboc++, like theacher Nancy
+#pragma hdrstop
 #endif
 
 #include <wx/msgdlg.h>
@@ -23,18 +23,26 @@
 #include <wx/stdpaths.h>
 #include <wx/wfstream.h>
 #include <wx/utils.h>
-#include <wx/log.h>
 #include <wx/filename.h>
+#include <wx/log.h>
+#include <wx/config.h>
+#include <wx/dirdlg.h>
+#include <wx/file.h>
+
 #if defined wxHAS_TASK_BAR_ICON
 #include "AgenderTray.h"
 #endif
 
 #include "AgenderMain.h"
 #include "AgenderCal.h"
+#include "AboutDialog.h"
 
 #ifndef __REVISION__
 #define __REVISION__ 0
 #endif
+
+
+namespace Agender {
 
 #include "Agender16x16.xpm"
 
@@ -58,21 +66,22 @@ BEGIN_EVENT_TABLE(AgenderFrame,wxFrame)
 	EVT_ACTIVATE(AgenderFrame::OnActivate)
 	EVT_MENU(wxID_CLOSE,AgenderFrame::OnEscape)
 	EVT_MENU(ID_UPDATE_FOUND,AgenderFrame::OnUpdateFound)
+	EVT_MENU(wxID_EXIT,AgenderFrame::OnQuit)
 	//(*EventTable(AgenderFrame)
 	//*)
 END_EVENT_TABLE()
 
-AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
+AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
 {
-	// TODO (virtuoso#1#): compatibilidad wx-2.9: opcion de usar wxGenericCalenderCtrl en vez de wxCalenderCtrl
+	// TODO (virtuoso#5#): compatibilidad wx-2.9: opcion de usar wxGenericCalenderCtrl en vez de wxCalenderCtrl
 	//(*Initialize(AgenderFrame)
 	wxBoxSizer* BoxSizer1;
 	wxFlexGridSizer* FlexGridSizer1;
 
-	Create(0, wxID_ANY, _("Agender"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxFRAME_TOOL_WINDOW|wxTAB_TRAVERSAL|wxWANTS_CHARS, _T("wxID_ANY"));
-	#ifdef __WXMSW__
+	Create(0, wxID_ANY, _("Agender"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxFRAME_TOOL_WINDOW|wxTAB_TRAVERSAL, _T("wxID_ANY"));
+#ifdef __WXMSW__
 	SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUBAR));
-	#endif
+#endif
 	FlexGridSizer1 = new wxFlexGridSizer(0, 2, 0, 0);
 	FlexGridSizer1->AddGrowableCol(0);
 	FlexGridSizer1->AddGrowableRow(0);
@@ -131,38 +140,28 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 	else
 		schdl = new wxFileConfig;
 	wxConfig::Set(schdl);
-	schdl->Write(_T("/AgenderMessage"),_("Agender uses this file to save your schedule, don't delete it!"));
-	a_cal = new AgenderCal(CalendarCtrl1->GetDate());
-	wxArrayString notes = a_cal->GetNotes();
-	for (unsigned int i = 0; i < notes.GetCount(); i++)
-		ListBox1->Append(notes[i]);
-	if (notes.GetCount() > 0)
-	{
-		ListBox1->SetSelection(0);
-		TextCtrl1->Enable();
-		TextCtrl1->ChangeValue(a_cal->GetNoteText(ListBox1->GetStringSelection()));
-	}
-	else
-		TextCtrl1->Disable();
+	//update
+	UpdateNotesList();
 	ChangeSelector();
 	MarkDays();
 	//shortcuts
-	wxAcceleratorEntry entries[4];
+	wxAcceleratorEntry entries[5];
 	entries[0].Set(wxACCEL_CTRL,(int)'f',wxID_FIND);
 	entries[1].Set(wxACCEL_NORMAL,WXK_ESCAPE,wxID_CLOSE);
-	// TODO (virtuoso#1#): use for cut
+	// TODO (virtuoso#5#): use for cut
 	entries[2].Set(wxACCEL_CTRL,(int)'x',wxID_ANY);
-	entries[3].Set(wxACCEL_CTRL,(int)'q',wxID_ANY);
-	wxAcceleratorTable accel(4, entries);
+	entries[3].Set(wxACCEL_CTRL,(int)'q',wxID_EXIT);
+	entries[4].Set(wxACCEL_CTRL,(int)'n',ID_BUTTON1);
+	wxAcceleratorTable accel(5, entries);
 	this->SetAcceleratorTable(accel);
 	//find dialog
 	fndData = new wxFindReplaceData;
 	fndDlg = new wxFindReplaceDialog(this,fndData,_("Agender|Search Notes"),wxFR_NOUPDOWN|wxFR_NOMATCHCASE|wxFR_NOWHOLEWORD);
 	SearchMode = false;
 	//size
-	SetSize(schdl->Read(_T("/x"),wxDefaultPosition.x),schdl->Read(_T("/y"),wxDefaultPosition.y),
-		schdl->Read(_T("/w"),wxDefaultSize.x),schdl->Read(_T("/h"),wxDefaultSize.y));
-	SetTransparent(schdl->Read(_T("/opacity"),255));
+	SetSize(wxConfig::Get()->Read(_T("/x"),wxDefaultPosition.x),wxConfig::Get()->Read(_T("/y"),wxDefaultPosition.y),
+	        wxConfig::Get()->Read(_T("/w"),wxDefaultSize.x),wxConfig::Get()->Read(_T("/h"),wxDefaultSize.y));
+	SetTransparent(wxConfig::Get()->Read(_T("/opacity"),255));
 	//taskbaricon
 #if defined wxHAS_TASK_BAR_ICON
 	trayicon = new AgenderTray(this);
@@ -172,11 +171,11 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 
 AgenderFrame::~AgenderFrame()
 {
-	wxLogVerbose(_T("destroying AgenderFrame"));
-	schdl->Write(_T("/x"),GetPosition().x);
-	schdl->Write(_T("/y"),GetPosition().y);
-	schdl->Write(_T("/w"),GetSize().x);
-	schdl->Write(_T("/h"),GetSize().y);
+	wxLogMessage(_T("destroying AgenderFrame"));
+	wxConfig::Get()->Write(_T("/x"),GetPosition().x);
+	wxConfig::Get()->Write(_T("/y"),GetPosition().y);
+	wxConfig::Get()->Write(_T("/w"),GetSize().x);
+	wxConfig::Get()->Write(_T("/h"),GetSize().y);
 	wxFileOutputStream ofile(schFile);
 	schdl->Save(ofile);
 	wxConfig::Set(NULL);
@@ -193,77 +192,46 @@ AgenderFrame::~AgenderFrame()
 void AgenderFrame::OnClose(wxCloseEvent& WXUNUSED(event))
 {
 	Hide();
-	schdl->Write(_T("/x"),GetPosition().x);
-	schdl->Write(_T("/y"),GetPosition().y);
-	schdl->Write(_T("/w"),GetSize().x);
-	schdl->Write(_T("/h"),GetSize().y);
+	wxConfig::Get()->Write(_T("/x"),GetPosition().x);
+	wxConfig::Get()->Write(_T("/y"),GetPosition().y);
+	wxConfig::Get()->Write(_T("/w"),GetSize().x);
+	wxConfig::Get()->Write(_T("/h"),GetSize().y);
 }
 
 void AgenderFrame::OnButton3Click(wxCommandEvent& WXUNUSED(event))
 {
+	//about dialog!
 	wxAboutDialogInfo info;
 	//developer a.k.a. me
-	info.AddDeveloper(_T("Gabriel Espinoza <virtuosonic@users.sourceforge.net>"));
-	//translators
-	info.AddTranslator(_T("Gabriel Espinoza : spanish"));
-	info.AddTranslator(_T("Ester Espinoza : deutsch"));
-	info.AddTranslator(_T("Florian Haag <fhaag@users.sourceforge.net> : deutsch"));
-	info.AddTranslator(_T("Daniel Daows : japanese"));
-	info.AddTranslator(_T("Miguel Haruki Yamaguchi <mhy@users.sourceforge.net> : japanese"));
-	info.AddTranslator(_T("Pedro Silva <pbsilva@users.sourceforge.net> : portuguese"));
-	info.AddTranslator(_T("George Petsagourakis : greek"));
-	info.AddTranslator(_T("Rickard Hedlund <bigricke@hotmail.com> : swedish"));
-	info.AddTranslator(_T("Bruno Mace : french"));
-	info.AddTranslator(_T("senoutouya <senoutouya@gmail.com> : chinese"));
-	info.AddTranslator(_T("Adi D. <nevvermind@users.sourceforge.net> : romanian"));
-	info.AddTranslator(_T("Itamar Shoham <itsho@users.sourceforge.net> : hebrew"));
 	//sound
-	//info.AddArtist(_T("xyzr_kx from Freesound Project: alarm_clock.wav"));
+	info.AddArtist(_T("xyzr_kx from Freesound Project: alarm_clock.wav"));
 	//etc
 	info.SetDescription(wxString::Format(_T("%s\n%s %s %s\n%s %i"),_("A cross-platform schedule tool"),
-							 _("Build:"),__TDATE__,__TTIME__,_("Revision:"),__REVISION__));
+	                                     _("Build:"),__TDATE__,__TTIME__,_("Revision:"),__REVISION__));
 	info.SetWebSite(_T("http://agender.sourceforge.net"),_("Agender Web Site"));
-	info.SetLicence(_("Agender is free software; you can redistribute it and/or modify\n"
-				"it under the terms of the GNU General Public License as published by\n"
-				"the Free Software Foundation, either version 3 of the License, or\n"
-				"(at your option) any later version.\n"
-				"\n"
-				"Agender is distributed in the hope that it will be useful,\n"
-				"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
-				"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
-				"GNU General Public License for more details.\n"
-				"\n"
-				"You should have received a copy of the GNU General Public License\n"
-				"along with Agender. If not, see <http://www.gnu.org/licenses/>."));
-	info.SetVersion(__AGENDER_VERSION__);
-	info.SetCopyright(_T("Copyright (C) 2009-2010 Gabriel Espinoza"));
-	wxIcon ico;
-	{
-		wxFileName icoFile;
-		icoFile.AssignDir(wxStandardPaths::Get().GetResourcesDir());
-		icoFile.SetName(_T("agender48.png"));
-		ico.CopyFromBitmap(wxBitmap(icoFile.GetFullPath()));
-	}
-	info.SetIcon(ico);
-	wxAboutBox(info);
+	info.SetLicence(_("Agender is free software; you can redistribute it and/or modify\n\
+it under the terms of the GNU General Public License as published by\n\
+the Free Software Foundation, either version 3 of the License, or\n\
+(at your option) any later version.\n\
+\n\
+Agender is distributed in the hope that it will be useful,\n\
+but WITHOUT ANY WARRANTY; without even the implied warranty of\n\
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n\
+GNU General Public License for more details.\n\
+\n\
+You should have received a copy of the GNU General Public License\n\
+along with Agender. If not, see <http://www.gnu.org/licenses/>."));
+	info.SetVersion(wxString::FromAscii(FULLVERSION_STRING));
+	info.SetCopyright(_T("Copyright (C) 2009-2011 Gabriel Espinoza"));
+	AboutDialog dlg(info,this);
+	dlg.ShowModal();
 }
 
 void AgenderFrame::OnCalendarCtrl1Changed(wxCalendarEvent& WXUNUSED(event))
 {
 	ListBox1->Clear();
-	TextCtrl1->ChangeValue(wxEmptyString);
 	a_cal->SetDate(CalendarCtrl1->GetDate());
-	wxArrayString notes = a_cal->GetNotes();
-	for (unsigned int i = 0; i < notes.GetCount(); i++)
-		ListBox1->Append(notes[i]);
-	if (notes.GetCount() > 0)
-	{
-		ListBox1->SetSelection(0);
-		TextCtrl1->Enable();
-		TextCtrl1->ChangeValue(a_cal->GetNoteText(ListBox1->GetStringSelection()));
-	}
-	else
-		TextCtrl1->Disable();
+	UpdateNotesList();
 	wxFileOutputStream ofile(schFile);
 	schdl->Save(ofile);
 }
@@ -281,17 +249,19 @@ void AgenderFrame::OnListBox1Select(wxCommandEvent& WXUNUSED(event))
 
 void AgenderFrame::OnBtnNuevoClick(wxCommandEvent& WXUNUSED(event))
 {
+	//ask for note title, if empty ignore else create
 	wxTextEntryDialog dlg(this,_("To-Do Title"),_("New To-Do"));
 	if (dlg.ShowModal() == wxID_OK  && dlg.GetValue() != wxEmptyString)
 	{
 		if (dlg.GetValue().Find(_T("$(")) != wxNOT_FOUND)
 		{
 			wxMessageBox(_("Expresion '$(' reserved for Agender, please use another name"),
-					 _T("Error"),wxICON_ERROR,this);
+			             _T("Error"),wxICON_ERROR,this);
 			return;
 		}
 		else if (a_cal->HasNote(dlg.GetValue()))
 			return;
+		//add
 		ListBox1->Append(dlg.GetValue());
 		ListBox1->SetSelection(ListBox1->GetCount()-1);
 		TextCtrl1->Enable();
@@ -305,6 +275,7 @@ void AgenderFrame::OnBtnNuevoClick(wxCommandEvent& WXUNUSED(event))
 
 void AgenderFrame::OnBtnElimClick(wxCommandEvent& WXUNUSED(event))
 {
+	//remove selection
 	if (ListBox1->GetSelection() != wxNOT_FOUND)
 	{
 		a_cal->RmNote(ListBox1->GetStringSelection());
@@ -317,7 +288,8 @@ void AgenderFrame::OnBtnElimClick(wxCommandEvent& WXUNUSED(event))
 
 void AgenderFrame::OnChangeNotesColour(wxCommandEvent& event)
 {
-	schdl->Write(_T("/notescolour"),event.GetString());
+	//called by tray icon
+	wxConfig::Get()->Write(_T("/notescolour"),event.GetString());
 	MarkDays();
 	Refresh();
 }
@@ -332,19 +304,21 @@ void AgenderFrame::OnCalendarCtrl1MonthChanged(wxCalendarEvent& WXUNUSED(event))
 void AgenderFrame::MarkDays()
 {
 	///reset all days attributes
-	for (unsigned int i = 0;
-			i < wxDateTime::GetNumberOfDays(CalendarCtrl1->GetDate().GetMonth());
-			i++)
+	unsigned int i;
+	for (i = 0;
+	        i < wxDateTime::GetNumberOfDays(CalendarCtrl1->GetDate().GetMonth());
+	        i++)
 		CalendarCtrl1->ResetAttr(i+1);
 	///get day with notes
 	wxArrayInt days =  a_cal->GetDaysWithNotes();
 	///mark that days
-	for (unsigned int i = 0; i < days.GetCount(); i++)
+	for (i = 0; i < days.GetCount(); i++)
 	{
 		wxCalendarDateAttr* note_attr = new wxCalendarDateAttr;
-		note_attr->SetTextColour(wxColour(schdl->Read(_T("/notescolour"),_T("#00FF00"))));
+		note_attr->SetTextColour(wxColour(wxConfig::Get()->Read(_T("/notescolour"),_T("#00FF00"))));
 		CalendarCtrl1->SetAttr(days[i],note_attr);
 	}
+	///mark today
 	if (wxDateTime::Now().GetMonth() == CalendarCtrl1->GetDate().GetMonth())
 	{
 		wxCalendarDateAttr* today_attr = CalendarCtrl1->GetAttr(wxDateTime::Now().GetDay());
@@ -354,17 +328,19 @@ void AgenderFrame::MarkDays()
 			CalendarCtrl1->SetAttr(wxDateTime::Now().GetDay(),today_attr);
 		}
 		today_attr->SetBorder(wxCAL_BORDER_ROUND);
-		today_attr->SetBorderColour(wxColour(schdl->Read(_T("/notescolour"),_T("#00ff00"))));
+		today_attr->SetBorderColour(wxColour(wxConfig::Get()->Read(_T("/notescolour"),_T("#00ff00"))));
 	}
 }
 
 void AgenderFrame::OnFind(wxFindDialogEvent& event)
 {
+	//missing!
 	event.GetFindString();
 }
 
 void AgenderFrame::OnSearch(wxCommandEvent& WXUNUSED(event))
 {
+	//missing!
 	if (!fndDlg->IsShown())
 		fndDlg->Show();
 }
@@ -401,6 +377,7 @@ void AgenderFrame::OnTextCtrl1Text(wxCommandEvent& WXUNUSED(event))
 
 void AgenderFrame::OnListBox1DClick(wxCommandEvent& WXUNUSED(event))
 {
+	//double click on a listbox item pops a menu
 	wxMenu* noteMenu = new wxMenu;
 	noteMenu->Append(ID_RENAME,_("Rename"));
 	noteMenu->AppendSeparator();
@@ -411,7 +388,7 @@ void AgenderFrame::OnListBox1DClick(wxCommandEvent& WXUNUSED(event))
 	ListBox1->PopupMenu(noteMenu);
 }
 
-void AgenderFrame::OnMenuNoteFlag(wxCommandEvent& event)
+void AgenderFrame::OnMenuNoteFlag(wxCommandEvent& WXUNUSED(event))
 {
 	switch (event.GetId())
 	{
@@ -456,6 +433,7 @@ void AgenderFrame::OnMenuRename(wxCommandEvent& WXUNUSED(event))
 	}
 }
 
+
 void AgenderFrame::OnActivate(wxActivateEvent& event)
 {
 	if (!event.GetActive())
@@ -472,13 +450,39 @@ void AgenderFrame::OnEscape(wxCommandEvent& WXUNUSED(event))
 
 void AgenderFrame::OnUpdateFound(wxCommandEvent& event)
 {
-	wxLogVerbose(_T("creating dialog"));
+	wxLogMessage(_T("creating update dialog"));
 	wxMessageDialog dlg(wxTheApp->GetTopWindow(),
-			wxString::Format(_("The %s version of %s has been released. "
-				"Do you want to download it?"),event.GetString().c_str(),wxTheApp->GetAppName().c_str()),
-			_("Upgrade Found"),wxYES_NO|wxSTAY_ON_TOP);
+	                    wxString::Format(_("The %s version of %s has been released. \
+				Do you want to download it?"),event.GetString().c_str(),
+	                                     wxTheApp->GetAppName().c_str()),
+	                    _("Upgrade Found"),wxYES_NO|wxSTAY_ON_TOP);
 	if (dlg.ShowModal() == wxID_YES)
 	{
 		wxLaunchDefaultBrowser(_T("http://agender.sourceforge.net/index.php?page=Downloads"));
 	}
 }
+
+void AgenderFrame::UpdateNotesList()
+{
+	AgNotesArray notes = AgCal::Get()->GetDate()->GetNotes();
+	for (unsigned int i = 0; i < notes.GetCount(); i++)
+		ListBox1->Append(notes[i]->GetName());
+	if (notes.GetCount() > 0)
+	{
+		ListBox1->SetSelection(0);
+		TextCtrl1->Enable();
+		TextCtrl1->ChangeValue(AgCal::Get()->GetDate()->GetNote(ListBox1->GetStringSelection())->GetText());
+	}
+	else
+	{
+		TextCtrl1->ChangeValue(wxEmptyString);
+		ListBox1->Clear();
+		TextCtrl1->Disable();
+	}
+}
+
+void AgenderFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
+{
+	Destroy();
+}
+}//namespace Agender
