@@ -6,7 +6,6 @@
  * Copyright: Gabriel Espinoza
  * License: GPLv3+
  **************************************************************/
-
 #ifndef AGENDERMAIN_H
 #define AGENDERMAIN_H
 
@@ -19,14 +18,13 @@
 #include <wx/frame.h>
 //*)
 #include <wx/fileconf.h>
-#include <wx/config.h>
 #include <wx/fdrepdlg.h>
 #include <wx/taskbar.h>
+#include "version.h"
 
-#define __AGENDER_VERSION__ _T("1.1.9")
+namespace Agender {
 
 class AgenderCal;
-
 class AgenderFrame: public wxFrame
 {
 	public:
@@ -54,6 +52,7 @@ class AgenderFrame: public wxFrame
 		void OnActivate(wxActivateEvent& event);
 		void OnEscape(wxCommandEvent& event);
 		void OnUpdateFound(wxCommandEvent& event);
+		void OnQuit(wxCommandEvent& event);
 		//(*Identifiers(AgenderFrame)
 		static const long ID_CALENDARCTRL1;
 		static const long ID_LISTBOX1;
@@ -80,15 +79,16 @@ class AgenderFrame: public wxFrame
 
 		void MarkDays();
 		void ChangeSelector();
+		void UpdateNotesList();
 
 		enum
 		{
 			ID_RENAME,
 			ID_NORMAL,
-			ID_STICKY
+			ID_STICKY,
 		};
 
 		DECLARE_EVENT_TABLE()
 };
-
+}//namespace Agender
 #endif // AGENDERMAIN_H
