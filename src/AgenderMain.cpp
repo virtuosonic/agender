@@ -140,6 +140,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 	else
 		schdl = new wxFileConfig;
 	wxConfig::Set(schdl);
+	a_cal = new AgenderCal(wxDateTime::Now(),schdl);
 	//update
 	UpdateNotesList();
 	ChangeSelector();
