@@ -365,26 +365,6 @@ void AgenderTray::OnMenuLang(wxCommandEvent& event)
 	             _("Agender Language changed"),wxOK,frame);
 }
 
-void AgenderTray::OnMenuImport(wxCommandEvent& WXUNUSED(event))
-{
-	wxFileDialog dlg(0);
-	dlg.SetWildcard(_T("Agender files|*.xml;*.txt"));
-	if (dlg.ShowModal() == wxID_OK)
-	{
-		AgCal::Get()->Import(dlg.GetPath());
-	}
-}
-
-void AgenderTray::OnMenuExport(wxCommandEvent& WXUNUSED(event))
-{
-	wxFileDialog dlg(0);
-	dlg.SetWildcard(_T("Agender xml|*.xml"));
-	if (dlg.ShowModal() == wxID_OK)
-	{
-		AgCal::Get()->Export(dlg.GetPath());
-	}
-}
-
 void AgenderTray::OnMenuAbout(wxCommandEvent& event)
 {
 	event.SetEventType(wxEVT_COMMAND_BUTTON_CLICKED);
