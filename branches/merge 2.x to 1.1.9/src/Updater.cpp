@@ -6,6 +6,10 @@
  * Copyright: Gabriel Espinoza
  * License: GPLv3+
  **************************************************************/
+#ifdef __BORLANDC__
+#pragma hdrstop
+#endif
+
 #include "Updater.h"
 #include "AgenderMain.h"
 
@@ -13,12 +17,11 @@
 #include <wx/txtstrm.h>
 #include <wx/tokenzr.h>
 #include <wx/log.h>
-#include <wx/msgdlg.h>
+#include <wx/config.h>
 #include <wx/app.h>
 
-#ifdef __BORLANDC__
-#pragma hdrstop
-#endif
+namespace Agender
+{
 
 Updater::Updater(wxString host,wxString file,wxString ver) : wxThread(wxTHREAD_DETACHED)
 {
@@ -29,27 +32,39 @@ Updater::Updater(wxString host,wxString file,wxString ver) : wxThread(wxTHREAD_D
 
 Updater::~Updater()
 {
-	wxLogVerbose(_T("destroying updater"));
+	//nothing todo here
+	wxLogMessage(_T("destroying updater"));
 }
 
 wxThread::ExitCode Updater::Entry()
 {
 	//wait 5 minutes
+	//to give oportunity
+	//to the user to
+	//connect to internet
 	Sleep(300000);
 	wxString found;
 	while (found.IsEmpty())
 	{
-		found = Search();
+		//read option to search for updates from
+		//config, the default is to search
+		bool searchforupdates = true;
+		wxConfig::Get()->Read(_T("/searchforupdates"),&searchforupdates);
+		if (searchforupdates)
+		{
+			//if true search
+			found = Search();
+		}
+		//if not empty compare
 		if (!found.IsEmpty())
 		{
-			if (IsLatest(found))
+			if (!IsLatest(found))
 				AskUser(found);
 		}
 		else
 		{
-			//unsigned long
-			//while ()
-			Sleep(3600000);//1 hour
+			//sleep 1 hour
+			Sleep(3600000);
 		}
 	}
 	return (wxThread::ExitCode) 0;
@@ -57,60 +72,72 @@ wxThread::ExitCode Updater::Entry()
 
 wxString Updater::Search()
 {
-	wxLogVerbose(_T("creating http client"));
+	wxLogMessage(_T("creating http client"));
 	wxHTTP updateClient;
-	wxLogVerbose(_T("connecting to %s"),m_host.c_str());
+	wxLogMessage(_T("connecting to %s"),m_host.c_str());
 	if (updateClient.Connect(m_host))
 	{
+		//this saves a little band width
 		updateClient.SetHeader(_T("If-Modified-Since"),
-			wxConfig::Get()->Read(_T("http-modified-time"),wxEmptyString));
+		                       wxConfig::Get()->Read(_T("/http-modified-time"),wxEmptyString));
 		wxInputStream* ver_data = (wxInputStream*)updateClient.GetInputStream(m_file);
-		wxLogVerbose(_T("http response: %i"),updateClient.GetResponse());
+		wxLogMessage(_T("http response: %i"),updateClient.GetResponse());
 		if (ver_data && updateClient.GetResponse() == 200)
 		{
-			wxConfig::Get()->Write(_T("http-modified-time"),
-					updateClient.GetHeader(_T("Date")));
-			wxLogVerbose(_T("Date = %s"),updateClient.GetHeader(_T("Date")).c_str());
+			wxConfig::Get()->Write(_T("/http-modified-time"),
+			                       updateClient.GetHeader(_T("Date")));
+			wxLogMessage(_T("Date = %s"),updateClient.GetHeader(_T("Date")).c_str());
 			wxString last_ver;
 			wxTextInputStream strm(*ver_data);
 			last_ver = strm.ReadLine();
 			delete ver_data;
+			//here we return the
+			//contents of the file
+			//it should be something like
+			//9.9.9
 			return last_ver;
 		}
 		else if (updateClient.GetResponse() == 304)
-			wxLogVerbose(_T("no changes in version info"));
+			wxLogMessage(_T("no changes in version info"));
 		else
-			wxLogVerbose(_T("failed opening http stream"));
+			wxLogMessage(_T("failed opening http stream"));
 	}
 	else
-		wxLogVerbose(_T("failed connecting to %s"),m_host.c_str());
+		wxLogWarning(_T("failed connecting to %s"),m_host.c_str());
+	//we return nothing
 	return wxEmptyString;
 }
 
 bool Updater::IsLatest(wxString latest)
 {
+	if (m_ver == latest)
+		return true;
+	//current
 	wxArrayInt i_cur = ToInt(m_ver);
+	//retrieved from inet
 	wxArrayInt i_latest = ToInt(latest);
-	for (unsigned int i = 0;i < i_cur.GetCount()  && i < i_latest.GetCount();i++)
+	for (unsigned int i = 0; i < i_cur.GetCount()  && i < i_latest.GetCount(); i++)
 	{
 		if (i_latest[i] > i_cur[i])
 		{
 			wxLogVerbose(_T("found new version"));
-			return true;
+			return false;
 		}
 	}
 	if (i_latest.GetCount() > i_cur.GetCount())
 	{
 		wxLogVerbose(_T("found new version"));
-		return true;
+		return false;
 	}
 	wxLogVerbose(_T("this is the latest version"));
-	return false;
+	return true;
 }
 
 void Updater::AskUser(wxString ver)
 {
-	wxLogVerbose(_T("sending event to frame"));
+	//this sends an event to the
+	//main window
+	wxLogMessage(_T("sending event to frame"));
 	wxCommandEvent event(wxEVT_COMMAND_MENU_SELECTED,AgenderFrame::ID_UPDATE_FOUND);
 	event.SetString(ver);
 	wxPostEvent(wxTheApp->GetTopWindow(),event);
@@ -128,4 +155,5 @@ wxArrayInt Updater::ToInt(wxString ver)
 		ver_num.Add(n);
 	}
 	return ver_num;
+}
 }

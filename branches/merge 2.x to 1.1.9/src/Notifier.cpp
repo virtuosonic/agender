@@ -11,13 +11,15 @@
 #include <wx/config.h>
 #include <wx/sound.h>
 
+// TODO (virtuoso#1#): implement notifications
+
 class Alarm : public wxTimer
 {
-	void Notify()
-	{
-		wxLogVerbose(_T("ringing"));
-		wxSound::Play(_T("../share/14262_xyzr_kx_alarm_clock.wav"));
-	}
+		void Notify()
+		{
+			wxLogMessage(_T("ringing"));
+			wxSound::Play(wxString(_T("../share/14262_xyzr_kx_alarm_clock.wav")));
+		}
 };
 
 Notifier::Notifier()
@@ -36,7 +38,7 @@ void Notifier::Notify()
 	wxConfig::Get()->Read(_T("/notify"),&test_bool,false);
 	if (test_bool)
 	{
-		wxLogVerbose(_T("runing"));
+		wxLogMessage(_T("runing"));
 		m_alarm->Start(5000);
 	}
 }

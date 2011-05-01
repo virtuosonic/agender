@@ -1,0 +1,58 @@
+/**********************************************************
+*                Agender ChangeLog
+*         http://agender.sourceforge.net/
+**********************************************************/
+
+Version 2.0 Comming soon spring 2011:
+========================
+-Notifications????
+-New xml based format
+-New About Dialog
+-Added /? option to command line
+-When the Installer runs Agender it passes the /nt option
+-Export notes as Agender xml files
+-Changed installer bitmaps
+-Installer saves chosen components
+-fixed: "Minimal+Detected language translation" Install type
+-Added: shortcut for exit (CTRL+Q)
+-Added: export selected note
+-Added: Option to turn automatic updates search off
+
+VERSION 1.0.7 - 1.1.9.1:
+========================
+TODO: document
+
+Version 1.0.6 28 Jun 2009:
+==========================
+-Applied: cambio del archivo de configuracion para que sea oculto en un*x
+
+#THE VERSIONS BELOW WHEREN'T PUBLICLY RELEASED
+
+Version 1.0.5 18 Abr 2009:
+==========================
+-Fixed: Error de manejo de memoria, que provocaba que el programa recibiera la señal SIGSEGV
+-Added: el submenu opacity se deshabilita si no se soporta tranparencia
+-New: ahora los dias se marcan inmediatamante al agregar o eliminar notas
+
+Version 1.0.4  21 Feb 2009:
+==========================
+-Fixed: ahora las fechas que solo tienen un digito tambien se colorean si contienen notas
+
+Version 1.0.3 21 Feb 2009:
+==========================
+-New: parcial: los dias que tinen notas aparecen marcados de rojo (se puede cabiar el color) en el calendario
+
+Version 1.0.2 30 Ene 2009:
+==========================
+-Fixed: Fallo al escribir al registro
+
+Version 1.0.1 27 Ene 2009:
+==========================
+-Fixed: Escribe en el registro solo cuando es necesario
+-New: Iconos de la barra de tareas, programa y del cuadro acerca de...
+-Fixed: Carga las notas del dia correspondiente
+
+Version 1.0 ~21 Nov 2008:
+=========================
+-First Agender
+-Very limited & buggy
