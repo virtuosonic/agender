@@ -33,17 +33,17 @@ NoteDataObject::NoteDataObject(wxString noteName,wxString noteText)
 
 bool NoteDataObject::SetData(const wxDataFormat& format, size_t len,const void* buf)
 {
-
+	return false;
 }
 
 bool NoteDataObject::GetDataHere(const wxDataFormat& format,void* pBuf)
 {
-
+	return false;
 }
 
 size_t NoteDataObject::GetDataSize(const wxDataFormat& format)
 {
-
+	return 0;
 }
 
 void NoteDataObject::GetAllFormats(wxDataFormat *formats,Direction dir)

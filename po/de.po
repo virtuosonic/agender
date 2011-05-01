@@ -2,10 +2,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Agender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-10 23:07-0800\n"
+"POT-Creation-Date: 2010-12-18 20:19-0800\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Florian Haag <fhaag@users.sourceforge.net>\n"
 "Language-Team: Agender project <agender-support@lists.sourceforge.net>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,47 +14,116 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ../src\n"
 
-#: ../src/AgenderMain.cpp:73
+#: ../src/AgenderTray.cpp:91
+msgid "100%"
+msgstr "100%"
+
+#: ../src/AgenderTray.cpp:92
+msgid "75%"
+msgstr "75%"
+
+#: ../src/AgenderTray.cpp:93
+msgid "50%"
+msgstr "50%"
+
+#: ../src/AgenderTray.cpp:94
+msgid "25%"
+msgstr "25%"
+
+#: ../src/AgenderTray.cpp:99
+msgid "default"
+msgstr "Standard"
+
+#: ../src/AgenderTray.cpp:153
+msgid "Show"
+msgstr "Zeigen"
+
+#: ../src/AgenderTray.cpp:154
+msgid "Hide"
+msgstr "Verbergen"
+
+#: ../src/AgenderTray.cpp:157
+msgid "Opacity"
+msgstr "Deckkraft"
+
+#: ../src/AgenderTray.cpp:158
+msgid "Year selector"
+msgstr "Auswahl des Jahrs"
+
+#: ../src/AgenderTray.cpp:159
+msgid "Notes Colour"
+msgstr "Farbe von Notizen"
+
+#: ../src/AgenderTray.cpp:160
+msgid "Language"
+msgstr "Sprache"
+
+#: ../src/AgenderTray.cpp:162
+msgid "Symbol"
+msgstr "Symbol"
+
+#: ../src/AgenderTray.cpp:164
+#: ../src/AgenderTray.cpp:268
+msgid "Notify"
+msgstr "Benachrichtigen"
+
+#: ../src/AgenderTray.cpp:165
+msgid "Autostart"
+msgstr "AutoStart"
+
+#: ../src/AgenderTray.cpp:167
+msgid "Exit"
+msgstr "Beenden"
+
+#: ../src/AgenderTray.cpp:267
+msgid "Days to notify before note"
+msgstr "Ereignis X Tage im Voraus ankündigen"
+
+#: ../src/AgenderTray.cpp:267
+msgid "Days"
+msgstr "Tage"
+
+#: ../src/AgenderTray.cpp:325
+msgid "Agender Language changed"
+msgstr "Agender-Sprache geändert"
+
+#: ../src/AgenderMain.cpp:75
 msgid "Agender"
 msgstr "Agender"
 
-#: ../src/AgenderMain.cpp:89
+#: ../src/AgenderMain.cpp:91
 msgid "Add &note"
 msgstr "&Notiz hinzufügen"
 
-#: ../src/AgenderMain.cpp:93
+#: ../src/AgenderMain.cpp:95
 msgid "&Delete selection"
 msgstr "&Auswahl löschen"
 
-#: ../src/AgenderMain.cpp:95
+#: ../src/AgenderMain.cpp:97
 msgid "&About..."
 msgstr "Ü&ber..."
 
-#: ../src/AgenderMain.cpp:135
-msgid "Agender uses this file to save your schedule, don't delete it!"
-msgstr "Agender verwendet diese Datei, um Ihre Termine zu speichern; löschen Sie sie nicht!"
-
-#: ../src/AgenderMain.cpp:160
+#: ../src/AgenderMain.cpp:131
 msgid "Agender|Search Notes"
 msgstr "Agender|Notiz suchen"
 
-#: ../src/AgenderMain.cpp:239
+#: ../src/AgenderMain.cpp:190
 msgid "A cross-platform schedule tool"
 msgstr "Ein plattformunabhängiges Zeitplanungs-Werkzeug"
 
-#: ../src/AgenderMain.cpp:240
+#: ../src/AgenderMain.cpp:191
 msgid "Build:"
 msgstr "Build:"
 
-#: ../src/AgenderMain.cpp:240
+#: ../src/AgenderMain.cpp:191
 msgid "Revision:"
 msgstr "Revision:"
 
-#: ../src/AgenderMain.cpp:241
+#: ../src/AgenderMain.cpp:192
 msgid "Agender Web Site"
 msgstr "Agender-Webseite"
 
-#: ../src/AgenderMain.cpp:242
+#: ../src/AgenderMain.cpp:193
 msgid ""
 "Agender is free software; you can redistribute it and/or modify\n"
 "it under the terms of the GNU General Public License as published by\n"
@@ -82,111 +152,54 @@ msgstr ""
 "Agender erhalten haben. Falls nicht, besuchen Sie\n"
 "<http://www.gnu.org/licenses/>."
 
-#: ../src/AgenderMain.cpp:300
+#: ../src/AgenderMain.cpp:239
 msgid "To-Do Title"
 msgstr "Aufgabentitel"
 
-#: ../src/AgenderMain.cpp:300
+#: ../src/AgenderMain.cpp:239
 msgid "New To-Do"
 msgstr "Neue Aufgabe"
 
-#: ../src/AgenderMain.cpp:305
+#: ../src/AgenderMain.cpp:244
 msgid "Expresion '$(' reserved for Agender, please use another name"
 msgstr "Der Ausdruck '$(' ist in Agender reserviert, bitte benutzen Sie einen anderen Namen"
 
-#: ../src/AgenderMain.cpp:421
-#: ../src/AgenderMain.cpp:459
+#: ../src/AgenderMain.cpp:368
+#: ../src/AgenderMain.cpp:406
 msgid "Rename"
 msgstr "Umbenennen"
 
-#: ../src/AgenderMain.cpp:423
+#: ../src/AgenderMain.cpp:370
 msgid "Normal"
 msgstr "Normal"
 
-#: ../src/AgenderMain.cpp:424
+#: ../src/AgenderMain.cpp:371
 msgid "Sticky"
 msgstr "Wichtig"
 
-#: ../src/AgenderMain.cpp:459
+#: ../src/AgenderMain.cpp:406
 msgid "New name"
 msgstr "Neuer Name"
 
-#: ../src/AgenderMain.cpp:493
+#: ../src/AgenderMain.cpp:439
 #, c-format
 msgid "The %s version of %s has been released. Do you want to download it?"
 msgstr "Version %s von %s wurde veröffentlicht. Möchten Sie sie herunterladen?"
 
-#: ../src/AgenderMain.cpp:495
+#: ../src/AgenderMain.cpp:442
 msgid "Upgrade Found"
 msgstr "Upgrade gefunden"
 
-#: ../src/wxAutoStart.cpp:39
+#: ../src/wxAutoStart.cpp:38
 #, c-format
 msgid "AutoStart is only available under %s  and Unix desktops that follow the freedesktop.org standards. If you add support for any other system, please send patches to the patch tracker in the Agender project page at http://sourceforge.net/projects/agender/ or you can also help donating hardware that runs your favorite system."
 msgstr "AutoStart ist nur unter Windows, %s  und Unix-Desktops verfügbar, welche die freedesktop.org-Standards einhalten. Wenn Sie Unterstützung für ein anderes System hinzufügen, senden Sie bitte Patches an den Patch-Tracker auf der Agender-Projektwebseite unter http://sourceforge.net/projects/agender/. Sie können auch helfen, indem Sie Hardware für Ihr Lieblingssystem zur Verfügung stellen."
 
-#: ../src/wxAutoStart.cpp:46
+#: ../src/wxAutoStart.cpp:45
 msgid "Error setting auto start"
 msgstr "Konnte keinen AutoStart-Eintrag erzeugen"
 
-#: ../src/AgenderTray.cpp:93
-msgid "100%"
-msgstr "100%"
-
-#: ../src/AgenderTray.cpp:94
-msgid "75%"
-msgstr "75%"
-
-#: ../src/AgenderTray.cpp:95
-msgid "50%"
-msgstr "50%"
-
-#: ../src/AgenderTray.cpp:96
-msgid "25%"
-msgstr "25%"
-
-#: ../src/AgenderTray.cpp:101
-msgid "Show"
-msgstr "Zeigen"
-
-#: ../src/AgenderTray.cpp:102
-msgid "Hide"
-msgstr "Verbergen"
-
-#: ../src/AgenderTray.cpp:105
-msgid "Opacity"
-msgstr "Deckkraft"
-
-#: ../src/AgenderTray.cpp:106
-msgid "Year selector"
-msgstr "Auswahl des Jahrs"
-
-#: ../src/AgenderTray.cpp:107
-msgid "Notes Colour"
-msgstr "Farbe von Notizen"
-
-#: ../src/AgenderTray.cpp:109
-msgid "Symbol"
-msgstr "Symbol"
-
-#: ../src/AgenderTray.cpp:111
-#: ../src/AgenderTray.cpp:215
-msgid "Notify"
-msgstr "Benachrichtigen"
-
-#: ../src/AgenderTray.cpp:112
-msgid "Autostart"
-msgstr "AutoStart"
-
-#: ../src/AgenderTray.cpp:114
-msgid "Exit"
-msgstr "Beenden"
-
-#: ../src/AgenderTray.cpp:214
-msgid "Days to notify before note"
-msgstr "Ereignis X Tage im Voraus ankündigen"
-
-#: ../src/AgenderTray.cpp:214
-msgid "Days"
-msgstr "Tage"
-
+#~ msgid "Agender uses this file to save your schedule, don't delete it!"
+#~ msgstr ""
+#~ "Agender verwendet diese Datei, um Ihre Termine zu speichern; löschen Sie "
+#~ "sie nicht!"

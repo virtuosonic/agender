@@ -21,7 +21,7 @@ class AutoStart
 		bool Set(bool on);
 	private:
 		void OutputError();
-		#if defined __UNIX__ && !defined __APPLE__
+#if defined __UNIX__ && !defined __APPLE__
 		//freedesktop.org
 		bool SetXDG();
 		bool UnSetXDG();
@@ -32,10 +32,10 @@ class AutoStart
 		bool SetIceWM();
 		bool UnSetIceWM();
 		//Windows
-		#elif defined __WXMSW__
+#elif defined __WXMSW__
 		bool SetWindows();
 		bool UnSetWindows();
-		#endif
+#endif
 		//members
 };
 
