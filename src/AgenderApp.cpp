@@ -100,10 +100,14 @@ bool AgenderApp::OnInit()
 	//parse arguments
 	wxCmdLineParser cmd(argc,argv);
 	//not in use
-	//cmd.AddOption(_T("c"),_T("config"),_T("specify a config file to load"),wxCMD_LINE_VAL_STRING);	//switches	cmd.AddSwitch(_T("nt"),_T("no-taskbar"),_T("use when you don't have a taskbar"));
+	cmd.AddOption(_T("c"),_T("config"),_T("specify a config file to load"),wxCMD_LINE_VAL_STRING);
+	//switches
+	cmd.AddSwitch(_T("nt"),_T("no-taskbar"),_T("use when you don't have a taskbar"));
 	cmd.AddSwitch(_T("p"),_T("portable"),_T("read config and notes from app dir"));
 	cmd.AddSwitch(_T("na"),_T("no-autostart"),_T("disable auto start"));
-	cmd.AddSwitch(_T("?"),wxEmptyString,wxEmptyString,wxCMD_LINE_OPTION_HELP);	//why OnInitCmdLine doesn't have /?  ??? :P	OnInitCmdLine(cmd);
+	cmd.AddSwitch(_T("?"),wxEmptyString,wxEmptyString,wxCMD_LINE_OPTION_HELP);
+	//why OnInitCmdLine doesn't have /?  ??? :P
+	OnInitCmdLine(cmd);
 	int res = cmd.Parse(false);
 	OnCmdLineParsed(cmd);
 	if (res < 0 || cmd.Found(_T("?")))	{

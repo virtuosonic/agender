@@ -165,9 +165,9 @@ bool AutoStart::SetXDG()
 {
 	wxString desktopFile;
 	desktopFile << wxGetHomeDir()
-	<< _T("/.config/autostart/")
-	<< wxTheApp->GetAppName()
-	<< _T(".desktop");
+	            << _T("/.config/autostart/")
+	            << wxTheApp->GetAppName()
+	            << _T(".desktop");
 	wxLogMessage(_T("Creating %s"),desktopFile.c_str());
 	//freedesktop.org
 	if (!wxFileExists(desktopFile))
@@ -194,9 +194,9 @@ bool AutoStart::UnSetXDG()
 {
 	wxString desktopFile;
 	desktopFile << wxGetHomeDir()
-	<< _T("/.config/autostart/")
-	<< wxTheApp->GetAppName()
-	<< _T(".desktop");
+	            << _T("/.config/autostart/")
+	            << wxTheApp->GetAppName()
+	            << _T(".desktop");
 	if (wxFileExists(desktopFile))
 		wxRemoveFile(desktopFile);
 	return true;

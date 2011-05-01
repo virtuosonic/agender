@@ -20,10 +20,10 @@ namespace Agender {
 class AgenderApp : public wxApp
 {
 	public:
-		#if wxUSE_ON_FATAL_EXCEPTION
+#if wxUSE_ON_FATAL_EXCEPTION
 		AgenderApp();
 		virtual void OnFatalException();
-		#endif
+#endif
 		bool OnInit();
 		int OnRun();
 		int OnExit();

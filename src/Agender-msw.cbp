@@ -151,13 +151,6 @@
 		<Unit filename="Notifier.h" />
 		<Unit filename="Updater.cpp" />
 		<Unit filename="Updater.h" />
-		<Unit filename="XmlNotes.cpp" />
-		<Unit filename="XmlNotes.h" />
-		<Unit filename="langmenu.cpp">
-			<Option compile="0" />
-			<Option link="0" />
-		</Unit>
-		<Unit filename="langmenu.h" />
 		<Unit filename="resource.rc">
 			<Option compilerVar="WINDRES" />
 		</Unit>
