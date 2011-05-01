@@ -24,6 +24,7 @@ class AgenderCal
 {
 	public:
 		AgenderCal(wxDateTime date,wxString file);
+		AgenderCal(wxDateTime date,wxFileConfig* file);
 		~AgenderCal();
 		void SetDate(wxDateTime date);
 		wxDateTime GetDate();

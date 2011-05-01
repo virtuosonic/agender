@@ -31,10 +31,16 @@ AgenderCal::AgenderCal(wxDateTime date,wxString file)
 	SetDate(date);
 }
 
+AgenderCal::AgenderCal(wxDateTime date,wxFileConfig* file)
+{
+	cfg = file;
+	SetDate(date);
+}
+
 AgenderCal::~AgenderCal()
 {
 	wxLogMessage(_T("destroying AgenderCal"));
-	delete cfg;
+	//delete cfg;
 }
 
 void AgenderCal::SetDate(wxDateTime date)
