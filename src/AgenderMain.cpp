@@ -71,7 +71,7 @@ BEGIN_EVENT_TABLE(AgenderFrame,wxFrame)
 	//*)
 END_EVENT_TABLE()
 
-AgenderFrame::AgenderFrame(wxLocale& locale):m_locale(locale)
+AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 {
 	// TODO (virtuoso#5#): compatibilidad wx-2.9: opcion de usar wxGenericCalenderCtrl en vez de wxCalenderCtrl
 	//(*Initialize(AgenderFrame)
@@ -388,7 +388,7 @@ void AgenderFrame::OnListBox1DClick(wxCommandEvent& WXUNUSED(event))
 	ListBox1->PopupMenu(noteMenu);
 }
 
-void AgenderFrame::OnMenuNoteFlag(wxCommandEvent& WXUNUSED(event))
+void AgenderFrame::OnMenuNoteFlag(wxCommandEvent& event)
 {
 	switch (event.GetId())
 	{
@@ -400,7 +400,7 @@ void AgenderFrame::OnMenuNoteFlag(wxCommandEvent& WXUNUSED(event))
 		case ID_STICKY:
 			a_cal->MakeSticky(ListBox1->GetStringSelection());
 			ListBox1->SetString(ListBox1->GetSelection(),wxString::Format(_T("%s%s"),
-						  ListBox1->GetStringSelection().c_str(),stickSymb));
+			                    ListBox1->GetStringSelection().c_str(),stickSymb));
 			MarkDays();
 			break;
 		default:
@@ -464,14 +464,14 @@ void AgenderFrame::OnUpdateFound(wxCommandEvent& event)
 
 void AgenderFrame::UpdateNotesList()
 {
-	AgNotesArray notes = AgCal::Get()->GetDate()->GetNotes();
+	wxArrayString notes = a_cal->GetNotes();
 	for (unsigned int i = 0; i < notes.GetCount(); i++)
-		ListBox1->Append(notes[i]->GetName());
+		ListBox1->Append(notes[i]);
 	if (notes.GetCount() > 0)
 	{
 		ListBox1->SetSelection(0);
 		TextCtrl1->Enable();
-		TextCtrl1->ChangeValue(AgCal::Get()->GetDate()->GetNote(ListBox1->GetStringSelection())->GetText());
+		TextCtrl1->ChangeValue(a_cal->GetNoteText(ListBox1->GetStringSelection()));
 	}
 	else
 	{
