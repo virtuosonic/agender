@@ -67,6 +67,7 @@ Section "Agender" SEC01
 	;executable
 	SetOutPath "$INSTDIR\App"
 	File "${Ag_EXE}"
+	File "${C_RUNTIME}"
 	;Icon
 	File "share\project-support.jpg"
 	File "share\hdr.png"

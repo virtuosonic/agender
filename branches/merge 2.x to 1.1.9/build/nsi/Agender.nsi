@@ -97,6 +97,7 @@ Section "Agender" SEC01
 	SetOverwrite ifdiff
 	;executable
 	File "${Ag_EXE}"
+	File "${C_RUNTIME}"
 	;shortcuts
 	CreateDirectory "$SMPROGRAMS\Agender"
 	CreateShortCut "$SMPROGRAMS\Agender\Agender.lnk" "$INSTDIR\Agender.exe"
