@@ -119,7 +119,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 	Connect(wxID_ABOUT,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&AgenderFrame::OnButton3Click);
 	Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&AgenderFrame::OnClose);
 	//*)
-	if (wxFileExists(cfgFile))
+	if (!(cfgFile.IsEmpty()))
 	{
 		schFile=cfgFile;
 	}
