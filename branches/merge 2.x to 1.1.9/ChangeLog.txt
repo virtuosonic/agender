@@ -3,20 +3,17 @@
 *         http://agender.sourceforge.net/
 **********************************************************/
 
-Version 2.0 Comming soon spring 2011:
+Version 1.2 2 May 2011:
 ========================
--Notifications????
--New xml based format
 -New About Dialog
 -Added /? option to command line
 -When the Installer runs Agender it passes the /nt option
--Export notes as Agender xml files
 -Changed installer bitmaps
 -Installer saves chosen components
 -fixed: "Minimal+Detected language translation" Install type
 -Added: shortcut for exit (CTRL+Q)
--Added: export selected note
--Added: Option to turn automatic updates search off
+-Added: debug report
+-Portable edition
 
 VERSION 1.0.7 - 1.1.9.1:
 ========================
