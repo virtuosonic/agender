@@ -5,6 +5,6 @@
 		gnu,msvc6prj,mingw,msvs2005prj
 	</add-formats>
 	<add-flags>
-		-I C:/wxWidgets-2.8.11/build/bakefiles/wxpresets
+		-I C:/wxWidgets-2.8.12/build/bakefiles/wxpresets
 	</add-flags>
 </bakefile-gen>

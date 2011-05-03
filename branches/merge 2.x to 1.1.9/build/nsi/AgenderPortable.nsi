@@ -11,7 +11,7 @@
 !packhdr "${PACKHDRTEMP}" '"${UPX}" -9 "${PACKHDRTEMP}"'
 
 SetCompressor /SOLID lzma
-OutFile "${PRODUCT_NAME} Portable.exe"
+OutFile "${PRODUCT_NAME}Portable.exe"
 SilentInstall Silent
 AutoCloseWindow True
 RequestExecutionLevel user
@@ -21,7 +21,7 @@ VIProductVersion "1.0.0.0"
 VIAddVersionKey "ProductName" "${PRODUCT_NAME}"
 VIAddVersionKey "Comments" "A cross-platform schedule tool. For additional details, visit ${PRODUCT_WEB_SITE}"
 VIAddVersionKey "CompanyName" "${PRODUCT_PUBLISHER}"
-VIAddVersionKey "LegalCopyright" "Copyright Â© 2009-2011 Gabriel Espinoza"
+VIAddVersionKey "LegalCopyright" "Copyright © 2009-2011 Gabriel Espinoza"
 VIAddVersionKey "FileDescription" "${PRODUCT_NAME}, Portable Edition"
 VIAddVersionKey "FileVersion" ${PRODUCT_VERSION}
 VIAddVersionKey "ProductVersion" ${PRODUCT_VERSION}

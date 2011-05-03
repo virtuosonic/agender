@@ -20,8 +20,8 @@ namespace Agender{
 	static const char FULLVERSION_STRING[] = "1.2.0.0";
 	
 	//SVN Version
-	static const char SVN_REVISION[] = "293";
-	static const char SVN_DATE[] = "2011-04-24T08:39:35.340746Z";
+	static const char SVN_REVISION[] = "307";
+	static const char SVN_DATE[] = "2011-05-01T01:21:01.081440Z";
 	
 	//These values are to keep track of your versioning state, don't modify them.
 	static const long BUILD_HISTORY = 1;

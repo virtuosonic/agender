@@ -41,7 +41,7 @@
 !insertmacro MUI_RESERVEFILE_LANGDLL
 ; MUI end ------
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}, Portable Edition"
-OutFile "${PRODUCT_NAME} Portable-${PRODUCT_VERSION}.exe"
+OutFile "${PRODUCT_NAME}Portable-${PRODUCT_VERSION}.exe"
 InstallDir  "\Agender"
 ShowInstDetails show
 
@@ -53,7 +53,7 @@ VIProductVersion "1.0.0.0"
 VIAddVersionKey "ProductName" ${PRODUCT_NAME}
 VIAddVersionKey "Comments" "A cross-platform schedule tool"
 VIAddVersionKey "CompanyName" ${PRODUCT_PUBLISHER}
-VIAddVersionKey "LegalCopyright" "Copyright Â© 2009-2011 Gabriel Espinoza"
+VIAddVersionKey "LegalCopyright" "Copyright © 2009-2011 Gabriel Espinoza"
 VIAddVersionKey "FileDescription" "The ${PRODUCT_NAME} installer"
 VIAddVersionKey "FileVersion" ${PRODUCT_VERSION}
 VIAddVersionKey "ProductVersion" ${PRODUCT_VERSION}
@@ -63,7 +63,7 @@ Section "Agender" SEC01
 	SetOverwrite ifdiff
 	;launcher
 	SetOutPath "$INSTDIR"
-	File "Agender Portable.exe"
+	File "AgenderPortable.exe"
 	;executable
 	SetOutPath "$INSTDIR\App"
 	File "${Ag_EXE}"
