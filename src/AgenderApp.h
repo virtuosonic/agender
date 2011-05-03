@@ -2,7 +2,7 @@
  * Name:      AgenderApp.h
  * Purpose:   Defines Application Class
  * Author:    Gabriel Espinoza (virtuosonic@users.sourceforge.net)
-unrecognized  * Created:   2008-11-21
+ * Created:   2008-11-21
  * Copyright: Gabriel Espinoza
  * License: GPLv3+
  **************************************************************/
@@ -20,10 +20,10 @@ namespace Agender {
 class AgenderApp : public wxApp
 {
 	public:
-		#if wxUSE_ON_FATAL_EXCEPTION
+#if wxUSE_ON_FATAL_EXCEPTION
 		AgenderApp();
 		virtual void OnFatalException();
-		#endif
+#endif
 		bool OnInit();
 		int OnRun();
 		int OnExit();

@@ -7,9 +7,10 @@
 ;this defines are configurable, change them when needed
 !define WX_VERSION 2.8.11
 !define WX_DIR "..\wxWidgets-${WX_VERSION}"
-!define PRODUCT_VERSION "2.0"
+!define PRODUCT_VERSION "1.2"
 !define UPX "C:\Archivos de programa\upx307w\upx.exe"
 !define Ag_EXE "src\bin\Release\Agender.exe"
+!define C_RUNTIME "C:\Archivos de programa\Microsoft Visual Studio 9.0\VC\redist\x86\Microsoft.VC90.CRT\msvcr90.dll"
 ;!define Ag_EXE "src\bin\mingw32\Agender.exe"
 ;constants (don't touch)
 !define PRODUCT_NAME "Agender"

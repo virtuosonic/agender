@@ -31,10 +31,16 @@ AgenderCal::AgenderCal(wxDateTime date,wxString file)
 	SetDate(date);
 }
 
+AgenderCal::AgenderCal(wxDateTime date,wxFileConfig* file)
+{
+	cfg = file;
+	SetDate(date);
+}
+
 AgenderCal::~AgenderCal()
 {
 	wxLogMessage(_T("destroying AgenderCal"));
-	delete cfg;
+	//delete cfg;
 }
 
 void AgenderCal::SetDate(wxDateTime date)
@@ -110,6 +116,7 @@ wxArrayInt AgenderCal::GetDaysWithNotes()
 		long indx=0;
 		if (cfg->GetFirstGroup(group,indx))
 		{
+			// TODO (virtuoso#1#): send this to a method?
 			if (m_date.Format(_T("%m")) == group.BeforeLast('-').AfterFirst('-'))
 			{
 				long i;
@@ -212,41 +219,5 @@ bool AgenderCal::RmStickySimb(wxString* note)
 	return false;
 }
 
-wxDatesArray AgenderCal::GetDatesWithNotes()
-{
-	wxDatesArray dates;
-	//set
-	wxString group_str;
-	long indx;
-	bool test_bool = cfg->GetFirstGroup(group_str,indx);
-	while (test_bool)
-	{
-		wxLogMessage(_T("found date: %s"),group_str.c_str());
-		wxArrayString ddd = wxStringTokenize(group_str,wxT('-'));
-		if (ddd.GetCount() == 3)
-		{
-			wxString date_str;
-			long datemonth = wxDateTime::Inv_Month;
-			long dateyear = wxDateTime::Inv_Year;
-			long dateday = -1;
-			//year
-			ddd[0].ToLong(&dateyear);
-			//month
-			//wxDateTime::Month goes from 0 to 11
-			//but Agender 1.x files save it from 1 to 12
-			//so decrement it to make it work
-			if (ddd[1].ToLong(&datemonth))
-				datemonth--;
-			//day
-			ddd[2].ToLong(&dateday);
-			//date
-			wxDateTime date(dateday,(wxDateTime::Month)datemonth,dateyear);
-			//add
-			if (date.IsValid())
-				dates.Add(date);
-		}
-		test_bool = cfg->GetNextGroup(group_str, indx);
-	}
-	return dates;
-}
+
 }//namespace Agender

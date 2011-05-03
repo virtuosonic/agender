@@ -17,16 +17,18 @@
 #include <wx/button.h>
 #include <wx/frame.h>
 //*)
+#include <wx/fileconf.h>
 #include <wx/fdrepdlg.h>
 #include <wx/taskbar.h>
 #include "version.h"
 
 namespace Agender {
 
+class AgenderCal;
 class AgenderFrame: public wxFrame
 {
 	public:
-		AgenderFrame(wxLocale& locale);
+		AgenderFrame(wxLocale& locale,wxString cfgFile);
 		~AgenderFrame();
 		static const long ID_UPDATE_FOUND;
 	private:
@@ -46,7 +48,6 @@ class AgenderFrame: public wxFrame
 		void OnChangeNotesColour(wxCommandEvent& event);
 		void OnYearSel(wxCommandEvent& event);
 		void OnMenuRename(wxCommandEvent& event);
-		void OnMenuExportNote(wxCommandEvent& event);
 		void OnMenuNoteFlag(wxCommandEvent& event);
 		void OnActivate(wxActivateEvent& event);
 		void OnEscape(wxCommandEvent& event);
@@ -69,9 +70,12 @@ class AgenderFrame: public wxFrame
 		//*)
 		wxFindReplaceDialog* fndDlg;
 		wxFindReplaceData* fndData;
+		wxFileConfig* schdl;
+		wxString schFile;
 		wxTaskBarIcon* trayicon;
 		bool SearchMode;
 		wxLocale& m_locale;
+		AgenderCal* a_cal;
 
 		void MarkDays();
 		void ChangeSelector();
@@ -82,7 +86,6 @@ class AgenderFrame: public wxFrame
 			ID_RENAME,
 			ID_NORMAL,
 			ID_STICKY,
-			ID_EXPORT_NOTE
 		};
 
 		DECLARE_EVENT_TABLE()

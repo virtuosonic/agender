@@ -17,7 +17,7 @@ function clean_dist() {
 	done
 }
 #constants
-VERSION="2.0"
+VERSION="1.2"
 cd ..
 AgROOT=`pwd`
 DISTROOT="Agender-$VERSION"

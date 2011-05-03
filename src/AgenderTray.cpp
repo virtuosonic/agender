@@ -14,7 +14,6 @@
 #if defined wxHAS_TASK_BAR_ICON
 
 #include "AgenderTray.h"
-#include "XmlNotes.h"
 #include <wx/colordlg.h>
 #include <wx/numdlg.h>
 #include <wx/menu.h>
@@ -47,8 +46,6 @@ BEGIN_EVENT_TABLE(AgenderTray,wxTaskBarIcon)
 	EVT_MENU(ID_AUTOSTART,AgenderTray::OnMenuAutoStart)
 	EVT_MENU(ID_SYMBOL,AgenderTray::OnMenuSymbols)
 	EVT_MENU(ID_NOTIFY,AgenderTray::OnMenuNotify)
-	EVT_MENU(ID_IMPORT,AgenderTray::OnMenuImport)
-	EVT_MENU(ID_EXPORT,AgenderTray::OnMenuExport)
 	//lang menu
 	EVT_MENU_RANGE(ID_LANG_DEF,ID_LANG_LAST-1,AgenderTray::OnMenuLang)
 	//help menu
@@ -171,9 +168,6 @@ wxMenu * AgenderTray::CreatePopupMenu()
 			break;
 	}
 	//file menu
-	wxMenu* FileMenu = new wxMenu;
-	FileMenu->Append(ID_IMPORT,_("Import"));
-	FileMenu->Append(ID_EXPORT,_("Export"));
 	//gui menu
 	wxMenu* GuiMenu = new wxMenu;
 	if (frame->CanSetTransparent())
@@ -198,13 +192,11 @@ wxMenu * AgenderTray::CreatePopupMenu()
 	//main menu
 	wxMenu* menu;
 	menu = new wxMenu;
-	menu->SetTitle(_("Agender"));
 	//show/hide
 	menu->Append(ID_SHOW,_("Show"))->SetBitmaps(m_icon);
 	menu->Append(ID_HIDE,_("Hide"));
 	//submenus
 	menu->AppendSeparator();
-	menu->AppendSubMenu(FileMenu,_("File"));
 	menu->AppendSubMenu(GuiMenu,_("Gui"));
 	menu->AppendSubMenu(ToolsMenu,_("Tools"));
 	menu->AppendSubMenu(HelpMenu,_("Help"))->SetBitmap(wxArtProvider::GetBitmap(wxART_HELP,wxART_MENU));
@@ -371,26 +363,6 @@ void AgenderTray::OnMenuLang(wxCommandEvent& event)
 	wxConfig::Get()->Write(_T("/lang"),(long)l);
 	wxMessageBox(_T("To apply changes you must restart Agender"),
 	             _("Agender Language changed"),wxOK,frame);
-}
-
-void AgenderTray::OnMenuImport(wxCommandEvent& WXUNUSED(event))
-{
-	wxFileDialog dlg(0);
-	dlg.SetWildcard(_T("Agender files|*.xml;*.txt"));
-	if (dlg.ShowModal() == wxID_OK)
-	{
-		AgCal::Get()->Import(dlg.GetPath());
-	}
-}
-
-void AgenderTray::OnMenuExport(wxCommandEvent& WXUNUSED(event))
-{
-	wxFileDialog dlg(0);
-	dlg.SetWildcard(_T("Agender xml|*.xml"));
-	if (dlg.ShowModal() == wxID_OK)
-	{
-		AgCal::Get()->Export(dlg.GetPath());
-	}
 }
 
 void AgenderTray::OnMenuAbout(wxCommandEvent& event)
