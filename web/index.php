@@ -142,7 +142,7 @@ else {$page_data = $error404;}
 	</form>
 	<!-- sf_net logo-->
 	<a href="http://sourceforge.net/projects/agender" >
-		<img src="http://sourceforge.net/sflogo.php?group_id=146403&amp;type=1" alt='SourceForge.net Logo' title="SourceForge.net"/>
+		<img src="http://sourceforge.net/sflogo.php?group_id=271084&amp;type=1" alt='SourceForge.net Logo' title="SourceForge.net"/>
 	</a>
 	<br/>
 	<a href="http://sourceforge.net/donate/index.php?group_id=271084">
