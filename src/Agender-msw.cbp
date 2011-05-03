@@ -163,7 +163,7 @@
 			<debugger />
 			<AutoVersioning>
 				<Scheme minor_max="10" build_max="0" rev_max="0" rev_rand_max="10" build_times_to_increment_minor="100" />
-				<Settings autoincrement="0" date_declarations="0" update_manifest="0" do_auto_increment="0" ask_to_increment="0" language="C++" svn="1" svn_directory="C:\Documents and Settings\gabriel\Mis documentos\C++\Agender" header_path="version.h" />
+				<Settings autoincrement="0" date_declarations="0" update_manifest="0" do_auto_increment="0" ask_to_increment="0" language="C++" svn="1" svn_directory="C:\Documents and Settings\gabriel\Mis documentos\C++\Ag_1_1_9_1" header_path="version.h" />
 				<Changes_Log show_changes_editor="0" app_title="released version %M.%m.%b of %p" changeslog_path="ChangesLog.txt" />
 				<Code header_guard="VERSION_H" namespace="Agender" prefix="" />
 			</AutoVersioning>
