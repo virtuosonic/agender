@@ -111,7 +111,7 @@ else {$page_data = $error404;}
 	<meta name="google-site-verification" content="iUBg-Nc16oi8DZuLt_3KwE8exy7fstuQjP7nMNeTSU4" />
 	<title>Agender - <?php echo $title ?></title>
 	<link rel="stylesheet" type="text/css" href="agender.css" media="screen"/>
-	<link rel="alternate" type="application/rss+xml" href="rss.xml"
+	<link rel="alternate" type="application/rss+xml" href="https://sourceforge.net/export/rss2_projnews.php?group_id=271084"
 		title="Agender - a cross-platform schedule tool!"/>
 	<link rel="icon" href="agender32.png"/>
 	<!--google analytics-->
