@@ -105,17 +105,6 @@ code {
 	margin: 10px;
 }
 
-#mail {
-	width: 306px;
-	background: #ffffff;
-	border: 1px solid #7C7C7C;
-	position: absolute;
-	right: 10px;
-	top: 310px;
-	padding:10px;
-	margin: 10px;
-}
-
 /* links page */
 #links {
 	padding: 2em;
@@ -138,4 +127,4 @@ li#softoxi {list-style-image: url(softoxi5of5.png);}
 #menu a {font-size: 1.1em;}
 #menu a#active {font-weight: bold;}
 
-#hack {bottom: 20px; right:20px;}
+#hack {bottom: 20px; right:20px;position: absolute;}
