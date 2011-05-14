@@ -209,14 +209,7 @@ else {$page_data = $error404;}
 		src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 	</script>
 </div>
-<!-- mailing list -->
-<div id="mail">
-<form method="POST" action="http://lists.sourceforge.net/lists/subscribe/agender-announce">
-	<p><?php echo $mailmessage ?></p>
-	<label for="email">email:</label><input id="email" type="Text" name="email" size="30" value=""/>
-	<input type="Submit" name="email-button" value=<?php echo $Subscribe?>/>
-</form>
-</div>
+<img id="hack" src="http://www.catb.org/hacker-emblem/glider.png"/>
 <!-- Piwik -->
 <script type="text/javascript">
 	var pkBaseURL = (("https:" == document.location.protocol) ? "https://sourceforge.net/apps/piwik/agender/" : "http://sourceforge.net/apps/piwik/agender/");

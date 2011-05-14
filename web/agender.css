@@ -137,3 +137,5 @@ li#softoxi {list-style-image: url(softoxi5of5.png);}
 /*navigation menu*/
 #menu a {font-size: 1.1em;}
 #menu a#active {font-weight: bold;}
+
+#hack {bottom: 20px; right:20px;}
