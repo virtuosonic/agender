@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<bakefile-gen xmlns="http://www.bakefile.org/schema/bakefile-gen">
+	<input>Agender.bkl</input>
+	<add-formats>
+		gnu,msvc6prj,mingw,msvs2005prj
+	</add-formats>
+	<add-flags>
+		-I C:/wxWidgets-2.8.11/build/bakefiles/wxpresets
+	</add-flags>
+</bakefile-gen>
