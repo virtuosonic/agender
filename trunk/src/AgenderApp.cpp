@@ -85,6 +85,9 @@ bool AgenderApp::OnInit()
 	//who are we?
 	SetAppName(wxT("Agender"));
 	SetVendorName(wxT("Virtuosonic"));
+	//check for datadir
+	if (!wxDirExists(wxStandardPaths::Get().GetUserDataDir()))
+		wxMkdir(wxStandardPaths::Get().GetUserDataDir());
 	//log to file
 	{
 		wxFileName logfname;
@@ -96,9 +99,6 @@ bool AgenderApp::OnInit()
 		wxLog::SetVerbose(true);
 		logfile.Detach();
 	}
-	//check for datadir
-	if (!wxDirExists(wxStandardPaths::Get().GetUserDataDir()))
-		wxMkdir(wxStandardPaths::Get().GetUserDataDir());
 #if defined __WXMAC__ || defined __WXOSX__
 	//spell checking for mac
 	wxSystemOptions::SetOptionInt(wxMAC_TEXTCONTROL_USE_SPELL_CHECKER,1);
