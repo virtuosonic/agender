@@ -1,0 +1,172 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Agender\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-17 20:19-0800\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Gabriel Espinoza <virtuosonic@users.sourceforge.net>\n"
+"Language-Team: Agender project <agender-support@lists.sourceforge.net>\n"
+"Language: Arabic\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/AgenderTray.cpp:91
+msgid "100%"
+msgstr "100%"
+
+#: ../src/AgenderTray.cpp:92
+msgid "75%"
+msgstr "75%"
+
+#: ../src/AgenderTray.cpp:93
+msgid "50%"
+msgstr "50%"
+
+#: ../src/AgenderTray.cpp:94
+msgid "25%"
+msgstr "25%"
+
+#: ../src/AgenderTray.cpp:99
+msgid "default"
+msgstr "الافتراضي"
+
+#: ../src/AgenderTray.cpp:153
+msgid "Show"
+msgstr "عرض"
+
+#: ../src/AgenderTray.cpp:154
+msgid "Hide"
+msgstr "إخفاء"
+
+#: ../src/AgenderTray.cpp:157
+msgid "Opacity"
+msgstr "الشفافية"
+
+#: ../src/AgenderTray.cpp:158
+msgid "Year selector"
+msgstr "בוחר השנים"
+
+#: ../src/AgenderTray.cpp:159
+msgid "Notes Colour"
+msgstr "لون الملاحظات "
+
+#: ../src/AgenderTray.cpp:160
+msgid "Language"
+msgstr "اللغة"
+
+#: ../src/AgenderTray.cpp:162
+msgid "Symbol"
+msgstr "رمز"
+
+#: ../src/AgenderTray.cpp:164
+#: ../src/AgenderTray.cpp:268
+msgid "Notify"
+msgstr "تنبيه"
+
+#: ../src/AgenderTray.cpp:165
+msgid "Autostart"
+msgstr "بدء تلقائي"
+
+#: ../src/AgenderTray.cpp:167
+msgid "Exit"
+msgstr "خروج"
+
+#: ../src/AgenderTray.cpp:267
+msgid "Days to notify before note"
+msgstr "أيام للتنبيه قبل الموعد"
+
+#: ../src/AgenderTray.cpp:267
+msgid "Days"
+msgstr "أيام"
+
+#: ../src/AgenderTray.cpp:325
+msgid "Agender Language changed"
+msgstr " تم تغيير لغة Agender"
+
+#: ../src/AgenderMain.cpp:75
+msgid "Agender"
+msgstr "Agender"
+
+#: ../src/AgenderMain.cpp:91
+msgid "Add &note"
+msgstr "أضف ملاحظة"
+
+#: ../src/AgenderMain.cpp:95
+msgid "&Delete selection"
+msgstr "احذف الملاحظة"
+
+#: ../src/AgenderMain.cpp:97
+msgid "&About..."
+msgstr "&عن البرنامج "
+
+#: ../src/AgenderMain.cpp:131
+msgid "Agender|Search Notes"
+msgstr "Agender | البحث عن الملاحظات"
+
+#: ../src/AgenderMain.cpp:190
+msgid "A cross-platform schedule tool"
+msgstr "أداة لتحديد المواعيد تعمل على أنظمة مختلفة"
+
+#: ../src/AgenderMain.cpp:191
+msgid "Build:"
+msgstr "بناء :"
+
+#: ../src/AgenderMain.cpp:191
+msgid "Revision:"
+msgstr "مراجعة :"
+
+#: ../src/AgenderMain.cpp:192
+msgid "Agender Web Site"
+msgstr "موقع الويب للبرنامج "
+
+#: ../src/AgenderMain.cpp:193
+#: ../src/AgenderMain.cpp:239
+msgid "To-Do Title"
+msgstr "عنوان المهمة"
+
+#: ../src/AgenderMain.cpp:239
+msgid "New To-Do"
+msgstr "مهمة جديدة"
+
+#: ../src/AgenderMain.cpp:244
+msgid "Expresion '$(' reserved for Agender, please use another name"
+msgstr "الاسم محجوز للبرنامج ، فضلاً قم باستخدام اسم آخر "
+
+#: ../src/AgenderMain.cpp:368
+#: ../src/AgenderMain.cpp:406
+msgid "Rename"
+msgstr "إعادة التسمية"
+
+#: ../src/AgenderMain.cpp:370
+msgid "Normal"
+msgstr "الوضع الطبيعي"
+
+#: ../src/AgenderMain.cpp:371
+msgid "Sticky"
+msgstr "الوضع اللاصق"
+
+#: ../src/AgenderMain.cpp:406
+msgid "New name"
+msgstr "اسم جديد"
+
+#: ../src/AgenderMain.cpp:439
+#, c-format
+msgid "The %s version of %s has been released. Do you want to download it?"
+msgstr "هناك نسخة جديدة من أجندر ، هل ترغب تنزيلها ؟"
+
+#: ../src/AgenderMain.cpp:442
+msgid "Upgrade Found"
+msgstr "هناك تحديث جديد"
+
+#: ../src/wxAutoStart.cpp:38
+#, c-format
+msgid "AutoStart is only available under %s  and Unix desktops that follow the freedesktop.org standards. If you add support for any other system, please send patches to the patch tracker in the Agender project page at http://sourceforge.net/projects/agender/ or you can also help donating hardware that runs your favorite system."
+msgstr " وضع البدء التلقائي ، متاح فقط في بيئة %S   و بيئة لينكس للأجهزة المكتبية التي تتبيع معايير freedesktop.org ، إذا كنت ترغب بإضافة الدعم لأنظمة أخرى ، فضلاً أرسل الباتس إلى متتبع الباتشات في صفحة أجند"
+
+#: ../src/wxAutoStart.cpp:45
+msgid "Error setting auto start"
+msgstr "البدء التلقائي لإعداد الأخطاء"
+
+#~ msgid "Agender uses this file to save your schedule, don't delete it!"
+#~ msgstr "البرنامج يقوم بحفظ مواعيدك على هذا الملف ، لا تقم بحذفه !"
