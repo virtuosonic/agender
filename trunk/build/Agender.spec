@@ -40,8 +40,8 @@ Group: Applications/Office/Calendar
 Source: %{name}-%{version}.tar.bz2
 Icon: %{name}.xpm
 URL: http://agender.sourceforge.net/
-Requires: wxGTK >= 2.8.11
-BuildRequires: wxGTK-devel >= 2.8.11,make,gcc-c++,bakefile
+Requires: wxGTK >= 2.8.12
+BuildRequires: wxGTK-devel >= 2.8.12,make,gcc-c++,bakefile
 Prefix: %{_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-build
 %if 0%{?suse_version}
@@ -68,9 +68,15 @@ en Fluxbox, IceWM y escritorios compatibles con freedesktop.org
 %build
 	cd build
 	%{__make} %{?_smp_mflags}
-
+	cd ../po
+	./build_mo.sh
+	cd ..
 %install
+	cd build
 	%{__make} DESTDIR="$RPM_BUILD_ROOT" install
+	cd ../po
+	./install_mo
+	cd ..
 	%find_lang %{name}
 	%if 0%{?suse_version}
 		%suse_update_desktop_file %{name}
@@ -113,3 +119,6 @@ en Fluxbox, IceWM y escritorios compatibles con freedesktop.org
 -removed some comments that did not make sense
 -requires wxGTK 2.8.11
 -added about dialog images
+*Tue May 03 2011 virtuosonic <virtuosonic@users.sourceforge.net>
+- mo catalogs build and install
+-requires wxGTK 2.8.12
