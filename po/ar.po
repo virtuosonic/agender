@@ -4,13 +4,12 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-05-17 20:19-0800\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Mohmmad Al-Hamdan <Mohmmadhd@gmail.com>\n"
+"Last-Translator: Faris AlFaris <Faris.cs@gmail.com>\n"
 "Language-Team: Agender project <agender-support@lists.sourceforge.net>\n"
 "Language: Arabic\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
 
 #: ../src/AgenderTray.cpp:91
 msgid "100%"
@@ -46,7 +45,7 @@ msgstr "الشفافية"
 
 #: ../src/AgenderTray.cpp:158
 msgid "Year selector"
-msgstr "בוחר השנים"
+msgstr "أداة أختيار السنة"
 
 #: ../src/AgenderTray.cpp:159
 msgid "Notes Colour"
@@ -119,33 +118,9 @@ msgstr "مراجعة :"
 
 #: ../src/AgenderMain.cpp:192
 msgid "Agender Web Site"
-msgstr "موقع الويب للبرنامج "
+msgstr "موقع الويب لـAgender "
 
 #: ../src/AgenderMain.cpp:193
-msgid ""
-"Agender is free software; you can redistribute it and/or modify\n"
-"it under the terms of the GNU General Public License as published by\n"
-"the Free Software Foundation, either version 3 of the License, or\n"
-"(at your option) any later version.\n"
-"\n"
-"Agender is distributed in the hope that it will be useful,\n"
-"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
-"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
-"GNU General Public License for more details.\n"
-"\n"
-"You should have received a copy of the GNU General Public License\n"
-"along with Agender. If not, see <http://www.gnu.org/licenses/>."
-msgstr
-
-
-" أجنْدر هو برنامج مجاني ، بإمكانك توزيعه أو التعديل عليه تحت تصريح شهادة GNU النسخة الثالثة أو ما بعدها .."
-"\n"
-" سُمح لـ أجنْدر بالتوزيع أملاً أن يساعد هذا في انتشاره و استفادة المستخدمين منه ، لكننا لا نتحمل أي مسؤولية تترتب عن أي استخدام من أي نوع يفترض أن تحصل على شهادة GNU  مع البرنامج " "\n"
-"\n"
-"فضلاً قم بزيارة الرابط : <http://www.gnu.org/licenses/>."
- "\n"
-
-
 #: ../src/AgenderMain.cpp:239
 msgid "To-Do Title"
 msgstr "عنوان المهمة"
@@ -187,8 +162,7 @@ msgstr "هناك تحديث جديد"
 #: ../src/wxAutoStart.cpp:38
 #, c-format
 msgid "AutoStart is only available under %s  and Unix desktops that follow the freedesktop.org standards. If you add support for any other system, please send patches to the patch tracker in the Agender project page at http://sourceforge.net/projects/agender/ or you can also help donating hardware that runs your favorite system."
-msgstr " وضع البدء التلقائي ، متاح فقط في بيئة %s   و بيئة لينكس للأجهزة المكتبية التي تتبيع معايير freedesktop.org ، إذا كنت ترغب بإضافة الدعم لأنظمة أخرى ، فضلاً أرسل الباتس إلى متتبع الباتشات في صفحة أجندر
-http://sourceforge.net/projects/agender/ ، كما يمكنك - أيضاً - المشاركة بالتبرع بأجهزة لنظامك المفضل . "
+msgstr " وضع البدء التلقائي ، متاح فقط في بيئة %s   و بيئة لينكس للأجهزة المكتبية التي تتبيع معايير freedesktop.org ، إذا كنت ترغب بإضافة الدعم لأنظمة أخرى ، فضلاً أرسل الباتس إلى متتبع الباتشات في صفحة أجند"
 
 #: ../src/wxAutoStart.cpp:45
 msgid "Error setting auto start"
