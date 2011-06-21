@@ -169,6 +169,7 @@ else {$page_data = $error404;}
 	<iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fplatform&amp;width=292&amp;colorscheme=light&amp;show_faces=false&amp;border_color&amp;stream=false&amp;header=false&amp;height=62" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true"></iframe>
 </div><!-- end of left_pane -->
 <!-- center container -->
+<center>
 <div id="container">
 	<center><img src="hdr.png"/></center>
 	<!-- menu -->
@@ -197,6 +198,7 @@ else {$page_data = $error404;}
 	<?php echo $page_data;?>
 	<!-- end of contents -->
 </div>
+</center>
 <!-- adsense -->
 <div id="vs_google_adsense">
 	<script type="text/javascript"><!--
