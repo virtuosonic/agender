@@ -166,7 +166,7 @@ else {$page_data = $error404;}
 		src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 	</script></div>
 	<!-- facebook -->
-	<iframe src="http://www.facebook.com/plugins/likebox.php?amp;width=292&amp;colorscheme=light&amp;show_faces=false&amp;border_color&amp;stream=false&amp;header=false&amp;height=62" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true"></iframe>
+	<iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fplatform&amp;width=292&amp;colorscheme=light&amp;show_faces=false&amp;border_color&amp;stream=false&amp;header=false&amp;height=62" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true"></iframe>
 </div><!-- end of left_pane -->
 <!-- center container -->
 <div id="container">
