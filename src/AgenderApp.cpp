@@ -181,7 +181,7 @@ int AgenderApp::OnRun()
 		}
 	}
 	catch(...) {}
-	notif.Start(20000);
+	//notif.Start(20000);
 	//continue
 	return wxApp::OnRun();
 }
@@ -218,7 +218,9 @@ void AgenderApp::OnEndSession(wxCloseEvent& WXUNUSED(event))
 		GetTopWindow()->Destroy();
 	}
 }
-void AgenderApp::SingleInstance() {
+
+void AgenderApp::SingleInstance()
+{
 	if (m_checker->Create(_T(".") + GetAppName() + _T("-") + ::wxGetUserId())	        && m_checker->IsAnotherRunning())	{
 		//lets try to connect to Another and  asking to show it self
 		wxClient client;
@@ -241,8 +243,10 @@ void AgenderApp::SingleInstance() {
 		exit(EXIT_FAILURE);
 	}
 }
+
 #if wxUSE_ON_FATAL_EXCEPTION
-void AgenderApp::OnFatalException() {
+void AgenderApp::OnFatalException()
+{
 	wxDebugReportCompress *report = new wxDebugReportCompress;
 	report->AddAll(wxDebugReport::Context_Exception);
 	//add log file
@@ -252,7 +256,7 @@ void AgenderApp::OnFatalException() {
 	logfname.SetExt(_T("log"));
 	report->AddFile(logfname.GetFullPath(),_("Agender log file"));
 	//add revision data
-	report->AddText(_T("svn_revision.txt"),			wxString::FromAscii(SVN_REVISION)+			_T(" ") + wxString::FromAscii(SVN_DATE),			_("Subversion revision data."));
+	report->AddText(_T("svn_revision.txt"),wxString::FromAscii(SVN_REVISION)+ _T(" ") + wxString::FromAscii(SVN_DATE,_("Subversion revision data."));
 	//preview
 	if ( wxDebugReportPreviewStd().Show(*report) )	{
 		report->Process();
