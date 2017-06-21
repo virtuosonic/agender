@@ -326,10 +326,10 @@ void AgenderFrame::MarkDays()
 		if (today_attr == NULL)
 		{
 			today_attr = new wxCalendarDateAttr;
+			today_attr->SetBorder(wxCAL_BORDER_ROUND);
+			today_attr->SetBorderColour(wxColour(wxConfig::Get()->Read(_T("/notescolour"),_T("#00ff00"))));
 			CalendarCtrl1->SetAttr(wxDateTime::Now().GetDay(),today_attr);
 		}
-		today_attr->SetBorder(wxCAL_BORDER_ROUND);
-		today_attr->SetBorderColour(wxColour(wxConfig::Get()->Read(_T("/notescolour"),_T("#00ff00"))));
 	}
 }
 
