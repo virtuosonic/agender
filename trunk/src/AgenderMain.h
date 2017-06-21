@@ -13,6 +13,7 @@
 #include <wx/sizer.h>
 #include <wx/textctrl.h>
 #include <wx/calctrl.h>
+#include <wx/generic/calctrlg.h>
 #include <wx/listbox.h>
 #include <wx/button.h>
 #include <wx/frame.h>
@@ -62,7 +63,7 @@ class AgenderFrame: public wxFrame
 		//*)
 		//(*Declarations(AgenderFrame)
 		wxButton* BtnNuevo;
-		wxCalendarCtrl* CalendarCtrl1;
+		wxGenericCalendarCtrl* CalendarCtrl1;
 		wxButton* BtnElim;
 		wxButton* Button3;
 		wxTextCtrl* TextCtrl1;
