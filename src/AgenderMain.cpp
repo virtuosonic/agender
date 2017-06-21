@@ -29,6 +29,7 @@
 #include <wx/dirdlg.h>
 #include <wx/file.h>
 
+
 #if defined wxHAS_TASK_BAR_ICON
 #include "AgenderTray.h"
 #endif
@@ -36,6 +37,8 @@
 #include "AgenderMain.h"
 #include "AgenderCal.h"
 #include "AboutDialog.h"
+
+
 
 #ifndef __REVISION__
 #define __REVISION__ 0
@@ -86,7 +89,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 	FlexGridSizer1->AddGrowableCol(0);
 	FlexGridSizer1->AddGrowableRow(0);
 	FlexGridSizer1->AddGrowableRow(1);
-	CalendarCtrl1 = new wxCalendarCtrl(this, ID_CALENDARCTRL1, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxCAL_SEQUENTIAL_MONTH_SELECTION|wxSUNKEN_BORDER, _T("ID_CALENDARCTRL1"));
+	CalendarCtrl1 = new wxGenericCalendarCtrl(this, ID_CALENDARCTRL1, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, wxCAL_SEQUENTIAL_MONTH_SELECTION|wxSUNKEN_BORDER, _T("ID_CALENDARCTRL1"));
 	FlexGridSizer1->Add(CalendarCtrl1, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	ListBox1 = new wxListBox(this, ID_LISTBOX1, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_LISTBOX1"));
 	FlexGridSizer1->Add(ListBox1, 1, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
@@ -361,7 +364,7 @@ void AgenderFrame::ChangeSelector()
 		style = wxSUNKEN_BORDER|wxTAB_TRAVERSAL;
 	else
 		style = wxCAL_SEQUENTIAL_MONTH_SELECTION|wxSUNKEN_BORDER|wxTAB_TRAVERSAL;
-	wxCalendarCtrl* calendar = new wxCalendarCtrl(this, ID_CALENDARCTRL1, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, style, _T("ID_CALENDARCTRL1"));
+	wxGenericCalendarCtrl* calendar = new wxGenericCalendarCtrl(this, ID_CALENDARCTRL1, wxDefaultDateTime, wxDefaultPosition, wxDefaultSize, style, _T("ID_CALENDARCTRL1"));
 	GetSizer()->Replace(CalendarCtrl1,calendar);
 	delete CalendarCtrl1;
 	CalendarCtrl1 = calendar;
