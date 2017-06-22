@@ -34,7 +34,8 @@ WX_USE_THEME(mono);
 WX_USE_THEME(gtk);
 #endif
 
-namespace Agender {
+using namespace Agender;
+
 #if defined __UNIX__
 #include <signal.h>
 //i hate globals
@@ -68,12 +69,12 @@ END_EVENT_TABLE()
 
 IMPLEMENT_APP(AgenderApp);
 
-#if wxUSE_ON_FATAL_EXCEPTION
+//#if  wxUSE_ON_FATAL_EXCEPTION
 AgenderApp::AgenderApp()
 {
 	::wxHandleFatalExceptions(true);
 }
-#endif
+//#endif
 
 bool AgenderApp::OnInit()
 {
@@ -95,7 +96,7 @@ bool AgenderApp::OnInit()
 		logfile.Detach();
 	}
 
-#if defined __WXMAC__ || defined __WXOSX__
+#if 0//defined __WXMAC__ || defined __WXOSX__
 	//spell checking for mac
 	wxSystemOptions::SetOptionInt(wxMAC_TEXTCONTROL_USE_SPELL_CHECKER,1);
 #endif
@@ -244,7 +245,7 @@ void AgenderApp::SingleInstance()
 	}
 }
 
-#if wxUSE_ON_FATAL_EXCEPTION
+#if 0// wxUSE_ON_FATAL_EXCEPTION
 void AgenderApp::OnFatalException()
 {
 	wxDebugReportCompress *report = new wxDebugReportCompress;
@@ -268,5 +269,5 @@ void AgenderApp::OnFatalException()
 	delete report;
 }
 #endif
-}
+
 //namespace Agender
