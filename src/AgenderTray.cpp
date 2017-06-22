@@ -197,7 +197,7 @@ wxMenu * AgenderTray::CreatePopupMenu()
 	wxMenu* menu;
 	menu = new wxMenu;
 	//show/hide
-	menu->Append(ID_SHOW,_("Show"))->SetBitmaps(m_icon);
+	//menu->Append(ID_SHOW,_("Show"))->SetBitmaps(m_icon);
 	menu->Append(ID_HIDE,_("Hide"));
 	//submenus
 	menu->AppendSeparator();
