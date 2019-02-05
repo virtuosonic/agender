@@ -81,7 +81,7 @@ AgenderFrame::AgenderFrame(wxLocale& locale,wxString cfgFile):m_locale(locale)
 	wxBoxSizer* BoxSizer1;
 	wxFlexGridSizer* FlexGridSizer1;
 
-	Create(0, wxID_ANY, _("Agender"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxFRAME_TOOL_WINDOW|wxTAB_TRAVERSAL, _T("wxID_ANY"));
+	Create(0, wxID_ANY, _("Agender"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX/*|wxFRAME_TOOL_WINDOW*/|wxTAB_TRAVERSAL, _T("wxID_ANY"));
 #ifdef __WXMSW__
 	SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUBAR));
 #endif
