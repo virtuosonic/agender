@@ -1,0 +1,34 @@
+cmake_minimum_required(VERSION 3.25)
+project(agender VERSION 1.2.0 LANGUAGES CXX)
+
+set(SOURCES
+	src/AgenderIPC.cpp
+	src/AgenderApp.cpp
+	src/AboutDialog.cpp
+	src/AgenderMain.cpp
+	src/AgenderTray.cpp
+	src/wxAutoStart.cpp
+	src/Updater.cpp
+	src/Notifier.cpp
+	src/AgenderCal.cpp
+	src/AgenderDnd.cpp 
+)
+
+add_executable(${PROJECT_NAME} ${SOURCES})
+
+find_package(wxWidgets CONFIG REQUIRED)
+target_link_libraries(${PROJECT_NAME} PRIVATE 
+	wx::core 
+	wx::base 
+	wx::net
+	wx::richtext
+	wx::adv
+)
+
+set_target_properties(${PROJECT_NAME} PROPERTIES
+	MACOSX_BUNDLE_GUI_IDENTIFIER com.virtuosonic-sdc.${PROJECT_NAME}
+	MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
+	MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+	MACOSX_BUNDLE TRUE
+	WIN32_EXECUTABLE TRUE
+)
