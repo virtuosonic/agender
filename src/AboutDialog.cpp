@@ -60,7 +60,7 @@ AboutDialog::AboutDialog(wxAboutDialogInfo& info,wxWindow* parent)
 	HtmlWindow1 = new wxHtmlWindow(Notebook1, ID_HTMLWINDOW1, wxDefaultPosition, wxSize(335,237), wxHW_SCROLLBAR_AUTO, _T("ID_HTMLWINDOW1"));
 	HtmlWindow3 = new wxHtmlWindow(Notebook1, ID_HTMLWINDOW3, wxPoint(159,6), wxDefaultSize, wxHW_SCROLLBAR_AUTO, _T("ID_HTMLWINDOW3"));
 	HtmlWindow4 = new wxHtmlWindow(Notebook1, ID_HTMLWINDOW4, wxPoint(-46,17), wxDefaultSize, wxHW_SCROLLBAR_AUTO, _T("ID_HTMLWINDOW4"));
-	TextCtrl1 = new wxTextCtrl(Notebook1, ID_TEXTCTRL1, wxEmptyString, wxPoint(272,14), wxDefaultSize, wxTE_AUTO_SCROLL|wxTE_MULTILINE|wxTE_READONLY|wxTE_AUTO_URL, wxDefaultValidator, _T("ID_TEXTCTRL1"));
+    TextCtrl1 = new wxTextCtrl(Notebook1, ID_TEXTCTRL1, wxEmptyString, wxPoint(272,14), wxDefaultSize, wxTE_MULTILINE|wxTE_READONLY|wxTE_AUTO_URL, wxDefaultValidator, _T("ID_TEXTCTRL1"));
 	Notebook1->AddPage(HtmlWindow1, _("Info"), false);
 	Notebook1->AddPage(HtmlWindow3, _("Thanks"), false);
 	Notebook1->AddPage(HtmlWindow4, _("Donate"), false);
