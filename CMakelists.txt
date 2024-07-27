@@ -14,15 +14,16 @@ set(SOURCES
 	src/AgenderDnd.cpp 
 )
 
-add_executable(${PROJECT_NAME} ${SOURCES})
+add_executable(${PROJECT_NAME} ${SOURCES}
+    vcpkg.json)
 
 find_package(wxWidgets CONFIG REQUIRED)
-target_link_libraries(${PROJECT_NAME} PRIVATE 
-	wx::core 
-	wx::base 
-	wx::net
-	wx::richtext
-	wx::adv
+target_link_libraries(${PROJECT_NAME} PRIVATE
+        wx::core
+        wx::base
+        wx::net
+        wx::richtext
+        wx::adv
 )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
