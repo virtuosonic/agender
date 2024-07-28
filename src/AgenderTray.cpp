@@ -82,7 +82,11 @@ AgenderTray::AgenderTray(wxFrame* frame)
 		default:
 			break;
 	}
+#ifdef __APPLE__
+    bool autostart=false;
+#else
 	bool autostart=true;
+#endif
 	wxConfig::Get()->Read(_T("/autostart"),&autostart,true);
 	astart.Set(autostart);
 }
