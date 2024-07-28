@@ -201,7 +201,9 @@ wxMenu * AgenderTray::CreatePopupMenu()
 	wxMenu* menu;
 	menu = new wxMenu;
 	//show/hide
+#ifdef __APPLE__
     menu->Append(ID_SHOW,_("Show"));//->SetBitmaps(m_icon);
+#endif
 	menu->Append(ID_HIDE,_("Hide"));
 	//submenus
 	menu->AppendSeparator();
