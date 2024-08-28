@@ -55,7 +55,7 @@ AboutDialog::AboutDialog(wxAboutDialogInfo& info,wxWindow* parent)
 	SetClientSize(wxSize(390,344));
 	FlexGridSizer1 = new wxFlexGridSizer(0, 1, 0, 0);
 	StaticBitmap1 = new wxStaticBitmap(this, ID_STATICBITMAP1, wxNullBitmap, wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICBITMAP1"));
-	FlexGridSizer1->Add(StaticBitmap1, 1, wxBOTTOM|wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    FlexGridSizer1->Add(StaticBitmap1, 1, wxEXPAND|wxALL, 5);
 	Notebook1 = new wxNotebook(this, ID_NOTEBOOK1, wxDefaultPosition, wxSize(370,288), 0, _T("ID_NOTEBOOK1"));
 	HtmlWindow1 = new wxHtmlWindow(Notebook1, ID_HTMLWINDOW1, wxDefaultPosition, wxSize(335,237), wxHW_SCROLLBAR_AUTO, _T("ID_HTMLWINDOW1"));
 	HtmlWindow3 = new wxHtmlWindow(Notebook1, ID_HTMLWINDOW3, wxPoint(159,6), wxDefaultSize, wxHW_SCROLLBAR_AUTO, _T("ID_HTMLWINDOW3"));

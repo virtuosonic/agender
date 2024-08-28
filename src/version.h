@@ -8,10 +8,10 @@ namespace Agender{
 	static const char STATUS_SHORT[] = "r";
 	
 	//Standard Version Type
-	static const long MAJOR = 1;
-	static const long MINOR = 2;
-	static const long BUILD = 0;
-	static const long REVISION = 0;
+    static const int MAJOR = 1;
+    static const int MINOR = 2;
+    static const int BUILD = 0;
+    static const int REVISION = 0;
 	
 	//Miscellaneous Version Types
 	static const long BUILDS_COUNT = 11;
